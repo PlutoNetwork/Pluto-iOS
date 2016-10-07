@@ -1,0 +1,913 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0606445C1D8A3FC8009CFEBC /* csv.swift */; };
+		060644611D8A4601009CFEBC /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060644601D8A4601009CFEBC /* Board.swift */; };
+		060644691D8A69FC009CFEBC /* schools.csv in Resources */ = {isa = PBXBuildFile; fileRef = 060644681D8A69FC009CFEBC /* schools.csv */; };
+		0612767C1DA3592200CB3C2D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061276791DA3592200CB3C2D /* Info.plist */; };
+		0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612767A1DA3592200CB3C2D /* SCLAlertView.swift */; };
+		0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612767B1DA3592200CB3C2D /* SCLExtensions.swift */; };
+		061F7E4C1D983A970023D46F /* BoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4B1D983A970023D46F /* BoardVC.swift */; };
+		061F7E501D985CC20023D46F /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4F1D985CC20023D46F /* EventCell.swift */; };
+		061F7E521D9863120023D46F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E511D9863120023D46F /* ProfileVC.swift */; };
+		061F7E541D9874190023D46F /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E531D9874190023D46F /* RoundImageView.swift */; };
+		064554901D8B1185002C236C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645548F1D8B1185002C236C /* SearchBar.swift */; };
+		067751661D9EFCB7009757B0 /* AES256CBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0677515F1D9EFCB7009757B0 /* AES256CBC.swift */; };
+		067751671D9EFCB7009757B0 /* BaseDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067751601D9EFCB7009757B0 /* BaseDestination.swift */; };
+		067751681D9EFCB7009757B0 /* ConsoleDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067751611D9EFCB7009757B0 /* ConsoleDestination.swift */; };
+		067751691D9EFCB7009757B0 /* FileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067751621D9EFCB7009757B0 /* FileDestination.swift */; };
+		0677516A1D9EFCB7009757B0 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067751631D9EFCB7009757B0 /* Filter.swift */; };
+		0677516B1D9EFCB7009757B0 /* SBPlatformDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067751641D9EFCB7009757B0 /* SBPlatformDestination.swift */; };
+		0677516C1D9EFCB7009757B0 /* SwiftyBeaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067751651D9EFCB7009757B0 /* SwiftyBeaver.swift */; };
+		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
+		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
+		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
+		06B20C931D863296006EF005 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C921D863296006EF005 /* LoginVC.swift */; };
+		06B20C961D863296006EF005 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06B20C941D863296006EF005 /* Main.storyboard */; };
+		06B20C991D863296006EF005 /* Pluto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C971D863296006EF005 /* Pluto.xcdatamodeld */; };
+		06B20C9B1D863296006EF005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06B20C9A1D863296006EF005 /* Assets.xcassets */; };
+		06B20C9E1D863296006EF005 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06B20C9C1D863296006EF005 /* LaunchScreen.storyboard */; };
+		06B20CA91D863296006EF005 /* PlutoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CA81D863296006EF005 /* PlutoTests.swift */; };
+		06B20CB41D863296006EF005 /* PlutoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CB31D863296006EF005 /* PlutoUITests.swift */; };
+		06B20CC21D8633C5006EF005 /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CC11D8633C5006EF005 /* Lobster-Regular.ttf */; };
+		06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CC91D8638AA006EF005 /* AnimationEngine.swift */; };
+		06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CCE1D8646C9006EF005 /* TextField.swift */; };
+		06B20CD11D8656B4006EF005 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CD01D8656B4006EF005 /* Button.swift */; };
+		06B20CDC1D865D36006EF005 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD21D865D35006EF005 /* OpenSans-Bold.ttf */; };
+		06B20CDD1D865D36006EF005 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD31D865D35006EF005 /* OpenSans-BoldItalic.ttf */; };
+		06B20CDE1D865D36006EF005 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD41D865D36006EF005 /* OpenSans-ExtraBold.ttf */; };
+		06B20CDF1D865D36006EF005 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD51D865D36006EF005 /* OpenSans-ExtraBoldItalic.ttf */; };
+		06B20CE01D865D36006EF005 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD61D865D36006EF005 /* OpenSans-Italic.ttf */; };
+		06B20CE11D865D36006EF005 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD71D865D36006EF005 /* OpenSans-Light.ttf */; };
+		06B20CE21D865D36006EF005 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD81D865D36006EF005 /* OpenSans-LightItalic.ttf */; };
+		06B20CE31D865D36006EF005 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD91D865D36006EF005 /* OpenSans-Regular.ttf */; };
+		06B20CE41D865D36006EF005 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CDA1D865D36006EF005 /* OpenSans-Semibold.ttf */; };
+		06B20CE51D865D36006EF005 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */; };
+		06B20CE71D8665B7006EF005 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CE61D8665B7006EF005 /* GoogleService-Info.plist */; };
+		06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CE91D866A0D006EF005 /* Constants.swift */; };
+		06B20CEC1D87A4E7006EF005 /* SetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CEB1D87A4E7006EF005 /* SetupVC.swift */; };
+		B4F34FAEE16D44E835F8B980 /* Pods_Pluto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5524771818B2C31640FA526F /* Pods_Pluto.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		06B20CA51D863296006EF005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06B20C851D863296006EF005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06B20C8C1D863296006EF005;
+			remoteInfo = Pluto;
+		};
+		06B20CB01D863296006EF005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06B20C851D863296006EF005 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06B20C8C1D863296006EF005;
+			remoteInfo = Pluto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0606445C1D8A3FC8009CFEBC /* csv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = csv.swift; sourceTree = "<group>"; };
+		060644601D8A4601009CFEBC /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		060644681D8A69FC009CFEBC /* schools.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schools.csv; sourceTree = "<group>"; };
+		061276791DA3592200CB3C2D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0612767A1DA3592200CB3C2D /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
+		0612767B1DA3592200CB3C2D /* SCLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLExtensions.swift; sourceTree = "<group>"; };
+		061F7E4B1D983A970023D46F /* BoardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardVC.swift; sourceTree = "<group>"; };
+		061F7E4F1D985CC20023D46F /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		061F7E511D9863120023D46F /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		061F7E531D9874190023D46F /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
+		0645548F1D8B1185002C236C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		0677515F1D9EFCB7009757B0 /* AES256CBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AES256CBC.swift; sourceTree = "<group>"; };
+		067751601D9EFCB7009757B0 /* BaseDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDestination.swift; sourceTree = "<group>"; };
+		067751611D9EFCB7009757B0 /* ConsoleDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleDestination.swift; sourceTree = "<group>"; };
+		067751621D9EFCB7009757B0 /* FileDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDestination.swift; sourceTree = "<group>"; };
+		067751631D9EFCB7009757B0 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		067751641D9EFCB7009757B0 /* SBPlatformDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBPlatformDestination.swift; sourceTree = "<group>"; };
+		067751651D9EFCB7009757B0 /* SwiftyBeaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyBeaver.swift; sourceTree = "<group>"; };
+		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06B20C901D863296006EF005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		06B20C921D863296006EF005 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		06B20C951D863296006EF005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		06B20C981D863296006EF005 /* Pluto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pluto.xcdatamodel; sourceTree = "<group>"; };
+		06B20C9A1D863296006EF005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		06B20C9D1D863296006EF005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		06B20C9F1D863296006EF005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06B20CA41D863296006EF005 /* PlutoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06B20CA81D863296006EF005 /* PlutoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlutoTests.swift; sourceTree = "<group>"; };
+		06B20CAA1D863296006EF005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06B20CAF1D863296006EF005 /* PlutoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06B20CB31D863296006EF005 /* PlutoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlutoUITests.swift; sourceTree = "<group>"; };
+		06B20CB51D863296006EF005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06B20CC11D8633C5006EF005 /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
+		06B20CC41D863773006EF005 /* Pluto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pluto-Bridging-Header.h"; sourceTree = "<group>"; };
+		06B20CC91D8638AA006EF005 /* AnimationEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationEngine.swift; sourceTree = "<group>"; };
+		06B20CCE1D8646C9006EF005 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		06B20CD01D8656B4006EF005 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		06B20CD21D865D35006EF005 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		06B20CD31D865D35006EF005 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		06B20CD41D865D36006EF005 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		06B20CD51D865D36006EF005 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		06B20CD61D865D36006EF005 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		06B20CD71D865D36006EF005 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		06B20CD81D865D36006EF005 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		06B20CD91D865D36006EF005 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		06B20CDA1D865D36006EF005 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		06B20CE61D8665B7006EF005 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		06B20CE91D866A0D006EF005 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		06B20CEB1D87A4E7006EF005 /* SetupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupVC.swift; sourceTree = "<group>"; };
+		5524771818B2C31640FA526F /* Pods_Pluto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pluto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74DB09F247622E608C0D1FBA /* Pods-Pluto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.debug.xcconfig"; sourceTree = "<group>"; };
+		7DD34BF65A678735D57AE41F /* Pods-Pluto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06B20C8A1D863296006EF005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4F34FAEE16D44E835F8B980 /* Pods_Pluto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06B20CA11D863296006EF005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06B20CAC1D863296006EF005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		060644591D8A3EE9009CFEBC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				061276781DA3592200CB3C2D /* SCLAlertView */,
+				0677515E1D9EFCB7009757B0 /* SwiftyBeaver */,
+				060644681D8A69FC009CFEBC /* schools.csv */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		0606445E1D8A3FD3009CFEBC /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				06B20C941D863296006EF005 /* Main.storyboard */,
+				06B20C9C1D863296006EF005 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		0606445F1D8A45CC009CFEBC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				060644601D8A4601009CFEBC /* Board.swift */,
+				068CEF271D9F5CCB00DFE126 /* Event.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		061276781DA3592200CB3C2D /* SCLAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				061276791DA3592200CB3C2D /* Info.plist */,
+				0612767A1DA3592200CB3C2D /* SCLAlertView.swift */,
+				0612767B1DA3592200CB3C2D /* SCLExtensions.swift */,
+			);
+			path = SCLAlertView;
+			sourceTree = "<group>";
+		};
+		0677515E1D9EFCB7009757B0 /* SwiftyBeaver */ = {
+			isa = PBXGroup;
+			children = (
+				0677515F1D9EFCB7009757B0 /* AES256CBC.swift */,
+				067751601D9EFCB7009757B0 /* BaseDestination.swift */,
+				067751611D9EFCB7009757B0 /* ConsoleDestination.swift */,
+				067751621D9EFCB7009757B0 /* FileDestination.swift */,
+				067751631D9EFCB7009757B0 /* Filter.swift */,
+				067751641D9EFCB7009757B0 /* SBPlatformDestination.swift */,
+				067751651D9EFCB7009757B0 /* SwiftyBeaver.swift */,
+			);
+			name = SwiftyBeaver;
+			path = sources;
+			sourceTree = "<group>";
+		};
+		06A196B21D976D86001C29EC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				06A196B31D976D94001C29EC /* DataService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		06B20C841D863296006EF005 = {
+			isa = PBXGroup;
+			children = (
+				06B20C8F1D863296006EF005 /* Pluto */,
+				06B20CA71D863296006EF005 /* PlutoTests */,
+				06B20CB21D863296006EF005 /* PlutoUITests */,
+				06B20C8E1D863296006EF005 /* Products */,
+				E451A91CDF2DC2DE41E28726 /* Pods */,
+				F9D195C12AC3BF3708ECC95E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		06B20C8E1D863296006EF005 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				06B20C8D1D863296006EF005 /* Pluto.app */,
+				06B20CA41D863296006EF005 /* PlutoTests.xctest */,
+				06B20CAF1D863296006EF005 /* PlutoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		06B20C8F1D863296006EF005 /* Pluto */ = {
+			isa = PBXGroup;
+			children = (
+				06A196B21D976D86001C29EC /* Services */,
+				06B20CC71D86381C006EF005 /* Controllers */,
+				06B20CC31D86374F006EF005 /* Fonts */,
+				0606445F1D8A45CC009CFEBC /* Models */,
+				06B20CE81D8665C0006EF005 /* Plists */,
+				060644591D8A3EE9009CFEBC /* Resources */,
+				0606445E1D8A3FD3009CFEBC /* Storyboards */,
+				06B20CC81D863895006EF005 /* Utilities */,
+				06B20CCB1D864313006EF005 /* Views */,
+				06B20C901D863296006EF005 /* AppDelegate.swift */,
+				06B20C9A1D863296006EF005 /* Assets.xcassets */,
+				06B20C971D863296006EF005 /* Pluto.xcdatamodeld */,
+				06B20CC41D863773006EF005 /* Pluto-Bridging-Header.h */,
+			);
+			path = Pluto;
+			sourceTree = "<group>";
+		};
+		06B20CA71D863296006EF005 /* PlutoTests */ = {
+			isa = PBXGroup;
+			children = (
+				06B20CA81D863296006EF005 /* PlutoTests.swift */,
+				06B20CAA1D863296006EF005 /* Info.plist */,
+			);
+			path = PlutoTests;
+			sourceTree = "<group>";
+		};
+		06B20CB21D863296006EF005 /* PlutoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				06B20CB31D863296006EF005 /* PlutoUITests.swift */,
+				06B20CB51D863296006EF005 /* Info.plist */,
+			);
+			path = PlutoUITests;
+			sourceTree = "<group>";
+		};
+		06B20CC31D86374F006EF005 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				06B20CD21D865D35006EF005 /* OpenSans-Bold.ttf */,
+				06B20CD31D865D35006EF005 /* OpenSans-BoldItalic.ttf */,
+				06B20CD41D865D36006EF005 /* OpenSans-ExtraBold.ttf */,
+				06B20CD51D865D36006EF005 /* OpenSans-ExtraBoldItalic.ttf */,
+				06B20CD61D865D36006EF005 /* OpenSans-Italic.ttf */,
+				06B20CD71D865D36006EF005 /* OpenSans-Light.ttf */,
+				06B20CD81D865D36006EF005 /* OpenSans-LightItalic.ttf */,
+				06B20CD91D865D36006EF005 /* OpenSans-Regular.ttf */,
+				06B20CDA1D865D36006EF005 /* OpenSans-Semibold.ttf */,
+				06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */,
+				06B20CC11D8633C5006EF005 /* Lobster-Regular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		06B20CC71D86381C006EF005 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				06B20C921D863296006EF005 /* LoginVC.swift */,
+				06B20CEB1D87A4E7006EF005 /* SetupVC.swift */,
+				061F7E4B1D983A970023D46F /* BoardVC.swift */,
+				061F7E511D9863120023D46F /* ProfileVC.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		06B20CC81D863895006EF005 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0606445C1D8A3FC8009CFEBC /* csv.swift */,
+				06B20CE91D866A0D006EF005 /* Constants.swift */,
+				06B20CC91D8638AA006EF005 /* AnimationEngine.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		06B20CCB1D864313006EF005 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				06B20CCE1D8646C9006EF005 /* TextField.swift */,
+				06B20CD01D8656B4006EF005 /* Button.swift */,
+				0645548F1D8B1185002C236C /* SearchBar.swift */,
+				061F7E4F1D985CC20023D46F /* EventCell.swift */,
+				061F7E531D9874190023D46F /* RoundImageView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		06B20CE81D8665C0006EF005 /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				06B20C9F1D863296006EF005 /* Info.plist */,
+				06B20CE61D8665B7006EF005 /* GoogleService-Info.plist */,
+			);
+			name = Plists;
+			sourceTree = "<group>";
+		};
+		E451A91CDF2DC2DE41E28726 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				74DB09F247622E608C0D1FBA /* Pods-Pluto.debug.xcconfig */,
+				7DD34BF65A678735D57AE41F /* Pods-Pluto.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F9D195C12AC3BF3708ECC95E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5524771818B2C31640FA526F /* Pods_Pluto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		06B20C8C1D863296006EF005 /* Pluto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06B20CB81D863296006EF005 /* Build configuration list for PBXNativeTarget "Pluto" */;
+			buildPhases = (
+				4955155C65ECA763C8D62A31 /* [CP] Check Pods Manifest.lock */,
+				06B20C891D863296006EF005 /* Sources */,
+				06B20C8A1D863296006EF005 /* Frameworks */,
+				06B20C8B1D863296006EF005 /* Resources */,
+				D7E7B25D240A42D664C9CF88 /* [CP] Embed Pods Frameworks */,
+				8B88BCED45AE6BA17C07F145 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pluto;
+			productName = Pluto;
+			productReference = 06B20C8D1D863296006EF005 /* Pluto.app */;
+			productType = "com.apple.product-type.application";
+		};
+		06B20CA31D863296006EF005 /* PlutoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06B20CBB1D863296006EF005 /* Build configuration list for PBXNativeTarget "PlutoTests" */;
+			buildPhases = (
+				06B20CA01D863296006EF005 /* Sources */,
+				06B20CA11D863296006EF005 /* Frameworks */,
+				06B20CA21D863296006EF005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06B20CA61D863296006EF005 /* PBXTargetDependency */,
+			);
+			name = PlutoTests;
+			productName = PlutoTests;
+			productReference = 06B20CA41D863296006EF005 /* PlutoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		06B20CAE1D863296006EF005 /* PlutoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06B20CBE1D863296006EF005 /* Build configuration list for PBXNativeTarget "PlutoUITests" */;
+			buildPhases = (
+				06B20CAB1D863296006EF005 /* Sources */,
+				06B20CAC1D863296006EF005 /* Frameworks */,
+				06B20CAD1D863296006EF005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06B20CB11D863296006EF005 /* PBXTargetDependency */,
+			);
+			name = PlutoUITests;
+			productName = PlutoUITests;
+			productReference = 06B20CAF1D863296006EF005 /* PlutoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		06B20C851D863296006EF005 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Faisal M. Lalani";
+				TargetAttributes = {
+					06B20C8C1D863296006EF005 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3KFDZ263TX;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					06B20CA31D863296006EF005 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3KFDZ263TX;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 06B20C8C1D863296006EF005;
+					};
+					06B20CAE1D863296006EF005 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3KFDZ263TX;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 06B20C8C1D863296006EF005;
+					};
+				};
+			};
+			buildConfigurationList = 06B20C881D863296006EF005 /* Build configuration list for PBXProject "Pluto" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 06B20C841D863296006EF005;
+			productRefGroup = 06B20C8E1D863296006EF005 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				06B20C8C1D863296006EF005 /* Pluto */,
+				06B20CA31D863296006EF005 /* PlutoTests */,
+				06B20CAE1D863296006EF005 /* PlutoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		06B20C8B1D863296006EF005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				060644691D8A69FC009CFEBC /* schools.csv in Resources */,
+				06B20CE01D865D36006EF005 /* OpenSans-Italic.ttf in Resources */,
+				06B20CDD1D865D36006EF005 /* OpenSans-BoldItalic.ttf in Resources */,
+				06B20CE71D8665B7006EF005 /* GoogleService-Info.plist in Resources */,
+				06B20C9E1D863296006EF005 /* LaunchScreen.storyboard in Resources */,
+				06B20CE41D865D36006EF005 /* OpenSans-Semibold.ttf in Resources */,
+				06B20CDE1D865D36006EF005 /* OpenSans-ExtraBold.ttf in Resources */,
+				06B20CC21D8633C5006EF005 /* Lobster-Regular.ttf in Resources */,
+				06B20CE21D865D36006EF005 /* OpenSans-LightItalic.ttf in Resources */,
+				06B20C9B1D863296006EF005 /* Assets.xcassets in Resources */,
+				0612767C1DA3592200CB3C2D /* Info.plist in Resources */,
+				06B20CDC1D865D36006EF005 /* OpenSans-Bold.ttf in Resources */,
+				06B20C961D863296006EF005 /* Main.storyboard in Resources */,
+				06B20CE51D865D36006EF005 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				06B20CE11D865D36006EF005 /* OpenSans-Light.ttf in Resources */,
+				06B20CE31D865D36006EF005 /* OpenSans-Regular.ttf in Resources */,
+				06B20CDF1D865D36006EF005 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06B20CA21D863296006EF005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06B20CAD1D863296006EF005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4955155C65ECA763C8D62A31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8B88BCED45AE6BA17C07F145 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pluto/Pods-Pluto-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7E7B25D240A42D664C9CF88 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pluto/Pods-Pluto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		06B20C891D863296006EF005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				061F7E521D9863120023D46F /* ProfileVC.swift in Sources */,
+				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
+				06B20C931D863296006EF005 /* LoginVC.swift in Sources */,
+				0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */,
+				060644611D8A4601009CFEBC /* Board.swift in Sources */,
+				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
+				067751681D9EFCB7009757B0 /* ConsoleDestination.swift in Sources */,
+				067751671D9EFCB7009757B0 /* BaseDestination.swift in Sources */,
+				0677516A1D9EFCB7009757B0 /* Filter.swift in Sources */,
+				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
+				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
+				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
+				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
+				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
+				0677516B1D9EFCB7009757B0 /* SBPlatformDestination.swift in Sources */,
+				06B20CEC1D87A4E7006EF005 /* SetupVC.swift in Sources */,
+				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
+				06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */,
+				068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */,
+				061F7E4C1D983A970023D46F /* BoardVC.swift in Sources */,
+				067751661D9EFCB7009757B0 /* AES256CBC.swift in Sources */,
+				06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */,
+				06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */,
+				067751691D9EFCB7009757B0 /* FileDestination.swift in Sources */,
+				0677516C1D9EFCB7009757B0 /* SwiftyBeaver.swift in Sources */,
+				06B20C991D863296006EF005 /* Pluto.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06B20CA01D863296006EF005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06B20CA91D863296006EF005 /* PlutoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06B20CAB1D863296006EF005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06B20CB41D863296006EF005 /* PlutoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06B20CA61D863296006EF005 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06B20C8C1D863296006EF005 /* Pluto */;
+			targetProxy = 06B20CA51D863296006EF005 /* PBXContainerItemProxy */;
+		};
+		06B20CB11D863296006EF005 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06B20C8C1D863296006EF005 /* Pluto */;
+			targetProxy = 06B20CB01D863296006EF005 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		06B20C941D863296006EF005 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06B20C951D863296006EF005 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		06B20C9C1D863296006EF005 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06B20C9D1D863296006EF005 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		06B20CB61D863296006EF005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		06B20CB71D863296006EF005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		06B20CB91D863296006EF005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74DB09F247622E608C0D1FBA /* Pods-Pluto.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 3KFDZ263TX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/pop\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleParsingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
+				);
+				INFOPLIST_FILE = Pluto/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.Pluto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pluto/Pluto-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		06B20CBA1D863296006EF005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DD34BF65A678735D57AE41F /* Pods-Pluto.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 3KFDZ263TX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/pop\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseAuth/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/FirebaseStorage/Frameworks/frameworks\"",
+					"\"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleParsingUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
+				);
+				INFOPLIST_FILE = Pluto/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.Pluto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pluto/Pluto-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		06B20CBC1D863296006EF005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 3KFDZ263TX;
+				INFOPLIST_FILE = PlutoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.PlutoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pluto.app/Pluto";
+			};
+			name = Debug;
+		};
+		06B20CBD1D863296006EF005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 3KFDZ263TX;
+				INFOPLIST_FILE = PlutoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.PlutoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pluto.app/Pluto";
+			};
+			name = Release;
+		};
+		06B20CBF1D863296006EF005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 3KFDZ263TX;
+				INFOPLIST_FILE = PlutoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.PlutoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Pluto;
+			};
+			name = Debug;
+		};
+		06B20CC01D863296006EF005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 3KFDZ263TX;
+				INFOPLIST_FILE = PlutoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.PlutoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Pluto;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06B20C881D863296006EF005 /* Build configuration list for PBXProject "Pluto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06B20CB61D863296006EF005 /* Debug */,
+				06B20CB71D863296006EF005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06B20CB81D863296006EF005 /* Build configuration list for PBXNativeTarget "Pluto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06B20CB91D863296006EF005 /* Debug */,
+				06B20CBA1D863296006EF005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06B20CBB1D863296006EF005 /* Build configuration list for PBXNativeTarget "PlutoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06B20CBC1D863296006EF005 /* Debug */,
+				06B20CBD1D863296006EF005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06B20CBE1D863296006EF005 /* Build configuration list for PBXNativeTarget "PlutoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06B20CBF1D863296006EF005 /* Debug */,
+				06B20CC01D863296006EF005 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		06B20C971D863296006EF005 /* Pluto.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				06B20C981D863296006EF005 /* Pluto.xcdatamodel */,
+			);
+			currentVersion = 06B20C981D863296006EF005 /* Pluto.xcdatamodel */;
+			path = Pluto.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 06B20C851D863296006EF005 /* Project object */;
+}
