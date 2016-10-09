@@ -62,7 +62,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             "email": email]
             
             DataService.ds.createFirebaseDBUser(uid: user.uid, userData: userData)
-            
         }
     }
     
@@ -80,11 +79,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 // Success! The user has logged in!
                 
                 self.saveUser(user: user!, userID: (user?.uid)!, email: email, password: password, providerID: (user?.providerID)!)
-                self.transition(transitionTo: "Main")
+                self.tabBarController?.selectedIndex = 3
                 
             } else {
                 
                 // Error!
+                
+                print((error.debugDescription))
                 
                 if error?._code == STATUS_ACCOUNT_NONEXIST {
                     
@@ -95,6 +96,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         if error != nil {
                          
                             // Error!
+                            print((error?._code))
                             
                         } else {
                             
@@ -131,8 +133,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func saveUser(user: FIRUser?, userID: String?, email: String, password: String, providerID: String) {
         
-        self.saveToDatabaseVoodoo(user: user, userID: userID!, email: email, providerID: providerID)
-        self.saveDefault(email: email, password: password)
+        saveToDatabaseVoodoo(user: user, userID: userID!, email: email, providerID: providerID)
+        saveDefault(email: email, password: password)
     }
     
     /**

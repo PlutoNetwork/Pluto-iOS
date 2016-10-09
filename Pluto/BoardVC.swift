@@ -35,9 +35,13 @@ class BoardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, YAL
         let userDefaults = UserDefaults.standard
         
         // Checks to see if there is an email saved.
-        if (userDefaults.string(forKey: "email") != nil) && userDefaults.string(forKey: "board") == nil {
+        if (userDefaults.string(forKey: "email") == nil) && (userDefaults.string(forKey: "board") == nil) {
             
             transitionToLogin()
+        } else {
+            
+            setBoardTitle()
+            setEvents()
         }
     }
     
@@ -54,9 +58,6 @@ class BoardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, YAL
         createEventAlert.layer.zPosition = 2
         self.view.addSubview(shadeView)
         shadeView.alpha = 0
-        
-        setBoardTitle()
-        setEvents()
     }
     
     // MARK: - Button Actions
@@ -140,8 +141,6 @@ class BoardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, YAL
         shadeView.alpha = 1.0
         
         AnimationEngine.animateToPosition(view: createEventAlert, position: CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2))
-        createEventTitleField.clipsToBounds = true
-        
     }
     
     // MARK: - Table View Functions
