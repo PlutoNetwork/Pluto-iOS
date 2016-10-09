@@ -16,6 +16,8 @@ let STATUS_ACCOUNT_NONEXIST = 17011
 
 // COLORS
 
+let SHADOW_COLOR = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1)
+
 let BRIGHT_BLUE_COLOR = UIColor(red: 74.0/255.0, green: 114.0/255.0, blue: 135.0/255.0, alpha: 1)
 let DARK_BLUE_COLOR = UIColor(red: 5.0/255.0, green: 29.0/255.0, blue: 43.0/255.0, alpha: 1)
 let BLUE_BACKGROUND_COLOR = UIColor(red: 17.0/255.0, green: 46.0/255.0, blue: 64.0/255.0, alpha: 1)

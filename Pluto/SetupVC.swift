@@ -75,7 +75,7 @@ class SetupVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIS
             saveSchoolVoodoo(schoolName: searchBar.text! as String)
 
             // Switches to the board screen.
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Bar")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Board")
             self.present(vc!, animated: true, completion: nil)
         }
     }
@@ -94,7 +94,7 @@ class SetupVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIS
             if value?["board"] != nil {
                 
                 // Switches to the board screen.
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Bar")
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "Main")
                 self.present(vc!, animated: true, completion: nil)
                 
             }
@@ -151,6 +151,8 @@ class SetupVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIS
                             
                             DataService.ds.REF_USERS.child("\((user?.uid)!)").updateChildValues(childUpdates)
                             
+                            self.saveDefault(board: board.boardKey)
+                            
                         }
                     }
                 }
@@ -171,6 +173,12 @@ class SetupVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIS
         
         // Dismisses the keyboard.
         searchBar.resignFirstResponder()
+    }
+    
+    func saveDefault(board: String) {
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(board, forKey: "board")
     }
     
     /**
@@ -262,7 +270,7 @@ class SetupVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIS
         cell.textLabel?.text = filteredBoards[indexPath.row].title
         
         // Changes the text color and font to the app style.
-        cell.textLabel?.textColor = UIColor.black
+        cell.textLabel?.textColor = UIColor.white
         cell.textLabel?.font = UIFont(name: "Open Sans", size: 15)
         
         return cell

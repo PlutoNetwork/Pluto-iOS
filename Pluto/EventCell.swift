@@ -12,8 +12,6 @@ class EventCell: UITableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var rocketIndicator: UIImageView!
     
     // MARK: - Variables
     var event: Event!
@@ -26,16 +24,5 @@ class EventCell: UITableViewCell {
         
         self.event = event
         self.eventTitleLabel.text = event.title
-        self.timeLabel.text = event.time
-    
-        if event.rocket == true {
-            
-            rocketIndicator.image = UIImage(named: "star")
-            
-        } else {
-            
-            rocketIndicator.image = UIImage(named: "unstar")
-        }
-        
     }
 }

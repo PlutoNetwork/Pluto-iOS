@@ -15,27 +15,38 @@ class BoardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, YAL
     // MARK: - Outlets
     
     @IBOutlet weak var schoolNameLabel: UILabel!
-    @IBOutlet var headerView: UIView!
     @IBOutlet weak var eventView: UITableView!
     @IBOutlet weak var createEventAlert: UIView!
+    @IBOutlet weak var createEventTitleField: TextField!
     
     // MARK: - Variables
     
+    /// Holds all the event data received from Firebase.
     var events = [Event]()
     
+    /// Dims the screen when an alert pops up so the alert can stand out more.
     var shadeView: UIView!
-    
-    var newEventTime: String!
-    
+
     // MARK: - View Functions
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Grabs the email and password saved in a previous instance if the user already exists.
+        let userDefaults = UserDefaults.standard
+        
+        // Checks to see if there is an email saved.
+        if (userDefaults.string(forKey: "email") != nil) && userDefaults.string(forKey: "board") == nil {
+            
+            transitionToLogin()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initializes the table view that holds all the events.
         eventView.delegate = self
         eventView.dataSource = self
-        
-        findUserBoardAndSetTitle()
         
         shadeView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         shadeView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
@@ -43,98 +54,60 @@ class BoardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, YAL
         createEventAlert.layer.zPosition = 2
         self.view.addSubview(shadeView)
         shadeView.alpha = 0
+        
+        setBoardTitle()
+        setEvents()
+    }
+    
+    // MARK: - Button Actions
+    
+    @IBAction func postEventButtonAction(_ sender: AnyObject) {
+        
+        print("Clicked")
+        AnimationEngine.animateToPosition(view: createEventAlert, position: CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2 + 1000))
     }
     
     // MARK: - Firebase
-    
-    func findUserBoardAndSetTitle() {
-        
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        DataService.ds.REF_USERS.child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            // Get user value
-            
-            let value = snapshot.value as? NSDictionary
-            
-            let currentBoardKey = value?["board"] as! String
-            
-            self.setBoardTitle(boardKey: currentBoardKey)
-            self.setEvents(boardKey: currentBoardKey)
-            
-        }) { (error) in
-            
-            // Error!
-            
-            logger.error(error.localizedDescription)
-            
-        }
-    }
-    
-    func getKeyAndCreateEvent(newEventTitle: String, newEventTime: String) {
-        
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        DataService.ds.REF_USERS.child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            // Get user value
-            
-            let value = snapshot.value as? NSDictionary
-            
-            let currentBoardKey = value?["board"] as! String
-            
-            self.createEvent(boardKey: currentBoardKey, newEventTitle: newEventTitle, newEventTime: newEventTime)
-            
-        }) { (error) in
-            
-            // Error!
-            
-            logger.error(error.localizedDescription)
-        }
-    }
 
     func createEvent(boardKey: String, newEventTitle: String, newEventTime: String) {
         
         let event: Dictionary<String, AnyObject> = [
             
             "title": newEventTitle as AnyObject,
-            "time": newEventTime as AnyObject,
-            "rocket": false as AnyObject,
-            "board": boardKey as AnyObject
-            
         ]
         
         let newEvent = DataService.ds.REF_BOARDS.child(boardKey).child("events").childByAutoId()
-        print(event)
         newEvent.setValue(event)
     }
     
-    func setBoardTitle(boardKey: String) {
+    func setBoardTitle() {
         
-        DataService.ds.REF_BOARDS.child(boardKey).observeSingleEvent(of: .value, with: { (snapshot) in
+        let userDefaults = UserDefaults.standard
+        
+        DataService.ds.REF_BOARDS.child(userDefaults.string(forKey: "board")!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             // Get user value
             
             let value = snapshot.value as? NSDictionary
-            
-            logger.info("SCHOOL: \(value?["title"] as! String)")
             
             self.schoolNameLabel.text = (value?["title"] as? String)?.uppercased()
             
         }) { (error) in
             
             // Error!
-            
-            logger.error(error.localizedDescription)
         }
     }
     
-    func setEvents(boardKey: String) {
+    func setEvents() {
         
-        DataService.ds.REF_BOARDS.child(boardKey).child("events").observe(.value, with: { (snapshot) in
-         
+        let userDefaults = UserDefaults.standard
+        
+        DataService.ds.REF_BOARDS.child(userDefaults.string(forKey: "board")!).child("events").observe(.value, with: { (snapshot) in
+            
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
          
                 for snap in snapshot {
-         
+                    
                     if let eventDict = snap.value as? Dictionary<String, AnyObject> {
          
                         let key = snap.key
@@ -150,13 +123,25 @@ class BoardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, YAL
     
     // MARK: - Helpers
 
+    /**
+     
+     Function that allows transition to the login screen.
+     
+     */
+    func transitionToLogin() {
+        
+        tabBarController?.selectedIndex = 1
+    }
     
     // MARK: - Tab Bar Functions
     
     func tabBarDidSelectExtraRightItem(_ tabBar: YALFoldingTabBar) {
         
         shadeView.alpha = 1.0
+        
         AnimationEngine.animateToPosition(view: createEventAlert, position: CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2))
+        createEventTitleField.clipsToBounds = true
+        
     }
     
     // MARK: - Table View Functions
@@ -178,16 +163,7 @@ class BoardVC: UIViewController, UITableViewDataSource, UITableViewDelegate, YAL
         if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
             
             cell.configureCell(event: event)
-            
-            if indexPath.row % 2 == 0 {
-                
-                cell.contentView.backgroundColor = ALTERNATE_BACKGROUND_COLOR
-                
-            } else {
-                
-                cell.contentView.backgroundColor = BLUE_BACKGROUND_COLOR
-            }
-            
+        
             return cell
             
         } else {

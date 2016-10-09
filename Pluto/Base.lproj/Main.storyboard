@@ -31,12 +31,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4kr-Lm-sgb" customClass="TextField" customModule="Pluto" customModuleProvider="target">
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                         <real key="value" value="5"/>
@@ -45,16 +45,16 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pluto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMc-wZ-l4w">
                                 <fontDescription key="fontDescription" name="Lobster-Regular" family="Lobster" pointSize="100"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Mp-dD-rsT" customClass="TextField" customModule="Pluto" customModuleProvider="target">
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                         <real key="value" value="5"/>
@@ -81,7 +81,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.027450980392156862" green="0.13725490196078433" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="9Mp-dD-rsT" secondAttribute="trailing" constant="31" id="5pl-aj-GFe"/>
                             <constraint firstItem="4kr-Lm-sgb" firstAttribute="top" secondItem="9Mp-dD-rsT" secondAttribute="bottom" constant="20" id="9YY-gK-2Xu"/>
@@ -153,7 +153,7 @@
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What school do you go to?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjZ-jc-hzZ">
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ryw-4u-Yb1">
@@ -171,7 +171,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.027450980392156862" green="0.13725490196078433" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="DWd-BW-ISr" secondAttribute="trailing" constant="31" id="2rU-FY-3Pj"/>
                             <constraint firstItem="Ryw-4u-Yb1" firstAttribute="top" secondItem="DWd-BW-ISr" secondAttribute="bottom" constant="-8.5" id="61r-hc-aJE"/>
@@ -293,9 +293,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YdC-2L-KE4">
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="472" id="MRb-F1-DJv"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="event" rowHeight="125" id="G9c-Vi-WYC" customClass="EventCell" customModule="Pluto" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="125"/>
@@ -304,123 +301,113 @@
                                             <frame key="frameInset" width="375" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZX-Dm-Q77">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8p-UM-EIW" customClass="EventView" customModule="Pluto" customModuleProvider="target">
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWL-rf-e5c">
+                                                            <color key="backgroundColor" red="0.066666666666666666" green="0.1803921568627451" blue="0.25098039215686274" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.066666666666666666" green="0.1803921568627451" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="XNr-9e-MO4"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="qWL-rf-e5c" secondAttribute="trailing" id="Wur-rJ-q0O"/>
+                                                        <constraint firstItem="qWL-rf-e5c" firstAttribute="leading" secondItem="F8p-UM-EIW" secondAttribute="leadingMargin" id="p6i-AX-8KF"/>
+                                                        <constraint firstItem="qWL-rf-e5c" firstAttribute="top" secondItem="F8p-UM-EIW" secondAttribute="topMargin" id="zql-Ji-P7e"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="0.6845703125" alpha="0.0" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="BZX-Dm-Q77" firstAttribute="trailing" secondItem="QNq-0L-A0I" secondAttribute="trailingMargin" id="C8j-BS-r5u"/>
-                                                <constraint firstItem="BZX-Dm-Q77" firstAttribute="leading" secondItem="QNq-0L-A0I" secondAttribute="leadingMargin" id="eo5-0K-Zcx"/>
-                                                <constraint firstItem="BZX-Dm-Q77" firstAttribute="top" secondItem="QNq-0L-A0I" secondAttribute="topMargin" id="ofg-aY-aYr"/>
+                                                <constraint firstItem="F8p-UM-EIW" firstAttribute="top" secondItem="QNq-0L-A0I" secondAttribute="top" constant="8" id="9I6-EY-973"/>
+                                                <constraint firstItem="F8p-UM-EIW" firstAttribute="leading" secondItem="QNq-0L-A0I" secondAttribute="leading" constant="16" id="BLZ-mi-kuS"/>
+                                                <constraint firstAttribute="trailing" secondItem="F8p-UM-EIW" secondAttribute="trailing" constant="16" id="HVb-tv-2y0"/>
+                                                <constraint firstAttribute="bottom" secondItem="F8p-UM-EIW" secondAttribute="bottom" constant="8" id="m3F-jU-Yfc"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.41219308035714286" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="eventTitleLabel" destination="BZX-Dm-Q77" id="xEk-K4-Jso"/>
+                                            <outlet property="eventTitleLabel" destination="qWL-rf-e5c" id="DOC-VH-B7Z"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCHOOL NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffg-0N-zwZ">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="4So-rz-qSA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6j-4U-2au">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6j-4U-2au" customClass="EventView" customModule="Pluto" customModuleProvider="target">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pvn-r2-qdR" customClass="TextField" customModule="Pluto" customModuleProvider="target">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="281" id="wyf-vU-V0R"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pvn-r2-qdR" customClass="TextField" customModule="Pluto" customModuleProvider="target">
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Time" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0R-KI-7XB" customClass="TextField" customModule="Pluto" customModuleProvider="target">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="281" id="kq4-le-YA3"/>
-                                        </constraints>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xau-r5-ovl">
+                                        <color key="backgroundColor" red="0.29019607843137252" green="0.44705882352941173" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="inset">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsj-6p-EcQ">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="wOV-3Q-sIM"/>
-                                            <constraint firstAttribute="width" constant="130" id="zBT-32-54o"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="20"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="Post">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="postEventButtonAction:" destination="Igr-Um-LDn" eventType="touchUpInside" id="AZJ-wx-GrL"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.066666666666666666" green="0.1803921568627451" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="521" id="7cL-o3-deX"/>
-                                    <constraint firstItem="Pvn-r2-qdR" firstAttribute="centerX" secondItem="S6j-4U-2au" secondAttribute="centerX" id="DZg-BJ-PvA"/>
-                                    <constraint firstItem="S0R-KI-7XB" firstAttribute="top" secondItem="Pvn-r2-qdR" secondAttribute="bottom" constant="30" id="Doz-11-nkf"/>
-                                    <constraint firstItem="Wsj-6p-EcQ" firstAttribute="top" secondItem="S6j-4U-2au" secondAttribute="top" constant="45" id="M4H-SV-o9c"/>
-                                    <constraint firstAttribute="width" constant="343" id="QCP-uZ-Fnh"/>
-                                    <constraint firstItem="S0R-KI-7XB" firstAttribute="centerX" secondItem="S6j-4U-2au" secondAttribute="centerX" id="XuA-6a-ZiN"/>
-                                    <constraint firstItem="Pvn-r2-qdR" firstAttribute="top" secondItem="Wsj-6p-EcQ" secondAttribute="bottom" constant="50" id="eVv-16-2IL"/>
-                                    <constraint firstItem="Wsj-6p-EcQ" firstAttribute="centerX" secondItem="S6j-4U-2au" secondAttribute="centerX" id="zPV-R8-Aef"/>
+                                    <constraint firstItem="Pvn-r2-qdR" firstAttribute="top" secondItem="S6j-4U-2au" secondAttribute="top" constant="30" id="0nt-YT-bFh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xau-r5-ovl" secondAttribute="bottom" id="5kp-YG-W4T"/>
+                                    <constraint firstItem="Xau-r5-ovl" firstAttribute="leading" secondItem="S6j-4U-2au" secondAttribute="leading" id="JLV-lU-j3I"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xau-r5-ovl" secondAttribute="trailing" id="P5d-jP-RLr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pvn-r2-qdR" secondAttribute="trailing" constant="31" id="RsY-VB-a9H"/>
+                                    <constraint firstItem="Pvn-r2-qdR" firstAttribute="leading" secondItem="S6j-4U-2au" secondAttribute="leading" constant="31" id="rQy-XD-FCj"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCHOOL NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffg-0N-zwZ">
+                                <color key="backgroundColor" red="0.066666666666666666" green="0.1803921568627451" blue="0.25098039215686274" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.027450980392156862" green="0.13725490196078433" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.066666666666666666" green="0.93242187499999996" blue="0.62823660714285712" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="YdC-2L-KE4" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leadingMargin" constant="-16" id="DV5-wK-u4X"/>
-                            <constraint firstItem="YdC-2L-KE4" firstAttribute="top" secondItem="ffg-0N-zwZ" secondAttribute="bottom" constant="57" id="StG-ZH-atR"/>
-                            <constraint firstItem="S6j-4U-2au" firstAttribute="centerX" secondItem="FuU-9O-4jH" secondAttribute="centerX" id="TvX-jI-9DK"/>
-                            <constraint firstItem="bfp-Rq-tCN" firstAttribute="top" secondItem="S6j-4U-2au" secondAttribute="bottom" constant="-991" id="Wj2-jF-Vlx"/>
-                            <constraint firstItem="YdC-2L-KE4" firstAttribute="trailing" secondItem="FuU-9O-4jH" secondAttribute="trailingMargin" constant="16" id="Ysb-4l-VoJ"/>
-                            <constraint firstAttribute="trailing" secondItem="ffg-0N-zwZ" secondAttribute="trailing" id="bfs-jz-tEj"/>
-                            <constraint firstItem="ffg-0N-zwZ" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" id="lRl-jL-u9r"/>
-                            <constraint firstItem="ffg-0N-zwZ" firstAttribute="top" secondItem="FuU-9O-4jH" secondAttribute="top" constant="10" id="qvx-rR-uVe"/>
+                            <constraint firstItem="ffg-0N-zwZ" firstAttribute="top" secondItem="Tfg-DQ-o0t" secondAttribute="bottom" constant="8" id="DTR-FS-9L9"/>
+                            <constraint firstItem="bfp-Rq-tCN" firstAttribute="top" secondItem="YdC-2L-KE4" secondAttribute="bottom" id="EAf-0n-Onf"/>
+                            <constraint firstAttribute="trailing" secondItem="S6j-4U-2au" secondAttribute="trailing" constant="16" id="JW3-yz-Vaa"/>
+                            <constraint firstItem="YdC-2L-KE4" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" id="KyQ-Hz-PKu"/>
+                            <constraint firstItem="bfp-Rq-tCN" firstAttribute="top" secondItem="S6j-4U-2au" secondAttribute="bottom" constant="-720" id="QhD-b7-QXF"/>
+                            <constraint firstItem="YdC-2L-KE4" firstAttribute="top" secondItem="ffg-0N-zwZ" secondAttribute="bottom" constant="38.5" id="Z0R-yQ-luw"/>
+                            <constraint firstAttribute="trailing" secondItem="ffg-0N-zwZ" secondAttribute="trailing" constant="16" id="bHQ-pn-YYT"/>
+                            <constraint firstItem="S6j-4U-2au" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" constant="16" id="nsm-HT-VqF"/>
+                            <constraint firstAttribute="trailing" secondItem="YdC-2L-KE4" secondAttribute="trailing" id="rmE-F6-Qby"/>
+                            <constraint firstItem="S6j-4U-2au" firstAttribute="top" secondItem="ffg-0N-zwZ" secondAttribute="bottom" constant="1036.5" id="tqQ-84-Mya"/>
+                            <constraint firstItem="ffg-0N-zwZ" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" constant="16" id="y9Z-LI-ABJ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 3" image="search_icon" id="tn6-fU-8R2"/>
                     <connections>
                         <outlet property="createEventAlert" destination="S6j-4U-2au" id="AxB-6L-r4y"/>
+                        <outlet property="createEventTitleField" destination="Pvn-r2-qdR" id="rTN-ch-aCo"/>
                         <outlet property="eventView" destination="YdC-2L-KE4" id="2hB-wk-qlX"/>
-                        <outlet property="headerView" destination="FuU-9O-4jH" id="Goe-QA-0LL"/>
                         <outlet property="schoolNameLabel" destination="ffg-0N-zwZ" id="umn-xT-U7g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nu-Gk-QTX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="341.60000000000002" y="1220.2398800599701"/>
+            <point key="canvasLocation" x="749.60000000000002" y="1218.440779610195"/>
         </scene>
         <!--Folding Tab Bar Controller-->
         <scene sceneID="N4W-gz-UbC">
             <objects>
-                <tabBarController storyboardIdentifier="Bar" id="Rd8-cf-Ll0" customClass="YALFoldingTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Main" id="Rd8-cf-Ll0" customClass="YALFoldingTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="RSu-EM-0j7" customClass="YALCustomHeightTabBar">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

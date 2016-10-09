@@ -15,28 +15,19 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     // MARK: - Outlets
     
-    // Buttons
     @IBOutlet weak var goButton: Button!
     
-    // Constraints
-    @IBOutlet weak var titleTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var emailFieldTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var passwordFieldTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var goButtonTopConstraint: NSLayoutConstraint!
-    
-    // Labels
     @IBOutlet weak var titleLabel: UILabel!
     
-    // Text Fields
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
-    // MARK: - Variables
     
     // MARK: - View Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tabBarController?.tabBar.layer.isHidden = true
         
         // Dismisses the keyboard if the user taps anywhere on the screen.
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginVC.dismissKeyboard)))
@@ -45,21 +36,28 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         emailField.delegate = self
         passwordField.delegate = self
     }
-    
+
     // MARK: - Actions
     
     @IBAction func goButtonAction(_ sender: AnyObject) {
         
         dismissKeyboard()
-        firebaseLoginSignupVoodoo()
+        firebaseLoginSignupVoodoo(email: emailField.text!, password: passwordField.text!)
     }
     
     // MARK: - Firebase
     
-    func completeFirebaseVoodoo(user: FIRUser?, userID: String, email: String, providerID: String) {
-                
+    /**
+     
+     Saves the user to the database.
+     
+     */
+    func saveToDatabaseVoodoo(user: FIRUser?, userID: String, email: String, providerID: String) {
+        
+        // Makes sure the user exists first.
         if let user = user {
             
+            // Creates a dictionary that will be saved to the database.
             let userData = ["provider": providerID,
                             "email": email]
             
@@ -73,63 +71,80 @@ class LoginVC: UIViewController, UITextFieldDelegate {
      Logs the user in if successful; creates an account if user is not found in database.
      
      */
-    func firebaseLoginSignupVoodoo() {
+    func firebaseLoginSignupVoodoo(email: String, password: String) {
         
-        if let email = emailField.text, let password = passwordField.text {
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             
-            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            if error == nil {
                 
-                if error == nil {
+                // Success! The user has logged in!
+                
+                self.saveUser(user: user!, userID: (user?.uid)!, email: email, password: password, providerID: (user?.providerID)!)
+                self.transition(transitionTo: "Main")
+                
+            } else {
+                
+                // Error!
+                
+                if error?._code == STATUS_ACCOUNT_NONEXIST {
                     
-                    // Success! The user has logged in!
+                    // The user doesn't exist! Creating account now...
                     
-                    self.completeFirebaseVoodoo(user: user!, userID: (user?.uid)!, email: email, providerID: (user?.providerID)!)
-                    
-                } else {
-                    
-                    // Error!
-                    
-                    print("ERROR: Unable to sign in - \(error)")
-                    
-                    if error?._code == STATUS_ACCOUNT_NONEXIST {
+                    FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                         
-                        // The user doesn't exist! Creating account now...
-                        
-                        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                        if error != nil {
+                         
+                            // Error!
                             
-                            if error != nil {
-                             
-                                // Error!
-                                
-                                print("ERROR: Unable to authenticate with Firebase - \(error)")
-                                
-                            } else {
-                                
-                                // Success! The user has been created!
-                                
-                                self.completeFirebaseVoodoo(user: user!, userID: (user?.uid)!, email: email, providerID: (user?.providerID)!)
-                                
-                            }
-                        })
-                    }
+                        } else {
+                            
+                            // Success! The user has been created!
+                            
+                            self.saveUser(user: user!, userID: (user?.uid)!, email: email, password: password, providerID: (user?.providerID)!)
+                            self.transition(transitionTo: "Setup")
+                        }
+                    })
                 }
-            })
-        }
+            }
+        })
     }
     
     // MARK: - Helpers
-    
-    func transitionToSetup() {
-
-        // Switches to the setup screen.
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "Setup")
-        self.present(vc!, animated: true, completion: nil)
-    }
     
     func dismissKeyboard() {
         
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
+    }
+    
+    /**
+     
+     Saves the user's email and password to NSUserDefaults to bypass login for future use.
+     
+     */
+    func saveDefault(email: String, password: String) {
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(email, forKey: "email")
+        userDefaults.set(password, forKey: "password")
+    }
+    
+    func saveUser(user: FIRUser?, userID: String?, email: String, password: String, providerID: String) {
+        
+        self.saveToDatabaseVoodoo(user: user, userID: userID!, email: email, providerID: providerID)
+        self.saveDefault(email: email, password: password)
+    }
+    
+    /**
+     
+     Function that allows transition to any other screen.
+     
+     */
+    func transition(transitionTo: String) {
+
+        // Switches to the setup screen.
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: transitionTo)
+        self.present(vc!, animated: true, completion: nil)
     }
     
     // MARK: - Text Field Functions

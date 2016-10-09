@@ -34,7 +34,7 @@ class TextField : UITextField {
         path.addLine(to: endingPoint)
         path.lineWidth = 2.0
         
-        tintColor = UIColor.black
+        tintColor = UIColor.white
         tintColor.setStroke()
         
         path.stroke()

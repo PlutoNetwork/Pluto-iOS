@@ -11,8 +11,6 @@ import CoreData
 import Firebase
 import FoldingTabBar
 
-let logger = SwiftyBeaver.self
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,13 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        let platformDestination = SBPlatformDestination(appID: "2kYYpL", appSecret: "dOvfdlyyreyaexm7apCz7e4ia6kgoqbO", encryptionKey: "lgccQUXznnkfnmoz8lWrisxmkmuerevx")
-        platformDestination.analyticsUserName = "faisalmlalani"
-        logger.addDestination(platformDestination)
-        
-        let file = FileDestination()
-        logger.addDestination(file)
         
         FIRApp.configure()
         
@@ -126,7 +117,7 @@ private extension AppDelegate {
         // Customize tabBarView
         tabBarController.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight;
         tabBarController.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset;
-        tabBarController.tabBarView.backgroundColor = UIColor.white
+        tabBarController.tabBarView.backgroundColor = DARK_BLUE_COLOR
         
         tabBarController.tabBarView.tabBarColor = BRIGHT_BLUE_COLOR
         tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeight
