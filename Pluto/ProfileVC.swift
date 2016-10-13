@@ -29,14 +29,21 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - View Functions
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        findUserEvents()
+        setUserInfo()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         eventView.dataSource = self
         eventView.delegate = self
         
-        findUserEvents()
-        setUserInfo()
+        //findUserEvents()
+        //setUserInfo()
     }
     
     // MARK: - Button Actions

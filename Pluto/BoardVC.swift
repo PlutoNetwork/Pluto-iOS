@@ -132,7 +132,9 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
             
             let value = snapshot.value as? NSDictionary
             
-            self.schoolNameLabel.text = (value?["title"] as? String)?.uppercased()
+            if value?["title"] != nil {
+                self.schoolNameLabel.text = (value?["title"] as? String)?.uppercased()
+            }
             
         }) { (error) in
             

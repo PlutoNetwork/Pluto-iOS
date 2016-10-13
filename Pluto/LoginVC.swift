@@ -84,18 +84,20 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
         
         dismissKeyboard()
         
-        emailField.text = ""
-        passwordField.text = ""
-        searchBar.text = ""
-        findSchoolAlert.alpha = 0
-        
         if searchBar.text != nil {
+            
+            print("SCHOOL ABOUT TO SAVE")
             
             saveSchoolVoodoo(schoolName: searchBar.text! as String)
             
             // Transitions to the main board screen.
             self.tabBarController?.selectedIndex = 2
         }
+        
+        emailField.text = ""
+        passwordField.text = ""
+        //searchBar.text = ""
+        findSchoolAlert.alpha = 0
     }
     
     // MARK: - Firebase
@@ -212,8 +214,8 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
                             DataService.ds.REF_USERS.child("\((user?.uid)!)").updateChildValues(childUpdates)
                             
                             self.saveBoardDefault(board: board.boardKey)
-                            
                         }
+                        
                     }
                 }
             }
