@@ -117,9 +117,9 @@ private extension AppDelegate {
         // Customize tabBarView
         tabBarController.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight;
         tabBarController.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset;
-        tabBarController.tabBarView.backgroundColor = DARK_BLUE_COLOR
+        tabBarController.tabBarView.backgroundColor = UIColor.clear
         
-        tabBarController.tabBarView.tabBarColor = BRIGHT_BLUE_COLOR
+        tabBarController.tabBarView.tabBarColor = YELLOW_COLOR
         tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeight
         tabBarController.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets;
         tabBarController.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets;
