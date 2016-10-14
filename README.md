@@ -34,9 +34,12 @@ If you have a modification you'd like to make to existing code or even add featu
 
 Pluto has a brilliant team of developers and designer(s).
 
-**Faisal M. Lalani** - Developer [<img src="https://github.com/favicon.ico" width="25">](https://github.com/faisalmlalani)  
-**Michael John Scott** - Developer [<img src="https://github.com/favicon.ico" width="25">](https://github.com/JMichaelScott)  
-**McKenzie Weller** - Designer [<img src="https://github.com/favicon.ico" width="25">](https://github.com/pikawolfy)
+**Faisal M. Lalani** - Developer  
+[<img src="https://github.com/favicon.ico" width="25">](https://github.com/faisalmlalani)  
+**Michael John Scott** - Developer  
+[<img src="https://github.com/favicon.ico" width="25">](https://github.com/JMichaelScott)  
+**McKenzie Weller** - Designer  
+[<img src="https://github.com/favicon.ico" width="25">](https://github.com/pikawolfy)
 
 ## License
 
