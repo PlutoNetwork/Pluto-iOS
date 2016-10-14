@@ -4,23 +4,23 @@ Need a more effective away of keeping track of meetings? Download Pluto. Need to
 
 ## Getting Started
 
-### Prerequisites
+#### Prerequisites
 
 __Disclaimer:__ This is for _testing_ purposes only.
 
 * macOS in order to download Xcode
 
-### Basic Installation
+#### Basic Installation
 
 Pluto is installed by simply cloning or downloading this repo. Open up the **workspace** file, not the .xcodeproj.
 
 ## Using Pluto
 
-### Testing
+#### Testing
 
 As you spot bugs, please report them in the "Issues" tab. Feature requests can be added there as well or emailed to a team member.
 
-## Contributing
+#### Contributing
 
 If you have a modification you'd like to make to existing code or even add features that aren't already present, you may fork the repo and make these changes. Then proceed to make a pull request for review.
 
