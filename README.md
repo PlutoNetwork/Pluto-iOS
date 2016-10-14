@@ -4,7 +4,7 @@ Pluto is an event network application that lets see you see and save all the coo
 
 Need a more effective away of keeping track of meetings? Download Pluto. Need to find something to do while your bored? Download Pluto. Need to make friends? **Download Pluto**!
 
-## Progress Bar
+## Updates
 
 **Latest update**: Basic functionality is working now...with a few bugs.  
 
