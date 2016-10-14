@@ -23,9 +23,9 @@ Need a more effective away of keeping track of meetings? Download Pluto. Need to
 
 ## Getting Started
 
-#### Prerequisites
-
 __Disclaimer:__ This is for _testing_ purposes only.
+
+#### Prerequisites
 
 * macOS in order to download Xcode
 
