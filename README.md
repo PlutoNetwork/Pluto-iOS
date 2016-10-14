@@ -1,8 +1,12 @@
+# Pluto
+
 Pluto is an event network application that lets see you see and save all the cool stuff going on at your school!
 
 Need a more effective away of keeping track of meetings? Download Pluto. Need to find something to do while your bored? Download Pluto. Need to make friends? **Download Pluto**!
 
-![alt tag](http://i.imgur.com/MTgVnpu.jpg)
+## Screenshots
+
+<img src="http://i.imgur.com/MTgVnpu.jpg" width="300">
 
 ## Getting Started
 
