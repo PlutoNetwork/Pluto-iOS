@@ -2,6 +2,8 @@ Pluto is an event network application that lets see you see and save all the coo
 
 Need a more effective away of keeping track of meetings? Download Pluto. Need to find something to do while your bored? Download Pluto. Need to make friends? **Download Pluto**!
 
+![alt tag](http://i.imgur.com/MTgVnpu.jpg)
+
 ## Getting Started
 
 #### Prerequisites
@@ -42,11 +44,11 @@ Pluto was started by a small team of students at the University of Colorado Boul
 
 ## Progress Bar
 
-1. ~~Begin iOS application.~~
-2. ~~Create basic functionality that allows user signup/login, event creation, and event saving.~~
-3. Add effective sorting and searching.
-4. Add features that involve external services such as syncing to calendar and Facebook/Twitter login/signup.
-5. Create an appealing UI that brings a unique theme to Pluto.
-6. Launch the iOS application.
-7. Begin Android application.
-8. Begin Web application.
+- [x] Begin iOS application.
+- [x] Create basic functionality that allows user signup/login, event creation, and event saving.
+- [ ] Add effective sorting and searching.
+- [ ] Add features that involve external services such as syncing to calendar and Facebook/Twitter login/signup.
+- [ ] Create an appealing UI that brings a unique theme to Pluto.
+- [ ] Launch the iOS application.
+- [ ] Begin Android application.
+- [ ] Begin Web application.
