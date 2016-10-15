@@ -27,9 +27,9 @@ __Disclaimer:__ This is for _testing_ purposes only.
 
 #### Prerequisites
 
-If you're using a Mac, install Xcode and clone this repo.  
+If you're using a Mac, install Xcode.
   
-If you're using a PC, sell it and buy a Mac and then install Xcode and clone this repo.
+If you're using a PC, sell it and buy a Mac and then install Xcode.
 
 #### Basic Installation
 
