@@ -324,16 +324,79 @@
                                             <action selector="createEventButton:" destination="Igr-Um-LDn" eventType="touchUpInside" id="8li-cP-iO9"/>
                                         </connections>
                                     </button>
+                                    <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Y5x-ev-N5c">
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.050980392156862744" green="0.27843137254901962" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ffg-0N-zwZ" firstAttribute="top" secondItem="HsU-Kf-zJR" secondAttribute="top" constant="19" id="3pb-6h-f0d"/>
                                     <constraint firstItem="ffg-0N-zwZ" firstAttribute="leading" secondItem="HsU-Kf-zJR" secondAttribute="leading" constant="15" id="EVJ-4s-FLj"/>
-                                    <constraint firstAttribute="bottom" secondItem="ffg-0N-zwZ" secondAttribute="bottom" constant="8" id="I3o-As-jHu"/>
+                                    <constraint firstAttribute="bottom" secondItem="ffg-0N-zwZ" secondAttribute="bottom" constant="43" id="I3o-As-jHu"/>
+                                    <constraint firstItem="Y5x-ev-N5c" firstAttribute="leading" secondItem="HsU-Kf-zJR" secondAttribute="leading" constant="28" id="OPE-Ac-ycv"/>
                                     <constraint firstItem="AHO-xL-0eC" firstAttribute="top" secondItem="HsU-Kf-zJR" secondAttribute="top" constant="50" id="PKT-bz-hf4"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y5x-ev-N5c" secondAttribute="trailing" constant="28" id="Vk4-Gm-JMU"/>
                                     <constraint firstAttribute="trailing" secondItem="AHO-xL-0eC" secondAttribute="trailing" constant="28" id="XoM-vw-PU9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y5x-ev-N5c" secondAttribute="bottom" constant="8" id="olm-S5-ozI"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPR-vG-cOa">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="MpU-Ji-0RD"/>
+                                    <constraint firstAttribute="height" constant="20" id="PHR-z0-LBc"/>
+                                </constraints>
+                                <state key="normal" image="left_arrow_symbol">
+                                    <color key="titleColor" red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7C-sO-nMA">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Gco-4d-By7"/>
+                                    <constraint firstAttribute="width" constant="20" id="NLr-JJ-VAa"/>
+                                </constraints>
+                                <state key="normal" image="right_arrow_symbol">
+                                    <color key="titleColor" red="1" green="0.92156862750000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POPULAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5y-Of-nit">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="TVy-wv-Rhk"/>
+                                    <constraint firstAttribute="height" constant="32" id="qgF-Ts-UcO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0E-kG-62J">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Tez-QK-sqn"/>
+                                    <constraint firstAttribute="width" constant="60" id="ble-qi-mmT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <state key="normal" title="WEEK">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdT-QW-8cw">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="lZp-uX-rvg"/>
+                                    <constraint firstAttribute="height" constant="30" id="yNc-8l-J0P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <state key="normal" title="DAY">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icL-Kb-sHW">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="004-hE-G44"/>
+                                    <constraint firstAttribute="height" constant="30" id="yps-4c-aEv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <state key="normal" title="MONTH">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nbT-gV-nUN">
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -455,63 +518,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPR-vG-cOa">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="MpU-Ji-0RD"/>
-                                    <constraint firstAttribute="height" constant="20" id="PHR-z0-LBc"/>
-                                </constraints>
-                                <state key="normal" image="left_arrow_symbol">
-                                    <color key="titleColor" red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7C-sO-nMA">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Gco-4d-By7"/>
-                                    <constraint firstAttribute="width" constant="20" id="NLr-JJ-VAa"/>
-                                </constraints>
-                                <state key="normal" image="right_arrow_symbol">
-                                    <color key="titleColor" red="1" green="0.92156862750000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POPULAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5y-Of-nit">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="TVy-wv-Rhk"/>
-                                    <constraint firstAttribute="height" constant="32" id="qgF-Ts-UcO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0E-kG-62J">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Tez-QK-sqn"/>
-                                    <constraint firstAttribute="width" constant="60" id="ble-qi-mmT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
-                                <state key="normal" title="WEEK">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdT-QW-8cw">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="lZp-uX-rvg"/>
-                                    <constraint firstAttribute="height" constant="30" id="yNc-8l-J0P"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
-                                <state key="normal" title="DAY">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icL-Kb-sHW">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="004-hE-G44"/>
-                                    <constraint firstAttribute="height" constant="30" id="yps-4c-aEv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
-                                <state key="normal" title="MONTH">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                             <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeu-73-Ajd">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -598,12 +604,12 @@
                         <color key="backgroundColor" red="0.082352941176470587" green="0.396078431372549" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.066666666666666666" green="0.93242187499999996" blue="0.62823660714285712" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="nbT-gV-nUN" firstAttribute="top" secondItem="icL-Kb-sHW" secondAttribute="bottom" constant="4.5" id="1SR-u1-dOF"/>
+                            <constraint firstItem="nbT-gV-nUN" firstAttribute="top" secondItem="icL-Kb-sHW" secondAttribute="bottom" constant="5" id="1SR-u1-dOF"/>
                             <constraint firstItem="P5y-Of-nit" firstAttribute="top" secondItem="HsU-Kf-zJR" secondAttribute="bottom" constant="8" id="32b-c0-n7J"/>
                             <constraint firstAttribute="bottom" secondItem="oeu-73-Ajd" secondAttribute="bottom" id="Aqz-81-qLw"/>
                             <constraint firstItem="oeu-73-Ajd" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" id="CbN-Qh-1CJ"/>
                             <constraint firstItem="oeu-73-Ajd" firstAttribute="top" secondItem="FuU-9O-4jH" secondAttribute="top" id="H93-BK-5fc"/>
-                            <constraint firstItem="GdT-QW-8cw" firstAttribute="top" secondItem="QPR-vG-cOa" secondAttribute="bottom" constant="10" id="IOW-iU-PcX"/>
+                            <constraint firstItem="GdT-QW-8cw" firstAttribute="top" secondItem="QPR-vG-cOa" secondAttribute="bottom" constant="15" id="IOW-iU-PcX"/>
                             <constraint firstAttribute="trailing" secondItem="nbT-gV-nUN" secondAttribute="trailing" id="N6L-Co-7Ej"/>
                             <constraint firstItem="U7C-sO-nMA" firstAttribute="leading" secondItem="P5y-Of-nit" secondAttribute="trailing" constant="51" id="Qib-sU-aZM"/>
                             <constraint firstItem="QPR-vG-cOa" firstAttribute="top" secondItem="HsU-Kf-zJR" secondAttribute="bottom" constant="13" id="Sof-C1-ruw"/>
@@ -620,9 +626,9 @@
                             <constraint firstItem="S6j-4U-2au" firstAttribute="trailing" secondItem="FuU-9O-4jH" secondAttribute="trailingMargin" id="lDF-lM-JtD"/>
                             <constraint firstItem="icL-Kb-sHW" firstAttribute="leading" secondItem="G0E-kG-62J" secondAttribute="trailing" constant="22.5" id="m8I-9h-aKw"/>
                             <constraint firstItem="S6j-4U-2au" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leadingMargin" id="uFI-iy-Uo6"/>
-                            <constraint firstItem="icL-Kb-sHW" firstAttribute="top" secondItem="U7C-sO-nMA" secondAttribute="bottom" constant="10" id="vV8-aN-Rds"/>
+                            <constraint firstItem="icL-Kb-sHW" firstAttribute="top" secondItem="U7C-sO-nMA" secondAttribute="bottom" constant="15" id="vV8-aN-Rds"/>
                             <constraint firstItem="HsU-Kf-zJR" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" id="xZh-TB-pKk"/>
-                            <constraint firstItem="G0E-kG-62J" firstAttribute="top" secondItem="P5y-Of-nit" secondAttribute="bottom" constant="3" id="xfA-ZM-tLQ"/>
+                            <constraint firstItem="G0E-kG-62J" firstAttribute="top" secondItem="P5y-Of-nit" secondAttribute="bottom" constant="8" id="xfA-ZM-tLQ"/>
                             <constraint firstItem="HsU-Kf-zJR" firstAttribute="top" secondItem="FuU-9O-4jH" secondAttribute="top" id="y5w-Y9-Qqy"/>
                         </constraints>
                     </view>
