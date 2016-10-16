@@ -11,17 +11,22 @@ import UIKit
 
 class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    // MARK - Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameField: TextField!
     @IBOutlet weak var emailField: TextField!
     
-    // MARK - Variables
+    // MARK: - Variables
     
+    /// This is the gallery that opens up to let the user select an image from their photo library.
     var imagePicker: UIImagePickerController!
+    
+    /// Tells if the user has updated their profile image. Turns true if an image is selected in the imagePicker.
     var imageSelected = false
 
+    // MARK: - View Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,24 +35,29 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         // Dismisses the keyboard if the user taps anywhere on the screen.
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SettingsVC.dismissKeyboard)))
         
+        // Initializes the text fields.
         nameField.delegate = self
         emailField.delegate = self
         
         // Initializes the image picker.
         imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        // Allows the user to select which portion of their selected image is to be used.
+        imagePicker.allowsEditing = true
     }
     
-    // MARK - Button Actions
+    // MARK: - Button Actions
     
     @IBAction func saveButtonAction(_ sender: AnyObject) {
         
+        // Checks to see if the user updated the name field.
         if nameField.text != "" {
             
+            // Goes into Firebase to set the user's name to what they typed into the name field.
             DataService.ds.REF_CURRENT_USER.child("name").setValue(nameField.text!)
         }
         
+        // Checks to see if the user selected a new profile image.
         if imageSelected == true {
             
             uploadProfileImage()
@@ -56,69 +66,121 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     // MARK: - Firebase
     
-    func setUserInfo() {
-        
-        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let value = snapshot.value as? NSDictionary
-            
-            if value?["image"] != nil {
-                
-                self.downloadProfileImage(imageURL: (value?["image"] as? String)!)
-            }
-            
-            if value?["name"] != nil {
-                
-                self.nameField.text = (value?["name"] as? String)
-            }
-            
-            self.emailField.text = (value?["email"] as? String)
-            
-        }) { (error) in
-            
-            // Error!
-            
-            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't set your information.")
-        }
-    }
-    
+    /**
+     Goes into Firebase storage to download the user's set profile image.
+     
+     - Parameter imageURL: A string that holds a reference to where the image is stored in the Firebase storage.
+     */
     func downloadProfileImage(imageURL: String) {
         
+        /// Uses the parameter (imageURL) to make a complete link to where the image is stored in the Firebase storage.
         let ref = FIRStorage.storage().reference(forURL: imageURL)
+        
+        // withMaxSize was computed in a tutorial online that found it to be ideal for the limit.
         ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
             
             if error != nil {
                 
                 // Error! Unable to download photo from Firebase storage.
+                SCLAlertView().showError("Oh no!", subTitle: "Pluto was unable to find your profile photo.")
+                
+                // Instead, set the profile image view to the profile placeholder image.
+                self.profileImageView.image = UIImage(named: "profile_img_placeholder")
                 
             } else {
                 
-                // Image successfully downloaded from Firebase storage.
+                // Success! Image successfully downloaded from Firebase storage.
                 
                 if let imageData = data {
                     
                     if let img = UIImage(data: imageData) {
                         
+                        // Set the profile image view to the downloaded image.
                         self.profileImageView.image = img
                         
-                        // Save to image cache (globally declared in BoardVC)
+                        // Save to image cache (globally declared in BoardVC).
                         BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
                     }
                 }
             }
         })
     }
-
+    
+    /**
+     Called when the user first opens up the settings view.
+     
+     Sets the name, email, and profile picture of the user. If any of these had not been set beforehand, placeholder text and a placeholder image is set instead.
+    */
+    func setUserInfo() {
+        
+        // Opens up the information under the current user in Firebase.
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            /// Holds each dictionary under the current user in Firebase.
+            let value = snapshot.value as? NSDictionary
+            
+            // Checks to see if the user has a set profile image.
+            if value?["image"] != nil {
+                
+                // Downloads the set profile image.
+                self.downloadProfileImage(imageURL: (value?["image"] as? String)!)
+            }
+            
+            // Checks to see if the user has a set name.
+            if value?["name"] != nil {
+                
+                // Changes the text in the nameField to match what's saved.
+                self.nameField.text = (value?["name"] as? String)
+            }
+            
+            // Changes the text in the emailField to match what's saved.
+            // There's no need to check if it's empty because the user provided this when signing up.
+            self.emailField.text = (value?["email"] as? String)
+            
+        }) { (error) in
+            
+            // Error! The information could not be received from Firebase.
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't set your information.")
+        }
+    }
+    
+    /**
+     Called when the picture the user selected successfully uploads to the Firebase storage.
+     
+     Here the imageURL is saved under the current user's data in the Firebase database.
+     
+     - Parameter imageURL: A string that holds a reference to where the image is stored in the Firebase storage.
+     */
+    func updateUserData(imageURL: String) {
+        
+        /// Holds the reference to the user's image key in the database.
+        let userProfileRef = DataService.ds.REF_CURRENT_USER.child("image")
+        // Sets the value for the image key to the parameter (imageURL).
+        userProfileRef.setValue(imageURL)
+        
+        // Sets the imageSelected false to indicate the image is done uploading and can be updated again.
+        imageSelected = false
+    }
+    
+    
+    /**
+     Called when the user selects an image and attempts to save.
+     
+     The image is saved as data and an ID is generated that allows it to be saved in the Firebase storage.
+     */
     func uploadProfileImage() {
         
+        // Grabs the image from the profileImageView and compresses it by the scale given.
         if let imageData = UIImageJPEGRepresentation(profileImageView.image!, 0.2) {
             
+            /// Holds a unique id for the image being uploaded.
             let imageUID = NSUUID().uuidString
             
-            // Tells Firebase storage what file type we're uploading.
+            // Tells Firebase storage what file type is being uploaded.
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/jpeg"
             
+            // Opens up the profile pics folder in the Firebase storage so the image can be uploaded.
             DataService.ds.REF_PROFILE_PICS.child(imageUID).put(imageData, metadata: metadata) { (metadata, error) in
                 
                 if error != nil {
@@ -127,33 +189,32 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     
                 } else {
                     
-                    // Successfully uploaded image to Firebase storage.
+                    // Success! Uploaded image to Firebase storage.
                     
+                    /// Holds the imageURL that can be used as a reference in the database.
                     let downloadURL = metadata?.downloadURL()?.absoluteString
                     
-                    self.updateUserPic(imageURL: downloadURL!)
+                    self.updateUserData(imageURL: downloadURL!)
                 }
             }
         }
     }
     
-    func updateUserPic(imageURL: String) {
-        
-        let userProfileRef = DataService.ds.REF_CURRENT_USER.child("image")
-        userProfileRef.setValue(imageURL)
-        
-        imageSelected = false
-    }
-    
-    // MARK - Gesture Actions
+    // MARK: - Gesture Actions
     
     @IBAction func chooseProfileImageAction(_ sender: AnyObject) {
         
+        // When the profile image is tapped, the imagePicker comes up and the user can pick an image from their photo library.
         present(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: - Helpers
     
+    /**
+     Dismisses the keyboard! 
+     
+     Just put whatever textfields you want included here in the function.
+     */
     func dismissKeyboard() {
         
         nameField.resignFirstResponder()
@@ -164,15 +225,20 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        // "Media" means it can be a video or an image.
-        // We have to check to make sure it is an image the user picked.
+        // This function is called when something in the imagePicker is selected.
         
+        // "Media" means it can be a video or an image.
+        // Checks to make sure it is an image the user picked.
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             
+            // Sets the profileImageView to the selected image.
             profileImageView.image = image
+            
+            // Sets the imageSelected to true because the user is now updating his profile picture and Pluto needs to save it.
             imageSelected = true
         }
         
+        // Hides the imagePicker.
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
@@ -180,8 +246,9 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        // Dismisses the keyboard.
+        // Dismisses the keyboard when the return button is pressed on the keyboard.
         textField.resignFirstResponder()
+        
         return true
     }
 }

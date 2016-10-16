@@ -218,8 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				065E9B371DAAE0E30083C329 /* Pluto.entitlements */,
-				06A196B21D976D86001C29EC /* Services */,
 				06B20CC71D86381C006EF005 /* Controllers */,
+				06A196B21D976D86001C29EC /* Services */,
 				06B20CC31D86374F006EF005 /* Fonts */,
 				0606445F1D8A45CC009CFEBC /* Models */,
 				06B20CE81D8665C0006EF005 /* Plists */,

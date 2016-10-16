@@ -81,11 +81,11 @@ class EventCell: UITableViewCell {
             
             if let _ = snapshot.value as? NSNull {
                 
-                self.eventPlutoImageView.image = UIImage(named: "unstar")
+                self.eventPlutoImageView.image = UIImage(named: "ship-faded")
                 
             } else {
                 
-                self.eventPlutoImageView.image = UIImage(named: "star")
+                self.eventPlutoImageView.image = UIImage(named: "ship-yellow")
             }
         })
     }
@@ -96,13 +96,13 @@ class EventCell: UITableViewCell {
             
             if let _ = snapshot.value as? NSNull {
                 
-                self.eventPlutoImageView.image = UIImage(named: "star")
+                self.eventPlutoImageView.image = UIImage(named: "ship-yellow")
                 self.event.adjustCount(addToCount: true)
                 self.userEventRef.setValue(true)
                 
             } else {
                 
-                self.eventPlutoImageView.image = UIImage(named: "unstar")
+                self.eventPlutoImageView.image = UIImage(named: "ship-faded")
                 self.event.adjustCount(addToCount: false)
                 self.userEventRef.removeValue()
             }

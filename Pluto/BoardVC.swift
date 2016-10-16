@@ -16,6 +16,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     @IBOutlet weak var schoolNameLabel: UILabel!
     @IBOutlet weak var eventView: UITableView!
+    @IBOutlet weak var shadeView: UIView!
     
     @IBOutlet weak var createEventAlert: UIView!
     @IBOutlet weak var createEventImageView: UIImageView!
@@ -23,36 +24,46 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     @IBOutlet weak var createEventLocationField: UITextField!
     @IBOutlet weak var createEventTimeField: TextField!
     @IBOutlet weak var createEventDescriptionField: UITextView!
-    @IBOutlet weak var shadeView: UIView!
     
     // MARK: - Variables
+    
+    /// Global image cache that holds all event and profile pictures.
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     /// Holds all the event data received from Firebase.
     var events = [Event]()
     
+    /// Tells when user has tapped on an event for more details.
+    var eventSelected = false
+    /// Holds the index of the event the user taps on.
+    var indexOfEventSelected = -1
+    
+    /// Tells when user has called the create event alert.
     var inCreatePostMode = false
     
     var imagePicker: UIImagePickerController!
     
-    static var imageCache: NSCache<NSString, UIImage> = NSCache()
-    
+    /// Tells when user has selected a picture for an event.
     var imageSelected = false
-    
-    var eventSelected = false
-    var indexOfEventSelected = -1
     
     // MARK: - View Functions
     
     override func viewWillAppear(_ animated: Bool) {
         
-        // Grabs the email and password saved in a previous instance if the user already exists.
+        // This function is called BEFORE the view loads.
+        
+        /// Grabs the email and password saved in a previous instance if the user already exists.
         let userDefaults = UserDefaults.standard
         
-        // Checks to see if there is an email saved.
-        if (userDefaults.string(forKey: "email") == nil) && (userDefaults.string(forKey: "board") == nil) {
+        // Checks to see if there is an email saved in the userdefaults.
+        if (userDefaults.string(forKey: "email") == nil) {
             
+            // Switches to the login screen.
             self.tabBarController?.selectedIndex = 2
+            
         } else {
+            
+            // There is a user logged in, set data.
             
             setBoardTitle()
             setEvents()
@@ -62,20 +73,22 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Dismisses the keyboard if the user taps anywhere on the screen.
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(BoardVC.dismissKeyboard)))
-        
         // Initializes the table view that holds all the events.
         eventView.delegate = self
         eventView.dataSource = self
         
+        // Initializes the text fields.
         createEventTitleField.delegate = self
+        createEventLocationField.delegate = self
         createEventTimeField.delegate = self
         
         // Initializes the image picker.
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        
+        // Adds a tap gesture to the createEventImageView to bring up the imagePicker.
+        createEventImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(BoardVC.addImageGesture(_:))))
     }
     
     // MARK: Datepicker Functions
@@ -274,34 +287,11 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         }
     }
     
-    func tabBar(_ tabBar: YALFoldingTabBar, didSelectItemAt index: UInt) {
-        
-        print(index)
-        
-        if index == 1 {
-            
-            print("LOG OUT")
-            
-            try! FIRAuth.auth()?.signOut()
-            
-            SCLAlertView().showInfo("Goodbye!", subTitle: "You have been logged out.")
-            
-            // Transitions to the main board screen.
-            // self.tabBarController?.selectedIndex = 2
-        }
-    }
-    
-    func tabBar(_ tabBar: YALFoldingTabBar, shouldSelectItemAt index: UInt) -> Bool {
-        
-        print(index)
-        
-        return true
-    }
-    
     // MARK: - Table View Functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
+        // We only need a single section for now.
         return 1
     }
     
@@ -311,8 +301,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
             
             self.eventSelected = true
             self.indexOfEventSelected = indexPath.row
-        }
-        else {
+        } else {
             
             self.eventSelected = false
             self.indexOfEventSelected = -1
@@ -325,7 +314,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.row == indexOfEventSelected && eventSelected == true {
-            
+        
             return 250.0
         }
         
@@ -365,14 +354,19 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     // MARK: - Text Field Functions
     
+    // This function is called as soon as the user clicks on the createEventTimeField.
     @IBAction func timeFieldEditing(_ sender: TextField) {
         
+        // First, we intialize a datePicker variable.
         let datePickerView: UIDatePicker = UIDatePicker()
         
+        // This sets the format for the datepicker. In this case, it will show both date and time.
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         
+        // This changes the first responder of the text field from the keyboard to the datePicker initialized above.
         sender.inputView = datePickerView
         
+        // This adds a target that updates the contents of the text field to match whatever the user is selecting in the datePicker.
         datePickerView.addTarget(self, action: #selector(BoardVC.datePickerChanged(sender:)), for: UIControlEvents.valueChanged)
     }
     

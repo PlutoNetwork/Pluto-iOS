@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
+        let tabBarController = self.window!.rootViewController as! UITabBarController
+        tabBarController.tabBar.barTintColor = DARK_BLUE_COLOR
+        
         setupYALTabBarController()
         
         return true

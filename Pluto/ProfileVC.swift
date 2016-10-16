@@ -30,10 +30,11 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: - View Functions
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         findUserEvents()
         setUserInfo()
+        
+        eventView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -41,9 +42,6 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         eventView.dataSource = self
         eventView.delegate = self
-        
-        //findUserEvents()
-        //setUserInfo()
     }
     
     // MARK: - Button Actions
@@ -113,10 +111,10 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             if value?["name"] != nil {
                 
-                self.nameLabel.text = (value?["name"] as? String)
+                self.nameLabel.text = (value?["name"] as? String)?.uppercased()
             } else {
                 
-                self.nameLabel.text = (value?["email"] as? String)
+                self.nameLabel.text = (value?["email"] as? String)?.uppercased()
             }
                         
         }) { (error) in
