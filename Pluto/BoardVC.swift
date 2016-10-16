@@ -7,10 +7,9 @@
 //
 
 import Firebase
-import FoldingTabBar
 import UIKit
 
-class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, YALTabBarDelegate {
+class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     // MARK: - Outlets
     
@@ -91,7 +90,44 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         createEventImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(BoardVC.addImageGesture(_:))))
     }
     
-    // MARK: Datepicker Functions
+    // MARK: - Button Actions
+    
+    @IBAction func createEventButton(_ sender: AnyObject) {
+        
+        if inCreatePostMode == false {
+            
+            animateFade(view: shadeView, alpha: 0.6)
+            animateFade(view: createEventAlert, alpha: 1.0)
+            
+            createEventAlert.clipsToBounds = true
+            
+            inCreatePostMode = true
+            
+        } else {
+            
+            if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventTimeField.text != "" {
+                
+                if imageSelected == true {
+                    
+                    self.uploadEventImage()
+                    
+                } else {
+                    
+                    self.createEvent()
+                }
+            } else {
+                
+                SCLAlertView().showError("Oh no!", subTitle: "The event was not created because the required fields were left blank.")
+            }
+            
+            animateFade(view: shadeView, alpha: 0)
+            animateFade(view: createEventAlert, alpha: 0)
+            
+            inCreatePostMode = false
+        }
+    }
+    
+    // MARK: - Datepicker Functions
     
     func datePickerChanged(sender: UIDatePicker) {
         
@@ -248,43 +284,6 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         }
         
         imagePicker.dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Tab Bar Functions
-    
-    func tabBarDidSelectExtraRightItem(_ tabBar: YALFoldingTabBar) {
-        
-        if inCreatePostMode == false {
-            
-            animateFade(view: shadeView, alpha: 0.6)
-            animateFade(view: createEventAlert, alpha: 1.0)
-            
-            createEventAlert.clipsToBounds = true
-            
-            inCreatePostMode = true
-            
-        } else {
-            
-            if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventTimeField.text != "" {
-                
-                if imageSelected == true {
-                    
-                    self.uploadEventImage()
-                    
-                } else {
-                    
-                    self.createEvent()
-                }
-            } else {
-                
-                SCLAlertView().showError("Oh no!", subTitle: "The event was not created because the required fields were left blank.")
-            }
-            
-            animateFade(view: shadeView, alpha: 0)
-            animateFade(view: createEventAlert, alpha: 0)
-            
-            inCreatePostMode = false
-        }
     }
     
     // MARK: - Table View Functions

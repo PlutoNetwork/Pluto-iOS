@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import Firebase
-import FoldingTabBar
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,8 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = self.window!.rootViewController as! UITabBarController
         tabBarController.tabBar.barTintColor = DARK_BLUE_COLOR
-        
-        setupYALTabBarController()
         
         return true
     }
@@ -97,45 +94,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
-
-private extension AppDelegate {
-    
-    func setupYALTabBarController() {
-        
-        guard let tabBarController = window?.rootViewController as? YALFoldingTabBarController else { return }
-        
-        let item1 = YALTabBarItem(itemImage: UIImage(named: "settings_icon"), leftItemImage: nil, rightItemImage: nil)
-        let item2 = YALTabBarItem(itemImage: UIImage(named: "nearby_icon"), leftItemImage: UIImage(named: "edit_icon"), rightItemImage: nil)
-        tabBarController.leftBarItems = [item1, item2]
-        
-        let item3 = YALTabBarItem(itemImage: UIImage(named: "chats_icon"), leftItemImage: UIImage(named: "search_icon"), rightItemImage: UIImage(named: "new_chat_icon"))
-        let item4 = YALTabBarItem(itemImage: UIImage(named: "profile_icon"), leftItemImage: nil, rightItemImage: nil)
-        tabBarController.rightBarItems = [item3, item4]
-        
-        tabBarController.centerButtonImage = UIImage(named:"plus_icon")!
-        tabBarController.selectedIndex = 2
-        
-        // Customize tabBarView
-        tabBarController.tabBarView.extraTabBarItemHeight = YALExtraTabBarItemsDefaultHeight;
-        tabBarController.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset;
-        tabBarController.tabBarView.backgroundColor = UIColor.clear
-        
-        tabBarController.tabBarView.tabBarColor = YELLOW_COLOR
-        tabBarController.tabBarViewHeight = YALTabBarViewDefaultHeight
-        tabBarController.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets;
-        tabBarController.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets;
-    }
-    
-    func tabBar(tabBar: YALFoldingTabBar!, didSelectItemAtIndex index: UInt) {
-        
-    }
-    
-    func tabBar(tabBar: YALFoldingTabBar!, shouldSelectItemAtIndex index: UInt) -> Bool {
-        
-        return true
-    }
-}
-
 

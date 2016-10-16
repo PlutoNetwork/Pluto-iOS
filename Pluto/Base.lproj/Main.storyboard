@@ -320,6 +320,9 @@
                                             <constraint firstAttribute="width" constant="20" id="vko-iS-kus"/>
                                         </constraints>
                                         <state key="normal" image="edit_icon"/>
+                                        <connections>
+                                            <action selector="createEventButton:" destination="Igr-Um-LDn" eventType="touchUpInside" id="8li-cP-iO9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.050980392156862744" green="0.27843137254901962" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
