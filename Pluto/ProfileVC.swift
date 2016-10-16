@@ -30,7 +30,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: - View Functions
     
     override func viewWillAppear(_ animated: Bool) {
-        
+                
         findUserEvents()
         setUserInfo()
         

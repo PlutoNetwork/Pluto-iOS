@@ -37,36 +37,14 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     /// Holds the index of the event the user taps on.
     var indexOfEventSelected = -1
     
-    /// Tells when user has called the create event alert.
-    var inCreatePostMode = false
-    
-    var imagePicker: UIImagePickerController!
-    
-    /// Tells when user has selected a picture for an event.
-    var imageSelected = false
-    
     // MARK: - View Functions
     
     override func viewWillAppear(_ animated: Bool) {
         
         // This function is called BEFORE the view loads.
         
-        /// Grabs the email and password saved in a previous instance if the user already exists.
-        let userDefaults = UserDefaults.standard
-        
-        // Checks to see if there is an email saved in the userdefaults.
-        if (userDefaults.string(forKey: "email") == nil) {
-            
-            // Switches to the login screen.
-            self.tabBarController?.selectedIndex = 2
-            
-        } else {
-            
-            // There is a user logged in, set data.
-            
-            setBoardTitle()
-            setEvents()
-        }
+        setBoardTitle()
+        setEvents()
     }
     
     override func viewDidLoad() {
@@ -75,101 +53,16 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         // Initializes the table view that holds all the events.
         eventView.delegate = self
         eventView.dataSource = self
-        
-        // Initializes the text fields.
-        createEventTitleField.delegate = self
-        createEventLocationField.delegate = self
-        createEventTimeField.delegate = self
-        
-        // Initializes the image picker.
-        imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
-        imagePicker.delegate = self
-        
-        // Adds a tap gesture to the createEventImageView to bring up the imagePicker.
-        createEventImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(BoardVC.addImageGesture(_:))))
     }
     
     // MARK: - Button Actions
     
-    @IBAction func createEventButton(_ sender: AnyObject) {
+    @IBAction func createEventButtonAction(_ sender: AnyObject) {
         
-        if inCreatePostMode == false {
-            
-            animateFade(view: shadeView, alpha: 0.6)
-            animateFade(view: createEventAlert, alpha: 1.0)
-            
-            createEventAlert.clipsToBounds = true
-            
-            inCreatePostMode = true
-            
-        } else {
-            
-            if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventTimeField.text != "" {
-                
-                if imageSelected == true {
-                    
-                    self.uploadEventImage()
-                    
-                } else {
-                    
-                    self.createEvent()
-                }
-            } else {
-                
-                SCLAlertView().showError("Oh no!", subTitle: "The event was not created because the required fields were left blank.")
-            }
-            
-            animateFade(view: shadeView, alpha: 0)
-            animateFade(view: createEventAlert, alpha: 0)
-            
-            inCreatePostMode = false
-        }
-    }
-    
-    // MARK: - Datepicker Functions
-    
-    func datePickerChanged(sender: UIDatePicker) {
-        
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateStyle = DateFormatter.Style.medium
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        
-        let strDate = dateFormatter.string(from: sender.date)
-        
-        createEventTimeField.text = strDate
-        
+        switchController(controllerID: "Create")
     }
     
     // MARK: - Firebase
-    
-    func createEvent(imageURL: String = "") {
-        
-        let userDefaults = UserDefaults.standard
-        
-        let event: Dictionary<String, AnyObject> = [
-            
-            "title": createEventTitleField.text! as AnyObject,
-            "location": createEventLocationField.text! as AnyObject,
-            "time": createEventTimeField.text! as AnyObject,
-            "description": createEventDescriptionField.text! as AnyObject,
-            "creator": "" as AnyObject,
-            "count": 1 as AnyObject,
-            "imageURL": imageURL as AnyObject
-        ]
-        
-        let newEvent = DataService.ds.REF_BOARDS.child(userDefaults.string(forKey: "board")!).child("events").childByAutoId()
-        newEvent.setValue(event)
-        
-        let userEventRef = DataService.ds.REF_CURRENT_USER.child("events").child(newEvent.key)
-        userEventRef.setValue(true)
-        
-        createEventTitleField.text = ""
-        createEventTimeField.text = ""
-        imageSelected = false
-        createEventImageView.image = UIImage(named: "camera_icon")
-    }
     
     func setBoardTitle() {
         
@@ -217,50 +110,8 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
             self.eventView.reloadData()
         })
     }
-    
-    func uploadEventImage() {
         
-        if let imageData = UIImageJPEGRepresentation(createEventImageView.image!, 0.2) {
-            
-            let imageUID = NSUUID().uuidString
-            
-            // Tells Firebase storage what file type we're uploading.
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/jpeg"
-            
-            DataService.ds.REF_EVENT_PICS.child(imageUID).put(imageData, metadata: metadata) { (metadata, error) in
-                
-                if error != nil {
-                    
-                    // Error! The image could not be uploaded to Firebase storage.
-                    
-                } else {
-                    
-                    // Successfully uploaded image to Firebase storage.
-                    
-                    let downloadURL = metadata?.downloadURL()?.absoluteString
-                    self.createEvent(imageURL: downloadURL!)
-                }
-            }
-        }
-    }
-    
-    // MARK: - Gestures
-    
-    @IBAction func addImageGesture(_ sender: AnyObject) {
-        
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
     // MARK: - Helpers
-    
-    func animateFade(view: UIView, alpha: CGFloat) {
-        
-        UIView.animate(withDuration: 0.3) {
-            
-            view.alpha = alpha
-        }
-    }
     
     func dismissKeyboard() {
         
@@ -270,22 +121,13 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         createEventDescriptionField.resignFirstResponder()
     }
     
-    // MARK: - Image Picker Functions
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func switchController(controllerID: String) {
         
-        // "Media" means it can be a video or an image.
-        // We have to check to make sure it is an image the user picked.
-        
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-            
-            createEventImageView.image = image
-            imageSelected = true
-        }
-        
-        imagePicker.dismiss(animated: true, completion: nil)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
+        self.present(vc, animated: true, completion: nil)
     }
-    
+        
     // MARK: - Table View Functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -352,23 +194,6 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     }
     
     // MARK: - Text Field Functions
-    
-    // This function is called as soon as the user clicks on the createEventTimeField.
-    @IBAction func timeFieldEditing(_ sender: TextField) {
-        
-        // First, we intialize a datePicker variable.
-        let datePickerView: UIDatePicker = UIDatePicker()
-        
-        // This sets the format for the datepicker. In this case, it will show both date and time.
-        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-        
-        // This changes the first responder of the text field from the keyboard to the datePicker initialized above.
-        sender.inputView = datePickerView
-        
-        // This adds a target that updates the contents of the text field to match whatever the user is selecting in the datePicker.
-        datePickerView.addTarget(self, action: #selector(BoardVC.datePickerChanged(sender:)), for: UIControlEvents.valueChanged)
-    }
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         

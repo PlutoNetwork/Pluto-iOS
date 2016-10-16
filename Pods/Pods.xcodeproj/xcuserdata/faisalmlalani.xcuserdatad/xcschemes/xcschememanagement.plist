@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FoldingTabBar.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Pluto.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9091229326D8C5C3D0072B04E6AD712A</key>
+		<key>4BBD544027687315AB3DF141944333E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9CAA01279004C2E5042519EF09C4103D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CB66AFA2BB3AE5A0E223A5844761A71C</key>
+		<key>D1004D0B36C3D93DB65F315058BAB063</key>
 		<dict>
 			<key>primary</key>
 			<true/>
