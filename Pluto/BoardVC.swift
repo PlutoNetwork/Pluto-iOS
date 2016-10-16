@@ -29,13 +29,10 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     /// Global image cache that holds all event and profile pictures.
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
+    var currentBoardID: String!
+    
     /// Holds all the event data received from Firebase.
     var events = [Event]()
-    
-    /// Tells when user has tapped on an event for more details.
-    var eventSelected = false
-    /// Holds the index of the event the user taps on.
-    var indexOfEventSelected = -1
     
     // MARK: - View Functions
     
@@ -63,6 +60,19 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     }
     
     // MARK: - Firebase
+    
+    func grabCurrentBoardID() -> String {
+        
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
+          
+            let value = snapshot.value as? NSDictionary
+            
+            self.currentBoardID = value?["board"] as? String
+            
+        })
+        
+        return currentBoardID
+    }
     
     func setBoardTitle() {
         
@@ -138,26 +148,17 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexOfEventSelected != indexPath.row {
-            
-            self.eventSelected = true
-            self.indexOfEventSelected = indexPath.row
-        } else {
-            
-            self.eventSelected = false
-            self.indexOfEventSelected = -1
-        }
+        // Didn't use the switchController function because we have to pass data into the next viewController.
         
-        self.eventView.beginUpdates()
-        self.eventView.endUpdates()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Details") as! DetailsVC
+        
+        controller.eventKey = events[indexPath.row].eventKey
+        
+        self.present(controller, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if indexPath.row == indexOfEventSelected && eventSelected == true {
-        
-            return 250.0
-        }
         
         return 125.0
     }
