@@ -59,13 +59,6 @@ class TabBarC: UITabBarController, UITabBarControllerDelegate {
                 self.tabBarController?.selectedIndex = 1
             }
             
-            notice.addButton("Nope!") {
-                
-                // The user doesn't want to log out.
-                // Switches to the main screen.
-                self.tabBarController?.selectedIndex = 2
-            }
-            
             notice.showInfo("Hey!", subTitle: "You have opted to logout. Continue?", closeButtonTitle: "No, I made a mistake!")
             
             

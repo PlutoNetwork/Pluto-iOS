@@ -44,6 +44,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Initializes the table view that holds all the events.
         eventView.delegate = self
         eventView.dataSource = self
