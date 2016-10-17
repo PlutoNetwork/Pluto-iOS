@@ -24,6 +24,7 @@
 		067CF1811DB4056E0080C41C /* TabBarC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1801DB4056E0080C41C /* TabBarC.swift */; };
 		067CF1831DB418C70080C41C /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateVC.swift */; };
 		067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailsVC.swift */; };
+		067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1861DB4972B0080C41C /* FriendVC.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
@@ -89,6 +90,7 @@
 		067CF1801DB4056E0080C41C /* TabBarC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarC.swift; sourceTree = "<group>"; };
 		067CF1821DB418C70080C41C /* CreateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
 		067CF1841DB4329D0080C41C /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
+		067CF1861DB4972B0080C41C /* FriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,6 +289,7 @@
 				067CF1821DB418C70080C41C /* CreateVC.swift */,
 				067CF1841DB4329D0080C41C /* DetailsVC.swift */,
 				061F7E511D9863120023D46F /* ProfileVC.swift */,
+				067CF1861DB4972B0080C41C /* FriendVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
 				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
 				06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */,
+				067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */,
 				067CF1831DB418C70080C41C /* CreateVC.swift in Sources */,
 				068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */,
 				061F7E4C1D983A970023D46F /* BoardVC.swift in Sources */,

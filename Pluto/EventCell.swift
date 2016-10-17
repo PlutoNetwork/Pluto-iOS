@@ -30,6 +30,7 @@ class EventCell: UITableViewCell {
         super.awakeFromNib()
         
         eventPlutoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EventCell.changePluto)))
+        eventCreatorLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EventCell.grabCreatorKey)))
     }
     
     func configureCell(event: Event, img: UIImage? = nil) {
@@ -98,13 +99,36 @@ class EventCell: UITableViewCell {
                 self.eventPlutoImageView.image = UIImage(named: "ship-yellow")
                 self.event.adjustCount(addToCount: true)
                 self.userEventRef.setValue(true)
+                self.syncToCalender(add: true)
                 
             } else {
                 
                 self.eventPlutoImageView.image = UIImage(named: "ship-faded")
                 self.event.adjustCount(addToCount: false)
                 self.userEventRef.removeValue()
+                self.syncToCalender(add: false)
             }
         })
+    }
+    
+    func grabCreatorKey() {
+        
+        let userDefaults = UserDefaults.standard
+        
+        // Save the email and password into userDefaults.
+        userDefaults.set(event.creatorID, forKey: "viewing")
+    }
+    
+    func syncToCalender(add: Bool) {
+        
+        if add {
+            
+            // Add event to calender
+            
+        } else {
+            
+            // Remove event from calender
+            
+        }
     }
 }

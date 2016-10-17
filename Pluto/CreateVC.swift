@@ -103,6 +103,8 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     func createEvent(imageURL: String = "", boardKey: String, name: String) {
         
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
         let event: Dictionary<String, AnyObject> = [
             
             "title": createEventTitleField.text! as AnyObject,
@@ -110,6 +112,7 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             "time": createEventTimeField.text! as AnyObject,
             "description": createEventDescriptionField.text! as AnyObject,
             "creator": name as AnyObject,
+            "creatorID": userID as AnyObject,
             "count": 1 as AnyObject,
             "imageURL": imageURL as AnyObject
         ]

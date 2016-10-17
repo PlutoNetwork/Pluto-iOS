@@ -23,10 +23,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     /// Holds all the event data received from Firebase.
     var events = [Event]()
-    
-    var eventSelected = false
-    var indexOfEventSelected = -1
-    
+        
     // MARK: - View Functions
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,6 +160,13 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Helpers
     
+    func switchController(controllerID: String) {
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     // MARK: - Table View Functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -172,29 +176,19 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexOfEventSelected != indexPath.row {
-            
-            self.eventSelected = true
-            self.indexOfEventSelected = indexPath.row
-        }
-        else {
-            
-            self.eventSelected = false
-            self.indexOfEventSelected = -1
-        }
+        // Didn't use the switchController function because we have to pass data into the next viewController.
         
-        self.eventView.beginUpdates()
-        self.eventView.endUpdates()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Details") as! DetailsVC
+        
+        controller.eventKey = events[indexPath.row].eventKey
+        
+        self.present(controller, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.row == indexOfEventSelected && eventSelected == true {
-            
-            return 250.0
-        }
-        
-        return 125.0
+        return 140.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

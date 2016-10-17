@@ -44,7 +44,6 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // Initializes the table view that holds all the events.
         eventView.delegate = self
         eventView.dataSource = self
@@ -127,6 +126,14 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    func switchToProfile() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Friend") as! FriendVC
+        
+        self.present(controller, animated: true, completion: nil)
     }
         
     // MARK: - Table View Functions

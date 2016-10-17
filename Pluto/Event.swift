@@ -15,6 +15,7 @@ class Event {
     private var _time: String!
     private var _description: String!
     private var _creator: String!
+    private var _creatorID: String!
     private var _pluto: Bool!
     private var _count: Int!
     private var _imageURL: String!
@@ -46,6 +47,11 @@ class Event {
         return _creator
     }
     
+    var creatorID: String {
+        
+        return _creatorID
+    }
+    
     var count: Int {
         
         return _count
@@ -61,13 +67,14 @@ class Event {
         return _eventKey
     }
     
-    init(title: String, location: String, time: String, description: String, creator: String, count: Int, imageURL: String) {
+    init(title: String, location: String, time: String, description: String, creator: String, creatorID: String, count: Int, imageURL: String) {
         
         self._title = title
         self._location = location
         self._time = time
         self._description = description
         self._creator = creator
+        self._creatorID = creatorID
         self._count = count
         self._imageURL = imageURL
     }
@@ -96,6 +103,10 @@ class Event {
         if let creator = eventData["creator"] as? String {
             
             self._creator = creator
+        }
+        if let creatorID = eventData["creatorID"] as? String {
+            
+            self._creatorID = creatorID
         }
         if let count = eventData["count"] as? Int {
             

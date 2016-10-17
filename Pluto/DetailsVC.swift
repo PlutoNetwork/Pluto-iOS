@@ -14,10 +14,11 @@ class DetailsVC: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var eventImageView: RoundImageView!
-    @IBOutlet weak var eventTitleField: UITextField!
-    @IBOutlet weak var eventLocationField: UITextField!
-    @IBOutlet weak var eventTimeField: UITextField!
-    @IBOutlet weak var eventDescriptionField: UITextView!
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var eventLocationLabel: UILabel!
+    @IBOutlet weak var eventTimeLabel: UILabel!
+    @IBOutlet weak var eventDescriptionTextView: UITextView!
+    @IBOutlet weak var eventCreatorLabel: UILabel!
     
     // MARK: - Variables
     
@@ -87,10 +88,11 @@ class DetailsVC: UIViewController {
             
             self.downloadEventImage(imageURL: (value?["imageURL"] as? String)!)
             
-            self.eventTitleField.text = value?["title"] as? String
-            self.eventLocationField.text = value?["location"] as? String
-            self.eventTimeField.text = value?["time"] as? String
-            self.eventDescriptionField.text = value?["description"] as? String
+            self.eventTitleLabel.text = value?["title"] as? String
+            self.eventLocationLabel.text = value?["location"] as? String
+            self.eventTimeLabel.text = value?["time"] as? String
+            self.eventDescriptionTextView.text = value?["description"] as? String
+            self.eventCreatorLabel.text = value?["creator"] as? String
         })
     }
     
