@@ -16,6 +16,9 @@
         <array key="OpenSans-ExtraBold.ttf">
             <string>OpenSans-Extrabold</string>
         </array>
+        <array key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </array>
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
@@ -400,11 +403,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nbT-gV-nUN">
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="event" rowHeight="150" id="EzV-JR-4fb" customClass="EventCell" customModule="Pluto" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="150"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="event" rowHeight="140" id="EzV-JR-4fb" customClass="EventCell" customModule="Pluto" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EzV-JR-4fb" id="P0V-Qj-080">
-                                            <frame key="frameInset" width="375" height="150"/>
+                                            <frame key="frameInset" width="375" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lky-Da-yh3" customClass="EventView" customModule="Pluto" customModuleProvider="target">
@@ -426,7 +429,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="pCQ-O9-maw"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
+                                                            <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="11"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -472,18 +475,18 @@
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="nBc-68-oHx" secondAttribute="trailing" constant="5" id="0Md-Ne-civ"/>
                                                         <constraint firstItem="bGJ-YZ-WUQ" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="8" id="7ty-X7-E51"/>
-                                                        <constraint firstItem="nBc-68-oHx" firstAttribute="top" secondItem="vMD-Nk-UsK" secondAttribute="bottom" constant="-3.5" id="A8s-hC-Xfs"/>
+                                                        <constraint firstItem="nBc-68-oHx" firstAttribute="top" secondItem="vMD-Nk-UsK" secondAttribute="bottom" constant="3" id="A8s-hC-Xfs"/>
                                                         <constraint firstItem="udC-fe-vIc" firstAttribute="top" secondItem="bGJ-YZ-WUQ" secondAttribute="bottom" constant="2" id="BdK-MT-3An"/>
                                                         <constraint firstItem="bGJ-YZ-WUQ" firstAttribute="top" secondItem="o0x-sE-Efa" secondAttribute="bottom" constant="2" id="K5u-OW-uhs"/>
                                                         <constraint firstAttribute="bottom" secondItem="sPu-dC-GIB" secondAttribute="bottom" constant="5" id="QOE-ve-jU4"/>
                                                         <constraint firstItem="udC-fe-vIc" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="8" id="SDE-Qa-vlE"/>
                                                         <constraint firstItem="o0x-sE-Efa" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="8" id="SO3-vC-cVU"/>
-                                                        <constraint firstItem="7Uu-Q6-wOo" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="34" id="Vz0-i3-Eoz"/>
-                                                        <constraint firstAttribute="bottom" secondItem="nBc-68-oHx" secondAttribute="bottom" constant="25.5" id="XuA-x2-4lO"/>
-                                                        <constraint firstItem="o0x-sE-Efa" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="29" id="kNM-XY-22R"/>
+                                                        <constraint firstItem="7Uu-Q6-wOo" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="26" id="Vz0-i3-Eoz"/>
+                                                        <constraint firstAttribute="bottom" secondItem="nBc-68-oHx" secondAttribute="bottom" constant="19" id="XuA-x2-4lO"/>
+                                                        <constraint firstItem="o0x-sE-Efa" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="20" id="kNM-XY-22R"/>
                                                         <constraint firstAttribute="trailing" secondItem="vMD-Nk-UsK" secondAttribute="trailing" constant="20" id="kwi-m1-SyJ"/>
                                                         <constraint firstItem="udC-fe-vIc" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="8" id="qaf-dG-CQ9"/>
-                                                        <constraint firstItem="vMD-Nk-UsK" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="42" id="u0C-gT-YLm"/>
+                                                        <constraint firstItem="vMD-Nk-UsK" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="38" id="u0C-gT-YLm"/>
                                                         <constraint firstItem="sPu-dC-GIB" firstAttribute="leading" secondItem="Lky-Da-yh3" secondAttribute="leading" constant="8" id="uin-P2-5Dd"/>
                                                         <constraint firstItem="7Uu-Q6-wOo" firstAttribute="leading" secondItem="Lky-Da-yh3" secondAttribute="leading" constant="8" id="wP2-Ql-kcP"/>
                                                     </constraints>
