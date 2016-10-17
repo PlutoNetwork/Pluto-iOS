@@ -41,7 +41,6 @@ class EventCell: UITableViewCell {
         self.eventTitleLabel.text = event.title
         self.eventLocationLabel.text = event.location
         self.eventTimeLabel.text = event.time
-        self.eventDescriptionTextView.text = event.description
         self.eventCreatorLabel.text = event.creator
         self.eventPlutoCountLabel.text = "\(event.count)"
         

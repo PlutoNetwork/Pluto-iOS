@@ -49,7 +49,22 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @IBAction func backButtonAction(_ sender: AnyObject) {
         
-        switchController(controllerID: "Main")
+        if createEventTitleField.text != "" || createEventLocationField.text != "" || createEventTimeField.text != "" {
+            
+            // Create an alert to ask the user if a new account should be created.
+            let notice = SCLAlertView()
+            
+            notice.addButton("Yes!") {
+                
+                // The user has wants to leave the create screen.
+                self.switchController(controllerID: "Main")
+            }
+            
+            notice.showInfo("Hey!", subTitle: "You have unsaved changes here. Are you sure you want to head back to the main screen?", closeButtonTitle: "No, I made a mistake!")
+        } else {
+            
+            switchController(controllerID: "Main")
+        }
     }
     
     @IBAction func saveButtonAction(_ sender: AnyObject) {

@@ -45,6 +45,8 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBarController?.tabBar.isHidden = true
+        
         // Initializes the text fields.
         emailField.delegate = self
         passwordField.delegate = self
@@ -177,7 +179,7 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
                 } else {
                     
                     // Error! This means something went wrong that wasn't caught above.
-                    SCLAlertView().showError("Oh no!", subTitle: "Pluto could not log you in at this time because of an unknown error.")
+                    // SCLAlertView().showError("Oh no!", subTitle: "Pluto could not log you in at this time because of an unknown error.")
                 }
             }
         })

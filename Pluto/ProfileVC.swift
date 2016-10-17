@@ -31,7 +31,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
                 
-        findUserEvents()
+        grabCurrentBoardID()
         setUserInfo()
         
         eventView.reloadData()
@@ -48,7 +48,18 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Firebase
     
-    func setEvents(userEvents: [String]) {
+    func grabCurrentBoardID() {
+        
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            let currentBoardID = value?["board"] as? String
+            self.findUserEvents(boardKey: currentBoardID!)
+        })
+    }
+    
+    func setEvents(userEvents: [String], boardKey: String) {
         
         let userDefaults = UserDefaults.standard
         
@@ -63,7 +74,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                     if let eventDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         let key = snap.key
-                        let event = Event(eventKey: key, eventData: eventDict)
+                        let event = Event(eventKey: key, eventData: eventDict, boardKey: boardKey)
                         
                         if userEvents.contains(snap.key) {
                             
@@ -77,7 +88,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         })
     }
     
-    func findUserEvents() {
+    func findUserEvents(boardKey: String) {
         
         let userEventRef = DataService.ds.REF_CURRENT_USER.child("events")
         
@@ -92,7 +103,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                     let key = snap.key
                     userEventKeys.append(key)
                     
-                    self.setEvents(userEvents: userEventKeys)
+                    self.setEvents(userEvents: userEventKeys, boardKey: boardKey)
                 }
             }
         })

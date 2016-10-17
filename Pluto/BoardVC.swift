@@ -29,8 +29,6 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     /// Global image cache that holds all event and profile pictures.
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
-    var currentBoardID: String!
-    
     /// Holds all the event data received from Firebase.
     var events = [Event]()
     
@@ -40,8 +38,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         
         // This function is called BEFORE the view loads.
         
-        setBoardTitle()
-        setEvents()
+        grabCurrentBoardID()
     }
     
     override func viewDidLoad() {
@@ -61,32 +58,28 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     // MARK: - Firebase
     
-    func grabCurrentBoardID() -> String {
+    func grabCurrentBoardID() {
         
         DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
           
             let value = snapshot.value as? NSDictionary
             
-            self.currentBoardID = value?["board"] as? String
+            let currentBoardID = value?["board"] as? String
+            self.setBoardTitle(boardKey: currentBoardID!)
+            self.setEvents(boardKey: currentBoardID!)
             
         })
-        
-        return currentBoardID
     }
     
-    func setBoardTitle() {
+    func setBoardTitle(boardKey: String) {
         
-        let userDefaults = UserDefaults.standard
-        
-        DataService.ds.REF_BOARDS.child(userDefaults.string(forKey: "board")!).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_BOARDS.child(boardKey).observeSingleEvent(of: .value, with: { (snapshot) in
             
             // Get user value
             
             let value = snapshot.value as? NSDictionary
             
-            if value?["title"] != nil {
-                self.schoolNameLabel.text = (value?["title"] as? String)?.uppercased()
-            }
+            self.schoolNameLabel.text = (value?["title"] as? String)?.uppercased()
             
         }) { (error) in
             
@@ -96,11 +89,9 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         }
     }
     
-    func setEvents() {
-        
-        let userDefaults = UserDefaults.standard
-        
-        DataService.ds.REF_BOARDS.child(userDefaults.string(forKey: "board")!).child("events").observe(.value, with: { (snapshot) in
+    func setEvents(boardKey: String) {
+                
+        DataService.ds.REF_BOARDS.child(boardKey).child("events").observe(.value, with: { (snapshot) in
             
             self.events = []
             
@@ -111,7 +102,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                     if let eventDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         let key = snap.key
-                        let event = Event(eventKey: key, eventData: eventDict)
+                        let event = Event(eventKey: key, eventData: eventDict, boardKey: boardKey)
                         self.events.append(event)
                     }
                 }
@@ -160,7 +151,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 125.0
+        return 150.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

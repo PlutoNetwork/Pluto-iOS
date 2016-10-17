@@ -72,7 +72,7 @@ class Event {
         self._imageURL = imageURL
     }
     
-    init(eventKey: String, eventData: Dictionary<String, AnyObject>) {
+    init(eventKey: String, eventData: Dictionary<String, AnyObject>, boardKey: String) {
         
         self._eventKey = eventKey
         
@@ -105,10 +105,8 @@ class Event {
             
             self._imageURL = imageURL
         }
-        
-        let userDefaults = UserDefaults.standard
-        
-        _eventRef = DataService.ds.REF_BOARDS.child(userDefaults.string(forKey: "board")!).child("events").child(_eventKey)
+                
+        _eventRef = DataService.ds.REF_BOARDS.child(boardKey).child("events").child(_eventKey)
     }
     
     func adjustCount(addToCount: Bool) {
