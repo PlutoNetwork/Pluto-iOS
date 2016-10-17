@@ -141,6 +141,8 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
                 
                 // Success! The user has logged in!
                 
+                self.saveDefault(email: email, password: password)
+                
                 self.tabBarController?.tabBar.isHidden = false
                 
                 // Transitions to the main board screen.

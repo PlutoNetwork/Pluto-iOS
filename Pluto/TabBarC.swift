@@ -23,11 +23,11 @@ class TabBarC: UITabBarController, UITabBarControllerDelegate {
         /// Grabs the email and password saved in a previous instance if the user already exists.
         let userDefaults = UserDefaults.standard
         
-        // Checks to see if there is an email saved in the userdefaults.
+        // Checks to see if there is an email saved in the userDefaults.
         if (userDefaults.string(forKey: "email") == nil) {
             
             // Switches to the login screen.
-            self.tabBarController?.selectedIndex = 1
+            selectedIndex = 0
             
         } else {
             
@@ -40,7 +40,6 @@ class TabBarC: UITabBarController, UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
-        print("CLICKED")
         return true
     }
     

@@ -60,10 +60,8 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func setEvents(userEvents: [String], boardKey: String) {
-        
-        let userDefaults = UserDefaults.standard
-        
-        DataService.ds.REF_BOARDS.child(userDefaults.string(forKey: "board")!).child("events").observe(.value, with: { (snapshot) in
+                
+        DataService.ds.REF_BOARDS.child(boardKey).child("events").observe(.value, with: { (snapshot) in
             
             self.events = []
             

@@ -68,7 +68,6 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
             let currentBoardID = value?["board"] as? String
             self.setBoardTitle(boardKey: currentBoardID!)
             self.setEvents(boardKey: currentBoardID!)
-            
         })
     }
     
