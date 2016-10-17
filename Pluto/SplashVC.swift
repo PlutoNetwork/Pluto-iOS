@@ -70,7 +70,7 @@ class SplashVC: UIViewController {
         
         showMain()
         
-        delay(8.00) {
+        delay(5.00) {
             
             self.showMain()
         }
