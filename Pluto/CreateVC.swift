@@ -73,11 +73,11 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             
             if imageSelected == true {
                 
-                self.uploadEventImage()
+                self.grabCurrentBoardID(uploadImage: true)
                 
             } else {
                 
-                self.createEvent()
+                self.grabCurrentBoardID(uploadImage: false)
             }
         } else {
             
@@ -101,9 +101,7 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     // MARK: - Firebase
     
-    func createEvent(imageURL: String = "") {
-        
-        let userDefaults = UserDefaults.standard
+    func createEvent(imageURL: String = "", boardKey: String, name: String) {
         
         let event: Dictionary<String, AnyObject> = [
             
@@ -111,12 +109,12 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             "location": createEventLocationField.text! as AnyObject,
             "time": createEventTimeField.text! as AnyObject,
             "description": createEventDescriptionField.text! as AnyObject,
-            "creator": "" as AnyObject,
+            "creator": name as AnyObject,
             "count": 1 as AnyObject,
             "imageURL": imageURL as AnyObject
         ]
         
-        let newEvent = DataService.ds.REF_BOARDS.child(userDefaults.string(forKey: "board")!).child("events").childByAutoId()
+        let newEvent = DataService.ds.REF_BOARDS.child(boardKey).child("events").childByAutoId()
         newEvent.setValue(event)
         
         let userEventRef = DataService.ds.REF_CURRENT_USER.child("events").child(newEvent.key)
@@ -132,7 +130,38 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         switchController(controllerID: "Main")
     }
     
-    func uploadEventImage() {
+    func grabCurrentBoardID(uploadImage: Bool, imageURL: String = "") {
+        
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            let currentBoardID = value?["board"] as? String
+            
+            self.grabUserName(uploadImage: uploadImage, imageURL: imageURL, boardKey: currentBoardID!)
+        })
+    }
+    
+    func grabUserName(uploadImage: Bool, imageURL: String = "", boardKey: String) {
+        
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            let name = value?["name"] as? String
+            
+            if uploadImage == true {
+                
+                self.uploadEventImage(boardKey: boardKey, name: name!)
+                
+            } else {
+                
+                self.createEvent(imageURL: imageURL, boardKey: boardKey, name: name!)
+            }
+        })
+    }
+    
+    func uploadEventImage(boardKey: String, name: String) {
         
         if let imageData = UIImageJPEGRepresentation(createEventImageView.image!, 0.2) {
             
@@ -153,7 +182,7 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                     // Successfully uploaded image to Firebase storage.
                     
                     let downloadURL = metadata?.downloadURL()?.absoluteString
-                    self.createEvent(imageURL: downloadURL!)
+                    self.createEvent(imageURL: downloadURL!, boardKey: boardKey, name: name)
                 }
             }
         }
