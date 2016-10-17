@@ -430,30 +430,12 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0x-sE-Efa">
-                                                            <color key="backgroundColor" red="0.066666666669999999" green="0.18039215689999999" blue="0.25098039220000001" alpha="0.0" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="245" id="KqH-PQ-8iS"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGJ-YZ-WUQ">
                                                             <color key="backgroundColor" red="0.066666666669999999" green="0.18039215689999999" blue="0.25098039220000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="160" id="rHf-F1-xQZ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPu-dC-GIB">
-                                                            <color key="backgroundColor" red="0.066666666669999999" green="0.18039215689999999" blue="0.25098039220000001" alpha="0.0" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="175" id="Yi2-jC-2Km"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="11"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -467,10 +449,28 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPu-dC-GIB">
+                                                            <color key="backgroundColor" red="0.066666666669999999" green="0.18039215689999999" blue="0.25098039220000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="175" id="Yi2-jC-2Km"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="11"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0x-sE-Efa">
+                                                            <color key="backgroundColor" red="0.066666666669999999" green="0.18039215689999999" blue="0.25098039220000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="240" id="KqH-PQ-8iS"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="nBc-68-oHx" secondAttribute="trailing" constant="15" id="0Md-Ne-civ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nBc-68-oHx" secondAttribute="trailing" constant="5" id="0Md-Ne-civ"/>
                                                         <constraint firstItem="bGJ-YZ-WUQ" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="8" id="7ty-X7-E51"/>
                                                         <constraint firstItem="nBc-68-oHx" firstAttribute="top" secondItem="vMD-Nk-UsK" secondAttribute="bottom" constant="-3.5" id="A8s-hC-Xfs"/>
                                                         <constraint firstItem="udC-fe-vIc" firstAttribute="top" secondItem="bGJ-YZ-WUQ" secondAttribute="bottom" constant="2" id="BdK-MT-3An"/>
@@ -480,8 +480,8 @@
                                                         <constraint firstItem="o0x-sE-Efa" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="8" id="SO3-vC-cVU"/>
                                                         <constraint firstItem="7Uu-Q6-wOo" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="34" id="Vz0-i3-Eoz"/>
                                                         <constraint firstAttribute="bottom" secondItem="nBc-68-oHx" secondAttribute="bottom" constant="25.5" id="XuA-x2-4lO"/>
-                                                        <constraint firstItem="o0x-sE-Efa" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="23" id="kNM-XY-22R"/>
-                                                        <constraint firstAttribute="trailing" secondItem="vMD-Nk-UsK" secondAttribute="trailing" constant="30" id="kwi-m1-SyJ"/>
+                                                        <constraint firstItem="o0x-sE-Efa" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="29" id="kNM-XY-22R"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vMD-Nk-UsK" secondAttribute="trailing" constant="20" id="kwi-m1-SyJ"/>
                                                         <constraint firstItem="udC-fe-vIc" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="8" id="qaf-dG-CQ9"/>
                                                         <constraint firstItem="vMD-Nk-UsK" firstAttribute="top" secondItem="Lky-Da-yh3" secondAttribute="top" constant="42" id="u0C-gT-YLm"/>
                                                         <constraint firstItem="sPu-dC-GIB" firstAttribute="leading" secondItem="Lky-Da-yh3" secondAttribute="leading" constant="8" id="uin-P2-5Dd"/>
