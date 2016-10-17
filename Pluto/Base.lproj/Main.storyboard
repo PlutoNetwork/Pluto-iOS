@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rd8-cf-Ll0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ATQ-Ai-dPb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -866,7 +866,7 @@
         <!--Tab BarC-->
         <scene sceneID="N4W-gz-UbC">
             <objects>
-                <tabBarController storyboardIdentifier="Main" id="Rd8-cf-Ll0" customClass="TabBarC" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Main" modalTransitionStyle="flipHorizontal" id="Rd8-cf-Ll0" customClass="TabBarC" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="RSu-EM-0j7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1244,6 +1244,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YiE-YT-ZFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2562" y="1191"/>
+        </scene>
+        <!--SplashVC-->
+        <scene sceneID="xNz-xD-tpL">
+            <objects>
+                <viewController id="ATQ-Ai-dPb" customClass="SplashVC" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0u7-rU-R6R"/>
+                        <viewControllerLayoutGuide type="bottom" id="6GG-fi-bmF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VUD-pQ-Xj0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hilarious message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mr4-kG-YI3">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="HAK-na-cmt"/>
+                                    <constraint firstAttribute="width" constant="343" id="uNE-fe-ssG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.082352941176470587" green="0.396078431372549" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mr4-kG-YI3" firstAttribute="top" secondItem="0u7-rU-R6R" secondAttribute="bottom" constant="228" id="E6e-fO-x64"/>
+                            <constraint firstItem="mr4-kG-YI3" firstAttribute="centerX" secondItem="VUD-pQ-Xj0" secondAttribute="centerX" id="fe2-70-OKB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingMessageLabel" destination="mr4-kG-YI3" id="hg2-NE-Z3S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qkO-aS-PYG" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-476" y="-257.72113943028489"/>
         </scene>
     </scenes>
     <resources>
