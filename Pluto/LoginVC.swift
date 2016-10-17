@@ -86,7 +86,7 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
             self.tabBarController?.tabBar.isHidden = false
             
             // Transitions to the main board screen.
-            self.switchController(controllerID: "Main")
+            self.tabBarController?.selectedIndex = 2
         }
         
         // Returns the fields back to blank so any return to the screen won't have the current user's information.
@@ -144,7 +144,7 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
                 self.tabBarController?.tabBar.isHidden = false
                 
                 // Transitions to the main board screen.
-                self.switchController(controllerID: "Main")
+                self.tabBarController?.selectedIndex = 2
                 
             } else {
                 
@@ -361,13 +361,6 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
         
         saveToDatabaseVoodoo(user: user, userID: userID!, email: email, providerID: providerID)
         saveDefault(email: email, password: password)
-    }
-    
-    func switchController(controllerID: String) {
-        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
-        self.present(vc, animated: true, completion: nil)
     }
     
     // MARK: - Search Bar Functions
