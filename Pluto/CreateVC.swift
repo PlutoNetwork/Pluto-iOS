@@ -9,7 +9,7 @@
 import Firebase
 import UIKit
 
-class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     // MARK: - Outlets
     
@@ -35,6 +35,7 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         createEventTitleField.delegate = self
         createEventLocationField.delegate = self
         createEventTimeField.delegate = self
+        createEventDescriptionField.delegate = self
         
         // Initializes the image picker.
         imagePicker = UIImagePickerController()
@@ -242,5 +243,12 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         // Dismisses the keyboard.
         textField.resignFirstResponder()
         return true
+    }
+    
+    // MARK: - Text View Functions
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        // Clears "Description" text from textView window
+        createEventDescriptionField.text = ""
     }
 }
