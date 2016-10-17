@@ -90,9 +90,7 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
         }
         
         // Returns the fields back to blank so any return to the screen won't have the current user's information.
-        emailField.text = ""
-        passwordField.text = ""
-        searchBar.text = ""
+        self.clearFields()
         
         // Hides the findSchoolAlert.
         findSchoolAlert.alpha = 0
@@ -142,6 +140,8 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
                 // Success! The user has logged in!
                 
                 self.saveDefault(email: email, password: password)
+                
+                self.clearFields()
                 
                 self.tabBarController?.tabBar.isHidden = false
                 
@@ -293,6 +293,13 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
         
         // Brings up the alert.
         animateFade(view: findSchoolAlert, alpha: 1.0)
+    }
+    
+    func clearFields() {
+        
+        emailField.text = ""
+        passwordField.text = ""
+        searchBar.text = ""
     }
     
     /**
