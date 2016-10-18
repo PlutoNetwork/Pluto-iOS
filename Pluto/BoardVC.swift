@@ -9,7 +9,7 @@
 import Firebase
 import UIKit
 
-class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     // MARK: - Outlets
     
@@ -128,10 +128,12 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         self.present(vc, animated: true, completion: nil)
     }
     
-    func switchToProfile() {
+    func switchToProfile(creatorID: String) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "Friend") as! FriendVC
+        
+        controller.creatorID = creatorID
         
         self.present(controller, animated: true, completion: nil)
     }
@@ -174,6 +176,8 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         let event = events[indexPath.row]
         
         if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
+            
+            cell.delegate = self
             
             if let img = BoardVC.imageCache.object(forKey: event.imageURL as NSString) {
                 

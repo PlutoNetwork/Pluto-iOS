@@ -9,6 +9,11 @@
 import Firebase
 import UIKit
 
+protocol FriendsDelegate {
+    
+    func switchToProfile(creatorID: String)
+}
+
 class EventCell: UITableViewCell {
     
     // MARK: - Outlets
@@ -25,12 +30,13 @@ class EventCell: UITableViewCell {
     // MARK: - Variables
     var event: Event!
     var userEventRef: FIRDatabaseReference!
+    var delegate: FriendsDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         eventPlutoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EventCell.changePluto)))
-        eventCreatorLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EventCell.grabCreatorKey)))
+        eventCreatorLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(grabCreatorKey)))
     }
     
     func configureCell(event: Event, img: UIImage? = nil) {
@@ -113,10 +119,7 @@ class EventCell: UITableViewCell {
     
     func grabCreatorKey() {
         
-        let userDefaults = UserDefaults.standard
-        
-        // Save the email and password into userDefaults.
-        userDefaults.set(event.creatorID, forKey: "viewing")
+        self.delegate?.switchToProfile(creatorID: event.creatorID)
     }
     
     func syncToCalender(add: Bool) {
