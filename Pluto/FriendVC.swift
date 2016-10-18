@@ -25,11 +25,14 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
     
     /// Holds all the event data received from Firebase.
     var events = [Event]()
-    
-    var creatorEventKeys = [String]()
-    
+
+    var boardKey = String()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        eventView.delegate = self
+        eventView.dataSource = self
         
         setUserInfo()
         grabUserEvents()
@@ -88,15 +91,48 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
         
         DataService.ds.REF_USERS.child(creatorID).child("events").observeSingleEvent(of: .value, with: { (snapshot) in
                         
+            var userEventKeys = [String]()
+            
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshot {
                     
-                    self.creatorEventKeys.append(snap.key)
+                    let key = snap.key
+                    userEventKeys.append(key)
+                    
+                    self.setEvents(userEventKeys: userEventKeys)
                 }
             }
         })
     }
+    
+    func setEvents(userEventKeys: [String]) {
+        
+        DataService.ds.REF_BOARDS.child(boardKey).child("events").observe(.value, with: { (snapshot) in
+            
+            self.events = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    if let eventDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let event = Event(eventKey: key, eventData: eventDict, boardKey: self.boardKey)
+                        
+                        if userEventKeys.contains(event.eventKey) {
+                            
+                            self.events.append(event)
+                        }
+                    }
+                }
+            }
+            
+            self.eventView.reloadData()
+        })
+    }
+
     
     func setUserInfo() {
         
@@ -195,7 +231,7 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
         events = events.sorted(by: { $0.count > $1.count })
         
         let event = events[indexPath.row]
-        
+                
         if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
             
             cell.delegate = self

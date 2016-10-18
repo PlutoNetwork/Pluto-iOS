@@ -1285,20 +1285,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.39607843139999999" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="MnX-qD-eKm" firstAttribute="top" secondItem="OOc-BE-iEg" secondAttribute="bottom" constant="15" id="39D-tM-4dZ"/>
+                            <constraint firstAttribute="trailing" secondItem="MnX-qD-eKm" secondAttribute="trailing" id="4dg-vN-m2x"/>
+                            <constraint firstItem="OOc-BE-iEg" firstAttribute="top" secondItem="Urv-Ef-e01" secondAttribute="bottom" constant="15" id="5ur-uz-dcO"/>
                             <constraint firstItem="uLu-4T-A97" firstAttribute="top" secondItem="ild-Ed-kSL" secondAttribute="bottom" constant="20" id="7bE-ZT-nLU"/>
-                            <constraint firstItem="MnX-qD-eKm" firstAttribute="top" secondItem="ild-Ed-kSL" secondAttribute="bottom" constant="105" id="JGN-yc-LQY"/>
                             <constraint firstItem="uLu-4T-A97" firstAttribute="leading" secondItem="Urv-Ef-e01" secondAttribute="trailing" constant="8" id="K3i-ew-duh"/>
                             <constraint firstItem="Urv-Ef-e01" firstAttribute="centerX" secondItem="ikj-o1-LG9" secondAttribute="centerX" id="QGN-hW-Oo5"/>
                             <constraint firstItem="Urv-Ef-e01" firstAttribute="top" secondItem="ild-Ed-kSL" secondAttribute="bottom" constant="15" id="RBp-rW-gJK"/>
                             <constraint firstItem="OOc-BE-iEg" firstAttribute="trailing" secondItem="ikj-o1-LG9" secondAttribute="trailingMargin" id="XkW-fB-fhZ"/>
                             <constraint firstItem="OOc-BE-iEg" firstAttribute="leading" secondItem="ikj-o1-LG9" secondAttribute="leadingMargin" id="ZYy-1m-D2J"/>
                             <constraint firstItem="ild-Ed-kSL" firstAttribute="top" secondItem="ikj-o1-LG9" secondAttribute="top" id="bbX-0D-xmv"/>
-                            <constraint firstItem="MnX-qD-eKm" firstAttribute="leading" secondItem="ikj-o1-LG9" secondAttribute="leading" id="bpZ-Nf-QJf"/>
                             <constraint firstItem="ild-Ed-kSL" firstAttribute="leading" secondItem="ikj-o1-LG9" secondAttribute="leading" id="eQF-F2-LHz"/>
-                            <constraint firstAttribute="trailing" secondItem="MnX-qD-eKm" secondAttribute="trailing" id="hRb-b1-gkP"/>
-                            <constraint firstItem="MnX-qD-eKm" firstAttribute="top" secondItem="OOc-BE-iEg" secondAttribute="bottom" constant="15" id="o8V-0g-gYB"/>
+                            <constraint firstItem="NAI-o5-RlF" firstAttribute="top" secondItem="MnX-qD-eKm" secondAttribute="bottom" id="l5w-AI-Mq4"/>
                             <constraint firstAttribute="trailing" secondItem="ild-Ed-kSL" secondAttribute="trailing" id="rYd-Dg-taZ"/>
-                            <constraint firstItem="NAI-o5-RlF" firstAttribute="top" secondItem="MnX-qD-eKm" secondAttribute="bottom" id="umx-aS-qI2"/>
+                            <constraint firstItem="MnX-qD-eKm" firstAttribute="leading" secondItem="ikj-o1-LG9" secondAttribute="leading" id="waC-qd-t1B"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="3" title="" image="ic_account_circle_white" selectedImage="ic_account_circle_white" id="gLx-o3-RUD"/>

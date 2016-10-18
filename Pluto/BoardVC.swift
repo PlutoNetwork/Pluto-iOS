@@ -32,6 +32,8 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
     /// Holds all the event data received from Firebase.
     var events = [Event]()
     
+    var holdBoardKey: String!
+    
     // MARK: - View Functions
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +69,7 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
             let currentBoardID = value?["board"] as? String
             self.setBoardTitle(boardKey: currentBoardID!)
             self.setEvents(boardKey: currentBoardID!)
+            self.holdBoardKey = currentBoardID!
         })
     }
     
@@ -134,6 +137,7 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
         let controller = storyboard.instantiateViewController(withIdentifier: "Friend") as! FriendVC
         
         controller.creatorID = creatorID
+        controller.boardKey = holdBoardKey
         
         self.present(controller, animated: true, completion: nil)
     }
