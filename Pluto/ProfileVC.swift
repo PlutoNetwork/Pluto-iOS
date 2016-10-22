@@ -9,13 +9,17 @@
 import Firebase
 import UIKit
 
-class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Outlets
     
     @IBOutlet weak var profileImageView: RoundImageView!
-    @IBOutlet weak var eventView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var majorLabel: UILabel!
+    @IBOutlet weak var myFriendsLabel: UILabel!
+    @IBOutlet weak var friendsView: UICollectionView!
+    @IBOutlet weak var eventView: UITableView!
     
     // Buttons
     
@@ -23,25 +27,66 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     /// Holds all the event data received from Firebase.
     var events = [Event]()
-        
-    // MARK: - View Functions
     
-    override func viewWillAppear(_ animated: Bool) {
-                
-        grabCurrentBoardID()
-        setUserInfo()
-        
-        eventView.reloadData()
-    }
+    /// Holds all the user's friend data received from Firebase.
+    var friends = [Friend]()
+    
+    var holdBoardKey: String!
+    
+    // MARK: - View Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        friendsView.dataSource = self
+        friendsView.delegate = self
+        
+        grabCurrentBoardID()
+        setUserInfo()
+        setFriends()
+        
         eventView.dataSource = self
         eventView.delegate = self
+        
+        myFriendsLabel.text = "My Friends"
     }
     
-    // MARK: - Button Actions
+    // MARK: - Collection View Functions
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return friends.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        switchToProfile(creatorID: friends[indexPath.row].friendKey)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let friend = friends[indexPath.row]
+        
+        if let friendCell = collectionView.dequeueReusableCell(withReuseIdentifier: "friend", for: indexPath) as? FriendCell {
+            
+            friendCell.configureCell(friend: friend)
+            return friendCell
+            
+        } else {
+            
+            return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 120, height: 120)
+    }
     
     // MARK: - Firebase
     
@@ -53,6 +98,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             
             let currentBoardID = value?["board"] as? String
             self.findUserEvents(boardKey: currentBoardID!)
+            self.holdBoardKey = currentBoardID
         })
     }
     
@@ -80,6 +126,33 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             }
             
             self.eventView.reloadData()
+        })
+    }
+    
+    func setFriends() {
+        
+        DataService.ds.REF_CURRENT_USER.child("friends").observeSingleEvent(of: .value, with: { (snapshot) in
+          
+            self.friends = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    if let friendDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let friend = Friend(friendKey: key, friendData: friendDict)
+                        
+                        if friend.connected == true {
+                            
+                            self.friends.append(friend)
+                        }
+                    }
+                }
+            }
+            
+            self.friendsView.reloadData()
         })
     }
     
@@ -118,9 +191,20 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             if value?["name"] != nil {
                 
                 self.nameLabel.text = (value?["name"] as? String)?.uppercased()
+                
             } else {
                 
                 self.nameLabel.text = (value?["email"] as? String)?.uppercased()
+            }
+            
+            if value?["year"] != nil {
+                
+                self.yearLabel.text = (value?["year"] as? String)
+            }
+            
+            if value?["major"] != nil {
+                
+                self.majorLabel.text = (value?["major"] as? String)
             }
                         
         }) { (error) in
@@ -160,6 +244,11 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Helpers
     
+    /**
+     Switches to the view controller specified by the parameter.
+     
+     - Parameter controllerID: The ID of the controller to switch to.
+     */
     func switchController(controllerID: String) {
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -167,11 +256,38 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.present(vc, animated: true, completion: nil)
     }
     
+    func switchToProfile(creatorID: String) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Friend") as! FriendVC
+        
+        controller.creatorID = creatorID
+        controller.boardKey = holdBoardKey
+        
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     // MARK: - Table View Functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return "My Events"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        // Recasts the view as a UITableViewHeaderFooterView
+        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        
+        header.contentView.backgroundColor = BLUE_COLOR
+        header.textLabel?.textColor = UIColor.white
+        header.textLabel?.font = UIFont(name: "Open-Sans", size: 15.0)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

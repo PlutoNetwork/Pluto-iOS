@@ -49,7 +49,7 @@ class EventCell: UITableViewCell {
         self.eventLocationLabel.text = event.location
         self.eventTimeLabel.text = event.time
         self.eventCreatorLabel.text = event.creator
-        self.eventPlutoCountLabel.text = "\(event.count)"
+        self.eventPlutoCountLabel.text = "\(event.count) going"
         
         if img != nil {
             

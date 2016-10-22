@@ -55,7 +55,7 @@ class DataService {
         
         return user
     }
-    
+        
     var REF_EVENT_PICS: FIRStorageReference {
         
         return _REF_EVENT_PICS

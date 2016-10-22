@@ -20,17 +20,20 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
     @IBOutlet weak var eventView: UITableView!
     
     // MARK: - Variables
+    
+    /// Holds the key of the user's board.
+    var boardKey = String()
 
+    /// Holds all the ID of the user who created the event.
     var creatorID = String()
     
     /// Holds all the event data received from Firebase.
     var events = [Event]()
-
-    var boardKey = String()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initializes the event view.
         eventView.delegate = self
         eventView.dataSource = self
         
@@ -43,6 +46,11 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
     @IBAction func backButtonAction(_ sender: AnyObject) {
         
         switchController(controllerID: "Main")
+    }
+    
+    @IBAction func addBuddyButton(_ sender: AnyObject) {
+        
+        sendBuddyRequest()
     }
     
     // MARK: - Firebase
@@ -87,6 +95,11 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
         })
     }
     
+    /**
+     Grabs the events of the person who made the event.
+     
+     Adds the event keys stored in the user's data into an array.
+     */
     func grabUserEvents() {
         
         DataService.ds.REF_USERS.child(creatorID).child("events").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -104,6 +117,25 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
                 }
             }
         })
+    }
+    
+    /**
+     Called when the user clicks the addBuddyButton.
+     */
+    func sendBuddyRequest() {
+        
+        // Adds the potential friend to the user's friends data and sets the value of the request key to false b/c the request was sent and has not yet been accepted.
+        DataService.ds.REF_CURRENT_USER.child("friends").child(creatorID).child("connected").setValue(false)
+        
+        // Sets the request value under the same data reference as above to false.
+        DataService.ds.REF_CURRENT_USER.child("friends").child(creatorID).child("request").setValue(false)
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        // Adds the current user to the potential friend's friends data and sets the value of the request key to true indicating a request has been sent.
+        DataService.ds.REF_USERS.child(creatorID).child("friends").child(userID!).child("request").setValue(true)
+        
+        DataService.ds.REF_USERS.child(creatorID).child("friends").child(userID!).child("connected").setValue(false)
     }
     
     func setEvents(userEventKeys: [String]) {
@@ -132,7 +164,6 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
             self.eventView.reloadData()
         })
     }
-
     
     func setUserInfo() {
         
@@ -159,13 +190,11 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
             if value?["year"] != nil {
                 
                 self.yearLabel.text = (value?["year"] as? String)
-                
             }
             
             if value?["major"] != nil {
                 
                 self.majorLabel.text = (value?["major"] as? String)
-                
             }
             
         })  { (error) in
@@ -178,6 +207,11 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
     
     // MARK: - Helpers
     
+    /**
+     Switches to the view controller specified by the parameter.
+     
+     - Parameter controllerID: The ID of the controller to switch to.
+     */
     func switchController(controllerID: String) {
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)

@@ -41,6 +41,7 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
         // This function is called BEFORE the view loads.
         
         grabCurrentBoardID()
+        checkForRequests()
     }
     
     override func viewDidLoad() {
@@ -60,6 +61,56 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
     
     // MARK: - Firebase
     
+    func checkForRequests() {
+        
+        DataService.ds.REF_CURRENT_USER.child("friends").observeSingleEvent(of: .value, with: { (snapshot) in
+         
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                if let friendDict = snap.value as? Dictionary<String, AnyObject> {
+                    
+                    let key = snap.key
+                    let friend = Friend(friendKey: key, friendData: friendDict)
+                    
+                        if friend.request == true {
+                            
+                            self.grabFriendInfo(friendKey: friend.friendKey)
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    func downloadProfileImage(friendKey: String, imageURL: String, name: String) {
+        
+        let ref = FIRStorage.storage().reference(forURL: imageURL)
+        ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+            
+            if error != nil {
+                
+                // Error! Unable to download photo from Firebase storage.
+                
+            } else {
+                
+                // Image successfully downloaded from Firebase storage.
+                
+                if let imageData = data {
+                    
+                    if let img = UIImage(data: imageData) {
+                        
+                        self.presentRequestNotice(friendID: friendKey, img: img, name: name)
+                        
+                        // Save to image cache (globally declared in BoardVC)
+                        BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
+                    }
+                }
+            }
+        })
+    }
+    
     func grabCurrentBoardID() {
         
         DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -73,8 +124,34 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
         })
     }
     
-    func setBoardTitle(boardKey: String) {
+    func grabFriendInfo(friendKey: String) {
         
+        DataService.ds.REF_USERS.child(friendKey).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            // Checks to see if the user has a set profile image.
+            if value?["image"] != nil {
+                
+                if value?["name"] != nil {
+                    
+                    // Downloads the set profile image.
+                    self.downloadProfileImage(friendKey: friendKey, imageURL: (value?["image"] as? String)!, name: (value?["name"] as? String)!)
+                } else {
+                    
+                    self.downloadProfileImage(friendKey: friendKey, imageURL: (value?["image"] as? String)!, name: (value?["email"] as? String)!)
+                }
+            }
+            
+        })  { (error) in
+            
+            // Error!
+            
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your school.")
+        }
+    }
+    
+    func setBoardTitle(boardKey: String) {
         DataService.ds.REF_BOARDS.child(boardKey).observeSingleEvent(of: .value, with: { (snapshot) in
             
             // Get user value
@@ -116,14 +193,53 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
         
     // MARK: - Helpers
     
+    /**
+     Dismisses the keyboard!
+     
+     Just put whatever textfields you want included here in the function.
+     */
     func dismissKeyboard() {
         
+        // Dissmisses the keybaord for these fields.
         createEventTitleField.resignFirstResponder()
         createEventLocationField.resignFirstResponder()
         createEventTimeField.resignFirstResponder()
         createEventDescriptionField.resignFirstResponder()
     }
     
+    func presentRequestNotice(friendID: String, img: UIImage, name: String) {
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        let appearance = SCLAlertView.SCLAppearance (
+            
+            kCircleIconHeight: 55.0,
+            showCircularIcon: true
+        )
+        
+        // Create an alert to inform the user that they actually have friends.
+        let notice = SCLAlertView(appearance: appearance)
+        let noticeViewIcon = img
+        
+        notice.addButton("Accept") {
+            
+            DataService.ds.REF_CURRENT_USER.child("friends").child(friendID).child("connected").setValue(true)
+            DataService.ds.REF_CURRENT_USER.child("friends").child(friendID).child("request").setValue(false)
+            
+            DataService.ds.REF_USERS.child(friendID).child("friends").child(userID!).child("request").setValue(false)
+            DataService.ds.REF_USERS.child(friendID).child("friends").child(userID!).child("connected").setValue(true)
+        }
+        
+        notice.showInfo("Hey!", subTitle: "You have a friend request from \(name).", closeButtonTitle: "Deny", circleIconImage: noticeViewIcon)
+        
+        DataService.ds.REF_CURRENT_USER.child("friends").child(friendID).child("request").setValue(false)
+    }
+    
+    /**
+     Switches to the view controller specified by the parameter.
+     
+     - Parameter controllerID: The ID of the controller to switch to.
+     */
     func switchController(controllerID: String) {
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)

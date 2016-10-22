@@ -18,6 +18,7 @@
 		061F7E501D985CC20023D46F /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4F1D985CC20023D46F /* EventCell.swift */; };
 		061F7E521D9863120023D46F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E511D9863120023D46F /* ProfileVC.swift */; };
 		061F7E541D9874190023D46F /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E531D9874190023D46F /* RoundImageView.swift */; };
+		061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061FFF1D1DB9DB0700BFB544 /* Friend.swift */; };
 		06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06301FA41DAED58E0056ABA1 /* CreateEventView.swift */; };
 		064554901D8B1185002C236C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645548F1D8B1185002C236C /* SearchBar.swift */; };
 		065E9B361DA9A5C60083C329 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E9B351DA9A5C60083C329 /* EventView.swift */; };
@@ -25,12 +26,6 @@
 		067CF1831DB418C70080C41C /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateVC.swift */; };
 		067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailsVC.swift */; };
 		067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1861DB4972B0080C41C /* FriendVC.swift */; };
-		067CF1911DB586780080C41C /* AnimatedULogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1891DB586780080C41C /* AnimatedULogoView.swift */; };
-		067CF1931DB586780080C41C /* SplashConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF18B1DB586780080C41C /* SplashConstants.swift */; };
-		067CF1941DB586780080C41C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 067CF18C1DB586780080C41C /* Info.plist */; };
-		067CF1951DB586780080C41C /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF18E1DB586780080C41C /* SplashViewController.swift */; };
-		067CF19B1DB5872A0080C41C /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF19A1DB5872A0080C41C /* SplashVC.swift */; };
-		067CF19D1DB589610080C41C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF19C1DB589610080C41C /* Utils.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
@@ -57,6 +52,7 @@
 		06B20CE51D865D36006EF005 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */; };
 		06B20CE71D8665B7006EF005 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CE61D8665B7006EF005 /* GoogleService-Info.plist */; };
 		06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CE91D866A0D006EF005 /* Constants.swift */; };
+		06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */; };
 		B4F34FAEE16D44E835F8B980 /* Pods_Pluto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5524771818B2C31640FA526F /* Pods_Pluto.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +85,7 @@
 		061F7E4F1D985CC20023D46F /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		061F7E511D9863120023D46F /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		061F7E531D9874190023D46F /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
+		061FFF1D1DB9DB0700BFB544 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		06301FA41DAED58E0056ABA1 /* CreateEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		0645548F1D8B1185002C236C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		065E9B351DA9A5C60083C329 /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
@@ -97,13 +94,6 @@
 		067CF1821DB418C70080C41C /* CreateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
 		067CF1841DB4329D0080C41C /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		067CF1861DB4972B0080C41C /* FriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
-		067CF1891DB586780080C41C /* AnimatedULogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedULogoView.swift; sourceTree = "<group>"; };
-		067CF18B1DB586780080C41C /* SplashConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashConstants.swift; sourceTree = "<group>"; };
-		067CF18C1DB586780080C41C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		067CF18D1DB586780080C41C /* SplashScreenUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenUI.h; sourceTree = "<group>"; };
-		067CF18E1DB586780080C41C /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		067CF19A1DB5872A0080C41C /* SplashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
-		067CF19C1DB589610080C41C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +127,7 @@
 		06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		06B20CE61D8665B7006EF005 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06B20CE91D866A0D006EF005 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		5524771818B2C31640FA526F /* Pods_Pluto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pluto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74DB09F247622E608C0D1FBA /* Pods-Pluto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD34BF65A678735D57AE41F /* Pods-Pluto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +182,7 @@
 			children = (
 				060644601D8A4601009CFEBC /* Board.swift */,
 				068CEF271D9F5CCB00DFE126 /* Event.swift */,
+				061FFF1D1DB9DB0700BFB544 /* Friend.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -203,19 +195,6 @@
 				0612767B1DA3592200CB3C2D /* SCLExtensions.swift */,
 			);
 			path = SCLAlertView;
-			sourceTree = "<group>";
-		};
-		067CF1881DB586780080C41C /* SplashScreenUI */ = {
-			isa = PBXGroup;
-			children = (
-				067CF1891DB586780080C41C /* AnimatedULogoView.swift */,
-				067CF19C1DB589610080C41C /* Utils.swift */,
-				067CF18B1DB586780080C41C /* SplashConstants.swift */,
-				067CF18C1DB586780080C41C /* Info.plist */,
-				067CF18D1DB586780080C41C /* SplashScreenUI.h */,
-				067CF18E1DB586780080C41C /* SplashViewController.swift */,
-			);
-			path = SplashScreenUI;
 			sourceTree = "<group>";
 		};
 		06A196B21D976D86001C29EC /* Services */ = {
@@ -232,7 +211,6 @@
 				06B20C8F1D863296006EF005 /* Pluto */,
 				06B20CA71D863296006EF005 /* PlutoTests */,
 				06B20CB21D863296006EF005 /* PlutoUITests */,
-				067CF1881DB586780080C41C /* SplashScreenUI */,
 				06B20C8E1D863296006EF005 /* Products */,
 				E451A91CDF2DC2DE41E28726 /* Pods */,
 				F9D195C12AC3BF3708ECC95E /* Frameworks */,
@@ -309,7 +287,6 @@
 		06B20CC71D86381C006EF005 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				067CF19A1DB5872A0080C41C /* SplashVC.swift */,
 				067CF1801DB4056E0080C41C /* TabBarC.swift */,
 				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
 				06B20C921D863296006EF005 /* LoginVC.swift */,
@@ -342,6 +319,7 @@
 				061F7E531D9874190023D46F /* RoundImageView.swift */,
 				065E9B351DA9A5C60083C329 /* EventView.swift */,
 				06301FA41DAED58E0056ABA1 /* CreateEventView.swift */,
+				06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -501,7 +479,6 @@
 				06B20CE41D865D36006EF005 /* OpenSans-Semibold.ttf in Resources */,
 				06B20CDE1D865D36006EF005 /* OpenSans-ExtraBold.ttf in Resources */,
 				06B20CC21D8633C5006EF005 /* Lobster-Regular.ttf in Resources */,
-				067CF1941DB586780080C41C /* Info.plist in Resources */,
 				06B20CE21D865D36006EF005 /* OpenSans-LightItalic.ttf in Resources */,
 				06B20C9B1D863296006EF005 /* Assets.xcassets in Resources */,
 				0612767C1DA3592200CB3C2D /* Info.plist in Resources */,
@@ -588,15 +565,15 @@
 				067CF1811DB4056E0080C41C /* TabBarC.swift in Sources */,
 				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
 				06B20C931D863296006EF005 /* LoginVC.swift in Sources */,
-				067CF19D1DB589610080C41C /* Utils.swift in Sources */,
 				0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */,
 				060644611D8A4601009CFEBC /* Board.swift in Sources */,
 				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
 				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
-				067CF19B1DB5872A0080C41C /* SplashVC.swift in Sources */,
+				061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */,
 				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
+				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,
 				06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */,
 				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
 				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
@@ -604,15 +581,12 @@
 				067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */,
 				067CF1831DB418C70080C41C /* CreateVC.swift in Sources */,
 				068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */,
-				067CF1951DB586780080C41C /* SplashViewController.swift in Sources */,
 				061F7E4C1D983A970023D46F /* BoardVC.swift in Sources */,
-				067CF1911DB586780080C41C /* AnimatedULogoView.swift in Sources */,
 				065E9B361DA9A5C60083C329 /* EventView.swift in Sources */,
 				06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */,
 				06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */,
 				06B20C991D863296006EF005 /* Pluto.xcdatamodeld in Sources */,
 				061F74671DB00BEE00C8D2A6 /* SettingsVC.swift in Sources */,
-				067CF1931DB586780080C41C /* SplashConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

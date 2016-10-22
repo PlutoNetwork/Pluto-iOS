@@ -201,6 +201,11 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     // MARK: - Helpers
     
+    /**
+     Switches to the view controller specified by the parameter.
+     
+     - Parameter controllerID: The ID of the controller to switch to.
+     */
     func switchController(controllerID: String) {
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)

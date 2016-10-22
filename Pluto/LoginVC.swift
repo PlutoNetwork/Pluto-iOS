@@ -42,10 +42,21 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
     
     // MARK: - View Functions
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        /// Grabs the email and password saved in a previous instance if the user already exists.
+        let userDefaults = UserDefaults.standard
+        
+        // Checks to see if there is an email saved in the userDefaults.
+        if (userDefaults.string(forKey: "email") != nil) {
+            
+            // Switches to the main board screen.
+            self.switchController(controllerID: "Main")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tabBarController?.tabBar.isHidden = true
         
         // Initializes the text fields.
         emailField.delegate = self
@@ -82,11 +93,9 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
         if searchBar.text != "" {
             
             saveSchoolVoodoo(schoolName: searchBar.text! as String)
-            
-            self.tabBarController?.tabBar.isHidden = false
-            
+                    
             // Transitions to the main board screen.
-            self.tabBarController?.selectedIndex = 2
+            self.switchController(controllerID: "Main")
         }
         
         // Returns the fields back to blank so any return to the screen won't have the current user's information.
@@ -143,10 +152,8 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
                 
                 self.clearFields()
                 
-                self.tabBarController?.tabBar.isHidden = false
-                
                 // Transitions to the main board screen.
-                self.tabBarController?.selectedIndex = 2
+                self.switchController(controllerID: "Main")
                 
             } else {
                 
@@ -370,6 +377,18 @@ class LoginVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIT
         
         saveToDatabaseVoodoo(user: user, userID: userID!, email: email, providerID: providerID)
         saveDefault(email: email, password: password)
+    }
+    
+    /**
+     Switches to the view controller specified by the parameter.
+     
+     - Parameter controllerID: The ID of the controller to switch to.
+     */
+    func switchController(controllerID: String) {
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
+        self.present(vc, animated: true, completion: nil)
     }
     
     // MARK: - Search Bar Functions

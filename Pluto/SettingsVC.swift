@@ -48,6 +48,16 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     // MARK: - Button Actions
     
+    @IBAction func logOutButtonAction(_ sender: AnyObject) {
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(nil, forKey: "email")
+        
+        try! FIRAuth.auth()?.signOut()
+        
+        switchController(controllerID: "Login")
+    }
+    
     @IBAction func saveButtonAction(_ sender: AnyObject) {
         
         // Checks to see if the user updated the name field.
@@ -220,6 +230,19 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         nameField.resignFirstResponder()
         emailField.resignFirstResponder()
     }
+    
+    /**
+     Switches to the view controller specified by the parameter.
+     
+     - Parameter controllerID: The ID of the controller to switch to.
+     */
+    func switchController(controllerID: String) {
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
+        self.present(vc, animated: true, completion: nil)
+    }
+
     
     // MARK: - Image Picker Functions
     
