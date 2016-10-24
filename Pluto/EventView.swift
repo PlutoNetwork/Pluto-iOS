@@ -12,7 +12,7 @@ class EventView: UIView {
     
     override func awakeFromNib() {
         
-        layer.cornerRadius = 5.0
+        //layer.cornerRadius = 5.0
         layer.shadowColor = SHADOW_COLOR.cgColor
         layer.shadowOpacity = 0.6
         layer.shadowRadius = 6.0

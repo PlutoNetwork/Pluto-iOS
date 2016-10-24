@@ -61,5 +61,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>&quot;Pluto needs to access your calendar so you can see your events there!&quot;</string>
 </dict>
 </plist>

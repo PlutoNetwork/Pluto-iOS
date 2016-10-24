@@ -26,6 +26,7 @@
 		067CF1831DB418C70080C41C /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateVC.swift */; };
 		067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailsVC.swift */; };
 		067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1861DB4972B0080C41C /* FriendVC.swift */; };
+		06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A401DBDCBB5008A8356 /* SquareImageView.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
@@ -94,6 +95,7 @@
 		067CF1821DB418C70080C41C /* CreateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
 		067CF1841DB4329D0080C41C /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		067CF1861DB4972B0080C41C /* FriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
+		06806A401DBDCBB5008A8356 /* SquareImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImageView.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +322,7 @@
 				065E9B351DA9A5C60083C329 /* EventView.swift */,
 				06301FA41DAED58E0056ABA1 /* CreateEventView.swift */,
 				06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */,
+				06806A401DBDCBB5008A8356 /* SquareImageView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
+				06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */,
 				061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */,
 				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
 				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,

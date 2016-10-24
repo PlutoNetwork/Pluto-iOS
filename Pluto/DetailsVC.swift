@@ -31,13 +31,21 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     // MARK: - View Functions
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        friendsView.dataSource = self
-        friendsView.delegate = self
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.title = "Event Details"
+        self.navigationController?.navigationBar.backItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         grabCurrentBoardID()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        friendsView.dataSource = self
+        friendsView.delegate = self
     }
     
     // MARK: - Button Actions
@@ -61,7 +69,9 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        switchToProfile(creatorID: friends[indexPath.row].friendKey)
+        let friendKey = friends[indexPath.row].friendKey
+        
+        self.performSegue(withIdentifier: "showProfile", sender: friendKey)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -138,7 +148,7 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
             self.eventLocationLabel.text = value?["location"] as? String
             self.eventTimeLabel.text = value?["time"] as? String
             self.eventDescriptionTextView.text = value?["description"] as? String
-            self.eventCreatorLabel.text = value?["creator"] as? String
+            self.eventCreatorLabel.text = "by \((value?["creator"] as? String)!)"
         })
     }
     
@@ -200,14 +210,17 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         self.present(vc, animated: true, completion: nil)
     }
     
-    func switchToProfile(creatorID: String) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Friend") as! FriendVC
-        
-        controller.creatorID = creatorID
-        controller.boardKey = boardKey
-        
-        self.present(controller, animated: true, completion: nil)
+        if segue.identifier == "showProfile" {
+            
+            if let friendVC = segue.destination as? FriendVC {
+                
+                if let friendKey = sender as? String {
+                    
+                    friendVC.creatorID = friendKey
+                }
+            }
+        }
     }
 }

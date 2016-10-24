@@ -9,14 +9,13 @@
 import Firebase
 import UIKit
 
-class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     // MARK: - Outlets
     
     @IBOutlet weak var schoolNameLabel: UILabel!
+    @IBOutlet weak var searchPreview: UITableView!
     @IBOutlet weak var eventView: UITableView!
-    @IBOutlet weak var shadeView: UIView!
-    
     @IBOutlet weak var createEventAlert: UIView!
     @IBOutlet weak var createEventImageView: UIImageView!
     @IBOutlet weak var createEventTitleField: TextField!
@@ -32,14 +31,21 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
     /// Holds all the event data received from Firebase.
     var events = [Event]()
     
+    /// Holds all the board titles from the CSV file.
+    var users = [Friend]()
+    /// Holds all the filtered board titles as the filtering function does its work.
+    var filteredUsers = [Friend]()
+    
     var holdBoardKey: String!
     
     // MARK: - View Functions
     
     override func viewWillAppear(_ animated: Bool) {
         
-        // This function is called BEFORE the view loads.
+        UIApplication.shared.isStatusBarHidden = false
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
+        // This function is called BEFORE the view loads.
         grabCurrentBoardID()
         checkForRequests()
     }
@@ -47,16 +53,12 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        searchPreview.delegate = self
+        searchPreview.dataSource = self
+        
         // Initializes the table view that holds all the events.
         eventView.delegate = self
         eventView.dataSource = self
-    }
-    
-    // MARK: - Button Actions
-    
-    @IBAction func createEventButtonAction(_ sender: AnyObject) {
-        
-        switchController(controllerID: "Create")
     }
     
     // MARK: - Firebase
@@ -79,6 +81,20 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
                             self.grabFriendInfo(friendKey: friend.friendKey)
                         }
                     }
+                }
+            }
+        })
+    }
+    
+    func grabUsers() {
+        
+        DataService.ds.REF_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    
                 }
             }
         })
@@ -158,6 +174,7 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
             
             let value = snapshot.value as? NSDictionary
             
+            self.navigationItem.title = (value?["title"] as? String)?.uppercased()
             self.schoolNameLabel.text = (value?["title"] as? String)?.uppercased()
             
         }) { (error) in
@@ -235,6 +252,19 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
         DataService.ds.REF_CURRENT_USER.child("friends").child(friendID).child("request").setValue(false)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showDetails" {
+            
+            let destinationVC: DetailsVC = segue.destination as! DetailsVC
+            
+            if let indexPath = self.eventView.indexPathForSelectedRow {
+             
+                destinationVC.eventKey = events[indexPath.row].eventKey
+            }
+        }
+    }
+    
     /**
      Switches to the view controller specified by the parameter.
      
@@ -247,17 +277,6 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
         self.present(vc, animated: true, completion: nil)
     }
     
-    func switchToProfile(creatorID: String) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Friend") as! FriendVC
-        
-        controller.creatorID = creatorID
-        controller.boardKey = holdBoardKey
-        
-        self.present(controller, animated: true, completion: nil)
-    }
-        
     // MARK: - Table View Functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -268,19 +287,24 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Didn't use the switchController function because we have to pass data into the next viewController.
+        if tableView == self.eventView {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Details") as! DetailsVC
-        
-        controller.eventKey = events[indexPath.row].eventKey
-        
-        self.present(controller, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "showDetails", sender: self)
+        } else {
+            
+            print("Tapped")
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 140.0
+        if tableView == self.eventView {
+        
+            return 140.0
+        } else {
+            
+            return 50.0
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -296,9 +320,7 @@ class BoardVC: UIViewController, FriendsDelegate, UIImagePickerControllerDelegat
         let event = events[indexPath.row]
         
         if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
-            
-            cell.delegate = self
-            
+                        
             if let img = BoardVC.imageCache.object(forKey: event.imageURL as NSString) {
                 
                 cell.configureCell(event: event, img: img)

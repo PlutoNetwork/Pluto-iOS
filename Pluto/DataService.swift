@@ -50,10 +50,17 @@ class DataService {
     
     var REF_CURRENT_USER: FIRDatabaseReference {
         
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        let user = REF_USERS.child(userID!)
+        let userDefaults = UserDefaults.standard
         
-        return user
+        if (userDefaults.string(forKey: "email") != nil) {
+            
+            let userID = FIRAuth.auth()?.currentUser?.uid
+            let user = REF_USERS.child(userID!)
+            
+            return user
+        }
+        
+        return FIRDatabaseReference()
     }
         
     var REF_EVENT_PICS: FIRStorageReference {

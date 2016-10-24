@@ -9,36 +9,52 @@
 import Firebase
 import UIKit
 
-class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITableViewDelegate {
+
+class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var addBuddyButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var userProfileImageView: RoundImageView!
+    @IBOutlet weak var friendsView: UICollectionView!
     @IBOutlet weak var eventView: UITableView!
     
     // MARK: - Variables
     
-    /// Holds the key of the user's board.
-    var boardKey = String()
-
     /// Holds all the ID of the user who created the event.
     var creatorID = String()
     
     /// Holds all the event data received from Firebase.
     var events = [Event]()
+    
+    /// Holds all the user's friend data received from Firebase.
+    var friends = [Friend]()
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        UIApplication.shared.isStatusBarHidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.title = "View Profile"
+        self.navigationController?.navigationBar.backItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        setFriends()
+        setUserInfo()
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        friendsView.delegate = self
+        friendsView.dataSource = self
+        
         // Initializes the event view.
         eventView.delegate = self
         eventView.dataSource = self
-        
-        setUserInfo()
-        grabUserEvents()
     }
     
     // MARK: - Button Actions
@@ -48,9 +64,53 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
         switchController(controllerID: "Main")
     }
     
-    @IBAction func addBuddyButton(_ sender: AnyObject) {
+    @IBAction func addBuddyButtonAction(_ sender: AnyObject) {
         
         sendBuddyRequest()
+        
+        UIView.animate(withDuration: 0.5) { 
+            
+            self.addBuddyButton.setImage(UIImage(named: "ic_done_white"), for: .normal)
+        }
+    }
+    
+    // MARK: - Collection View Functions
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return friends.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.creatorID = friends[indexPath.row].friendKey
+        setFriends()
+        setUserInfo()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let friend = friends[indexPath.row]
+        
+        if let friendCell = collectionView.dequeueReusableCell(withReuseIdentifier: "friend", for: indexPath) as? FriendCell {
+            
+            friendCell.configureCell(friend: friend)
+            return friendCell
+            
+        } else {
+            
+            return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 120, height: 120)
     }
     
     // MARK: - Firebase
@@ -100,7 +160,7 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
      
      Adds the event keys stored in the user's data into an array.
      */
-    func grabUserEvents() {
+    func grabUserEvents(boardKey: String) {
         
         DataService.ds.REF_USERS.child(creatorID).child("events").observeSingleEvent(of: .value, with: { (snapshot) in
                         
@@ -113,9 +173,44 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
                     let key = snap.key
                     userEventKeys.append(key)
                     
-                    self.setEvents(userEventKeys: userEventKeys)
+                    self.setEvents(userEventKeys: userEventKeys, boardKey: boardKey)
                 }
             }
+        })
+    }
+    
+    func setFriends() {
+        
+        DataService.ds.REF_USERS.child(creatorID).child("friends").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.friends = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    if let friendDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let friend = Friend(friendKey: key, friendData: friendDict)
+                    
+                        if friend.connected == true {
+                            
+                            self.friends.append(friend)
+                        }
+                        
+                        let userID = FIRAuth.auth()?.currentUser?.uid
+                        
+                        if friend.friendKey == userID! {
+                            
+                            self.addBuddyButton.setImage(UIImage(named: "ic_done_white"), for: .normal)
+                            self.addBuddyButton.isUserInteractionEnabled = false
+                        }
+                    }
+                }
+            }
+            
+            self.friendsView.reloadData()
         })
     }
     
@@ -138,7 +233,7 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
         DataService.ds.REF_USERS.child(creatorID).child("friends").child(userID!).child("connected").setValue(false)
     }
     
-    func setEvents(userEventKeys: [String]) {
+    func setEvents(userEventKeys: [String], boardKey: String) {
         
         DataService.ds.REF_BOARDS.child(boardKey).child("events").observe(.value, with: { (snapshot) in
             
@@ -151,7 +246,7 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
                     if let eventDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         let key = snap.key
-                        let event = Event(eventKey: key, eventData: eventDict, boardKey: self.boardKey)
+                        let event = Event(eventKey: key, eventData: eventDict, boardKey:boardKey)
                         
                         if userEventKeys.contains(event.eventKey) {
                             
@@ -171,6 +266,10 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
             
             let value = snapshot.value as? NSDictionary
             
+            let boardKey = (value?["board"] as? String)!
+            
+            self.grabUserEvents(boardKey: boardKey)
+            
             // Checks to see if the user has a set profile image.
             if value?["image"] != nil {
                 
@@ -187,14 +286,13 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
                 self.nameLabel.text = (value?["email"] as? String)?.uppercased()
             }
             
-            if value?["year"] != nil {
-                
-                self.yearLabel.text = (value?["year"] as? String)
-            }
-            
             if value?["major"] != nil {
                 
                 self.majorLabel.text = (value?["major"] as? String)
+                
+            } else {
+                
+                self.majorLabel.alpha = 0
             }
             
         })  { (error) in
@@ -207,6 +305,27 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
     
     // MARK: - Helpers
     
+    func createActivityIndicator() {
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        view.addSubview(activityIndicator)
+    }
+    
+    func startActivityIndicator() {
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    func stopActivityIndicator() {
+        
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
     /**
      Switches to the view controller specified by the parameter.
      
@@ -217,16 +336,6 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
         self.present(vc, animated: true, completion: nil)
-    }
-    
-    func switchToProfile(creatorID: String) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Friend") as! FriendVC
-        
-        controller.creatorID = creatorID
-        
-        self.present(controller, animated: true, completion: nil)
     }
     
     // MARK: - Table View Functions
@@ -244,7 +353,7 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "Details") as! DetailsVC
         
-        controller.eventKey = events[indexPath.row].eventKey
+        //controller.eventKey = events[indexPath.row].eventKey
         
         self.present(controller, animated: true, completion: nil)
     }
@@ -267,8 +376,6 @@ class FriendVC: UIViewController, FriendsDelegate, UITableViewDataSource, UITabl
         let event = events[indexPath.row]
                 
         if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
-            
-            cell.delegate = self
             
             if let img = BoardVC.imageCache.object(forKey: event.imageURL as NSString) {
                 

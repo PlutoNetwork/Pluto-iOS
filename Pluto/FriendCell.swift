@@ -20,6 +20,14 @@ class FriendCell: UICollectionViewCell {
     
     var friend: Friend!
     
+    override func awakeFromNib() {
+        
+        layer.shadowColor = SHADOW_COLOR.cgColor
+        layer.shadowOpacity = 1.0
+        layer.shadowRadius = 3.0
+        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+    }
+    
     func configureCell(friend: Friend) {
         
         self.friend = friend

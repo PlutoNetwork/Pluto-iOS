@@ -13,6 +13,18 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     // MARK: - Outlets
     
+    @IBOutlet var sectionView: [UIView]! {
+        didSet {
+            
+            sectionView.forEach {
+                
+                $0.isHidden = true
+            }
+        }
+    }
+    
+    @IBOutlet weak var instructionLabel: UILabel!
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameField: TextField!
     @IBOutlet weak var emailField: TextField!
@@ -27,17 +39,23 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
 
     // MARK: - View Functions
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        UIApplication.shared.isStatusBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUserInfo()
+        //setUserInfo()
         
         // Dismisses the keyboard if the user taps anywhere on the screen.
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SettingsVC.dismissKeyboard)))
         
         // Initializes the text fields.
-        nameField.delegate = self
-        emailField.delegate = self
+       // nameField.delegate = self
+       // emailField.delegate = self
         
         // Initializes the image picker.
         imagePicker = UIImagePickerController()
@@ -56,6 +74,26 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         try! FIRAuth.auth()?.signOut()
         
         switchController(controllerID: "Login")
+    }
+    
+    @IBAction func onSettingsButtonPressed(_ sender: AnyObject) {
+        
+        UIView.animate(withDuration: 0.3) {
+            
+            if self.instructionLabel.alpha == 1.0 {
+                
+                self.instructionLabel.alpha = 0
+                
+            } else {
+                
+                self.instructionLabel.alpha = 1.0
+            }
+            
+            self.sectionView.forEach {
+                
+                $0.isHidden = !$0.isHidden
+            }
+        }
     }
     
     @IBAction func saveButtonAction(_ sender: AnyObject) {
@@ -227,8 +265,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
      */
     func dismissKeyboard() {
         
-        nameField.resignFirstResponder()
-        emailField.resignFirstResponder()
+       // nameField.resignFirstResponder()
+        // emailField.resignFirstResponder()
     }
     
     /**

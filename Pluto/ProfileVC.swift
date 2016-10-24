@@ -15,9 +15,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     @IBOutlet weak var profileImageView: RoundImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var majorLabel: UILabel!
-    @IBOutlet weak var myFriendsLabel: UILabel!
     @IBOutlet weak var friendsView: UICollectionView!
     @IBOutlet weak var eventView: UITableView!
     
@@ -35,6 +33,12 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     // MARK: - View Functions
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        UIApplication.shared.isStatusBarHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,8 +51,6 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         
         eventView.dataSource = self
         eventView.delegate = self
-        
-        myFriendsLabel.text = "My Friends"
     }
     
     // MARK: - Collection View Functions
@@ -65,7 +67,9 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        switchToProfile(creatorID: friends[indexPath.row].friendKey)
+        let friendKey = friends[indexPath.row].friendKey
+        
+        self.performSegue(withIdentifier: "showProfile", sender: friendKey)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -197,14 +201,13 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                 self.nameLabel.text = (value?["email"] as? String)?.uppercased()
             }
             
-            if value?["year"] != nil {
-                
-                self.yearLabel.text = (value?["year"] as? String)
-            }
-            
             if value?["major"] != nil {
                 
                 self.majorLabel.text = (value?["major"] as? String)
+                
+            } else {
+                
+                self.majorLabel.alpha = 0
             }
                         
         }) { (error) in
@@ -256,15 +259,18 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         self.present(vc, animated: true, completion: nil)
     }
     
-    func switchToProfile(creatorID: String) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Friend") as! FriendVC
-        
-        controller.creatorID = creatorID
-        controller.boardKey = holdBoardKey
-        
-        self.present(controller, animated: true, completion: nil)
+        if segue.identifier == "showProfile" {
+            
+            if let friendVC = segue.destination as? FriendVC {
+                
+                if let friendKey = sender as? String {
+                    
+                    friendVC.creatorID = friendKey
+                }
+            }
+        }
     }
     
     // MARK: - Table View Functions
@@ -274,22 +280,6 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         return 1
     }
     
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return "My Events"
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
-        // Recasts the view as a UITableViewHeaderFooterView
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        
-        header.contentView.backgroundColor = BLUE_COLOR
-        header.textLabel?.textColor = UIColor.white
-        header.textLabel?.font = UIFont(name: "Open-Sans", size: 15.0)
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Didn't use the switchController function because we have to pass data into the next viewController.
@@ -297,7 +287,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "Details") as! DetailsVC
         
-        controller.eventKey = events[indexPath.row].eventKey
+      //  controller.eventKey = events[indexPath.row].eventKey
         
         self.present(controller, animated: true, completion: nil)
     }

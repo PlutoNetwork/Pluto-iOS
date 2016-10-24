@@ -7,36 +7,29 @@
 //
 
 import Firebase
+import EventKit
 import UIKit
-
-protocol FriendsDelegate {
-    
-    func switchToProfile(creatorID: String)
-}
 
 class EventCell: UITableViewCell {
     
     // MARK: - Outlets
     @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var eventLocationLabel: UILabel!
     @IBOutlet weak var eventTimeLabel: UILabel!
     @IBOutlet weak var eventDescriptionTextView: UITextView!
     @IBOutlet weak var eventCreatorLabel: UILabel!
-    @IBOutlet weak var eventImageView: UIImageView!
-    
+    @IBOutlet weak var eventImageView: UIImageView!    
     @IBOutlet weak var eventPlutoImageView: UIImageView!
     @IBOutlet weak var eventPlutoCountLabel: UILabel!
     
     // MARK: - Variables
     var event: Event!
     var userEventRef: FIRDatabaseReference!
-    var delegate: FriendsDelegate?
+    var calendar: EKCalendar!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         eventPlutoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EventCell.changePluto)))
-        eventCreatorLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(grabCreatorKey)))
     }
     
     func configureCell(event: Event, img: UIImage? = nil) {
@@ -46,10 +39,9 @@ class EventCell: UITableViewCell {
         userEventRef = DataService.ds.REF_CURRENT_USER.child("events").child(event.eventKey)
         
         self.eventTitleLabel.text = event.title
-        self.eventLocationLabel.text = event.location
         self.eventTimeLabel.text = event.time
-        self.eventCreatorLabel.text = event.creator
-        self.eventPlutoCountLabel.text = "\(event.count) going"
+        self.eventCreatorLabel.text = "by \(event.creator)"
+        self.eventPlutoCountLabel.text = "\(event.count)"
         
         if img != nil {
             
@@ -117,21 +109,88 @@ class EventCell: UITableViewCell {
         })
     }
     
-    func grabCreatorKey() {
-        
-        self.delegate?.switchToProfile(creatorID: event.creatorID)
-    }
-    
     func syncToCalender(add: Bool) {
         
-        if add {
+        let eventStore = EKEventStore()
+        
+        if EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized {
             
-            // Add event to calender
+            eventStore.requestAccess(to: .event, completion: { (granted, error) in
+            
+                if error != nil {
+                    
+                    // Code if we get permission.
+                    print("PERMISSION GRANTED")
+                    
+                    if add {
+                        
+                        let newEvent = EKEvent(eventStore: eventStore)
+                        
+                        newEvent.title = self.event.title
+                        
+                        // let strTime = "2016-10-27 19:29:50 +0000"
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+                        let newEventTime = formatter.date(from: self.event.time)
+                        
+                        newEvent.startDate = newEventTime!
+                        newEvent.endDate = newEventTime!
+                        newEvent.location = self.event.location
+                        newEvent.calendar = eventStore.defaultCalendarForNewEvents
+                        
+                        do {
+                            
+                            try eventStore.save(newEvent, span: .thisEvent)
+                            print("EVENT ADDED")
+                            print(newEvent.title)
+                            print(newEvent.startDate)
+                            print(newEvent.endDate)
+                            
+                        } catch {
+                            
+                            print("OH NO")
+                        }
+                    }
+                    
+                } else {
+                    
+                    print("ERORR")
+                }
+            })
             
         } else {
             
-            // Remove event from calender
+            // Code if we already have permission.
             
+            if add {
+                
+                let newEvent = EKEvent(eventStore: eventStore)
+                
+                newEvent.title = self.event.title
+                
+                // let strTime = "2016-10-27 19:29:50 +0000"
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+                let newEventTime = formatter.date(from: self.event.time)
+                
+                newEvent.startDate = newEventTime!
+                newEvent.endDate = newEventTime!
+                newEvent.location = self.event.location
+                newEvent.calendar = eventStore.defaultCalendarForNewEvents
+                
+                do {
+                    
+                    try eventStore.save(newEvent, span: .thisEvent)
+                    print("EVENT ADDED")
+                    print(newEvent.title)
+                    print(newEvent.startDate)
+                    print(newEvent.endDate)
+                    
+                } catch {
+                    
+                    print("OH NO")
+                }
+            }
         }
     }
 }

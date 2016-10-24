@@ -28,6 +28,15 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     // MARK: - View Functions
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        UIApplication.shared.isStatusBarHidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.title = "Create Event"
+        self.navigationController?.navigationBar.backItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,11 +115,17 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
         let userID = FIRAuth.auth()?.currentUser?.uid
         
+        // DO DATE FORMAT STUFF HERE
+        // Make variable time that will hold the formatted date (2016-10-27 19:29:50 +0000)
+        // Grab unformatted time from createEventTimeField.text!
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        
         let event: Dictionary<String, AnyObject> = [
             
             "title": createEventTitleField.text! as AnyObject,
             "location": createEventLocationField.text! as AnyObject,
-            "time": createEventTimeField.text! as AnyObject,
+            "time": time as AnyObject,
             "description": createEventDescriptionField.text! as AnyObject,
             "creator": name as AnyObject,
             "creatorID": userID as AnyObject,
