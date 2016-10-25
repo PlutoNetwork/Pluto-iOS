@@ -33,6 +33,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     /// Holds all the board titles from the CSV file.
     var users = [Friend]()
+    
     /// Holds all the filtered board titles as the filtering function does its work.
     var filteredUsers = [Friend]()
     
@@ -71,10 +72,10 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                 
                 for snap in snapshot {
                     
-                if let friendDict = snap.value as? Dictionary<String, AnyObject> {
+                    if let friendDict = snap.value as? Dictionary<String, AnyObject> {
                     
-                    let key = snap.key
-                    let friend = Friend(friendKey: key, friendData: friendDict)
+                        let key = snap.key
+                        let friend = Friend(friendKey: key, friendData: friendDict)
                     
                         if friend.request == true {
                             
@@ -94,7 +95,14 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                 
                 for snap in snapshot {
                     
-                    
+                    if let friendDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        let key = snap.key
+                        let user = Friend(friendKey: key, friendData: friendDict)
+                        
+                        self.users.append(user)
+                    }
+
                 }
             }
         })
@@ -309,7 +317,13 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return events.count
+        if tableView == self.eventView {
+            
+            return events.count
+        } else {
+            
+            return filteredUsers.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
