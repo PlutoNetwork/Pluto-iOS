@@ -79,11 +79,11 @@ class EventCell: UITableViewCell {
             
             if let _ = snapshot.value as? NSNull {
                 
-                self.eventPlutoImageView.image = UIImage(named: "rocket-faded-tilted")
+                self.eventPlutoImageView.image = UIImage(named: "rocket-faded")
                 
             } else {
                 
-                self.eventPlutoImageView.image = UIImage(named: "rocket-tilted")
+                self.eventPlutoImageView.image = UIImage(named: "rocket")
             }
         })
     }
@@ -94,14 +94,14 @@ class EventCell: UITableViewCell {
             
             if let _ = snapshot.value as? NSNull {
                 
-                self.eventPlutoImageView.image = UIImage(named: "rocket-tilted")
+                self.eventPlutoImageView.image = UIImage(named: "rocket")
                 self.event.adjustCount(addToCount: true)
                 self.userEventRef.setValue(true)
                 self.syncToCalender(add: true)
                 
             } else {
                 
-                self.eventPlutoImageView.image = UIImage(named: "rocket-faded-tilted")
+                self.eventPlutoImageView.image = UIImage(named: "rocket-faded")
                 self.event.adjustCount(addToCount: false)
                 self.userEventRef.removeValue()
                 self.syncToCalender(add: false)

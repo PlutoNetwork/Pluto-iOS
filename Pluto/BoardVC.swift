@@ -7,21 +7,18 @@
 //
 
 import Firebase
+import FirebaseInstanceID
+import FirebaseMessaging
 import UIKit
 
-class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     // MARK: - Outlets
     
     @IBOutlet weak var schoolNameLabel: UILabel!
+    @IBOutlet weak var searchBar: SearchBar!
     @IBOutlet weak var searchPreview: UITableView!
     @IBOutlet weak var eventView: UITableView!
-    @IBOutlet weak var createEventAlert: UIView!
-    @IBOutlet weak var createEventImageView: UIImageView!
-    @IBOutlet weak var createEventTitleField: TextField!
-    @IBOutlet weak var createEventLocationField: UITextField!
-    @IBOutlet weak var createEventTimeField: TextField!
-    @IBOutlet weak var createEventDescriptionField: UITextView!
     
     // MARK: - Variables
     
@@ -37,7 +34,11 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     /// Holds all the filtered board titles as the filtering function does its work.
     var filteredUsers = [Friend]()
     
+    var searchedUser: String!
+    
     var holdBoardKey: String!
+    
+    var inSearchMode = false
     
     // MARK: - View Functions
     
@@ -49,17 +50,35 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         // This function is called BEFORE the view loads.
         grabCurrentBoardID()
         checkForRequests()
+        grabUsers()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FIRMessaging.messaging().subscribe(toTopic: "requests")
+        
+        searchBar.delegate = self
+        
         searchPreview.delegate = self
         searchPreview.dataSource = self
+        
+        searchPreview.tableFooterView = UIView()
         
         // Initializes the table view that holds all the events.
         eventView.delegate = self
         eventView.dataSource = self
+        
+        // Changes the font and font size for text inside the searchBar.
+        let textFieldInsideUISearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideUISearchBar?.font = UIFont(name: "Open Sans", size: 15)
+        textFieldInsideUISearchBar?.textColor = UIColor.white
+        
+        // This does the same thing as above but this is for the placeholder text.
+        let textFieldInsideUISearchBarLabel = textFieldInsideUISearchBar!.value(forKey: "placeholderLabel") as? UILabel
+        textFieldInsideUISearchBarLabel?.font = UIFont(name: "Open Sans", size: 15)
+        textFieldInsideUISearchBarLabel?.textColor = UIColor.white
+        textFieldInsideUISearchBarLabel?.text = "Search for a user or an event"
     }
     
     // MARK: - Firebase
@@ -91,6 +110,9 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         
         DataService.ds.REF_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
             
+            self.users = []
+            self.filteredUsers = []
+            
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
                 for snap in snapshot {
@@ -100,7 +122,10 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                         let key = snap.key
                         let user = Friend(friendKey: key, friendData: friendDict)
                         
-                        self.users.append(user)
+                        if user.name != nil {
+                        
+                            self.users.append(user)
+                        }
                     }
 
                 }
@@ -141,10 +166,17 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
           
             let value = snapshot.value as? NSDictionary
             
-            let currentBoardID = value?["board"] as? String
-            self.setBoardTitle(boardKey: currentBoardID!)
-            self.setEvents(boardKey: currentBoardID!)
-            self.holdBoardKey = currentBoardID!
+            if value?["board"] as? String != nil {
+                
+                let currentBoardID = value?["board"] as? String
+                self.setBoardTitle(boardKey: currentBoardID!)
+                self.setEvents(boardKey: currentBoardID!)
+                self.holdBoardKey = currentBoardID!
+                
+            } else {
+                
+                self.switchController(controllerID: "Search")
+            }
         })
     }
     
@@ -225,11 +257,8 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
      */
     func dismissKeyboard() {
         
-        // Dissmisses the keybaord for these fields.
-        createEventTitleField.resignFirstResponder()
-        createEventLocationField.resignFirstResponder()
-        createEventTimeField.resignFirstResponder()
-        createEventDescriptionField.resignFirstResponder()
+        // Dismisses the keybaord for these fields.
+        searchBar.resignFirstResponder()
     }
     
     func presentRequestNotice(friendID: String, img: UIImage, name: String) {
@@ -270,6 +299,12 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
              
                 destinationVC.eventKey = events[indexPath.row].eventKey
             }
+            
+        } else if segue.identifier == "searchUser" {
+            
+            let destinationVC: FriendVC = segue.destination as! FriendVC
+            
+            destinationVC.creatorID = searchedUser
         }
     }
     
@@ -285,6 +320,48 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         self.present(vc, animated: true, completion: nil)
     }
     
+    // MARK: - Search Bar Functions
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        // This function is called as the user types in the searhBar.
+        
+        if searchBar.text == "" {
+            
+            // This means the user is NOT typing in the searchBar.
+            inSearchMode = false
+            
+            // Hides the search result previews.
+            searchPreview.alpha = 0
+            
+        } else {
+            
+            // This means the user is typing in the searchBar.
+            inSearchMode = true
+            
+            // Brings up the search result previews.
+            searchPreview.alpha = 1.0
+            
+            // Filters the list of users as the user types into a new array.
+            filteredUsers = users.filter({$0.name.range(of: searchBar.text!) != nil})
+            
+            // Reloads the searchPreview as the filtering occurs.
+            searchPreview.reloadData()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        // This function is called when the user clicks the return key while editing of the searchBar is enabled.
+        
+        dismissKeyboard()
+        
+        self.performSegue(withIdentifier: "searchUser", sender: self)
+        
+        searchBar.text = ""
+    }
+
+    
     // MARK: - Table View Functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -298,9 +375,16 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         if tableView == self.eventView {
         
             self.performSegue(withIdentifier: "showDetails", sender: self)
+            
         } else {
             
-            print("Tapped")
+            // Changes the search bar text to match the selection the user made.
+            searchBar.text = filteredUsers[indexPath.row].name
+            
+            self.searchedUser = filteredUsers[indexPath.row].friendKey
+            
+            // Hides the search suggestions.
+            searchPreview.alpha = 0
         }
     }
     
@@ -309,6 +393,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         if tableView == self.eventView {
         
             return 140.0
+            
         } else {
             
             return 50.0
@@ -320,6 +405,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         if tableView == self.eventView {
             
             return events.count
+            
         } else {
             
             return filteredUsers.count
@@ -328,27 +414,43 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // Sort by popularity.
-        events = events.sorted(by: { $0.count > $1.count })
+        if tableView == self.eventView {
         
-        let event = events[indexPath.row]
-        
-        if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
-                        
-            if let img = BoardVC.imageCache.object(forKey: event.imageURL as NSString) {
-                
-                cell.configureCell(event: event, img: img)
-                return cell
+            // Sort by popularity.
+            events = events.sorted(by: { $0.count > $1.count })
+            
+            let event = events[indexPath.row]
+            
+            if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
+                            
+                if let img = BoardVC.imageCache.object(forKey: event.imageURL as NSString) {
+                    
+                    cell.configureCell(event: event, img: img)
+                    return cell
+                    
+                } else {
+                    
+                    cell.configureCell(event: event)
+                    return cell
+                }
                 
             } else {
                 
-                cell.configureCell(event: event)
-                return cell
+                return EventCell()
             }
             
         } else {
             
-            return EventCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "searchResult", for: indexPath) as UITableViewCell
+            
+            // Makes the text of each search preview result match what the filter churns out.
+            cell.textLabel?.text = filteredUsers[indexPath.row].name
+            
+            // Changes the text color and font to the app style.
+            cell.textLabel?.textColor = UIColor.white
+            cell.textLabel?.font = UIFont(name: "Open Sans", size: 13)
+            
+            return cell
         }
     }
     

@@ -82,7 +82,7 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventTimeField.text != "" {
             
             if imageSelected == true {
-                
+                                
                 self.grabCurrentBoardID(uploadImage: true)
                 
             } else {
@@ -121,16 +121,16 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
         
-        let event: Dictionary<String, AnyObject> = [
+        let event: Dictionary<String, Any> = [
             
-            "title": createEventTitleField.text! as AnyObject,
-            "location": createEventLocationField.text! as AnyObject,
-            "time": time as AnyObject,
-            "description": createEventDescriptionField.text! as AnyObject,
-            "creator": name as AnyObject,
-            "creatorID": userID as AnyObject,
-            "count": 1 as AnyObject,
-            "imageURL": imageURL as AnyObject
+            "title": createEventTitleField.text! as Any,
+            "location": createEventLocationField.text! as Any,
+            "time": createEventTimeField.text! as Any,
+            "description": createEventDescriptionField.text! as Any,
+            "creator": name as Any,
+            "creatorID": userID! as Any,
+            "count": 1 as Any,
+            "imageURL": imageURL as Any
         ]
         
         let newEvent = DataService.ds.REF_BOARDS.child(boardKey).child("events").childByAutoId()
@@ -156,7 +156,6 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             let value = snapshot.value as? NSDictionary
             
             let currentBoardID = value?["board"] as? String
-            
             self.grabUserName(uploadImage: uploadImage, imageURL: imageURL, boardKey: currentBoardID!)
         })
     }
@@ -167,15 +166,24 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             
             let value = snapshot.value as? NSDictionary
             
-            let name = value?["name"] as? String
+            var name = String()
             
-            if uploadImage == true {
-                
-                self.uploadEventImage(boardKey: boardKey, name: name!)
+            if value?["name"] as? String != nil {
+            
+                name = (value?["name"] as? String)!
                 
             } else {
                 
-                self.createEvent(imageURL: imageURL, boardKey: boardKey, name: name!)
+                name = (value?["email"] as? String)!
+            }
+            
+            if uploadImage == true {
+                
+                self.uploadEventImage(boardKey: boardKey, name: name)
+                
+            } else {
+                
+                self.createEvent(imageURL: imageURL, boardKey: boardKey, name: name)
             }
         })
     }
@@ -192,9 +200,12 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             
             DataService.ds.REF_EVENT_PICS.child(imageUID).put(imageData, metadata: metadata) { (metadata, error) in
                 
+                
                 if error != nil {
                     
                     // Error! The image could not be uploaded to Firebase storage.
+                    
+                    print(error.debugDescription)
                     
                 } else {
                     
@@ -272,6 +283,14 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         // Clears "Description" text from textView window
-        createEventDescriptionField.text = ""
+        
+        if createEventDescriptionField.text == "Description" {
+            createEventDescriptionField.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+        createEventDescriptionField.resignFirstResponder()
     }
 }

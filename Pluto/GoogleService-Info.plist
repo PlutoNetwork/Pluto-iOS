@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>613076940459-898i0o3t9obt7c87l3ankr344rs5jdsq.apps.googleusercontent.com</string>
+	<string>656556811193-4bhp60k7ntld3jq4i9aqqo4bc9nouiaq.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.613076940459-898i0o3t9obt7c87l3ankr344rs5jdsq</string>
+	<string>com.googleusercontent.apps.656556811193-4bhp60k7ntld3jq4i9aqqo4bc9nouiaq</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAVyvJMjXtnqeV5Egf9JZPcGMk7Ox3L7z0</string>
+	<string>AIzaSyD1vmWdPqKl0zgeJf5pxK2xrML90R9I1tA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>613076940459</string>
+	<string>656556811193</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.faisalmlalani.Pluto</string>
+	<string>com.faisalmlalani.pluto.XXX</string>
 	<key>PROJECT_ID</key>
-	<string>pluto-beb48</string>
+	<string>pluto-b5a22</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pluto-beb48.appspot.com</string>
+	<string>pluto-b5a22.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:613076940459:ios:ca25b77816167bf9</string>
+	<string>1:656556811193:ios:a9a56ab4ad464c86</string>
 	<key>DATABASE_URL</key>
-	<string>https://pluto-beb48.firebaseio.com</string>
+	<string>https://pluto-b5a22.firebaseio.com</string>
 </dict>
 </plist>

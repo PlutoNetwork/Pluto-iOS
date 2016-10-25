@@ -27,5 +27,4 @@ class SearchBar : UISearchBar {
         
         
     }
-    
 }

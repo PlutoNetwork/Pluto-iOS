@@ -27,6 +27,7 @@
 		067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailsVC.swift */; };
 		067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1861DB4972B0080C41C /* FriendVC.swift */; };
 		06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A401DBDCBB5008A8356 /* SquareImageView.swift */; };
+		06806A451DBF2A4B008A8356 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchVC.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
@@ -51,8 +52,8 @@
 		06B20CE31D865D36006EF005 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD91D865D36006EF005 /* OpenSans-Regular.ttf */; };
 		06B20CE41D865D36006EF005 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CDA1D865D36006EF005 /* OpenSans-Semibold.ttf */; };
 		06B20CE51D865D36006EF005 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */; };
-		06B20CE71D8665B7006EF005 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CE61D8665B7006EF005 /* GoogleService-Info.plist */; };
 		06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CE91D866A0D006EF005 /* Constants.swift */; };
+		06C370781DBF575C004D47D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06C370771DBF575C004D47D5 /* GoogleService-Info.plist */; };
 		06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */; };
 		B4F34FAEE16D44E835F8B980 /* Pods_Pluto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5524771818B2C31640FA526F /* Pods_Pluto.framework */; };
 /* End PBXBuildFile section */
@@ -96,6 +97,7 @@
 		067CF1841DB4329D0080C41C /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		067CF1861DB4972B0080C41C /* FriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		06806A401DBDCBB5008A8356 /* SquareImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImageView.swift; sourceTree = "<group>"; };
+		06806A441DBF2A4B008A8356 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,8 +129,8 @@
 		06B20CD91D865D36006EF005 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		06B20CDA1D865D36006EF005 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
-		06B20CE61D8665B7006EF005 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06B20CE91D866A0D006EF005 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		06C370771DBF575C004D47D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		5524771818B2C31640FA526F /* Pods_Pluto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pluto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74DB09F247622E608C0D1FBA /* Pods-Pluto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.debug.xcconfig"; sourceTree = "<group>"; };
@@ -289,9 +291,10 @@
 		06B20CC71D86381C006EF005 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				06B20C921D863296006EF005 /* LoginVC.swift */,
+				06806A441DBF2A4B008A8356 /* SearchVC.swift */,
 				067CF1801DB4056E0080C41C /* TabBarC.swift */,
 				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
-				06B20C921D863296006EF005 /* LoginVC.swift */,
 				061F7E4B1D983A970023D46F /* BoardVC.swift */,
 				067CF1821DB418C70080C41C /* CreateVC.swift */,
 				067CF1841DB4329D0080C41C /* DetailsVC.swift */,
@@ -331,7 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				06B20C9F1D863296006EF005 /* Info.plist */,
-				06B20CE61D8665B7006EF005 /* GoogleService-Info.plist */,
+				06C370771DBF575C004D47D5 /* GoogleService-Info.plist */,
 			);
 			name = Plists;
 			sourceTree = "<group>";
@@ -428,7 +431,13 @@
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -477,7 +486,6 @@
 				060644691D8A69FC009CFEBC /* schools.csv in Resources */,
 				06B20CE01D865D36006EF005 /* OpenSans-Italic.ttf in Resources */,
 				06B20CDD1D865D36006EF005 /* OpenSans-BoldItalic.ttf in Resources */,
-				06B20CE71D8665B7006EF005 /* GoogleService-Info.plist in Resources */,
 				06B20C9E1D863296006EF005 /* LaunchScreen.storyboard in Resources */,
 				06B20CE41D865D36006EF005 /* OpenSans-Semibold.ttf in Resources */,
 				06B20CDE1D865D36006EF005 /* OpenSans-ExtraBold.ttf in Resources */,
@@ -487,6 +495,7 @@
 				0612767C1DA3592200CB3C2D /* Info.plist in Resources */,
 				06B20CDC1D865D36006EF005 /* OpenSans-Bold.ttf in Resources */,
 				06B20C961D863296006EF005 /* Main.storyboard in Resources */,
+				06C370781DBF575C004D47D5 /* GoogleService-Info.plist in Resources */,
 				06B20CE51D865D36006EF005 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				06B20CE11D865D36006EF005 /* OpenSans-Light.ttf in Resources */,
 				06B20CE31D865D36006EF005 /* OpenSans-Regular.ttf in Resources */,
@@ -573,6 +582,7 @@
 				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
 				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
+				06806A451DBF2A4B008A8356 /* SearchVC.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
 				06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */,
 				061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */,
@@ -766,7 +776,7 @@
 				);
 				INFOPLIST_FILE = Pluto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.Pluto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.pluto.XXX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pluto/Pluto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -798,7 +808,7 @@
 				);
 				INFOPLIST_FILE = Pluto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.Pluto;
+				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.pluto.XXX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pluto/Pluto-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

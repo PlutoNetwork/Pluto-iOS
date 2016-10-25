@@ -9,7 +9,6 @@
 import Firebase
 import UIKit
 
-
 class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Outlets
@@ -66,11 +65,23 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     @IBAction func addBuddyButtonAction(_ sender: AnyObject) {
         
-        sendBuddyRequest()
-        
-        UIView.animate(withDuration: 0.5) { 
+        if self.addBuddyButton.currentImage == UIImage(named: "plus") {
             
-            self.addBuddyButton.setImage(UIImage(named: "ic_done_white"), for: .normal)
+            self.editBuddyConnection(yourConnectionToBuddy: false, yourRequestToBuddy: false, buddyRequestToYou: true, buddyConnectionToYou: false)
+            
+            UIView.animate(withDuration: 0.5) {
+                
+                self.addBuddyButton.setImage(UIImage(named: "check"), for: .normal)
+            }
+            
+        } else {
+            
+            self.editBuddyConnection(yourConnectionToBuddy: false, yourRequestToBuddy: false, buddyRequestToYou: false, buddyConnectionToYou: false)
+            
+            UIView.animate(withDuration: 0.5) {
+                
+                self.addBuddyButton.setImage(UIImage(named: "plus"), for: .normal)
+            }
         }
     }
     
@@ -197,15 +208,15 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
                         if friend.connected == true {
                             
                             self.friends.append(friend)
-                        }
-                        
-                        let userID = FIRAuth.auth()?.currentUser?.uid
-                        
-                        if friend.friendKey == userID! {
                             
-                            self.addBuddyButton.setImage(UIImage(named: "ic_done_white"), for: .normal)
-                            self.addBuddyButton.isUserInteractionEnabled = false
+                            let userID = FIRAuth.auth()?.currentUser?.uid
+                            
+                            if friend.friendKey == userID! {
+                                
+                                self.addBuddyButton.setImage(UIImage(named: "check"), for: .normal)
+                            }
                         }
+                        
                     }
                 }
             }
@@ -217,20 +228,20 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     /**
      Called when the user clicks the addBuddyButton.
      */
-    func sendBuddyRequest() {
+    func editBuddyConnection(yourConnectionToBuddy: Bool, yourRequestToBuddy: Bool, buddyRequestToYou: Bool, buddyConnectionToYou: Bool) {
         
         // Adds the potential friend to the user's friends data and sets the value of the request key to false b/c the request was sent and has not yet been accepted.
-        DataService.ds.REF_CURRENT_USER.child("friends").child(creatorID).child("connected").setValue(false)
+        DataService.ds.REF_CURRENT_USER.child("friends").child(creatorID).child("connected").setValue(yourConnectionToBuddy)
         
         // Sets the request value under the same data reference as above to false.
-        DataService.ds.REF_CURRENT_USER.child("friends").child(creatorID).child("request").setValue(false)
+        DataService.ds.REF_CURRENT_USER.child("friends").child(creatorID).child("request").setValue(yourRequestToBuddy)
         
         let userID = FIRAuth.auth()?.currentUser?.uid
         
         // Adds the current user to the potential friend's friends data and sets the value of the request key to true indicating a request has been sent.
-        DataService.ds.REF_USERS.child(creatorID).child("friends").child(userID!).child("request").setValue(true)
+        DataService.ds.REF_USERS.child(creatorID).child("friends").child(userID!).child("request").setValue(buddyRequestToYou)
         
-        DataService.ds.REF_USERS.child(creatorID).child("friends").child(userID!).child("connected").setValue(false)
+        DataService.ds.REF_USERS.child(creatorID).child("friends").child(userID!).child("connected").setValue(buddyConnectionToYou)
     }
     
     func setEvents(userEventKeys: [String], boardKey: String) {
@@ -326,6 +337,19 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         UIApplication.shared.endIgnoringInteractionEvents()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showDetails" {
+            
+            let destinationVC: DetailsVC = segue.destination as! DetailsVC
+            
+            if let indexPath = self.eventView.indexPathForSelectedRow {
+                
+                destinationVC.eventKey = events[indexPath.row].eventKey
+            }
+        }
+    }
+    
     /**
      Switches to the view controller specified by the parameter.
      
@@ -350,12 +374,7 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
         
         // Didn't use the switchController function because we have to pass data into the next viewController.
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Details") as! DetailsVC
-        
-        //controller.eventKey = events[indexPath.row].eventKey
-        
-        self.present(controller, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "showDetails", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

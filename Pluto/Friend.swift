@@ -10,9 +10,15 @@ import Foundation
 
 class Friend {
     
+    private var _name: String!
     private var _connected: Bool!
     private var _request: Bool!
     private var _friendKey: String!
+    
+    var name: String! {
+        
+        return _name
+    }
     
     var connected: Bool {
         
@@ -31,6 +37,7 @@ class Friend {
     
     init(name: String, connected: Bool, request: Bool) {
         
+        self._name = name
         self._connected = connected
         self._request = request
     }
@@ -39,10 +46,16 @@ class Friend {
         
         self._friendKey = friendKey
         
+        if let name = friendData["name"] as? String {
+            
+            self._name = name
+        }
+        
         if let connected = friendData["connected"] as? Bool {
             
             self._connected = connected
         }
+        
         if let request = friendData["request"] as? Bool {
             
             self._request = request

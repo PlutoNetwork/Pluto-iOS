@@ -17,6 +17,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var friendsView: UICollectionView!
+    @IBOutlet weak var noFriendsLabel: UILabel!
     @IBOutlet weak var eventView: UITableView!
     
     // Buttons
@@ -37,17 +38,18 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         
         UIApplication.shared.isStatusBarHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        grabCurrentBoardID()
+        setUserInfo()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setFriends()
+        
         friendsView.dataSource = self
         friendsView.delegate = self
-        
-        grabCurrentBoardID()
-        setUserInfo()
-        setFriends()
         
         eventView.dataSource = self
         eventView.delegate = self
@@ -75,6 +77,11 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let friend = friends[indexPath.row]
+        
+        if friends.count == 0 {
+            
+            noFriendsLabel.alpha = 1.0
+        }
         
         if let friendCell = collectionView.dequeueReusableCell(withReuseIdentifier: "friend", for: indexPath) as? FriendCell {
             
@@ -270,6 +277,14 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                     friendVC.creatorID = friendKey
                 }
             }
+        } else if segue.identifier == "showDetails" {
+            
+            let destinationVC: DetailsVC = segue.destination as! DetailsVC
+            
+            if let indexPath = self.eventView.indexPathForSelectedRow {
+                
+                destinationVC.eventKey = events[indexPath.row].eventKey
+            }
         }
     }
     
@@ -282,14 +297,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Didn't use the switchController function because we have to pass data into the next viewController.
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "Details") as! DetailsVC
-        
-      //  controller.eventKey = events[indexPath.row].eventKey
-        
-        self.present(controller, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "showDetails", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
