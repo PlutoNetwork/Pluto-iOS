@@ -97,14 +97,14 @@ class EventCell: UITableViewCell {
                 self.eventPlutoImageView.image = UIImage(named: "rocket")
                 self.event.adjustCount(addToCount: true)
                 self.userEventRef.setValue(true)
-                self.syncToCalender(add: true)
+                //self.syncToCalender(add: true)
                 
             } else {
                 
                 self.eventPlutoImageView.image = UIImage(named: "rocket-faded")
                 self.event.adjustCount(addToCount: false)
                 self.userEventRef.removeValue()
-                self.syncToCalender(add: false)
+                //self.syncToCalender(add: false)
             }
         })
     }

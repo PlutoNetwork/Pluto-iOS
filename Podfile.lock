@@ -53,6 +53,7 @@ PODS:
   - GoogleUtilities (1.3.1):
     - GoogleSymbolUtilities (~> 1.0)
   - pop (1.0.9)
+  - Spring (1.0.3)
 
 DEPENDENCIES:
   - Firebase
@@ -61,6 +62,17 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - pop (~> 1.0)
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
+
+EXTERNAL SOURCES:
+  Spring:
+    :branch: swift3
+    :git: https://github.com/MengTo/Spring.git
+
+CHECKOUT OPTIONS:
+  Spring:
+    :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
+    :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
   Firebase: 94e63112efcad75226c0356a8f3032397b8547c9
@@ -77,7 +89,8 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
 
-PODFILE CHECKSUM: cdca58eb494ae6590609d0445a2281d4bb38b75b
+PODFILE CHECKSUM: 871db75d75652eca51959118593051db01b8fee4
 
 COCOAPODS: 1.0.1

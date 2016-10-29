@@ -24,10 +24,10 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     @IBOutlet weak var instructionLabel: UILabel!
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameField: TextField!
     @IBOutlet weak var emailField: TextField!
+    @IBOutlet weak var saveButton: Button!
     
     // MARK: - Variables
     
@@ -36,6 +36,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     /// Tells if the user has updated their profile image. Turns true if an image is selected in the imagePicker.
     var imageSelected = false
+    
+    var buttonClicked = 0
 
     // MARK: - View Functions
     
@@ -48,23 +50,40 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //setUserInfo()
+        setUserInfo()
         
         // Dismisses the keyboard if the user taps anywhere on the screen.
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SettingsVC.dismissKeyboard)))
         
         // Initializes the text fields.
-       // nameField.delegate = self
-       // emailField.delegate = self
+        nameField.delegate = self
+        emailField.delegate = self
         
         // Initializes the image picker.
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         // Allows the user to select which portion of their selected image is to be used.
         imagePicker.allowsEditing = true
+        
+        instructionLabel.alpha = 1.0
     }
     
     // MARK: - Button Actions
+    
+    @IBAction func editInfoButtonAction(_ sender: AnyObject) {
+        
+        UIView.animate(withDuration: 0.3) {
+            
+            self.nameField.alpha = 1.0
+            self.emailField.alpha = 1.0
+            self.saveButton.alpha = 1.0
+        }
+    }
+    
+    @IBAction func changeProfilePicImage(_ sender: AnyObject) {
+        
+        chooseProfileImageAction()
+    }
     
     @IBAction func logOutButtonAction(_ sender: AnyObject) {
         
@@ -79,15 +98,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     @IBAction func onSettingsButtonPressed(_ sender: AnyObject) {
         
         UIView.animate(withDuration: 0.3) {
-            
-            if self.instructionLabel.alpha == 1.0 {
-                
-                self.instructionLabel.alpha = 0
-                
-            } else {
-                
-                self.instructionLabel.alpha = 1.0
-            }
+
+            self.instructionLabel.alpha = 0
             
             self.sectionView.forEach {
                 
@@ -103,12 +115,13 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             
             // Goes into Firebase to set the user's name to what they typed into the name field.
             DataService.ds.REF_CURRENT_USER.child("name").setValue(nameField.text!)
-        }
-        
-        // Checks to see if the user selected a new profile image.
-        if imageSelected == true {
             
-            uploadProfileImage()
+            UIView.animate(withDuration: 0.3, animations: { 
+                
+                self.nameField.alpha = 0
+                self.emailField.alpha = 0
+                self.saveButton.alpha = 0
+            })
         }
     }
     
@@ -250,7 +263,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     // MARK: - Gesture Actions
     
-    @IBAction func chooseProfileImageAction(_ sender: AnyObject) {
+    func chooseProfileImageAction() {
         
         // When the profile image is tapped, the imagePicker comes up and the user can pick an image from their photo library.
         present(imagePicker, animated: true, completion: nil)
@@ -265,8 +278,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
      */
     func dismissKeyboard() {
         
-       // nameField.resignFirstResponder()
-        // emailField.resignFirstResponder()
+        nameField.resignFirstResponder()
+        emailField.resignFirstResponder()
     }
     
     /**
@@ -297,6 +310,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
             
             // Sets the imageSelected to true because the user is now updating his profile picture and Pluto needs to save it.
             imageSelected = true
+            self.uploadProfileImage()
         }
         
         // Hides the imagePicker.

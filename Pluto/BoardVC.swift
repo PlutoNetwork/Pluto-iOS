@@ -154,6 +154,9 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                         
                         // Save to image cache (globally declared in BoardVC)
                         BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
+                    } else {
+                        
+                        self.presentRequestNotice(friendID: friendKey, img: UIImage(named: "user")!, name: name)
                     }
                 }
             }
@@ -197,6 +200,16 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                     
                     self.downloadProfileImage(friendKey: friendKey, imageURL: (value?["image"] as? String)!, name: (value?["email"] as? String)!)
                 }
+            } else {
+                
+                if value?["name"] != nil {
+                    
+                    self.presentRequestNotice(friendID: friendKey, img: UIImage(named: "user")!, name: (value?["name"] as? String)!)
+                } else {
+                    
+                    self.presentRequestNotice(friendID: friendKey, img: UIImage(named: "user")!, name: (value?["email"] as? String)!)
+                }
+                
             }
             
         })  { (error) in
@@ -304,7 +317,10 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
             
             let destinationVC: FriendVC = segue.destination as! FriendVC
             
-            destinationVC.creatorID = searchedUser
+            if searchedUser != nil {
+            
+                destinationVC.creatorID = searchedUser
+            }
         }
     }
     

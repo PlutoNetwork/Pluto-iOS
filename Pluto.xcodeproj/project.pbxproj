@@ -29,6 +29,7 @@
 		06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A401DBDCBB5008A8356 /* SquareImageView.swift */; };
 		06806A451DBF2A4B008A8356 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchVC.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
+		0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
 		06B20C931D863296006EF005 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C921D863296006EF005 /* LoginVC.swift */; };
@@ -99,6 +100,7 @@
 		06806A401DBDCBB5008A8356 /* SquareImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImageView.swift; sourceTree = "<group>"; };
 		06806A441DBF2A4B008A8356 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FaceAware.swift"; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B20C901D863296006EF005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				061276781DA3592200CB3C2D /* SCLAlertView */,
+				0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */,
 				060644681D8A69FC009CFEBC /* schools.csv */,
 			);
 			name = Resources;
@@ -586,6 +589,7 @@
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
 				06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */,
 				061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */,
+				0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */,
 				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
 				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,
 				06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */,
@@ -775,6 +779,7 @@
 					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
 				);
 				INFOPLIST_FILE = Pluto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.pluto.XXX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -807,6 +812,7 @@
 					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
 				);
 				INFOPLIST_FILE = Pluto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.faisalmlalani.pluto.XXX;
 				PRODUCT_NAME = "$(TARGET_NAME)";

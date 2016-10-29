@@ -23,6 +23,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        // Before the view loads, we need to check to see if a user is already logged in.
+        
         /// Grabs the email and password saved in a previous instance if the user already exists.
         let userDefaults = UserDefaults.standard
         
@@ -112,7 +114,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 } else {
                     
                     // Error! This means something went wrong that wasn't caught above.
-                    SCLAlertView().showError("Oh no!", subTitle: "Pluto could not log you in at this time because of an unknown error.")
+                    
+                    SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your school.")
                 }
             }
         })
@@ -179,7 +182,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
      - Parameter password: The password from the passwordField.text (provided by the user).
      */
     func saveDefault(email: String, password: String) {
-        
+                
         let userDefaults = UserDefaults.standard
         
         // Save the email and password into userDefaults.
