@@ -114,18 +114,12 @@ class CreateVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     func createEvent(imageURL: String = "", boardKey: String, name: String) {
         
         let userID = FIRAuth.auth()?.currentUser?.uid
-        
-        // DO DATE FORMAT STUFF HERE
-        // Make variable time that will hold the formatted date (2016-10-27 19:29:50 +0000)
-        // Grab unformatted time from createEventTimeField.text!
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        
+
         let event: Dictionary<String, Any> = [
             
             "title": createEventTitleField.text! as Any,
             "location": createEventLocationField.text! as Any,
-            "time": createEventTimeField.text! as Any,
+            "time": createEventTimeField.text! as Any, //strTime
             "description": createEventDescriptionField.text! as Any,
             "creator": name as Any,
             "creatorID": userID! as Any,

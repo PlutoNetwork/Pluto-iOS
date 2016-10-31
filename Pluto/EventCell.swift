@@ -97,14 +97,14 @@ class EventCell: UITableViewCell {
                 self.eventPlutoImageView.image = UIImage(named: "rocket")
                 self.event.adjustCount(addToCount: true)
                 self.userEventRef.setValue(true)
-                //self.syncToCalender(add: true)
+                self.syncToCalender(add: true)
                 
             } else {
                 
                 self.eventPlutoImageView.image = UIImage(named: "rocket-faded")
                 self.event.adjustCount(addToCount: false)
                 self.userEventRef.removeValue()
-                //self.syncToCalender(add: false)
+                self.syncToCalender(add: false)
             }
         })
     }
@@ -123,33 +123,8 @@ class EventCell: UITableViewCell {
                     print("PERMISSION GRANTED")
                     
                     if add {
-                        
-                        let newEvent = EKEvent(eventStore: eventStore)
-                        
-                        newEvent.title = self.event.title
-                        
-                        // let strTime = "2016-10-27 19:29:50 +0000"
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                        let newEventTime = formatter.date(from: self.event.time)
-                        
-                        newEvent.startDate = newEventTime!
-                        newEvent.endDate = newEventTime!
-                        newEvent.location = self.event.location
-                        newEvent.calendar = eventStore.defaultCalendarForNewEvents
-                        
-                        do {
-                            
-                            try eventStore.save(newEvent, span: .thisEvent)
-                            print("EVENT ADDED")
-                            print(newEvent.title)
-                            print(newEvent.startDate)
-                            print(newEvent.endDate)
-                            
-                        } catch {
-                            
-                            print("OH NO")
-                        }
+
+                        self.calendarCall(calEvent: eventStore)
                     }
                     
                 } else {
@@ -164,33 +139,41 @@ class EventCell: UITableViewCell {
             
             if add {
                 
-                let newEvent = EKEvent(eventStore: eventStore)
-                
-                newEvent.title = self.event.title
-                
-                // let strTime = "2016-10-27 19:29:50 +0000"
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                let newEventTime = formatter.date(from: self.event.time)
-                
-                newEvent.startDate = newEventTime!
-                newEvent.endDate = newEventTime!
-                newEvent.location = self.event.location
-                newEvent.calendar = eventStore.defaultCalendarForNewEvents
-                
-                do {
-                    
-                    try eventStore.save(newEvent, span: .thisEvent)
-                    print("EVENT ADDED")
-                    print(newEvent.title)
-                    print(newEvent.startDate)
-                    print(newEvent.endDate)
-                    
-                } catch {
-                    
-                    print("OH NO")
+                    calendarCall(calEvent: eventStore)
                 }
             }
         }
+    
+    func calendarCall(calEvent: EKEventStore){
+        
+        let newEvent = EKEvent(eventStore: calEvent)
+            
+        newEvent.title = self.event.title //Sets event title
+        
+        //Formats the date and time to be useable by iOS calendar app
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.medium
+        formatter.timeStyle = DateFormatter.Style.short
+        let newEventTime = formatter.date(from: self.event.time)
+        
+        newEvent.startDate = newEventTime! //Sets start date and time for event
+        newEvent.endDate = newEventTime! //Sets end date and time for event
+        newEvent.location = self.event.location //Copies location into calendar
+        newEvent.calendar = calEvent.defaultCalendarForNewEvents //Copies event into calendar
+        newEvent.notes = self.event.description //Copies event description into calendar
+        
+        do {
+            
+            //Saves event to calendar
+            try calEvent.save(newEvent, span: .thisEvent)
+
+            
+        } catch {
+            
+            print("OH NO")
+        }
+        
+        //Opens calendar app after event is added
+        UIApplication.shared.openURL(NSURL(string: "calshow://")! as URL) //added JMS http://stackoverflow.com/questions/29684423/open-calendar-from-swift-app
     }
 }
