@@ -445,12 +445,6 @@
                                                                 <constraint firstAttribute="width" constant="120" id="RLd-9R-Zbn"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rocket-faded" translatesAutoresizingMaskIntoConstraints="NO" id="vMD-Nk-UsK">
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="43" id="Uzh-dZ-BZi"/>
-                                                                <constraint firstAttribute="height" constant="43" id="r0B-HM-0lQ"/>
-                                                            </constraints>
-                                                        </imageView>
                                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPu-dC-GIB">
                                                             <color key="backgroundColor" red="0.066666666669999999" green="0.18039215689999999" blue="0.25098039220000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                                             <constraints>
@@ -493,6 +487,12 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ship-faded" translatesAutoresizingMaskIntoConstraints="NO" id="vMD-Nk-UsK">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="43" id="Uzh-dZ-BZi"/>
+                                                                <constraint firstAttribute="height" constant="43" id="r0B-HM-0lQ"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -502,14 +502,14 @@
                                                         <constraint firstItem="o0x-sE-Efa" firstAttribute="top" secondItem="un0-ke-6r6" secondAttribute="top" constant="10" id="JDF-H4-21H"/>
                                                         <constraint firstItem="o0x-sE-Efa" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="15" id="Mgs-bT-J5y"/>
                                                         <constraint firstAttribute="bottom" secondItem="ZLb-M7-PgR" secondAttribute="bottom" constant="4" id="NyA-f6-gSA"/>
-                                                        <constraint firstItem="vMD-Nk-UsK" firstAttribute="centerY" secondItem="un0-ke-6r6" secondAttribute="centerY" constant="7.5" id="PkA-IH-hW0"/>
+                                                        <constraint firstItem="vMD-Nk-UsK" firstAttribute="centerY" secondItem="un0-ke-6r6" secondAttribute="centerY" constant="-0.5" id="PkA-IH-hW0"/>
                                                         <constraint firstItem="7Uu-Q6-wOo" firstAttribute="top" secondItem="un0-ke-6r6" secondAttribute="top" id="QM1-s4-gLQ"/>
                                                         <constraint firstAttribute="bottom" secondItem="udC-fe-vIc" secondAttribute="bottom" constant="1" id="UXF-wo-KIS"/>
                                                         <constraint firstAttribute="bottom" secondItem="7Uu-Q6-wOo" secondAttribute="bottom" id="UiH-29-zqw"/>
                                                         <constraint firstItem="sPu-dC-GIB" firstAttribute="leading" secondItem="7Uu-Q6-wOo" secondAttribute="trailing" constant="15" id="Yp6-21-BRS"/>
                                                         <constraint firstItem="udC-fe-vIc" firstAttribute="leading" secondItem="ZLb-M7-PgR" secondAttribute="trailing" constant="5" id="kit-BZ-twJ"/>
                                                         <constraint firstAttribute="trailing" secondItem="nBc-68-oHx" secondAttribute="trailing" constant="8" id="opH-7m-WXm"/>
-                                                        <constraint firstAttribute="trailing" secondItem="vMD-Nk-UsK" secondAttribute="trailing" constant="20" id="rac-0n-iSb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vMD-Nk-UsK" secondAttribute="trailing" id="rac-0n-iSb"/>
                                                         <constraint firstAttribute="bottom" secondItem="nBc-68-oHx" secondAttribute="bottom" constant="2" id="vX2-uL-3bt"/>
                                                     </constraints>
                                                 </view>
@@ -1473,7 +1473,7 @@
                             <constraint firstAttribute="trailing" secondItem="b33-1k-2oO" secondAttribute="trailing" id="vu2-Oc-eRj"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="3" title="" image="05FB954E-3FA2-43EE-810C-994B9225F792" selectedImage="05FB954E-3FA2-43EE-810C-994B9225F792" id="gLx-o3-RUD"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="" image="2A791DA3-16E8-4AC0-A878-8188043F3232" selectedImage="2A791DA3-16E8-4AC0-A878-8188043F3232" id="gLx-o3-RUD"/>
                     <connections>
                         <outlet property="addBuddyButton" destination="iJF-ke-fPH" id="UJK-eK-Mdq"/>
                         <outlet property="eventView" destination="0ev-9f-cTQ" id="Rbv-nQ-gTu"/>
@@ -1490,7 +1490,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="05FB954E-3FA2-43EE-810C-994B9225F792" width="24" height="24">
+        <image name="2A791DA3-16E8-4AC0-A878-8188043F3232" width="24" height="24">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -1588,6 +1588,7 @@ E0w
         <image name="plus" width="24" height="24"/>
         <image name="rocket-faded" width="879" height="879"/>
         <image name="settings" width="18" height="18"/>
+        <image name="ship-faded" width="654" height="878"/>
         <image name="user" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
