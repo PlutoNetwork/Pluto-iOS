@@ -64,6 +64,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
      */
     func firebaseLoginSignupVoodoo(email: String, password: String) {
         
+        // Create an alert to show errors.
+        let notice = SCLAlertView()
+        
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if error == nil {
@@ -81,22 +84,23 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 
                 // Error!
                 
-                // Firebase couldn't match the credentials of the account to an existing one, so a new account is created *after* the user is asked if an account should be created.
-                if error?._code == STATUS_ACCOUNT_NONEXIST {
+                switch (error?._code)! {
                     
-                    // Create an alert to ask the user if a new account should be created.
-                    let notice = SCLAlertView()
+                case STATUS_ACCOUNT_NONEXIST:
+                    
+                    // Firebase couldn't match the credentials of the account to an existing one, so a new account is created *after* the user is asked if an account should be created.
                     
                     notice.addButton("Yes!") {
                         
                         // The user has given permission to create him/her an account.
-                        
+
                         // Firebase does some voodoo to create the user an account with the provided information.
                         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                             
                             if error != nil {
                                 
                                 // Error! Something went wrong creating an account.
+                                
                                 SCLAlertView().showError("Oh no!", subTitle: "Pluto could not create an account for you at this time.")
                                 
                             } else {
@@ -111,11 +115,18 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     
                     notice.showInfo("Hey!", subTitle: "Pluto couldn't find an account with these credentials. Should we create you a new account?", closeButtonTitle: "No, I made a mistake!")
                     
-                } else {
+                case STATUS_PASSWORD_INCORRECT:
                     
-                    // Error! This means something went wrong that wasn't caught above.
+                    notice.showError("Oh no!", subTitle: "You typed your password incorrectly. Try again!")
                     
-                    SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your school.")
+                case STATUS_FIELDS_BLANK:
+                    
+                    notice.showError("Oh no!", subTitle: "You left a field blank! Make sure to fill them BOTH out.")
+                    
+                default:
+                    
+                    // This means something went wrong that wasn't caught above.
+                    notice.showError("Oh no!", subTitle: "Something went wrong. Try again!")
                 }
             }
         })
@@ -157,6 +168,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    /**
+     Clears the text fields.
+    */
     func clearFields() {
         
         emailField.text = ""
@@ -219,7 +234,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
     
     // MARK: - Text Field Functions
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         // Dismisses the keyboard.

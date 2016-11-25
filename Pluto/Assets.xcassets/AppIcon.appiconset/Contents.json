@@ -3,73 +3,69 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "iPhoneNotification_2x.png",
+      "filename" : "icon_iphone_notification_2x.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "iPhoneNotification_3x.png",
+      "filename" : "icon_iphone_notification_3x.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "iPhone_2x.png",
+      "filename" : "icon_iphone_2x.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "iPhone_3x.png",
+      "filename" : "icon_iphone_3x.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "iPhoneSpotlight_2x.png",
+      "filename" : "icon_iphone_spotlight_2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "iPhoneSpotlight_3x.png",
+      "filename" : "icon_iphone_spotlight_3x.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "iPhoneApp_2x.png",
+      "filename" : "icon_iphone_app_2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "iPhoneApp_3x.png",
+      "filename" : "icon_iphone_app_3x.png",
       "scale" : "3x"
     },
     {
-      "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "iPadNotifications_1x.png",
+      "size" : "20x20",
       "scale" : "1x"
     },
     {
-      "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "iPadNotifications_2x.png",
+      "size" : "20x20",
       "scale" : "2x"
     },
     {
-      "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "iPadSettings_1x.png",
+      "size" : "29x29",
       "scale" : "1x"
     },
     {
-      "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "iPadSettings_2x.png",
+      "size" : "29x29",
       "scale" : "2x"
     },
     {

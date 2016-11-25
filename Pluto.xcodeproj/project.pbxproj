@@ -56,6 +56,17 @@
 		06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CE91D866A0D006EF005 /* Constants.swift */; };
 		06C370781DBF575C004D47D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06C370771DBF575C004D47D5 /* GoogleService-Info.plist */; };
 		06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */; };
+		06FE5F5D1DE7BD0100E2C2BD /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F511DE7BD0100E2C2BD /* AkiraTextField.swift */; };
+		06FE5F5E1DE7BD0100E2C2BD /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F521DE7BD0100E2C2BD /* HoshiTextField.swift */; };
+		06FE5F5F1DE7BD0100E2C2BD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06FE5F531DE7BD0100E2C2BD /* Info.plist */; };
+		06FE5F601DE7BD0100E2C2BD /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F541DE7BD0100E2C2BD /* IsaoTextField.swift */; };
+		06FE5F611DE7BD0100E2C2BD /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F551DE7BD0100E2C2BD /* JiroTextField.swift */; };
+		06FE5F621DE7BD0100E2C2BD /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F561DE7BD0100E2C2BD /* KaedeTextField.swift */; };
+		06FE5F631DE7BD0100E2C2BD /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F571DE7BD0100E2C2BD /* MadokaTextField.swift */; };
+		06FE5F641DE7BD0100E2C2BD /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F581DE7BD0100E2C2BD /* MinoruTextField.swift */; };
+		06FE5F651DE7BD0100E2C2BD /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F5A1DE7BD0100E2C2BD /* TextFieldsEffects.swift */; };
+		06FE5F661DE7BD0100E2C2BD /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F5B1DE7BD0100E2C2BD /* YokoTextField.swift */; };
+		06FE5F671DE7BD0100E2C2BD /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F5C1DE7BD0100E2C2BD /* YoshikoTextField.swift */; };
 		B4F34FAEE16D44E835F8B980 /* Pods_Pluto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5524771818B2C31640FA526F /* Pods_Pluto.framework */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +145,18 @@
 		06B20CE91D866A0D006EF005 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		06C370771DBF575C004D47D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		06FE5F511DE7BD0100E2C2BD /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
+		06FE5F521DE7BD0100E2C2BD /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
+		06FE5F531DE7BD0100E2C2BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06FE5F541DE7BD0100E2C2BD /* IsaoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsaoTextField.swift; sourceTree = "<group>"; };
+		06FE5F551DE7BD0100E2C2BD /* JiroTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiroTextField.swift; sourceTree = "<group>"; };
+		06FE5F561DE7BD0100E2C2BD /* KaedeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KaedeTextField.swift; sourceTree = "<group>"; };
+		06FE5F571DE7BD0100E2C2BD /* MadokaTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadokaTextField.swift; sourceTree = "<group>"; };
+		06FE5F581DE7BD0100E2C2BD /* MinoruTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinoruTextField.swift; sourceTree = "<group>"; };
+		06FE5F591DE7BD0100E2C2BD /* TextFieldEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEffects.h; sourceTree = "<group>"; };
+		06FE5F5A1DE7BD0100E2C2BD /* TextFieldsEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsEffects.swift; sourceTree = "<group>"; };
+		06FE5F5B1DE7BD0100E2C2BD /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
+		06FE5F5C1DE7BD0100E2C2BD /* YoshikoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshikoTextField.swift; sourceTree = "<group>"; };
 		5524771818B2C31640FA526F /* Pods_Pluto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pluto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74DB09F247622E608C0D1FBA /* Pods-Pluto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD34BF65A678735D57AE41F /* Pods-Pluto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +191,7 @@
 		060644591D8A3EE9009CFEBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				06FE5F501DE7BD0100E2C2BD /* TextFieldEffects */,
 				061276781DA3592200CB3C2D /* SCLAlertView */,
 				0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */,
 				060644681D8A69FC009CFEBC /* schools.csv */,
@@ -342,6 +366,25 @@
 			name = Plists;
 			sourceTree = "<group>";
 		};
+		06FE5F501DE7BD0100E2C2BD /* TextFieldEffects */ = {
+			isa = PBXGroup;
+			children = (
+				06FE5F511DE7BD0100E2C2BD /* AkiraTextField.swift */,
+				06FE5F521DE7BD0100E2C2BD /* HoshiTextField.swift */,
+				06FE5F531DE7BD0100E2C2BD /* Info.plist */,
+				06FE5F541DE7BD0100E2C2BD /* IsaoTextField.swift */,
+				06FE5F551DE7BD0100E2C2BD /* JiroTextField.swift */,
+				06FE5F561DE7BD0100E2C2BD /* KaedeTextField.swift */,
+				06FE5F571DE7BD0100E2C2BD /* MadokaTextField.swift */,
+				06FE5F581DE7BD0100E2C2BD /* MinoruTextField.swift */,
+				06FE5F591DE7BD0100E2C2BD /* TextFieldEffects.h */,
+				06FE5F5A1DE7BD0100E2C2BD /* TextFieldsEffects.swift */,
+				06FE5F5B1DE7BD0100E2C2BD /* YokoTextField.swift */,
+				06FE5F5C1DE7BD0100E2C2BD /* YoshikoTextField.swift */,
+			);
+			path = TextFieldEffects;
+			sourceTree = "<group>";
+		};
 		E451A91CDF2DC2DE41E28726 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +531,7 @@
 			files = (
 				060644691D8A69FC009CFEBC /* schools.csv in Resources */,
 				06B20CE01D865D36006EF005 /* OpenSans-Italic.ttf in Resources */,
+				06FE5F5F1DE7BD0100E2C2BD /* Info.plist in Resources */,
 				06B20CDD1D865D36006EF005 /* OpenSans-BoldItalic.ttf in Resources */,
 				06B20C9E1D863296006EF005 /* LaunchScreen.storyboard in Resources */,
 				06B20CE41D865D36006EF005 /* OpenSans-Semibold.ttf in Resources */,
@@ -578,21 +622,30 @@
 				061F7E521D9863120023D46F /* ProfileVC.swift in Sources */,
 				067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */,
 				067CF1811DB4056E0080C41C /* TabBarC.swift in Sources */,
+				06FE5F601DE7BD0100E2C2BD /* IsaoTextField.swift in Sources */,
+				06FE5F651DE7BD0100E2C2BD /* TextFieldsEffects.swift in Sources */,
+				06FE5F641DE7BD0100E2C2BD /* MinoruTextField.swift in Sources */,
 				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
 				06B20C931D863296006EF005 /* LoginVC.swift in Sources */,
+				06FE5F661DE7BD0100E2C2BD /* YokoTextField.swift in Sources */,
 				0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */,
 				060644611D8A4601009CFEBC /* Board.swift in Sources */,
 				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
+				06FE5F611DE7BD0100E2C2BD /* JiroTextField.swift in Sources */,
 				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
+				06FE5F5D1DE7BD0100E2C2BD /* AkiraTextField.swift in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
+				06FE5F671DE7BD0100E2C2BD /* YoshikoTextField.swift in Sources */,
 				06806A451DBF2A4B008A8356 /* SearchVC.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
 				06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */,
+				06FE5F621DE7BD0100E2C2BD /* KaedeTextField.swift in Sources */,
 				061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */,
 				0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */,
 				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
 				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,
 				06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */,
+				06FE5F5E1DE7BD0100E2C2BD /* HoshiTextField.swift in Sources */,
 				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
 				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
 				06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */,
@@ -600,6 +653,7 @@
 				067CF1831DB418C70080C41C /* CreateVC.swift in Sources */,
 				068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */,
 				061F7E4C1D983A970023D46F /* BoardVC.swift in Sources */,
+				06FE5F631DE7BD0100E2C2BD /* MadokaTextField.swift in Sources */,
 				065E9B361DA9A5C60083C329 /* EventView.swift in Sources */,
 				06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */,
 				06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */,
@@ -786,6 +840,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Pluto/Pluto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -818,6 +873,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pluto/Pluto-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
