@@ -11,13 +11,14 @@ import FirebaseInstanceID
 import FirebaseMessaging
 import UIKit
 
-class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var popularLabel: UILabel!
+    @IBOutlet weak var newLabel: UILabel!
+    
     @IBOutlet weak var schoolNameLabel: UILabel!
-    @IBOutlet weak var searchBar: SearchBar!
-    @IBOutlet weak var searchPreview: UITableView!
     @IBOutlet weak var eventView: UITableView!
     
     // MARK: - Variables
@@ -27,6 +28,8 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     
     /// Holds all the event data received from Firebase.
     var events = [Event]()
+    
+    var searchBar: UISearchBar!
     
     /// Holds all the board titles from the CSV file.
     var users = [Friend]()
@@ -56,29 +59,44 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FIRMessaging.messaging().subscribe(toTopic: "requests")
-        
-        searchBar.delegate = self
-        
-        searchPreview.delegate = self
-        searchPreview.dataSource = self
-        
-        searchPreview.tableFooterView = UIView()
-        
         // Initializes the table view that holds all the events.
         eventView.delegate = self
         eventView.dataSource = self
         
-        // Changes the font and font size for text inside the searchBar.
-        let textFieldInsideUISearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideUISearchBar?.font = UIFont(name: "Open Sans", size: 15)
-        textFieldInsideUISearchBar?.textColor = UIColor.white
         
-        // This does the same thing as above but this is for the placeholder text.
-        let textFieldInsideUISearchBarLabel = textFieldInsideUISearchBar!.value(forKey: "placeholderLabel") as? UILabel
-        textFieldInsideUISearchBarLabel?.font = UIFont(name: "Open Sans", size: 15)
-        textFieldInsideUISearchBarLabel?.textColor = UIColor.white
-        textFieldInsideUISearchBarLabel?.text = "Search for a user or an event"
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(BoardVC.handleTap))
+        tap.delegate = self
+        popularLabel.addGestureRecognizer(tap)
+        
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(BoardVC.handleTap2))
+        tap2.delegate = self
+        newLabel.addGestureRecognizer(tap2)
+    }
+    
+    func handleTap() {
+        
+        newLabel.alpha = 0.6
+        popularLabel.alpha = 1.0
+        
+        // Sort by popularity.
+        events = events.sorted(by: { $0.count > $1.count })
+        eventView.reloadData()
+    }
+    
+    func handleTap2() {
+        
+        newLabel.alpha = 1.0
+        popularLabel.alpha = 0.6
+        
+        // Sort by popularity.
+        events = events.sorted(by: { $1.count > $0.count })
+        eventView.reloadData()
+    }
+    
+    // MARK: - Button Actions
+    
+    @IBAction func searchButtonAction(_ sender: AnyObject) {
     }
     
     // MARK: - Firebase
@@ -241,7 +259,7 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
     func setEvents(boardKey: String) {
                 
         DataService.ds.REF_BOARDS.child(boardKey).child("events").observe(.value, with: { (snapshot) in
-            
+           
             self.events = []
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -257,22 +275,12 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
                 }
             }
             
+            self.events = self.events.sorted(by: { $0.count > $1.count })
             self.eventView.reloadData()
         })
-    }
+    } 
         
     // MARK: - Helpers
-    
-    /**
-     Dismisses the keyboard!
-     
-     Just put whatever textfields you want included here in the function.
-     */
-    func dismissKeyboard() {
-        
-        // Dismisses the keybaord for these fields.
-        searchBar.resignFirstResponder()
-    }
     
     func presentRequestNotice(friendID: String, img: UIImage, name: String) {
         
@@ -336,48 +344,6 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         self.present(vc, animated: true, completion: nil)
     }
     
-    // MARK: - Search Bar Functions
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        // This function is called as the user types in the searhBar.
-        
-        if searchBar.text == "" {
-            
-            // This means the user is NOT typing in the searchBar.
-            inSearchMode = false
-            
-            // Hides the search result previews.
-            searchPreview.alpha = 0
-            
-        } else {
-            
-            // This means the user is typing in the searchBar.
-            inSearchMode = true
-            
-            // Brings up the search result previews.
-            searchPreview.alpha = 1.0
-            
-            // Filters the list of users as the user types into a new array.
-            filteredUsers = users.filter({$0.name.range(of: searchBar.text!) != nil})
-            
-            // Reloads the searchPreview as the filtering occurs.
-            searchPreview.reloadData()
-        }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        // This function is called when the user clicks the return key while editing of the searchBar is enabled.
-        
-        dismissKeyboard()
-        
-        self.performSegue(withIdentifier: "searchUser", sender: self)
-        
-        searchBar.text = ""
-    }
-
-    
     // MARK: - Table View Functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -392,81 +358,38 @@ class BoardVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCo
         
             self.performSegue(withIdentifier: "showDetails", sender: self)
             
-        } else {
-            
-            // Changes the search bar text to match the selection the user made.
-            searchBar.text = filteredUsers[indexPath.row].name
-            
-            self.searchedUser = filteredUsers[indexPath.row].friendKey
-            
-            // Hides the search suggestions.
-            searchPreview.alpha = 0
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if tableView == self.eventView {
-        
-            return 140.0
-            
-        } else {
-            
-            return 50.0
-        }
+        return 140.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if tableView == self.eventView {
-            
-            return events.count
-            
-        } else {
-            
-            return filteredUsers.count
-        }
+        return events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if tableView == self.eventView {
+        let event = events[indexPath.row]
         
-            // Sort by popularity.
-            events = events.sorted(by: { $0.count > $1.count })
+        if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
             
-            let event = events[indexPath.row]
-            
-            if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
-                            
-                if let img = BoardVC.imageCache.object(forKey: event.imageURL as NSString) {
-                    
-                    cell.configureCell(event: event, img: img)
-                    return cell
-                    
-                } else {
-                    
-                    cell.configureCell(event: event)
-                    return cell
-                }
+            if let img = BoardVC.imageCache.object(forKey: event.imageURL as NSString) {
+                
+                cell.configureCell(event: event, img: img)
+                return cell
                 
             } else {
                 
-                return EventCell()
+                cell.configureCell(event: event)
+                return cell
             }
-            
         } else {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "searchResult", for: indexPath) as UITableViewCell
-            
-            // Makes the text of each search preview result match what the filter churns out.
-            cell.textLabel?.text = filteredUsers[indexPath.row].name
-            
-            // Changes the text color and font to the app style.
-            cell.textLabel?.textColor = UIColor.white
-            cell.textLabel?.font = UIFont(name: "Open Sans", size: 13)
-            
-            return cell
+            return EventCell()
         }
     }
     

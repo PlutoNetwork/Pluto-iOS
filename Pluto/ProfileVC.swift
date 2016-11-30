@@ -15,10 +15,9 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     @IBOutlet weak var profileImageView: RoundImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var friendsView: UICollectionView!
-    @IBOutlet weak var noFriendsLabel: UILabel!
     @IBOutlet weak var eventView: UITableView!
+    
     
     // Buttons
     
@@ -55,6 +54,13 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         eventView.delegate = self
     }
     
+    // MARK: - Button Actions
+    
+    @IBAction func settingsButton(_ sender: AnyObject) {
+        
+        self.performSegue(withIdentifier: "showSettings", sender: self)
+    }
+    
     // MARK: - Collection View Functions
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -77,11 +83,6 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let friend = friends[indexPath.row]
-        
-        if friends.count == 0 {
-            
-            noFriendsLabel.alpha = 1.0
-        }
         
         if let friendCell = collectionView.dequeueReusableCell(withReuseIdentifier: "friend", for: indexPath) as? FriendCell {
             
@@ -206,15 +207,6 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
             } else {
                 
                 self.nameLabel.text = (value?["email"] as? String)?.uppercased()
-            }
-            
-            if value?["major"] != nil {
-                
-                self.majorLabel.text = (value?["major"] as? String)
-                
-            } else {
-                
-                self.majorLabel.alpha = 0
             }
                         
         }) { (error) in

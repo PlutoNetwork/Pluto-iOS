@@ -51,12 +51,12 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         
         // Changes the font and font size for text inside the searchBar.
         let textFieldInsideUISearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideUISearchBar?.font = UIFont(name: "Open Sans", size: 15)
+        textFieldInsideUISearchBar?.font = UIFont(name: "Lato", size: 15)
         textFieldInsideUISearchBar?.textColor = UIColor.white
         
         // This does the same thing as above but this is for the placeholder text.
         let textFieldInsideUISearchBarLabel = textFieldInsideUISearchBar!.value(forKey: "placeholderLabel") as? UILabel
-        textFieldInsideUISearchBarLabel?.font = UIFont(name: "Open Sans", size: 15)
+        textFieldInsideUISearchBarLabel?.font = UIFont(name: "Lato", size: 15)
         textFieldInsideUISearchBarLabel?.textColor = UIColor.white
         textFieldInsideUISearchBarLabel?.text = "Search for your school"
         
@@ -256,7 +256,7 @@ class SearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         
         // Changes the text color and font to the app style.
         cell.textLabel?.textColor = UIColor.white
-        cell.textLabel?.font = UIFont(name: "Open Sans", size: 13)
+        cell.textLabel?.font = UIFont(name: "Lato", size: 16)
         
         return cell
     }

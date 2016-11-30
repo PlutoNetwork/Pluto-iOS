@@ -13,7 +13,7 @@ class TabBarC: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Variables
     
     /// Allows the option to edit the first tab that shows in the storyboard.
-    @IBInspectable var defaultIndex: Int = 1
+    @IBInspectable var defaultIndex: Int = 0
     
     // MARK: - View Functions
     

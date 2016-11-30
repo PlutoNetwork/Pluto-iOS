@@ -15,7 +15,6 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
     
     @IBOutlet weak var addBuddyButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var userProfileImageView: RoundImageView!
     @IBOutlet weak var friendsView: UICollectionView!
     @IBOutlet weak var eventView: UITableView!
@@ -295,15 +294,6 @@ class FriendVC: UIViewController, UICollectionViewDataSource, UICollectionViewDe
             } else {
                 
                 self.nameLabel.text = (value?["email"] as? String)?.uppercased()
-            }
-            
-            if value?["major"] != nil {
-                
-                self.majorLabel.text = (value?["major"] as? String)
-                
-            } else {
-                
-                self.majorLabel.alpha = 0
             }
             
         })  { (error) in

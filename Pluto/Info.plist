@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>"Pluto needs to access your calendar so you can see your events there!"</string>
+	<string>&quot;Pluto needs to access your calendar so you can see your events there!&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to access your photos por favor.</string>
 	<key>UIAppFonts</key>
@@ -37,6 +37,17 @@
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-Semibold.ttf</string>
 		<string>OpenSans-SemiboldItalic.ttf</string>
+		<string>Lato-Black.ttf</string>
+		<string>Lato-BlackItalic.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-BoldItalic.ttf</string>
+		<string>Lato-Hairline.ttf</string>
+		<string>Lato-HairlineItalic.ttf</string>
+		<string>Lato-Italic.ttf</string>
+		<string>Lato-Light.ttf</string>
+		<string>Lato-LightItalic.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string></string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

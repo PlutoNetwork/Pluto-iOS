@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="Card" customModule="Pluto" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hC5-9x-pma">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="NNc-Zj-Qvi"/>
+                    </constraints>
+                </imageView>
+                <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3G-Kb-pf5">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="WrA-0X-SSc"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sik-16-BOh">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="0Ma-Yw-5iS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="25"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="sik-16-BOh" secondAttribute="trailing" constant="20" id="2bD-dB-Nm4"/>
+                <constraint firstAttribute="trailing" secondItem="e3G-Kb-pf5" secondAttribute="trailing" id="3PY-qr-90S"/>
+                <constraint firstItem="sik-16-BOh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="F1f-am-6Cl"/>
+                <constraint firstItem="hC5-9x-pma" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MxZ-rd-h08"/>
+                <constraint firstItem="e3G-Kb-pf5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="P77-2P-7gw"/>
+                <constraint firstItem="sik-16-BOh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eAr-xW-iYc"/>
+                <constraint firstItem="e3G-Kb-pf5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="h12-BM-Keu"/>
+                <constraint firstItem="hC5-9x-pma" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lxp-ba-3RJ"/>
+                <constraint firstItem="sik-16-BOh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="vh3-Bi-t0v"/>
+                <constraint firstAttribute="trailing" secondItem="hC5-9x-pma" secondAttribute="trailing" id="yId-1i-HQt"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="eventImageView" destination="hC5-9x-pma" id="f9W-B2-qu9"/>
+                <outlet property="eventTitle" destination="sik-16-BOh" id="qdK-td-RKa"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -13,6 +13,7 @@ target 'Pluto' do
 	pod 'Firebase/Database'
     pod 'Firebase/Messaging'
     pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
+    pod 'Eureka', '~> 2.0.0-beta.1'
 end
 
 post_install do |installer|
