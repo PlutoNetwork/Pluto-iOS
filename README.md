@@ -4,6 +4,7 @@
 <img src="https://img.shields.io/badge/version-0.6-brightgreen.svg">
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg">
 <img src="https://img.shields.io/badge/release-no-red.svg">
+<img src="https://img.shields.io/badge/license-GNU%20AGPLv3-yellow.svg">
 </p>
 
 <p align="center">Created by the <a href="https://github.com/orgs/PlutoNetwork/people">PlutoNetwork</a> team at CU Boulder</p>
@@ -53,11 +54,3 @@ As you spot bugs, please report them in the "Issues" tab. Feature requests can b
 #### Contributing
 
 If you have a modification you'd like to make to existing code or even add features that aren't already present, you may fork the repo and make these changes. Then proceed to make a pull request for review.
-
-## License
-
-Pluto is released under the GNU Affero General Public License.
-
-## More about Pluto
-
-Pluto was started by a small team of students at the University of Colorado Boulder with the goal of building something that would impact the community in some way. The idea of an event network was born after we noticed the lack of organization in terms of marketing group meetings, talks, seminars, etc.
