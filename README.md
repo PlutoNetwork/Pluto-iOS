@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/badge/license-GNU%20AGPLv3-yellow.svg">
 </p>
 
-<p align="center">Created by the <a href="https://github.com/orgs/PlutoNetwork/people">PlutoNetwork</a> team at CU Boulder</p>
+<p align="center">Created by the <a href="https://github.com/orgs/PlutoNetwork/people">PlutoNetwork</a> team at the University of Colorado at Boulder</p>
 
 ## Overview
 
