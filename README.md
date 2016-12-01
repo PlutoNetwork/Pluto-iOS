@@ -56,7 +56,7 @@ If you have a modification you'd like to make to existing code or even add featu
 
 ## License
 
-Pluto is released under the ________.
+Pluto is released under the GNU Affero General Public License.
 
 ## More about Pluto
 
