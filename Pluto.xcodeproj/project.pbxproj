@@ -13,8 +13,6 @@
 		0612767C1DA3592200CB3C2D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061276791DA3592200CB3C2D /* Info.plist */; };
 		0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612767A1DA3592200CB3C2D /* SCLAlertView.swift */; };
 		0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612767B1DA3592200CB3C2D /* SCLExtensions.swift */; };
-		061611D41DEA1C0400EE0816 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061611D21DEA1C0300EE0816 /* ImagePickerController.swift */; };
-		061611D51DEA1C0400EE0816 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061611D31DEA1C0300EE0816 /* ImageRow.swift */; };
 		061611E01DEA6E2400EE0816 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611D61DEA6E2400EE0816 /* Lato-Black.ttf */; };
 		061611E11DEA6E2400EE0816 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611D71DEA6E2400EE0816 /* Lato-BlackItalic.ttf */; };
 		061611E21DEA6E2400EE0816 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611D81DEA6E2400EE0816 /* Lato-Bold.ttf */; };
@@ -106,8 +104,6 @@
 		061276791DA3592200CB3C2D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0612767A1DA3592200CB3C2D /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
 		0612767B1DA3592200CB3C2D /* SCLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLExtensions.swift; sourceTree = "<group>"; };
-		061611D21DEA1C0300EE0816 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
-		061611D31DEA1C0300EE0816 /* ImageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
 		061611D61DEA6E2400EE0816 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		061611D71DEA6E2400EE0816 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		061611D81DEA6E2400EE0816 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -215,7 +211,6 @@
 		060644591D8A3EE9009CFEBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				061611D11DEA1C0300EE0816 /* ImageRow */,
 				06FE5F501DE7BD0100E2C2BD /* TextFieldEffects */,
 				061276781DA3592200CB3C2D /* SCLAlertView */,
 				0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */,
@@ -251,15 +246,6 @@
 				0612767B1DA3592200CB3C2D /* SCLExtensions.swift */,
 			);
 			path = SCLAlertView;
-			sourceTree = "<group>";
-		};
-		061611D11DEA1C0300EE0816 /* ImageRow */ = {
-			isa = PBXGroup;
-			children = (
-				061611D21DEA1C0300EE0816 /* ImagePickerController.swift */,
-				061611D31DEA1C0300EE0816 /* ImageRow.swift */,
-			);
-			path = ImageRow;
 			sourceTree = "<group>";
 		};
 		06A196B21D976D86001C29EC /* Services */ = {
@@ -687,11 +673,9 @@
 				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
 				06FE5F611DE7BD0100E2C2BD /* JiroTextField.swift in Sources */,
 				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
-				061611D51DEA1C0400EE0816 /* ImageRow.swift in Sources */,
 				06FE5F5D1DE7BD0100E2C2BD /* AkiraTextField.swift in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
 				06FE5F671DE7BD0100E2C2BD /* YoshikoTextField.swift in Sources */,
-				061611D41DEA1C0400EE0816 /* ImagePickerController.swift in Sources */,
 				06806A451DBF2A4B008A8356 /* SearchVC.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
 				06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */,

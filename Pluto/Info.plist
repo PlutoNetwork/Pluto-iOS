@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>&quot;Pluto needs to access your calendar so you can see your events there!&quot;</string>
+	<string>Pluto needs to access your calendar so you can see your events there.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to access your photos por favor.</string>
 	<key>UIAppFonts</key>

@@ -6,11 +6,24 @@
 //  Copyright © 2016 Faisal M. Lalani. All rights reserved.
 //
 
-import Eureka
 import Firebase
 import UIKit
 
-class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var profileImageView: RoundImageView!
+    @IBOutlet weak var nameField: HoshiTextField!
+    @IBOutlet weak var emailField: HoshiTextField!
+    
+    // MARK: - Variables
+    
+    /// This is the gallery that opens up to let the user select an image from their photo library.
+    var imagePicker: UIImagePickerController!
+    
+    /// Tells if the user has updated their profile image. Turns true if an image is selected in the imagePicker.
+    var imageSelected = false
     
     // MARK: - View Functions
     
@@ -18,22 +31,31 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
         super.viewWillAppear(animated)
         
         UIApplication.shared.isStatusBarHidden = true
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.title = "Profile Settings"
+        self.navigationController?.navigationBar.backItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ImageRow.defaultCellUpdate = { cell, row in
-            cell.accessoryView?.layer.cornerRadius = 17
-            cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        }
-        
-        
         setUserInfo()
+        
+        // Dismisses the keyboard if the user taps anywhere on the screen.
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SettingsVC.dismissKeyboard)))
+        
+        // Initializes the text fields.
+        nameField.delegate = self
+        emailField.delegate = self
+        
+        // Initializes the image picker.
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        // Allows the user to select which portion of their selected image is to be used.
+        imagePicker.allowsEditing = true
     }
     
-
     func logOut() {
         
         let userDefaults = UserDefaults.standard
@@ -42,6 +64,18 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
         try! FIRAuth.auth()?.signOut()
         
         switchController(controllerID: "Login")
+    }
+    
+    // MARK: - Button Actions
+    
+    @IBAction func saveButtonAction(_ sender: AnyObject) {
+        
+        // Checks to see if the user updated the name field.
+        if nameField.text != "" {
+            
+            // Goes into Firebase to set the user's name to what they typed into the name field.
+            DataService.ds.REF_CURRENT_USER.child("name").setValue(nameField.text!)
+        }
     }
     
     // MARK: - Firebase
@@ -64,6 +98,9 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
                 // Error! Unable to download photo from Firebase storage.
                 SCLAlertView().showError("Oh no!", subTitle: "Pluto was unable to find your profile photo.")
                 
+                // Instead, set the profile image view to the profile placeholder image.
+                self.profileImageView.image = UIImage(named: "profile_img_placeholder")
+                
             } else {
                 
                 // Success! Image successfully downloaded from Firebase storage.
@@ -71,6 +108,9 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
                 if let imageData = data {
                     
                     if let img = UIImage(data: imageData) {
+                        
+                        // Set the profile image view to the downloaded image.
+                        self.profileImageView.image = img
                         
                         // Save to image cache (globally declared in BoardVC).
                         BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
@@ -99,59 +139,21 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
                 self.downloadProfileImage(imageURL: (value?["image"] as? String)!)
             }
             
-            self.form +++ Section("Basic Info")
-                <<< ImageRow() { row in
-                    
-                    row.title = "Update profile picture"
-                    
-                }.onChange({ (row) in
-                    
-                    self.uploadProfileImage(row: row)
-                })
-                <<< TextRow() { row in
-                        
-                    row.title = "Name"
-                    
-                    if value?["name"] != nil {
-                        
-                        row.placeholder = value?["name"] as? String
-                        
-                    } else {
-                        
-                        row.placeholder = "What's your name?"
-                    }
-                }.onChange({ (row) in
-                    
-                    DataService.ds.REF_CURRENT_USER.child("name").setValue(row.value)
-                })
-                <<< EmailRow() { row in
-                    
-                    row.title = "Email"
-                    
-                    row.placeholder = value?["email"] as? String
-                }.onChange({ (row) in
-                    
-                    DataService.ds.REF_CURRENT_USER.child("email").setValue(row.value)
-                })
+            if value?["name"] != nil {
+                
+                self.nameField.text = value?["name"] as? String
+                
+            } else {
+                
+                self.nameField.text = "What's your name?"
+            }
             
-            
-            self.form +++ Section("App Settings")
-                <<< ButtonRow() { row in
-                    row.title = "Log out"
-                }.onCellSelection({ (cell, row) in
-                    self.logOut()
-                })
-            
-            self.form +++ ButtonRow() { row in
-                row.title = "Save and return"
-                }.onCellSelection({ (cell, row) in
-                    self.switchController(controllerID: "Main")
-                })
+            self.emailField.text = value?["email"] as! String
             
         }) { (error) in
             
             // Error! The information could not be received from Firebase.
-            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't set your information.")
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your information.")
         }
     }
     
@@ -168,6 +170,9 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
         let userProfileRef = DataService.ds.REF_CURRENT_USER.child("image")
         // Sets the value for the image key to the parameter (imageURL).
         userProfileRef.setValue(imageURL)
+        
+        // Sets the imageSelected false to indicate the image is done uploading and can be updated again.
+        imageSelected = false
     }
     
     /**
@@ -175,10 +180,10 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
      
      The image is saved as data and an ID is generated that allows it to be saved in the Firebase storage.
      */
-    func uploadProfileImage(row: ImageRow) {
+    func uploadProfileImage() {
         
         // Grabs the image from the profileImageView and compresses it by the scale given.
-        if let imageData = UIImageJPEGRepresentation(row.value!, 0.2) {
+        if let imageData = UIImageJPEGRepresentation(profileImageView.image!, 0.2) {
             
             /// Holds a unique id for the image being uploaded.
             let imageUID = NSUUID().uuidString
@@ -210,6 +215,17 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
     // MARK: - Helpers
     
     /**
+     Dismisses the keyboard!
+     
+     Just put whatever textfields you want included here in the function.
+     */
+    func dismissKeyboard() {
+        
+        nameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+    }
+    
+    /**
      Switches to the view controller specified by the parameter.
      
      - Parameter controllerID: The ID of the controller to switch to.
@@ -219,6 +235,28 @@ class SettingsVC: FormViewController, UIImagePickerControllerDelegate, UINavigat
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    // MARK: - Image Picker Functions
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        // This function is called when something in the imagePicker is selected.
+        
+        // "Media" means it can be a video or an image.
+        // Checks to make sure it is an image the user picked.
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            // Sets the profileImageView to the selected image.
+            profileImageView.image = image
+            
+            // Sets the imageSelected to true because the user is now updating his profile picture and Pluto needs to save it.
+            imageSelected = true
+            self.uploadProfileImage()
+        }
+        
+        // Hides the imagePicker.
+        imagePicker.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Text Field Functions

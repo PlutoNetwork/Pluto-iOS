@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Eureka.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Pluto.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>724ADD6F1BC8B01FF9FB43AFDB33B02E</key>
+		<key>6D1BAD26C6DAD4DBA3954507CF75D8DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>873B1A0D84F1FF2C0ECD8A2440705B43</key>
+		<key>90AD72DCDD14692B956B35ED5E5256D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>99ABF63438EC45054DB1925498084A98</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E621CC96288CE5E42CD85138722996C6</key>
+		<key>F4557E768B33ACD8055A73F18431D0B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
