@@ -13,12 +13,12 @@ Pluto is an event network application that lets see you see and save all the nea
 - [x] Create events
 - [x] See event details including time and location
 - [x] Add event to calendar with the tap of a button
-- [] Add pictures you took at an event to the event
+- [ ] Add pictures you took at an event to the event
 - [x] Add friends
 - [x] See what friends are going to events you're interested in
-- [] Sort events in different ways
-- [] Search through events and users
-- [] Invite users to your event, even if they don't have the app
+- [ ] Sort events in different ways
+- [ ] Search through events and users
+- [ ] Invite users to your event, even if they don't have the app
 
 ## Getting Started
 
