@@ -1,5 +1,15 @@
 <img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/pluto-logo-black.imageset/pluto-logo-black.png">
 
+<p align="center">
+<img src="https://img.shields.io/badge/version-0.6-brightgreen.svg">
+<img src="https://img.shields.io/badge/platform-iOS-blue.svg">
+<img src="https://img.shields.io/badge/release-no-red.svg">
+</p>
+
+<p align="center">Created by the <a href="https://github.com/orgs/PlutoNetwork/people">PlutoNetwork</a> team at CU Boulder</p>
+
+## Overview
+
 Pluto is an event network application that lets see you see and save all the neat stuff going on at your university. You can add friends and see if they're attending that party you're considering going to, invite members of your student organization to the next meeting, and keep your calendar filled with fun events!
 
 ## Screenshots
@@ -43,17 +53,6 @@ As you spot bugs, please report them in the "Issues" tab. Feature requests can b
 #### Contributing
 
 If you have a modification you'd like to make to existing code or even add features that aren't already present, you may fork the repo and make these changes. Then proceed to make a pull request for review.
-
-## Contributors
-
-Pluto has a brilliant team of developers and designer(s).
-
-**Faisal M. Lalani** - Developer  
-[<img src="https://github.com/favicon.ico" width="25">](https://github.com/faisalmlalani)  
-**Michael John Scott** - Developer  
-[<img src="https://github.com/favicon.ico" width="25">](https://github.com/JMichaelScott)  
-**McKenzie Weller** - Designer  
-[<img src="https://github.com/favicon.ico" width="25">](https://github.com/pikawolfy)
 
 ## License
 
