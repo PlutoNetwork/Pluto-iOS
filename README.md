@@ -1,25 +1,24 @@
-# Pluto
+<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/pluto-logo-black.imageset/pluto-logo-black.png">
 
-Pluto is an event network application that lets see you see and save all the cool stuff going on at your school!
-
-Need a more effective away of keeping track of meetings? Download Pluto. Need to find something to do while your bored? Download Pluto. Need to make friends? **Download Pluto**!
-
-## Updates
-
-**Latest update**: Basic functionality is working now...with a few bugs.  
-
-- [x] Begin iOS application.
-- [x] Create basic functionality that allows user signup/login, event creation, and event saving.
-- [ ] Add effective sorting and searching.
-- [ ] Add features that involve external services such as syncing to calendar and Facebook/Twitter login/signup.
-- [ ] Create an appealing UI that brings a unique theme to Pluto.
-- [ ] Launch the iOS application.
-- [ ] Begin Android application.
-- [ ] Begin Web application.
+Pluto is an event network application that lets see you see and save all the neat stuff going on at your university. You can add friends and see if they're attending that party you're considering going to, invite members of your student organization to the next meeting, and keep your calendar filled with fun events!
 
 ## Screenshots
 
-<img src="http://i.imgur.com/MTgVnpu.jpg" width="300">
+<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot1.imageset/pluto1.PNG" width="250">
+<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot2.imageset/pluto2.PNG" width="250">
+<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot3.imageset/pluto3.PNG" width="250">
+
+## Features
+
+- [x] Create events
+- [x] See event details including time and location
+- [x] Add event to calendar with the tap of a button
+- [] Add pictures you took at an event to the event
+- [x] Add friends
+- [x] See what friends are going to events you're interested in
+- [] Sort events in different ways
+- [] Search through events and users
+- [] Invite users to your event, even if they don't have the app
 
 ## Getting Started
 
