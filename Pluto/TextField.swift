@@ -11,7 +11,11 @@ import UIKit
 @IBDesignable
 class TextField : UITextField {
     
-    @IBInspectable var inset: CGFloat = 0
+    // MARK: - PROPERTIES
+    
+    @IBInspectable var inset: CGFloat = 0 // The space between the edge and the text.
+    
+    /* The following functions set the inset. */
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         
@@ -23,7 +27,19 @@ class TextField : UITextField {
         return textRect(forBounds: bounds)
     }
     
+    @IBInspectable var placeholderTextColor: UIColor? {
+        get {
+            
+            return self.placeholderTextColor
+        } set {
+            
+            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSForegroundColorAttributeName: newValue!])
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
+        
+        /* Draws a line underneath the text field */
         
         let startingPoint = CGPoint(x: rect.minX, y: rect.maxY)
         let endingPoint = CGPoint(x: rect.maxX, y: rect.maxY)
@@ -39,20 +55,4 @@ class TextField : UITextField {
         
         path.stroke()
     }
-    
-    override func awakeFromNib() {
-        
-    }
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        
-        setupView()
-    }
-    
-    func setupView() {
-        
-        
-    }
-    
 }

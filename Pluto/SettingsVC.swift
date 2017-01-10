@@ -14,8 +14,8 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     // MARK: - Outlets
     
     @IBOutlet weak var profileImageView: RoundImageView!
-    @IBOutlet weak var nameField: HoshiTextField!
-    @IBOutlet weak var emailField: HoshiTextField!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
     
     // MARK: - Variables
     
@@ -148,7 +148,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                 self.nameField.text = "What's your name?"
             }
             
-            self.emailField.text = value?["email"] as! String
+            self.emailField.text = value?["email"] as? String
             
         }) { (error) in
             

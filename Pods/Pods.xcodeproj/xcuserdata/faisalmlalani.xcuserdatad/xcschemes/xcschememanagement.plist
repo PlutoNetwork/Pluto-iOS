@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Spring.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6D1BAD26C6DAD4DBA3954507CF75D8DF</key>
+		<key>583E7F8A359CBB5CE57F06A052D9AC75</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>90AD72DCDD14692B956B35ED5E5256D8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4557E768B33ACD8055A73F18431D0B9</key>
+		<key>E15EE1EBF62F34F569C6D98BA82822CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

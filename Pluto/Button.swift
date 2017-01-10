@@ -12,6 +12,8 @@ import pop
 @IBDesignable
 class Button: UIButton {
     
+    // MARK: - PROPERTIES
+    
     @IBInspectable var cornerRadius: CGFloat = 3.0 {
         didSet {
             
@@ -19,12 +21,7 @@ class Button: UIButton {
         }
     }
     
-    @IBInspectable var fontColor: UIColor = UIColor.black {
-        didSet {
-            
-            self.tintColor = fontColor
-        }
-    }
+    // MARK: - CONFIGURATION
     
     override func awakeFromNib() {
         
@@ -37,15 +34,27 @@ class Button: UIButton {
         setupView()
     }
     
+    /**
+     *  Sets default properties to the view.
+     */
     func setupView() {
         
         self.layer.cornerRadius = cornerRadius
+        
+        /* Adds a pulse animation when the button is tapped. */
         self.addTarget(self, action: #selector(Button.scaleToSmall), for: .touchDown)
         self.addTarget(self, action: #selector(Button.scaleToSmall), for: .touchDragEnter)
         self.addTarget(self, action: #selector(Button.scaleAnimation), for: .touchUpInside)
         self.addTarget(self, action: #selector(Button.scaleDefault), for: .touchDragExit)
     }
     
+    // MARK: - ANIMATION
+    
+    /**
+     *  #PULSE
+     *
+     *  Makes the button smaller.
+     */
     func scaleToSmall() {
         
         let scaleAnim = POPBasicAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -53,6 +62,11 @@ class Button: UIButton {
         self.layer.pop_add(scaleAnim, forKey: "layerScaleToSmallAnimation")
     }
     
+    /**
+     *  #PULSE
+     *
+     *  Makes the button bigger.
+     */
     func scaleAnimation() {
         
         let scaleAnim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)
@@ -62,6 +76,11 @@ class Button: UIButton {
         self.layer.pop_add(scaleAnim, forKey: "layerScaleSpringAnimation")
     }
     
+    /**
+     *  #PULSE
+     *
+     *  Brings the button back down to normal size.
+     */
     func scaleDefault() {
         
         let scaleAnim = POPSpringAnimation(propertyNamed: kPOPLayerScaleXY)

@@ -264,7 +264,7 @@ open class SCLAlertView: UIViewController {
         contentView.addSubview(labelTitle)
         contentView.addSubview(viewText)
         // Circle View
-        circleBG.backgroundColor = BLACK_COLOR
+        circleBG.backgroundColor = UIColor.white
         circleBG.layer.cornerRadius = circleBG.frame.size.height / 2
         baseView.addSubview(circleBG)
         circleBG.addSubview(circleView)
@@ -283,10 +283,10 @@ open class SCLAlertView: UIViewController {
         viewText.textContainer.lineFragmentPadding = 0;
         viewText.font = appearance.kTextFont
         // Colours
-        contentView.backgroundColor = BLACK_COLOR
-        viewText.backgroundColor = BLACK_COLOR
-        labelTitle.textColor = UIColor.white
-        viewText.textColor = UIColor.white
+        contentView.backgroundColor = UIColor.white
+        viewText.backgroundColor = UIColor.white
+        labelTitle.textColor = UIColor.black
+        viewText.textColor = UIColor.black
         contentView.layer.borderColor = BLACK_COLOR.cgColor
         //Gesture Recognizer for tapping outside the textinput
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SCLAlertView.tapped(_:)))

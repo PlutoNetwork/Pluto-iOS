@@ -6,13 +6,12 @@ target 'Pluto' do
   use_frameworks!
 
   # Pods for Pluto
-	pod 'pop', '~> 1.0'
 	pod 'Firebase'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Storage'
 	pod 'Firebase/Database'
     pod 'Firebase/Messaging'
-    pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
+    pod 'pop', '~> 1.0'
 end
 
 post_install do |installer|

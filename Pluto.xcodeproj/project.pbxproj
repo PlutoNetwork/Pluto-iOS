@@ -32,24 +32,22 @@
 		06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06301FA41DAED58E0056ABA1 /* CreateEventView.swift */; };
 		064554901D8B1185002C236C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645548F1D8B1185002C236C /* SearchBar.swift */; };
 		065E9B361DA9A5C60083C329 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E9B351DA9A5C60083C329 /* EventView.swift */; };
-		067CF1811DB4056E0080C41C /* TabBarC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1801DB4056E0080C41C /* TabBarC.swift */; };
 		067CF1831DB418C70080C41C /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateVC.swift */; };
 		067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailsVC.swift */; };
 		067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1861DB4972B0080C41C /* FriendVC.swift */; };
 		06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A401DBDCBB5008A8356 /* SquareImageView.swift */; };
-		06806A451DBF2A4B008A8356 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchVC.swift */; };
+		06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchController.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
 		0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
-		06B20C931D863296006EF005 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C921D863296006EF005 /* LoginVC.swift */; };
+		06B20C931D863296006EF005 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C921D863296006EF005 /* LoginController.swift */; };
 		06B20C961D863296006EF005 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06B20C941D863296006EF005 /* Main.storyboard */; };
 		06B20C991D863296006EF005 /* Pluto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C971D863296006EF005 /* Pluto.xcdatamodeld */; };
 		06B20C9B1D863296006EF005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06B20C9A1D863296006EF005 /* Assets.xcassets */; };
 		06B20C9E1D863296006EF005 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06B20C9C1D863296006EF005 /* LaunchScreen.storyboard */; };
 		06B20CA91D863296006EF005 /* PlutoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CA81D863296006EF005 /* PlutoTests.swift */; };
 		06B20CB41D863296006EF005 /* PlutoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CB31D863296006EF005 /* PlutoUITests.swift */; };
-		06B20CC21D8633C5006EF005 /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CC11D8633C5006EF005 /* Lobster-Regular.ttf */; };
 		06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CC91D8638AA006EF005 /* AnimationEngine.swift */; };
 		06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CCE1D8646C9006EF005 /* TextField.swift */; };
 		06B20CD11D8656B4006EF005 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CD01D8656B4006EF005 /* Button.swift */; };
@@ -66,17 +64,6 @@
 		06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CE91D866A0D006EF005 /* Constants.swift */; };
 		06C370781DBF575C004D47D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06C370771DBF575C004D47D5 /* GoogleService-Info.plist */; };
 		06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */; };
-		06FE5F5D1DE7BD0100E2C2BD /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F511DE7BD0100E2C2BD /* AkiraTextField.swift */; };
-		06FE5F5E1DE7BD0100E2C2BD /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F521DE7BD0100E2C2BD /* HoshiTextField.swift */; };
-		06FE5F5F1DE7BD0100E2C2BD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06FE5F531DE7BD0100E2C2BD /* Info.plist */; };
-		06FE5F601DE7BD0100E2C2BD /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F541DE7BD0100E2C2BD /* IsaoTextField.swift */; };
-		06FE5F611DE7BD0100E2C2BD /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F551DE7BD0100E2C2BD /* JiroTextField.swift */; };
-		06FE5F621DE7BD0100E2C2BD /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F561DE7BD0100E2C2BD /* KaedeTextField.swift */; };
-		06FE5F631DE7BD0100E2C2BD /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F571DE7BD0100E2C2BD /* MadokaTextField.swift */; };
-		06FE5F641DE7BD0100E2C2BD /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F581DE7BD0100E2C2BD /* MinoruTextField.swift */; };
-		06FE5F651DE7BD0100E2C2BD /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F5A1DE7BD0100E2C2BD /* TextFieldsEffects.swift */; };
-		06FE5F661DE7BD0100E2C2BD /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F5B1DE7BD0100E2C2BD /* YokoTextField.swift */; };
-		06FE5F671DE7BD0100E2C2BD /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FE5F5C1DE7BD0100E2C2BD /* YoshikoTextField.swift */; };
 		B4F34FAEE16D44E835F8B980 /* Pods_Pluto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5524771818B2C31640FA526F /* Pods_Pluto.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,18 +111,17 @@
 		0645548F1D8B1185002C236C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		065E9B351DA9A5C60083C329 /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		065E9B371DAAE0E30083C329 /* Pluto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pluto.entitlements; sourceTree = "<group>"; };
-		067CF1801DB4056E0080C41C /* TabBarC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarC.swift; sourceTree = "<group>"; };
 		067CF1821DB418C70080C41C /* CreateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
 		067CF1841DB4329D0080C41C /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		067CF1861DB4972B0080C41C /* FriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		06806A401DBDCBB5008A8356 /* SquareImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImageView.swift; sourceTree = "<group>"; };
-		06806A441DBF2A4B008A8356 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		06806A441DBF2A4B008A8356 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FaceAware.swift"; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B20C901D863296006EF005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		06B20C921D863296006EF005 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		06B20C921D863296006EF005 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		06B20C951D863296006EF005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06B20C981D863296006EF005 /* Pluto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pluto.xcdatamodel; sourceTree = "<group>"; };
 		06B20C9A1D863296006EF005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,7 +133,6 @@
 		06B20CAF1D863296006EF005 /* PlutoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlutoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B20CB31D863296006EF005 /* PlutoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlutoUITests.swift; sourceTree = "<group>"; };
 		06B20CB51D863296006EF005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06B20CC11D8633C5006EF005 /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
 		06B20CC41D863773006EF005 /* Pluto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pluto-Bridging-Header.h"; sourceTree = "<group>"; };
 		06B20CC91D8638AA006EF005 /* AnimationEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationEngine.swift; sourceTree = "<group>"; };
 		06B20CCE1D8646C9006EF005 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -165,18 +150,6 @@
 		06B20CE91D866A0D006EF005 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		06C370771DBF575C004D47D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
-		06FE5F511DE7BD0100E2C2BD /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
-		06FE5F521DE7BD0100E2C2BD /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
-		06FE5F531DE7BD0100E2C2BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06FE5F541DE7BD0100E2C2BD /* IsaoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsaoTextField.swift; sourceTree = "<group>"; };
-		06FE5F551DE7BD0100E2C2BD /* JiroTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JiroTextField.swift; sourceTree = "<group>"; };
-		06FE5F561DE7BD0100E2C2BD /* KaedeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KaedeTextField.swift; sourceTree = "<group>"; };
-		06FE5F571DE7BD0100E2C2BD /* MadokaTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadokaTextField.swift; sourceTree = "<group>"; };
-		06FE5F581DE7BD0100E2C2BD /* MinoruTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinoruTextField.swift; sourceTree = "<group>"; };
-		06FE5F591DE7BD0100E2C2BD /* TextFieldEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEffects.h; sourceTree = "<group>"; };
-		06FE5F5A1DE7BD0100E2C2BD /* TextFieldsEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsEffects.swift; sourceTree = "<group>"; };
-		06FE5F5B1DE7BD0100E2C2BD /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
-		06FE5F5C1DE7BD0100E2C2BD /* YoshikoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshikoTextField.swift; sourceTree = "<group>"; };
 		5524771818B2C31640FA526F /* Pods_Pluto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pluto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74DB09F247622E608C0D1FBA /* Pods-Pluto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD34BF65A678735D57AE41F /* Pods-Pluto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.release.xcconfig"; sourceTree = "<group>"; };
@@ -211,21 +184,12 @@
 		060644591D8A3EE9009CFEBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				06FE5F501DE7BD0100E2C2BD /* TextFieldEffects */,
+				06B20CC31D86374F006EF005 /* Fonts */,
 				061276781DA3592200CB3C2D /* SCLAlertView */,
 				0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */,
 				060644681D8A69FC009CFEBC /* schools.csv */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		0606445E1D8A3FD3009CFEBC /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				06B20C941D863296006EF005 /* Main.storyboard */,
-				06B20C9C1D863296006EF005 /* LaunchScreen.storyboard */,
-			);
-			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		0606445F1D8A45CC009CFEBC /* Models */ = {
@@ -246,6 +210,19 @@
 				0612767B1DA3592200CB3C2D /* SCLExtensions.swift */,
 			);
 			path = SCLAlertView;
+			sourceTree = "<group>";
+		};
+		063D2F191E2403AB008B0F39 /* Clean */ = {
+			isa = PBXGroup;
+			children = (
+				061F7E4F1D985CC20023D46F /* EventCell.swift */,
+				061F7E531D9874190023D46F /* RoundImageView.swift */,
+				065E9B351DA9A5C60083C329 /* EventView.swift */,
+				06301FA41DAED58E0056ABA1 /* CreateEventView.swift */,
+				06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */,
+				06806A401DBDCBB5008A8356 /* SquareImageView.swift */,
+			);
+			name = Clean;
 			sourceTree = "<group>";
 		};
 		06A196B21D976D86001C29EC /* Services */ = {
@@ -281,18 +258,20 @@
 		06B20C8F1D863296006EF005 /* Pluto */ = {
 			isa = PBXGroup;
 			children = (
-				065E9B371DAAE0E30083C329 /* Pluto.entitlements */,
+				063D2F191E2403AB008B0F39 /* Clean */,
+				06B20C9A1D863296006EF005 /* Assets.xcassets */,
+				06B20C901D863296006EF005 /* AppDelegate.swift */,
+				06B20C941D863296006EF005 /* Main.storyboard */,
+				06B20C9C1D863296006EF005 /* LaunchScreen.storyboard */,
 				06B20CC71D86381C006EF005 /* Controllers */,
 				06A196B21D976D86001C29EC /* Services */,
-				06B20CC31D86374F006EF005 /* Fonts */,
 				0606445F1D8A45CC009CFEBC /* Models */,
-				06B20CE81D8665C0006EF005 /* Plists */,
 				060644591D8A3EE9009CFEBC /* Resources */,
-				0606445E1D8A3FD3009CFEBC /* Storyboards */,
 				06B20CC81D863895006EF005 /* Utilities */,
 				06B20CCB1D864313006EF005 /* Views */,
-				06B20C901D863296006EF005 /* AppDelegate.swift */,
-				06B20C9A1D863296006EF005 /* Assets.xcassets */,
+				06B20C9F1D863296006EF005 /* Info.plist */,
+				06C370771DBF575C004D47D5 /* GoogleService-Info.plist */,
+				065E9B371DAAE0E30083C329 /* Pluto.entitlements */,
 				06B20C971D863296006EF005 /* Pluto.xcdatamodeld */,
 				06B20CC41D863773006EF005 /* Pluto-Bridging-Header.h */,
 			);
@@ -340,7 +319,6 @@
 				061611DD1DEA6E2400EE0816 /* Lato-Light.ttf */,
 				061611DE1DEA6E2400EE0816 /* Lato-LightItalic.ttf */,
 				061611DF1DEA6E2400EE0816 /* Lato-Regular.ttf */,
-				06B20CC11D8633C5006EF005 /* Lobster-Regular.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -348,11 +326,10 @@
 		06B20CC71D86381C006EF005 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				06B20C921D863296006EF005 /* LoginVC.swift */,
-				06806A441DBF2A4B008A8356 /* SearchVC.swift */,
-				067CF1801DB4056E0080C41C /* TabBarC.swift */,
-				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
+				06B20C921D863296006EF005 /* LoginController.swift */,
+				06806A441DBF2A4B008A8356 /* SearchController.swift */,
 				061F7E4B1D983A970023D46F /* BoardVC.swift */,
+				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
 				067CF1821DB418C70080C41C /* CreateVC.swift */,
 				067CF1841DB4329D0080C41C /* DetailsVC.swift */,
 				061F7E511D9863120023D46F /* ProfileVC.swift */,
@@ -364,9 +341,9 @@
 		06B20CC81D863895006EF005 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				06B20CC91D8638AA006EF005 /* AnimationEngine.swift */,
 				0606445C1D8A3FC8009CFEBC /* csv.swift */,
 				06B20CE91D866A0D006EF005 /* Constants.swift */,
-				06B20CC91D8638AA006EF005 /* AnimationEngine.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -374,45 +351,11 @@
 		06B20CCB1D864313006EF005 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				06B20CCE1D8646C9006EF005 /* TextField.swift */,
 				06B20CD01D8656B4006EF005 /* Button.swift */,
 				0645548F1D8B1185002C236C /* SearchBar.swift */,
-				061F7E4F1D985CC20023D46F /* EventCell.swift */,
-				061F7E531D9874190023D46F /* RoundImageView.swift */,
-				065E9B351DA9A5C60083C329 /* EventView.swift */,
-				06301FA41DAED58E0056ABA1 /* CreateEventView.swift */,
-				06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */,
-				06806A401DBDCBB5008A8356 /* SquareImageView.swift */,
+				06B20CCE1D8646C9006EF005 /* TextField.swift */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		06B20CE81D8665C0006EF005 /* Plists */ = {
-			isa = PBXGroup;
-			children = (
-				06B20C9F1D863296006EF005 /* Info.plist */,
-				06C370771DBF575C004D47D5 /* GoogleService-Info.plist */,
-			);
-			name = Plists;
-			sourceTree = "<group>";
-		};
-		06FE5F501DE7BD0100E2C2BD /* TextFieldEffects */ = {
-			isa = PBXGroup;
-			children = (
-				06FE5F511DE7BD0100E2C2BD /* AkiraTextField.swift */,
-				06FE5F521DE7BD0100E2C2BD /* HoshiTextField.swift */,
-				06FE5F531DE7BD0100E2C2BD /* Info.plist */,
-				06FE5F541DE7BD0100E2C2BD /* IsaoTextField.swift */,
-				06FE5F551DE7BD0100E2C2BD /* JiroTextField.swift */,
-				06FE5F561DE7BD0100E2C2BD /* KaedeTextField.swift */,
-				06FE5F571DE7BD0100E2C2BD /* MadokaTextField.swift */,
-				06FE5F581DE7BD0100E2C2BD /* MinoruTextField.swift */,
-				06FE5F591DE7BD0100E2C2BD /* TextFieldEffects.h */,
-				06FE5F5A1DE7BD0100E2C2BD /* TextFieldsEffects.swift */,
-				06FE5F5B1DE7BD0100E2C2BD /* YokoTextField.swift */,
-				06FE5F5C1DE7BD0100E2C2BD /* YoshikoTextField.swift */,
-			);
-			path = TextFieldEffects;
 			sourceTree = "<group>";
 		};
 		E451A91CDF2DC2DE41E28726 /* Pods */ = {
@@ -498,7 +441,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Faisal M. Lalani";
 				TargetAttributes = {
 					06B20C8C1D863296006EF005 = {
@@ -563,7 +506,6 @@
 				061611E71DEA6E2400EE0816 /* Lato-Light.ttf in Resources */,
 				06B20CE01D865D36006EF005 /* OpenSans-Italic.ttf in Resources */,
 				061611E51DEA6E2400EE0816 /* Lato-HairlineItalic.ttf in Resources */,
-				06FE5F5F1DE7BD0100E2C2BD /* Info.plist in Resources */,
 				06B20CDD1D865D36006EF005 /* OpenSans-BoldItalic.ttf in Resources */,
 				06B20C9E1D863296006EF005 /* LaunchScreen.storyboard in Resources */,
 				061611E81DEA6E2400EE0816 /* Lato-LightItalic.ttf in Resources */,
@@ -571,7 +513,6 @@
 				06B20CDE1D865D36006EF005 /* OpenSans-ExtraBold.ttf in Resources */,
 				061611E21DEA6E2400EE0816 /* Lato-Bold.ttf in Resources */,
 				061611E91DEA6E2400EE0816 /* Lato-Regular.ttf in Resources */,
-				06B20CC21D8633C5006EF005 /* Lobster-Regular.ttf in Resources */,
 				06B20CE21D865D36006EF005 /* OpenSans-LightItalic.ttf in Resources */,
 				061611E41DEA6E2400EE0816 /* Lato-Hairline.ttf in Resources */,
 				06B20C9B1D863296006EF005 /* Assets.xcassets in Resources */,
@@ -619,7 +560,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8B88BCED45AE6BA17C07F145 /* [CP] Copy Pods Resources */ = {
@@ -661,31 +602,21 @@
 			files = (
 				061F7E521D9863120023D46F /* ProfileVC.swift in Sources */,
 				067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */,
-				067CF1811DB4056E0080C41C /* TabBarC.swift in Sources */,
-				06FE5F601DE7BD0100E2C2BD /* IsaoTextField.swift in Sources */,
-				06FE5F651DE7BD0100E2C2BD /* TextFieldsEffects.swift in Sources */,
-				06FE5F641DE7BD0100E2C2BD /* MinoruTextField.swift in Sources */,
 				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
-				06B20C931D863296006EF005 /* LoginVC.swift in Sources */,
-				06FE5F661DE7BD0100E2C2BD /* YokoTextField.swift in Sources */,
+				06B20C931D863296006EF005 /* LoginController.swift in Sources */,
 				0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */,
 				060644611D8A4601009CFEBC /* Board.swift in Sources */,
 				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
-				06FE5F611DE7BD0100E2C2BD /* JiroTextField.swift in Sources */,
 				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
-				06FE5F5D1DE7BD0100E2C2BD /* AkiraTextField.swift in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
-				06FE5F671DE7BD0100E2C2BD /* YoshikoTextField.swift in Sources */,
-				06806A451DBF2A4B008A8356 /* SearchVC.swift in Sources */,
+				06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
 				06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */,
-				06FE5F621DE7BD0100E2C2BD /* KaedeTextField.swift in Sources */,
 				061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */,
 				0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */,
 				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
 				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,
 				06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */,
-				06FE5F5E1DE7BD0100E2C2BD /* HoshiTextField.swift in Sources */,
 				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
 				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
 				06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */,
@@ -693,7 +624,6 @@
 				067CF1831DB418C70080C41C /* CreateVC.swift in Sources */,
 				068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */,
 				061F7E4C1D983A970023D46F /* BoardVC.swift in Sources */,
-				06FE5F631DE7BD0100E2C2BD /* MadokaTextField.swift in Sources */,
 				065E9B361DA9A5C60083C329 /* EventView.swift in Sources */,
 				06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */,
 				06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */,

@@ -11,92 +11,37 @@ import FirebaseInstanceID
 import FirebaseMessaging
 import UIKit
 
-class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class BoardVC: UIViewController, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    // MARK: - Outlets
+    // MARK: - OUTLETS
     
-    @IBOutlet weak var popularLabel: UILabel!
-    @IBOutlet weak var newLabel: UILabel!
-    
-    @IBOutlet weak var schoolNameLabel: UILabel!
     @IBOutlet weak var eventView: UITableView!
     
-    // MARK: - Variables
+    // MARK: - VARIABLES
     
-    /// Global image cache that holds all event and profile pictures.
+    /// Holds all event and profile pictures.
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     /// Holds all the event data received from Firebase.
     var events = [Event]()
     
-    var searchBar: UISearchBar!
-    
-    /// Holds all the board titles from the CSV file.
-    var users = [Friend]()
-    
-    /// Holds all the filtered board titles as the filtering function does its work.
-    var filteredUsers = [Friend]()
-    
-    var searchedUser: String!
-    
     var holdBoardKey: String!
     
-    var inSearchMode = false
-    
-    // MARK: - View Functions
+    // MARK: - VIEW
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        UIApplication.shared.isStatusBarHidden = false
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         // This function is called BEFORE the view loads.
         grabCurrentBoardID()
         checkForRequests()
-        grabUsers()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initializes the table view that holds all the events.
+        /* Initialization of the table view that holds all the events. */
         eventView.delegate = self
         eventView.dataSource = self
-        
-        
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(BoardVC.handleTap))
-        tap.delegate = self
-        popularLabel.addGestureRecognizer(tap)
-        
-        let tap2 = UITapGestureRecognizer(target: self, action: #selector(BoardVC.handleTap2))
-        tap2.delegate = self
-        newLabel.addGestureRecognizer(tap2)
-    }
-    
-    func handleTap() {
-        
-        newLabel.alpha = 0.6
-        popularLabel.alpha = 1.0
-        
-        // Sort by popularity.
-        events = events.sorted(by: { $0.count > $1.count })
-        eventView.reloadData()
-    }
-    
-    func handleTap2() {
-        
-        newLabel.alpha = 1.0
-        popularLabel.alpha = 0.6
-        
-        // Sort by popularity.
-        events = events.sorted(by: { $1.count > $0.count })
-        eventView.reloadData()
-    }
-    
-    // MARK: - Button Actions
-    
-    @IBAction func searchButtonAction(_ sender: AnyObject) {
     }
     
     // MARK: - Firebase
@@ -124,33 +69,6 @@ class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerContr
         })
     }
     
-    func grabUsers() {
-        
-        DataService.ds.REF_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            self.users = []
-            self.filteredUsers = []
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                
-                for snap in snapshot {
-                    
-                    if let friendDict = snap.value as? Dictionary<String, AnyObject> {
-                        
-                        let key = snap.key
-                        let user = Friend(friendKey: key, friendData: friendDict)
-                        
-                        if user.name != nil {
-                        
-                            self.users.append(user)
-                        }
-                    }
-
-                }
-            }
-        })
-    }
-    
     func downloadProfileImage(friendKey: String, imageURL: String, name: String) {
         
         let ref = FIRStorage.storage().reference(forURL: imageURL)
@@ -158,11 +76,11 @@ class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerContr
             
             if error != nil {
                 
-                // Error! Unable to download photo from Firebase storage.
+                // ERROR: Unable to download photo from Firebase storage.
                 
             } else {
                 
-                // Image successfully downloaded from Firebase storage.
+                // SUCCESS: Image successfully downloaded from Firebase storage.
                 
                 if let imageData = data {
                     
@@ -172,6 +90,7 @@ class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerContr
                         
                         // Save to image cache (globally declared in BoardVC)
                         BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
+                        
                     } else {
                         
                         self.presentRequestNotice(friendID: friendKey, img: UIImage(named: "user")!, name: name)
@@ -207,13 +126,13 @@ class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerContr
             
             let value = snapshot.value as? NSDictionary
             
-            // Checks to see if the user has a set profile image.
+            /* Checks to see if the user has a set profile image. */
             if value?["image"] != nil {
                 
                 if value?["name"] != nil {
                     
-                    // Downloads the set profile image.
                     self.downloadProfileImage(friendKey: friendKey, imageURL: (value?["image"] as? String)!, name: (value?["name"] as? String)!)
+                    
                 } else {
                     
                     self.downloadProfileImage(friendKey: friendKey, imageURL: (value?["image"] as? String)!, name: (value?["email"] as? String)!)
@@ -246,7 +165,6 @@ class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerContr
             let value = snapshot.value as? NSDictionary
             
             self.navigationItem.title = (value?["title"] as? String)?.uppercased()
-            self.schoolNameLabel.text = (value?["title"] as? String)?.uppercased()
             
         }) { (error) in
             
@@ -259,7 +177,7 @@ class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerContr
     func setEvents(boardKey: String) {
                 
         DataService.ds.REF_BOARDS.child(boardKey).child("events").observe(.value, with: { (snapshot) in
-           
+            
             self.events = []
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -321,14 +239,6 @@ class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerContr
                 destinationVC.eventKey = events[indexPath.row].eventKey
             }
             
-        } else if segue.identifier == "searchUser" {
-            
-            let destinationVC: FriendVC = segue.destination as! FriendVC
-            
-            if searchedUser != nil {
-            
-                destinationVC.creatorID = searchedUser
-            }
         }
     }
     
@@ -391,14 +301,5 @@ class BoardVC: UIViewController, UIGestureRecognizerDelegate, UIImagePickerContr
             
             return EventCell()
         }
-    }
-    
-    // MARK: - Text Field Functions
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        // Dismisses the keyboard.
-        textField.resignFirstResponder()
-        return true
     }
 }
