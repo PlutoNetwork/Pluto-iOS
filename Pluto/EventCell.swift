@@ -12,16 +12,17 @@ import UIKit
 
 class EventCell: UITableViewCell {
     
-    // MARK: - Outlets
+    // MARK: - OUTLETS
+    
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventTimeLabel: UILabel!
-    @IBOutlet weak var eventDescriptionTextView: UITextView!
-    @IBOutlet weak var eventCreatorLabel: UILabel!
-    @IBOutlet weak var eventImageView: UIImageView!    
+    @IBOutlet weak var eventLocationLabel: UILabel!
+    @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventPlutoImageView: UIImageView!
     @IBOutlet weak var eventPlutoCountLabel: UILabel!
     
-    // MARK: - Variables
+    // MARK: - VARIABLES
+    
     var event: Event!
     var userEventRef: FIRDatabaseReference!
     var calendar: EKCalendar!
@@ -29,36 +30,45 @@ class EventCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        eventPlutoImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(EventCell.changePluto)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(EventCell.changeCount))
+        
+        eventPlutoImageView.addGestureRecognizer(tap)
     }
+    
+    // MARK: - CONFIGURATION
     
     func configureCell(event: Event, img: UIImage? = nil) {
         
         self.event = event
         
         userEventRef = DataService.ds.REF_CURRENT_USER.child("events").child(event.eventKey)
-        
         self.eventTitleLabel.text = event.title
         self.eventTimeLabel.text = event.time
-        self.eventCreatorLabel.text = "by \(event.creator)"
+        self.eventLocationLabel.text = event.location
         self.eventPlutoCountLabel.text = "\(event.count)"
+        
+        /* Checks to see if the image is located in the cache. */
         
         if img != nil {
             
+            /* If it is, just grab it and set the image view to the cached image. */
             self.eventImageView.image = img
             
         } else {
             
+            /* If it isn't, save it the cache. */
+            
             let ref = FIRStorage.storage().reference(forURL: event.imageURL)
+            
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 
                 if error != nil {
                     
-                    // Error! Unable to download photo from Firebase storage.
+                    /* ERROR: Unable to download photo from Firebase storage. */
                                     
                 } else {
                     
-                    // Image successfully downloaded from Firebase storage.
+                    /* SUCCESS: Image downloaded from Firebase storage. */
                     
                     if let imageData = data {
                         
@@ -66,9 +76,7 @@ class EventCell: UITableViewCell {
                             
                             self.eventImageView.image = img
                             
-                            // Save to image cache (globally declared in BoardVC)
-                            BoardVC.imageCache.setObject(img, forKey: event.imageURL as NSString)
-                            
+                            BoardController.imageCache.setObject(img, forKey: event.imageURL as NSString) // Save to image cache.
                         }
                     }
                 }
@@ -88,7 +96,7 @@ class EventCell: UITableViewCell {
         })
     }
     
-    func changePluto() {
+    func changeCount() {
         
         userEventRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -97,19 +105,19 @@ class EventCell: UITableViewCell {
                 self.eventPlutoImageView.image = UIImage(named: "ship-yellow")
                 self.event.adjustCount(addToCount: true)
                 self.userEventRef.setValue(true)
-                self.syncToCalender(add: true)
+                self.syncToCalendar(add: true)
                 
             } else {
                 
                 self.eventPlutoImageView.image = UIImage(named: "ship-faded")
                 self.event.adjustCount(addToCount: false)
                 self.userEventRef.removeValue()
-                self.syncToCalender(add: false)
+                self.syncToCalendar(add: false)
             }
         })
     }
     
-    func syncToCalender(add: Bool) {
+    func syncToCalendar(add: Bool) {
         
         let eventStore = EKEventStore()
         
@@ -119,8 +127,7 @@ class EventCell: UITableViewCell {
                 
                 if error != nil {
                     
-                    // Code if we get permission.
-                    print("PERMISSION GRANTED")
+                    /* SUCCESS: We have access to modify the user's calendar. */
                     
                     if add {
                         
@@ -129,7 +136,9 @@ class EventCell: UITableViewCell {
                     
                 } else {
                     
-                    print("ERORR")
+                    /* ERROR: Something went wrong and the user's calendar could not be accessed. */
+                    
+                    print(error.debugDescription)
                 }
             })
             
@@ -172,12 +181,11 @@ class EventCell: UITableViewCell {
             print("OH NO")
         }
         
-        //Opens calendar app after event is added
+        // Opens calendar app after event is added
         // UIApplication.shared.openURL(NSURL(string: "calshow://")! as URL) //added JMS http://stackoverflow.com/questions/29684423/open-calendar-from-swift-app
         
         let date = newEvent.startDate as NSDate
         
         UIApplication.shared.openURL(NSURL(string: "calshow:\(date.timeIntervalSinceReferenceDate)")! as URL) //added JMS http://stackoverflow.com/questions/29684423/open-calendar-from-swift-app
     }
-
 }

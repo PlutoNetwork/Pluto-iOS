@@ -1,4 +1,4 @@
-//
+    //
 //  AppDelegate.swift
 //  Pluto
 //
@@ -15,12 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var events = [Event]()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         FIRApp.configure()
+        
+        /* Navigation bar customization */
+    
+        // let latoFont = UIFont(name: "Lato-Regular", size: 14.0)
+        
+        // UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: latoFont!, NSForegroundColorAttributeName: UIColor.white] // Changes the title font, font size, and color.
         
         /// Grabs the email and password saved in a previous instance if the user already exists.
         let userDefaults = UserDefaults.standard

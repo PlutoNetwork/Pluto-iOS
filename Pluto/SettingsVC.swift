@@ -113,7 +113,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                         self.profileImageView.image = img
                         
                         // Save to image cache (globally declared in BoardVC).
-                        BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
+                        BoardController.imageCache.setObject(img, forKey: imageURL as NSString)
                     }
                 }
             }

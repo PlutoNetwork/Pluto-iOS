@@ -27,7 +27,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     var events = [Event]()
     
     /// Holds all the user's friend data received from Firebase.
-    var friends = [Friend]()
+    var friends = [User]()
     
     var holdBoardKey: String!
     
@@ -36,7 +36,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     override func viewWillAppear(_ animated: Bool) {
         
         UIApplication.shared.isStatusBarHidden = true
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         grabCurrentBoardID()
         setUserInfo()
@@ -127,7 +127,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                     if let eventDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         let key = snap.key
-                        let event = Event(eventKey: key, eventData: eventDict, boardKey: boardKey)
+                        let event = Event(eventKey: key, eventData: eventDict)
                         
                         if userEvents.contains(snap.key) {
                             
@@ -154,7 +154,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                     if let friendDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         let key = snap.key
-                        let friend = Friend(friendKey: key, friendData: friendDict)
+                        let friend = User(friendKey: key, friendData: friendDict)
                         
                         if friend.connected == true {
                             
@@ -236,8 +236,8 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                         
                         self.profileImageView.image = img
                         
-                        // Save to image cache (globally declared in BoardVC)
-                        BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
+                        // Save to image cache
+                        BoardController.imageCache.setObject(img, forKey: imageURL as NSString)
                     }
                 }
             }
@@ -262,13 +262,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         
         if segue.identifier == "showProfile" {
             
-            if let friendVC = segue.destination as? FriendVC {
-                
-                if let friendKey = sender as? String {
-                    
-                    friendVC.creatorID = friendKey
-                }
-            }
+            
         } else if segue.identifier == "showDetails" {
             
             let destinationVC: DetailsVC = segue.destination as! DetailsVC
@@ -311,7 +305,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         
         if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
             
-            if let img = BoardVC.imageCache.object(forKey: event.imageURL as NSString) {
+            if let img = BoardController.imageCache.object(forKey: event.imageURL as NSString) {
                 
                 cell.configureCell(event: event, img: img)
                 return cell

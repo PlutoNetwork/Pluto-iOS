@@ -27,7 +27,7 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     var eventKey = String()
     var boardKey = String()
-    var friends = [Friend]()
+    var friends = [User]()
     
     // MARK: - View Functions
     
@@ -37,15 +37,17 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         self.navigationItem.title = "Event Details"
         self.navigationController?.navigationBar.backItem?.title = ""
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        
-        grabCurrentBoardID()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /* Initialization of the friends collection view. */
         friendsView.dataSource = self
         friendsView.delegate = self
+        
+        self.setEventDetails()
+        self.setFriends()
     }
     
     // MARK: - Button Actions
@@ -116,29 +118,16 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                         self.eventImageView.image = img
                         
                         // Save to image cache (globally declared in BoardVC)
-                        BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
+                        BoardController.imageCache.setObject(img, forKey: imageURL as NSString)
                     }
                 }
             }
         })
     }
-
-    func grabCurrentBoardID() {
-        
-        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let value = snapshot.value as? NSDictionary
-            
-            let currentBoardID = value?["board"] as? String
-            self.setEventDetails(currentBoardID: currentBoardID!)
-            self.setFriends(boardKey: currentBoardID!)
-            self.boardKey = currentBoardID!
-        })
-    }
     
-    func setEventDetails(currentBoardID: String) {
+    func setEventDetails() {
         
-        DataService.ds.REF_BOARDS.child(currentBoardID).child("events").child(eventKey).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_BOARD.child("events").child(eventKey).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
             
@@ -152,7 +141,7 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         })
     }
     
-    func setFriends(boardKey: String) {
+    func setFriends() {
         
         DataService.ds.REF_CURRENT_USER.child("friends").observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -165,11 +154,11 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                     if let friendDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         let key = snap.key
-                        let friend = Friend(friendKey: key, friendData: friendDict)
+                        let friend = User(friendKey: key, friendData: friendDict)
                         
                         if friend.connected == true {
                             
-                            self.checkFriendEvent(friend: friend, boardKey: boardKey)
+                            self.checkFriendEvent(friend: friend)
                         }
                     }
                 }
@@ -177,7 +166,7 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         })
     }
     
-    func checkFriendEvent(friend: Friend, boardKey: String) {
+    func checkFriendEvent(friend: User) {
         
         DataService.ds.REF_USERS.child(friend.friendKey).child("events").observeSingleEvent(of: .value, with: { (snapshot) in
          
@@ -214,13 +203,7 @@ class DetailsVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         
         if segue.identifier == "showProfile" {
             
-            if let friendVC = segue.destination as? FriendVC {
-                
-                if let friendKey = sender as? String {
-                    
-                    friendVC.creatorID = friendKey
-                }
-            }
+            
         }
     }
 }

@@ -18,7 +18,7 @@ class FriendCell: UICollectionViewCell {
     
     // MARK: - Variables
     
-    var friend: Friend!
+    var friend: User!
     
     override func awakeFromNib() {
         
@@ -28,7 +28,7 @@ class FriendCell: UICollectionViewCell {
         layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
     }
     
-    func configureCell(friend: Friend) {
+    func configureCell(friend: User) {
         
         self.friend = friend
         
@@ -73,7 +73,7 @@ class FriendCell: UICollectionViewCell {
                         self.friendImage.image = img
                         
                         // Save to image cache (globally declared in BoardVC)
-                        BoardVC.imageCache.setObject(img, forKey: imageURL as NSString)
+                        BoardController.imageCache.setObject(img, forKey: imageURL as NSString)
                     }
                 }
             }

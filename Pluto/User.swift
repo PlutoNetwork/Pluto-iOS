@@ -6,9 +6,9 @@
 //  Copyright © 2016 Faisal M. Lalani. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class Friend {
+class User {
     
     private var _name: String!
     private var _connected: Bool!

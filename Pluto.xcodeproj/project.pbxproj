@@ -24,20 +24,22 @@
 		061611E81DEA6E2400EE0816 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611DE1DEA6E2400EE0816 /* Lato-LightItalic.ttf */; };
 		061611E91DEA6E2400EE0816 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611DF1DEA6E2400EE0816 /* Lato-Regular.ttf */; };
 		061F74671DB00BEE00C8D2A6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */; };
-		061F7E4C1D983A970023D46F /* BoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4B1D983A970023D46F /* BoardVC.swift */; };
+		061F7E4C1D983A970023D46F /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4B1D983A970023D46F /* BoardController.swift */; };
 		061F7E501D985CC20023D46F /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4F1D985CC20023D46F /* EventCell.swift */; };
 		061F7E521D9863120023D46F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E511D9863120023D46F /* ProfileVC.swift */; };
 		061F7E541D9874190023D46F /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E531D9874190023D46F /* RoundImageView.swift */; };
-		061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061FFF1D1DB9DB0700BFB544 /* Friend.swift */; };
+		061FFF1E1DB9DB0700BFB544 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061FFF1D1DB9DB0700BFB544 /* User.swift */; };
 		06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06301FA41DAED58E0056ABA1 /* CreateEventView.swift */; };
+		063D2F1C1E2577E3008B0F39 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D2F1B1E2577E3008B0F39 /* TabBarController.swift */; };
 		064554901D8B1185002C236C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645548F1D8B1185002C236C /* SearchBar.swift */; };
-		065E9B361DA9A5C60083C329 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E9B351DA9A5C60083C329 /* EventView.swift */; };
-		067CF1831DB418C70080C41C /* CreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateVC.swift */; };
+		065E9B361DA9A5C60083C329 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E9B351DA9A5C60083C329 /* View.swift */; };
+		067CF1831DB418C70080C41C /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateController.swift */; };
 		067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailsVC.swift */; };
-		067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1861DB4972B0080C41C /* FriendVC.swift */; };
 		06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A401DBDCBB5008A8356 /* SquareImageView.swift */; };
 		06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchController.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
+		069266B11E26D17200755FE9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B01E26D17200755FE9 /* TextField.swift */; };
+		069266B51E26D57300755FE9 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B41E26D57300755FE9 /* TextView.swift */; };
 		0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
@@ -49,7 +51,7 @@
 		06B20CA91D863296006EF005 /* PlutoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CA81D863296006EF005 /* PlutoTests.swift */; };
 		06B20CB41D863296006EF005 /* PlutoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CB31D863296006EF005 /* PlutoUITests.swift */; };
 		06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CC91D8638AA006EF005 /* AnimationEngine.swift */; };
-		06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CCE1D8646C9006EF005 /* TextField.swift */; };
+		06B20CCF1D8646C9006EF005 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CCE1D8646C9006EF005 /* LoginTextField.swift */; };
 		06B20CD11D8656B4006EF005 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CD01D8656B4006EF005 /* Button.swift */; };
 		06B20CDC1D865D36006EF005 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD21D865D35006EF005 /* OpenSans-Bold.ttf */; };
 		06B20CDD1D865D36006EF005 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD31D865D35006EF005 /* OpenSans-BoldItalic.ttf */; };
@@ -102,21 +104,23 @@
 		061611DE1DEA6E2400EE0816 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		061611DF1DEA6E2400EE0816 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		061F7E4B1D983A970023D46F /* BoardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardVC.swift; sourceTree = "<group>"; };
+		061F7E4B1D983A970023D46F /* BoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
 		061F7E4F1D985CC20023D46F /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		061F7E511D9863120023D46F /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		061F7E531D9874190023D46F /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
-		061FFF1D1DB9DB0700BFB544 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		061FFF1D1DB9DB0700BFB544 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		06301FA41DAED58E0056ABA1 /* CreateEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
+		063D2F1B1E2577E3008B0F39 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0645548F1D8B1185002C236C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		065E9B351DA9A5C60083C329 /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		065E9B351DA9A5C60083C329 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		065E9B371DAAE0E30083C329 /* Pluto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pluto.entitlements; sourceTree = "<group>"; };
-		067CF1821DB418C70080C41C /* CreateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVC.swift; sourceTree = "<group>"; };
+		067CF1821DB418C70080C41C /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
 		067CF1841DB4329D0080C41C /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
-		067CF1861DB4972B0080C41C /* FriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		06806A401DBDCBB5008A8356 /* SquareImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImageView.swift; sourceTree = "<group>"; };
 		06806A441DBF2A4B008A8356 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		069266B01E26D17200755FE9 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		069266B41E26D57300755FE9 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FaceAware.swift"; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +139,7 @@
 		06B20CB51D863296006EF005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06B20CC41D863773006EF005 /* Pluto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pluto-Bridging-Header.h"; sourceTree = "<group>"; };
 		06B20CC91D8638AA006EF005 /* AnimationEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationEngine.swift; sourceTree = "<group>"; };
-		06B20CCE1D8646C9006EF005 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		06B20CCE1D8646C9006EF005 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		06B20CD01D8656B4006EF005 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		06B20CD21D865D35006EF005 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		06B20CD31D865D35006EF005 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -197,7 +201,7 @@
 			children = (
 				060644601D8A4601009CFEBC /* Board.swift */,
 				068CEF271D9F5CCB00DFE126 /* Event.swift */,
-				061FFF1D1DB9DB0700BFB544 /* Friend.swift */,
+				061FFF1D1DB9DB0700BFB544 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -215,14 +219,33 @@
 		063D2F191E2403AB008B0F39 /* Clean */ = {
 			isa = PBXGroup;
 			children = (
-				061F7E4F1D985CC20023D46F /* EventCell.swift */,
 				061F7E531D9874190023D46F /* RoundImageView.swift */,
-				065E9B351DA9A5C60083C329 /* EventView.swift */,
 				06301FA41DAED58E0056ABA1 /* CreateEventView.swift */,
 				06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */,
 				06806A401DBDCBB5008A8356 /* SquareImageView.swift */,
 			);
 			name = Clean;
+			sourceTree = "<group>";
+		};
+		063D2F1D1E25C3E5008B0F39 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				061F7E4F1D985CC20023D46F /* EventCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		063D2F1E1E25C3EF008B0F39 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				065E9B351DA9A5C60083C329 /* View.swift */,
+				06B20CD01D8656B4006EF005 /* Button.swift */,
+				0645548F1D8B1185002C236C /* SearchBar.swift */,
+				06B20CCE1D8646C9006EF005 /* LoginTextField.swift */,
+				069266B01E26D17200755FE9 /* TextField.swift */,
+				069266B41E26D57300755FE9 /* TextView.swift */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		06A196B21D976D86001C29EC /* Services */ = {
@@ -328,12 +351,12 @@
 			children = (
 				06B20C921D863296006EF005 /* LoginController.swift */,
 				06806A441DBF2A4B008A8356 /* SearchController.swift */,
-				061F7E4B1D983A970023D46F /* BoardVC.swift */,
-				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
-				067CF1821DB418C70080C41C /* CreateVC.swift */,
+				063D2F1B1E2577E3008B0F39 /* TabBarController.swift */,
+				061F7E4B1D983A970023D46F /* BoardController.swift */,
+				067CF1821DB418C70080C41C /* CreateController.swift */,
 				067CF1841DB4329D0080C41C /* DetailsVC.swift */,
 				061F7E511D9863120023D46F /* ProfileVC.swift */,
-				067CF1861DB4972B0080C41C /* FriendVC.swift */,
+				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -351,9 +374,8 @@
 		06B20CCB1D864313006EF005 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				06B20CD01D8656B4006EF005 /* Button.swift */,
-				0645548F1D8B1185002C236C /* SearchBar.swift */,
-				06B20CCE1D8646C9006EF005 /* TextField.swift */,
+				063D2F1E1E25C3EF008B0F39 /* UI */,
+				063D2F1D1E25C3E5008B0F39 /* Cells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -603,6 +625,7 @@
 				061F7E521D9863120023D46F /* ProfileVC.swift in Sources */,
 				067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */,
 				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
+				069266B11E26D17200755FE9 /* TextField.swift in Sources */,
 				06B20C931D863296006EF005 /* LoginController.swift in Sources */,
 				0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */,
 				060644611D8A4601009CFEBC /* Board.swift in Sources */,
@@ -610,9 +633,11 @@
 				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
 				06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */,
+				069266B51E26D57300755FE9 /* TextView.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
 				06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */,
-				061FFF1E1DB9DB0700BFB544 /* Friend.swift in Sources */,
+				061FFF1E1DB9DB0700BFB544 /* User.swift in Sources */,
+				063D2F1C1E2577E3008B0F39 /* TabBarController.swift in Sources */,
 				0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */,
 				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
 				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,
@@ -620,13 +645,12 @@
 				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
 				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
 				06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */,
-				067CF1871DB4972B0080C41C /* FriendVC.swift in Sources */,
-				067CF1831DB418C70080C41C /* CreateVC.swift in Sources */,
+				067CF1831DB418C70080C41C /* CreateController.swift in Sources */,
 				068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */,
-				061F7E4C1D983A970023D46F /* BoardVC.swift in Sources */,
-				065E9B361DA9A5C60083C329 /* EventView.swift in Sources */,
+				061F7E4C1D983A970023D46F /* BoardController.swift in Sources */,
+				065E9B361DA9A5C60083C329 /* View.swift in Sources */,
 				06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */,
-				06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */,
+				06B20CCF1D8646C9006EF005 /* LoginTextField.swift in Sources */,
 				06B20C991D863296006EF005 /* Pluto.xcdatamodeld in Sources */,
 				061F74671DB00BEE00C8D2A6 /* SettingsVC.swift in Sources */,
 			);
