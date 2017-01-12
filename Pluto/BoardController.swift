@@ -40,18 +40,22 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        /* Navigation bar customization. */
         self.navigationController?.setNavigationBarHidden(false, animated: true) // Presents the navigation bar.
         
+        /* Logo in the middle of the navigation bar */
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
         let image = UIImage(named: "logo")
         imageView.image = image
         self.parent?.navigationItem.titleView = imageView
         
+        /* Search button */
         navigationBarSearchButton = UIBarButtonItem(image: UIImage(named: "ic-search"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
         navigationBarSearchButton.tintColor = UIColor.white
         self.parent?.navigationItem.leftBarButtonItem  = navigationBarSearchButton
         
+        /* Add event button */
         navigationBarAddButton = UIBarButtonItem(image: UIImage(named: "ic-add-event"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
         navigationBarAddButton.tintColor = UIColor.white
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarAddButton

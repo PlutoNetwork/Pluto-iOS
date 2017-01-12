@@ -18,9 +18,8 @@ class DetailController: UIViewController {
     
     @IBOutlet weak var detailsView: UIView!
     
+    @IBOutlet weak var eventTimeAndPlaceLabel: UILabel!
     @IBOutlet weak var eventTitleLabel: UILabel!
-//    @IBOutlet weak var eventLocationLabel: UILabel!
-//    @IBOutlet weak var eventTimeLabel: UILabel!
     @IBOutlet weak var eventDescriptionTextView: UITextView!
     
 //    @IBOutlet weak var friendsView: UICollectionView!
@@ -90,6 +89,9 @@ class DetailController: UIViewController {
         //self.setFriends()
     }
     
+    /**
+     *  Creates the nice-looking diagonal slice.
+     */
     func updateHeaderView() {
         
         let effectiveHeight = headerView.bounds.height - 25.0
@@ -112,6 +114,9 @@ class DetailController: UIViewController {
     
     // MARK: - HELPERS
     
+    /**
+     *  Segues to the edit event screen.
+     */
     func editEvent() {
         
         self.performSegue(withIdentifier: "showEditEvent", sender: self)
@@ -135,7 +140,29 @@ class DetailController: UIViewController {
             
             /* ERROR: Could not load the event image. */
             
-            SCLAlertView().showError("Oh no!", subTitle: "Pluto had an internal error and couldn't load the event's image.")
+            /* If it doesn't download from the cache for some reason, just download it from Firebase. */
+            
+            let ref = FIRStorage.storage().reference(forURL: event.imageURL)
+            
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                
+                if error != nil {
+                    
+                    /* ERROR: Unable to download photo from Firebase storage. */
+                    
+                } else {
+                    
+                    /* SUCCESS: Image downloaded from Firebase storage. */
+                    
+                    if let imageData = data {
+                        
+                        if let img = UIImage(data: imageData) {
+                            
+                            self.eventImageView.image = img
+                        }
+                    }
+                }
+            })
         }
     }
     
@@ -148,8 +175,7 @@ class DetailController: UIViewController {
         self.downloadEventImage(imageURL: event.imageURL)
         
         self.eventTitleLabel.text = event.title
-//        self.eventLocationLabel.text = event.location
-//        self.eventTimeLabel.text = event.time
+        self.eventTimeAndPlaceLabel.text = "\(event.location)  •  \(event.time)"
         self.eventDescriptionTextView.text = event.description
     }
     

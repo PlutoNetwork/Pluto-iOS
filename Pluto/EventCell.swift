@@ -15,8 +15,7 @@ class EventCell: UITableViewCell {
     // MARK: - OUTLETS
     
     @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var eventTimeLabel: UILabel!
-    @IBOutlet weak var eventLocationLabel: UILabel!
+    @IBOutlet weak var eventTimeAndPlaceLabel: UILabel!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventPlutoImageView: UIImageView!
     @IBOutlet weak var eventPlutoCountLabel: UILabel!
@@ -43,8 +42,7 @@ class EventCell: UITableViewCell {
         
         userEventRef = DataService.ds.REF_CURRENT_USER.child("events").child(event.eventKey)
         self.eventTitleLabel.text = event.title
-        self.eventTimeLabel.text = event.time
-        self.eventLocationLabel.text = event.location
+        self.eventTimeAndPlaceLabel.text = "\(event.location)  •  \(event.time)"
         self.eventPlutoCountLabel.text = "\(event.count)"
         
         /* Checks to see if the image is located in the cache. */

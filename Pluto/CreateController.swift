@@ -33,6 +33,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     /// Holds the key of the event that may be passed from the detail screen.
     var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), time: String(), title: String())
     
+    /// Tells when user enters screen from details page.
     var inEditingMode = false
     
     /// Tells when user has selected a picture for an event.
@@ -42,20 +43,22 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        /* Navigation bar customization */
         self.navigationController?.setNavigationBarHidden(false, animated: true) // Keeps the navigation bar unhidden.
-        
         self.navigationItem.title = "Create Event" // Sets the title for the screen.
-        
         self.navigationController?.navigationBar.backItem?.title = "" // Keeps the back button to a simple "<".
-        
         self.navigationController?.navigationBar.tintColor = UIColor.white // Changes the content of the navigation bar to a white color.
+        
+        /* Checks the event for any data. If it contains data, it was passed from the details controller and means that the user has come to edit the event. */
         
         if event.title != "" {
             
             inEditingMode = true
-            self.deleteButton.alpha = 1.0
+            self.deleteButton.alpha = 1.0 // Unhide the delete button.
             setDetails()
         }
+        
+        /* Changes the post button to reflect editing or creating a new event. */
         
         if inEditingMode == true {
             
@@ -66,10 +69,9 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             postButtonImage = UIImage(named: "ic-post-event")
         }
         
+        /* Post button */
         navigationBarPostButton = UIBarButtonItem(image: postButtonImage, style: .plain, target: self, action: #selector(CreateController.saveAndPostEvent)) // Initializes a post button for the navigation bar.
-        
         navigationBarPostButton.tintColor = UIColor.white // Changes the color of the post button to white.
-        
         self.navigationItem.rightBarButtonItem  = navigationBarPostButton // Adds the post button to the navigation bar.
     }
     
@@ -151,8 +153,14 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         switchController(controllerID: "Main")
     }
     
+    // MARK: - HELPERS
+    
+    /**
+     *  Changes the field contents to reflect the event data passed in.
+     */
     func setDetails() {
         
+        /* We can fill these in because this function can only be called if the event has data. */
         createEventTitleField.text = event.title
         createEventTimeField.text = event.time
         createEventLocationField.text = event.location
@@ -165,7 +173,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             
             if self.imageSelected == false {
                 
-                self.imageInstructionLabel.alpha = 0
+                self.imageInstructionLabel.alpha = 0 // Hides the instruction label.
                 self.createEventImageView.image = img // Sets the event image to the one grabbed from the cache.
             }
             
@@ -176,8 +184,6 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             SCLAlertView().showError("Oh no!", subTitle: "Pluto had an internal error and couldn't load the event's image.")
         }
     }
-    
-    // MARK: - HELPERS
     
     /**
      Switches to the view controller specified by the parameter.
