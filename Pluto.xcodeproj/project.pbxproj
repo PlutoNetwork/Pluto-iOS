@@ -34,7 +34,7 @@
 		064554901D8B1185002C236C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645548F1D8B1185002C236C /* SearchBar.swift */; };
 		065E9B361DA9A5C60083C329 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E9B351DA9A5C60083C329 /* View.swift */; };
 		067CF1831DB418C70080C41C /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateController.swift */; };
-		067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailsVC.swift */; };
+		067CF1851DB4329D0080C41C /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailController.swift */; };
 		06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A401DBDCBB5008A8356 /* SquareImageView.swift */; };
 		06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchController.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
@@ -115,7 +115,7 @@
 		065E9B351DA9A5C60083C329 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		065E9B371DAAE0E30083C329 /* Pluto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pluto.entitlements; sourceTree = "<group>"; };
 		067CF1821DB418C70080C41C /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
-		067CF1841DB4329D0080C41C /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
+		067CF1841DB4329D0080C41C /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		06806A401DBDCBB5008A8356 /* SquareImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImageView.swift; sourceTree = "<group>"; };
 		06806A441DBF2A4B008A8356 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -354,7 +354,7 @@
 				063D2F1B1E2577E3008B0F39 /* TabBarController.swift */,
 				061F7E4B1D983A970023D46F /* BoardController.swift */,
 				067CF1821DB418C70080C41C /* CreateController.swift */,
-				067CF1841DB4329D0080C41C /* DetailsVC.swift */,
+				067CF1841DB4329D0080C41C /* DetailController.swift */,
 				061F7E511D9863120023D46F /* ProfileVC.swift */,
 				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
 			);
@@ -623,7 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				061F7E521D9863120023D46F /* ProfileVC.swift in Sources */,
-				067CF1851DB4329D0080C41C /* DetailsVC.swift in Sources */,
+				067CF1851DB4329D0080C41C /* DetailController.swift in Sources */,
 				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
 				069266B11E26D17200755FE9 /* TextField.swift in Sources */,
 				06B20C931D863296006EF005 /* LoginController.swift in Sources */,

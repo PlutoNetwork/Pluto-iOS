@@ -11,7 +11,7 @@ import FirebaseInstanceID
 import FirebaseMessaging
 import UIKit
 
-class BoardController: UIViewController, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class BoardController: UIViewController, UINavigationControllerDelegate {
     
     // MARK: - OUTLETS
     
@@ -125,7 +125,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate, UITable
         })
     }
         
-    // MARK: - Helpers
+    // MARK: - HELPERS
     
     func goToAddEventScreen() {
         
@@ -136,11 +136,11 @@ class BoardController: UIViewController, UINavigationControllerDelegate, UITable
         
         if segue.identifier == "showDetails" {
             
-            let destinationVC: DetailsVC = segue.destination as! DetailsVC
+            let destinationController: DetailController = segue.destination as! DetailController
             
             if let indexPath = self.eventsView.indexPathForSelectedRow {
              
-                destinationVC.eventKey = events[indexPath.row].eventKey
+                destinationController.event = events[indexPath.row] // Passes the event to the detail screen.
             }
         }
     }
@@ -157,7 +157,9 @@ class BoardController: UIViewController, UINavigationControllerDelegate, UITable
         self.present(vc, animated: true, completion: nil)
     }
     
-    // MARK: - Table View Functions
+}
+
+extension BoardController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -177,6 +179,26 @@ class BoardController: UIViewController, UINavigationControllerDelegate, UITable
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return events.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        /* First we need to set the initial state of the cell. */
+        
+        cell.alpha = 0 // We'll hide the cell.
+        
+        /// Slide-in from the bottom
+        let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 1000, 0)
+        
+        cell.layer.transform = transform // Add the transformation to the cell.
+        
+        /* We can use an animation method to change the cell to its final form. */
+        
+        UIView.animate(withDuration: 0.6) {
+            
+            cell.alpha = 1.0 // Show the cell.
+            cell.layer.transform = CATransform3DIdentity // Remove the animation.
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

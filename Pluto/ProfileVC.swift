@@ -265,11 +265,11 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
             
         } else if segue.identifier == "showDetails" {
             
-            let destinationVC: DetailsVC = segue.destination as! DetailsVC
+            let destinationVC: DetailController = segue.destination as! DetailController
             
             if let indexPath = self.eventView.indexPathForSelectedRow {
                 
-                destinationVC.eventKey = events[indexPath.row].eventKey
+//                destinationVC.eventKey = events[indexPath.row].eventKey
             }
         }
     }
