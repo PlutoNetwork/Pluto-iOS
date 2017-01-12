@@ -13,16 +13,15 @@ class DetailController: UIViewController {
 
     // MARK: - OUTLETS
     
-    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var eventImageView: RoundImageView!
     
     @IBOutlet weak var detailsView: UIView!
     
-//    @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var eventTitleLabel: UILabel!
 //    @IBOutlet weak var eventLocationLabel: UILabel!
 //    @IBOutlet weak var eventTimeLabel: UILabel!
-//    @IBOutlet weak var eventDescriptionTextView: UITextView!
+    @IBOutlet weak var eventDescriptionTextView: UITextView!
     
 //    @IBOutlet weak var friendsView: UICollectionView!
     
@@ -30,11 +29,13 @@ class DetailController: UIViewController {
     
     private var headerMaskLayer = CAShapeLayer()
     
-    /// Holds the key of the event passed from the main board screen.
-    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), time: String(), title: String())
+    var navigationBarEditButton: UIBarButtonItem!
     
     /// Holds all the friends of the current user.
     var friends = [User]()
+    
+    /// Holds the key of the event passed from the main board screen.
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), time: String(), title: String())
     
     // MARK: - VIEW
     
@@ -45,6 +46,19 @@ class DetailController: UIViewController {
         self.navigationItem.title = "Event Details" // Sets the title of the navigation bar.
         self.navigationController?.navigationBar.backItem?.title = "" // Keeps the back button a simple "<".
         self.navigationController?.navigationBar.tintColor = UIColor.white // Turns the contents of the navigation bar white.
+        
+        /* The edit button should only show up if the user is the creator of the event. */
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        if userID == event.creator {
+        
+            navigationBarEditButton = UIBarButtonItem(image: UIImage(named: "ic-edit"), style: .plain, target: self, action: #selector(DetailController.editEvent)) // Initializes an edit button for the navigation bar.
+            
+            navigationBarEditButton.tintColor = UIColor.white // Changes the color of the post button to white.
+            
+            self.navigationItem.rightBarButtonItem  = navigationBarEditButton // Adds the edit button to the navigation bar.
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -98,6 +112,11 @@ class DetailController: UIViewController {
     
     // MARK: - HELPERS
     
+    func editEvent() {
+        
+        self.performSegue(withIdentifier: "showEditEvent", sender: self)
+    }
+    
     /**
      *  Grabs the event image from the cache.
      */
@@ -128,10 +147,10 @@ class DetailController: UIViewController {
         
         self.downloadEventImage(imageURL: event.imageURL)
         
-//        self.eventTitleLabel.text = event.title
+        self.eventTitleLabel.text = event.title
 //        self.eventLocationLabel.text = event.location
 //        self.eventTimeLabel.text = event.time
-//        self.eventDescriptionTextView.text = event.description
+        self.eventDescriptionTextView.text = event.description
     }
     
     // MARK: - FIREBASE
@@ -180,7 +199,7 @@ class DetailController: UIViewController {
         })
     }
     
-    // MARK: - Helpers
+    // MARK: - HELPERS
     
     /**
      Switches to the view controller specified by the parameter.
@@ -196,9 +215,11 @@ class DetailController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "showProfile" {
+        if segue.identifier == "showEditEvent" {
             
+            let destinationController: CreateController = segue.destination as! CreateController
             
+            destinationController.event = event // Passes the event to the edit screen.
         }
     }
 }

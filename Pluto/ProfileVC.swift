@@ -9,15 +9,13 @@
 import Firebase
 import UIKit
 
-class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate {
+class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Outlets
     
     @IBOutlet weak var profileImageView: RoundImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var friendsView: UICollectionView!
-    @IBOutlet weak var eventView: UITableView!
-    
     
     // Buttons
     
@@ -39,19 +37,19 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         grabCurrentBoardID()
-        setUserInfo()
+        //setUserInfo()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setFriends()
+        //setFriends()
         
         friendsView.dataSource = self
         friendsView.delegate = self
         
-        eventView.dataSource = self
-        eventView.delegate = self
+//        eventView.dataSource = self
+//        eventView.delegate = self
     }
     
     // MARK: - Button Actions
@@ -109,7 +107,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
             let value = snapshot.value as? NSDictionary
             
             let currentBoardID = value?["board"] as? String
-            self.findUserEvents(boardKey: currentBoardID!)
+//            self.findUserEvents(boardKey: currentBoardID!)
             self.holdBoardKey = currentBoardID
         })
     }
@@ -137,7 +135,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                 }
             }
             
-            self.eventView.reloadData()
+//            self.eventView.reloadData()
         })
     }
     
@@ -258,67 +256,51 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
         self.present(vc, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "showProfile" {
-            
-            
-        } else if segue.identifier == "showDetails" {
-            
-            let destinationVC: DetailController = segue.destination as! DetailController
-            
-            if let indexPath = self.eventView.indexPathForSelectedRow {
-                
-//                destinationVC.eventKey = events[indexPath.row].eventKey
-            }
-        }
-    }
-    
     // MARK: - Table View Functions
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        
+//        return 1
+//    }
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        self.performSegue(withIdentifier: "showDetails", sender: self)
+//    }
+//    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        return 140.0
+//    }
+//    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        
+//        return events.count
+//    }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        self.performSegue(withIdentifier: "showDetails", sender: self)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 140.0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return events.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // Sort by popularity.
-        events = events.sorted(by: { ($0.count) > ($1.count)})
-        
-        let event = events[indexPath.row]
-        
-        if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
-            
-            if let img = BoardController.imageCache.object(forKey: event.imageURL as NSString) {
-                
-                cell.configureCell(event: event, img: img)
-                return cell
-                
-            } else {
-                
-                cell.configureCell(event: event)
-                return cell
-            }
-            
-        } else {
-            
-            return EventCell()
-        }
-    }
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        
+//        // Sort by popularity.
+//        events = events.sorted(by: { ($0.count) > ($1.count)})
+//        
+//        let event = events[indexPath.row]
+//        
+//        if let cell = eventView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
+//            
+//            if let img = BoardController.imageCache.object(forKey: event.imageURL as NSString) {
+//                
+//                cell.configureCell(event: event, img: img)
+//                return cell
+//                
+//            } else {
+//                
+//                cell.configureCell(event: event)
+//                return cell
+//            }
+//            
+//        } else {
+//            
+//            return EventCell()
+//        }
+//    }
 }

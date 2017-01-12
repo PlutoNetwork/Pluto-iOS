@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import pop
 
-class LoginController: UIViewController, UITextFieldDelegate {
+class LoginController: UIViewController {
     
     // MARK: - OUTLETS
     
@@ -218,10 +218,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
         self.present(vc, animated: true, completion: nil)
     }
-        
-    
-    // MARK: - TEXT FIELD
+}
 
+extension LoginController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder() // Dismisses the keyboard.

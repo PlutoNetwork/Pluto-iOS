@@ -283,11 +283,11 @@ open class SCLAlertView: UIViewController {
         viewText.textContainer.lineFragmentPadding = 0;
         viewText.font = appearance.kTextFont
         // Colours
-        contentView.backgroundColor = UIColor.white
-        viewText.backgroundColor = UIColor.white
-        labelTitle.textColor = UIColor.black
-        viewText.textColor = UIColor.black
-        contentView.layer.borderColor = BLACK_COLOR.cgColor
+        contentView.backgroundColor = VIEW_BACKGROUND_COLOR
+        viewText.backgroundColor = VIEW_BACKGROUND_COLOR
+        labelTitle.textColor = UIColor.white
+        viewText.textColor = UIColor.white
+        contentView.layer.borderColor = VIEW_BACKGROUND_COLOR.cgColor
         //Gesture Recognizer for tapping outside the textinput
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SCLAlertView.tapped(_:)))
         tapGesture.numberOfTapsRequired = 1

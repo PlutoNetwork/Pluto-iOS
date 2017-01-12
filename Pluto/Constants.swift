@@ -18,7 +18,6 @@ let STATUS_FIELDS_BLANK = 17999
 
 // COLORS
 
-let BLACK_COLOR = UIColor(red: 34.0 / 255.0, green: 34.0 / 255.0, blue: 34.0 / 255.0, alpha: 1.0)
-let SECONDARY_BLACK_COLOR = UIColor(red: 41.0 / 255.0, green: 41.0 / 255.0, blue: 41.0 / 255.0, alpha: 1.0)
 let SHADOW_COLOR = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1)
-let BORDER_COLOR = UIColor(red: 224.0/255.0, green: 224.0/255.0, blue: 224.0/255.0, alpha: 1.0)
+let YELLOW_COLOR = UIColor(red: 255.0 / 255.0, green: 210.0 / 255.0, blue: 90.0 / 255.0, alpha: 1.0)
+let VIEW_BACKGROUND_COLOR = UIColor(red: 41.0 / 255.0, green: 48.0 / 255.0, blue: 51.0 / 255.0, alpha: 1.0)

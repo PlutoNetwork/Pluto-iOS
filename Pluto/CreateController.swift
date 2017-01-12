@@ -9,23 +9,31 @@
 import Firebase
 import UIKit
 
-class CreateController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class CreateController: UIViewController, UINavigationControllerDelegate {
 
     // MARK: - OUTLETS
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var imageInstructionLabel: UILabel!
     @IBOutlet weak var createEventImageView: RoundImageView!
     @IBOutlet weak var createEventTitleField: UITextField!
     @IBOutlet weak var createEventLocationField: UITextField!
     @IBOutlet weak var createEventTimeField: UITextField!
     @IBOutlet weak var createEventDescriptionField: TextView!
     
+    @IBOutlet weak var deleteButton: Button!
+    
     // MARK: - VARIABLES
 
-    /* Elements */
     var navigationBarPostButton: UIBarButtonItem!
     var imagePicker: UIImagePickerController!
+    var postButtonImage: UIImage!
+    
+    /// Holds the key of the event that may be passed from the detail screen.
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), time: String(), title: String())
+    
+    var inEditingMode = false
     
     /// Tells when user has selected a picture for an event.
     var imageSelected = false
@@ -42,7 +50,23 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         self.navigationController?.navigationBar.tintColor = UIColor.white // Changes the content of the navigation bar to a white color.
         
-        navigationBarPostButton = UIBarButtonItem(image: UIImage(named: "ic-post-event"), style: .plain, target: self, action: #selector(CreateController.saveAndPostEvent)) // Initializes a post button for the navigation bar.
+        if event.title != "" {
+            
+            inEditingMode = true
+            self.deleteButton.alpha = 1.0
+            setDetails()
+        }
+        
+        if inEditingMode == true {
+            
+            postButtonImage = UIImage(named: "ic-check")
+            
+        } else {
+            
+            postButtonImage = UIImage(named: "ic-post-event")
+        }
+        
+        navigationBarPostButton = UIBarButtonItem(image: postButtonImage, style: .plain, target: self, action: #selector(CreateController.saveAndPostEvent)) // Initializes a post button for the navigation bar.
         
         navigationBarPostButton.tintColor = UIColor.white // Changes the color of the post button to white.
         
@@ -68,6 +92,24 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
     
     // MARK: - BUTTON
     
+    @IBAction func deleteButtonAction(_ sender: Any) {
+        
+        /// Create an alert to show errors.
+        let notice = SCLAlertView()
+        
+        notice.addButton("Yes!") {
+            
+            /* The user has given permission to delete the event. */
+            DataService.ds.REF_EVENTS.child(self.event.eventKey).removeValue()
+            DataService.ds.REF_CURRENT_USER_EVENTS.child(self.event.eventKey).removeValue()
+            DataService.ds.REF_CURRENT_BOARD_EVENTS.child(self.event.eventKey).removeValue()
+            
+            self.switchController(controllerID: "Main")
+        }
+        
+        notice.showInfo("Hey!", subTitle: "Are you sure you want to delete your event? Event-goers will be notified.", closeButtonTitle: "No, I made a mistake!")
+    }
+    
     /**
      *  #GATEWAY
      *
@@ -77,10 +119,10 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         /* First we need to check to see if any of the fields were left blank. */
         
-        if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventTimeField.text != "" && imageSelected == true {
+        if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventTimeField.text != "" && createEventImageView.image != nil {
             
             /* SUCCESS: The event will be created. */
-            
+        
             self.uploadEventImage()
             
         } else {
@@ -91,18 +133,48 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
         }
     }
     
-    // MARK: - DATEPICKER
+    func updateEvent(imageURL: String) {
+        
+        /// Holds the reference to the user's image key in the database.
+        let eventRef = DataService.ds.REF_EVENTS.child(event.eventKey)
+        
+        // Sets the value for the updated fields.
+        
+        let updatedEvent = ["title": createEventTitleField.text! as Any,
+                            "time": createEventTimeField.text! as Any,
+                            "location": createEventLocationField.text! as Any,
+                            "description": createEventDescriptionField.text! as Any,
+                            "imageURL": imageURL as Any]
+        
+        eventRef.updateChildValues(updatedEvent)
+        
+        switchController(controllerID: "Main")
+    }
     
-    func datePickerChanged(sender: UIDatePicker) {
+    func setDetails() {
         
-        let dateFormatter = DateFormatter()
+        createEventTitleField.text = event.title
+        createEventTimeField.text = event.time
+        createEventLocationField.text = event.location
+        createEventDescriptionField.text = event.description
         
-        dateFormatter.dateStyle = DateFormatter.Style.medium
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        
-        let strDate = dateFormatter.string(from: sender.date)
-        
-        createEventTimeField.text = strDate
+        /// Holds the event image grabbed from the cache.
+        if let img = BoardController.imageCache.object(forKey: event.imageURL as NSString) {
+            
+            /* SUCCESS: Loaded image from the cache. */
+            
+            if self.imageSelected == false {
+                
+                self.imageInstructionLabel.alpha = 0
+                self.createEventImageView.image = img // Sets the event image to the one grabbed from the cache.
+            }
+            
+        } else {
+            
+            /* ERROR: Could not load the event image. */
+            
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto had an internal error and couldn't load the event's image.")
+        }
     }
     
     // MARK: - HELPERS
@@ -179,6 +251,7 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
         createEventDescriptionField.text = ""
         imageSelected = false
         createEventImageView.image = UIImage(named: "")
+        imageInstructionLabel.alpha = 1.0
         
         self.switchController(controllerID: "Main") // Switch back to the board.
     }
@@ -212,13 +285,22 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
                     
                     let downloadURL = metadata?.downloadURL()?.absoluteString
                     
-                    self.createEvent(imageURL: downloadURL!)
+                    if self.inEditingMode == true {
+                        
+                        self.updateEvent(imageURL: downloadURL!)
+                        
+                    } else {
+                        
+                        self.createEvent(imageURL: downloadURL!)
+                    }
+                    
                 }
             }
         }
     }
-    
-    // MARK: - GESTURES
+}
+
+extension CreateController: UIImagePickerControllerDelegate {
     
     /**
      *  Summons the image picker.
@@ -228,8 +310,6 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
         present(imagePicker, animated: true, completion: nil)
     }
     
-    // MARK: - IMAGE PICKER
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         /* "Media" means it can be a video or an image. */
@@ -237,36 +317,28 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
         /* We have to check to make sure it is an image the user picked. */
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             
-            createEventImageView.image = image
+            self.imageInstructionLabel.alpha = 0
+            self.createEventImageView.image = image
             imageSelected = true
         }
         
         imagePicker.dismiss(animated: true, completion: nil)
     }
-    
-    // MARK: - TEXT FIELD
-    
-    @IBAction func timeFieldEditingBegan(_ sender: TextField) {
-        
-        let datePickerView: UIDatePicker = UIDatePicker() // First, we intialize a datePicker variable.
-    
-        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime // This sets the format for the datepicker. In this case, it will show both date and time.
-        
-        sender.inputView = datePickerView // Changes the first responder of the text field from the keyboard to the datePicker initialized above.
-        
-        /* We need to add a target that updates the contents of the text field to match whatever the user is selecting in the datePicker. */
-        
-        datePickerView.addTarget(self, action: #selector(CreateController.datePickerChanged(sender:)), for: UIControlEvents.valueChanged)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder() // Dismisses the keyboard.
+}
 
-        return true
-    }
+extension CreateController: UITextFieldDelegate, UITextViewDelegate {
     
-    // MARK: - Text View Functions
+    func datePickerChanged(sender: UIDatePicker) {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        
+        let strDate = dateFormatter.string(from: sender.date)
+        
+        createEventTimeField.text = strDate
+    }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
@@ -289,11 +361,27 @@ class CreateController: UIViewController, UIImagePickerControllerDelegate, UINav
             scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true) // Brings the description field back down.
             return false
         }
-            
+        
         return true
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
+        textField.resignFirstResponder() // Dismisses the keyboard.
+        
+        return true
+    }
+    
+    @IBAction func timeFieldEditingBegan(_ sender: TextField) {
+        
+        let datePickerView: UIDatePicker = UIDatePicker() // First, we intialize a datePicker variable.
+        
+        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime // This sets the format for the datepicker. In this case, it will show both date and time.
+        
+        sender.inputView = datePickerView // Changes the first responder of the text field from the keyboard to the datePicker initialized above.
+        
+        /* We need to add a target that updates the contents of the text field to match whatever the user is selecting in the datePicker. */
+        
+        datePickerView.addTarget(self, action: #selector(CreateController.datePickerChanged(sender:)), for: UIControlEvents.valueChanged)
     }
 }

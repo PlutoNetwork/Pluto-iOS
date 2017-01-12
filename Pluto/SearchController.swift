@@ -9,7 +9,7 @@
 import Firebase
 import UIKit
 
-class SearchController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class SearchController: UIViewController {
     
     // MARK: - OUTLETS
     
@@ -33,7 +33,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     /// Tells when user is typing in the searchBar.
     var inSearchMode = false
     
-    // MARK: - View Functions
+    // MARK: - VIEW
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,6 +169,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
                 let school = Board(title: title!)
                 boards.append(school)
             }
+            
         } catch let error as NSError {
             
             /* ERROR: The CSV file could not be parsed. */
@@ -193,8 +194,9 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         /* Save the boardKey into userDefaults. */
         userDefaults.set(boardKey, forKey: "boardKey")
     }
-    
-    // MARK: - SEARCH BAR
+}
+
+extension SearchController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -228,18 +230,23 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
             saveSchoolVoodoo(schoolName: searchBar.text! as String)
             
             self.performSegue(withIdentifier: "showMain", sender: self) // Transitions to the main board screen.
-
+            
         }
         
         self.clearFields() // Returns the bar back to blank so any return to the screen won't have the current user's information.
     }
+}
 
-    
-    // MARK: - TABLE VIEW
+extension SearchController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1 // We only need 1 section.
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return filteredBoards.count // Returns only the number of suggestions the filter has for the user's query.
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -247,7 +254,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchResult", for: indexPath) as UITableViewCell
         
         cell.textLabel?.text = filteredBoards[indexPath.row].title // Makes the text of each search preview result match what the filter churns out.
-
+        
         /* Changes the text color and font to the app style. */
         cell.textLabel?.textColor = UIColor.white
         cell.textLabel?.font = UIFont(name: "Lato-Regular", size: 18)
@@ -258,13 +265,7 @@ class SearchController: UIViewController, UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         searchBar.text = filteredBoards[indexPath.row].title // Changes the search bar text to match the selection the user made.
-
-        searchPreview.alpha = 0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return filteredBoards.count // Returns only the number of suggestions the filter has for the user's query.
-
+        searchPreview.alpha = 0
     }
 }

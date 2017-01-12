@@ -181,11 +181,6 @@ class EventCell: UITableViewCell {
             print("OH NO")
         }
         
-        // Opens calendar app after event is added
-        // UIApplication.shared.openURL(NSURL(string: "calshow://")! as URL) //added JMS http://stackoverflow.com/questions/29684423/open-calendar-from-swift-app
-        
         let date = newEvent.startDate as NSDate
-        
-        UIApplication.shared.openURL(NSURL(string: "calshow:\(date.timeIntervalSinceReferenceDate)")! as URL) //added JMS http://stackoverflow.com/questions/29684423/open-calendar-from-swift-app
     }
 }

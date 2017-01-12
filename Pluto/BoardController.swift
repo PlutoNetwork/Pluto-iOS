@@ -17,6 +17,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var eventsView: UITableView!
     
+    @IBOutlet weak var popularButton: UIButton!
+    @IBOutlet weak var newButton: UIButton!
+    @IBOutlet weak var friendsButton: UIButton!
+    
     // MARK: - VARIABLES
     
     let navigationBarTitle = UILabel()
@@ -61,6 +65,44 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         eventsView.dataSource = self
         
         grabBoardEvents()
+    }
+    
+    // MARK: - BUTTON
+    
+    @IBAction func popularButtonAction(_ sender: Any) {
+        
+        popularButton.backgroundColor = YELLOW_COLOR
+        popularButton.setTitleColor(VIEW_BACKGROUND_COLOR, for: .normal)
+        
+        newButton.backgroundColor = VIEW_BACKGROUND_COLOR
+        newButton.setTitleColor(YELLOW_COLOR, for: .normal)
+        
+        friendsButton.backgroundColor = VIEW_BACKGROUND_COLOR
+        friendsButton.setTitleColor(YELLOW_COLOR, for: .normal)
+    }
+    
+    @IBAction func newButton(_ sender: Any) {
+        
+        popularButton.backgroundColor = VIEW_BACKGROUND_COLOR
+        popularButton.setTitleColor(YELLOW_COLOR, for: .normal)
+        
+        newButton.backgroundColor = YELLOW_COLOR
+        newButton.setTitleColor(VIEW_BACKGROUND_COLOR, for: .normal)
+        
+        friendsButton.backgroundColor = VIEW_BACKGROUND_COLOR
+        friendsButton.setTitleColor(YELLOW_COLOR, for: .normal)
+    }
+    
+    @IBAction func friendsButtonAction(_ sender: Any) {
+        
+        popularButton.backgroundColor = VIEW_BACKGROUND_COLOR
+        popularButton.setTitleColor(YELLOW_COLOR, for: .normal)
+        
+        newButton.backgroundColor = VIEW_BACKGROUND_COLOR
+        newButton.setTitleColor(YELLOW_COLOR, for: .normal)
+        
+        friendsButton.backgroundColor = YELLOW_COLOR
+        friendsButton.setTitleColor(VIEW_BACKGROUND_COLOR, for: .normal)
     }
     
     // MARK: - FIREBASE
@@ -127,9 +169,25 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
     // MARK: - HELPERS
     
+    /**
+     *  Segues to the add event screen.
+     *
+     */
     func goToAddEventScreen() {
         
         self.performSegue(withIdentifier: "showAddEvent", sender: self)
+    }
+    
+    /**
+     *  Switches to the view controller specified by the parameter.
+     *
+     *  - Parameter controllerID: The ID of the controller to switch to.
+     */
+    func switchController(controllerID: String) {
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
+        self.present(vc, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -139,22 +197,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             let destinationController: DetailController = segue.destination as! DetailController
             
             if let indexPath = self.eventsView.indexPathForSelectedRow {
-             
+                
                 destinationController.event = events[indexPath.row] // Passes the event to the detail screen.
             }
         }
-    }
-    
-    /**
-     Switches to the view controller specified by the parameter.
-     
-     - Parameter controllerID: The ID of the controller to switch to.
-     */
-    func switchController(controllerID: String) {
-        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
-        self.present(vc, animated: true, completion: nil)
     }
     
 }
@@ -179,26 +225,6 @@ extension BoardController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return events.count
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        /* First we need to set the initial state of the cell. */
-        
-        cell.alpha = 0 // We'll hide the cell.
-        
-        /// Slide-in from the bottom
-        let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 1000, 0)
-        
-        cell.layer.transform = transform // Add the transformation to the cell.
-        
-        /* We can use an animation method to change the cell to its final form. */
-        
-        UIView.animate(withDuration: 0.6) {
-            
-            cell.alpha = 1.0 // Show the cell.
-            cell.layer.transform = CATransform3DIdentity // Remove the animation.
-        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
