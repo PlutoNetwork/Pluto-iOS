@@ -16,7 +16,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var imageInstructionLabel: UILabel!
-    @IBOutlet weak var createEventImageView: RoundImageView!
+    @IBOutlet weak var createEventImageView: UIImageView!
     @IBOutlet weak var createEventTitleField: UITextField!
     @IBOutlet weak var createEventLocationField: UITextField!
     @IBOutlet weak var createEventTimeField: UITextField!

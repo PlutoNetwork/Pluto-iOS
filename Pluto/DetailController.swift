@@ -14,7 +14,7 @@ class DetailController: UIViewController {
     // MARK: - OUTLETS
     
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var eventImageView: RoundImageView!
+    @IBOutlet weak var eventImageView: UIImageView!
     
     @IBOutlet weak var detailsView: UIView!
     

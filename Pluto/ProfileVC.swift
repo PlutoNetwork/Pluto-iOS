@@ -13,7 +13,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
     
     // MARK: - Outlets
     
-    @IBOutlet weak var profileImageView: RoundImageView!
+//    @IBOutlet weak var profileImageView: RoundImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var friendsView: UICollectionView!
     
@@ -232,7 +232,7 @@ class ProfileVC: UIViewController, UICollectionViewDataSource, UICollectionViewD
                     
                     if let img = UIImage(data: imageData) {
                         
-                        self.profileImageView.image = img
+//                        self.profileImageView.image = img
                         
                         // Save to image cache
                         BoardController.imageCache.setObject(img, forKey: imageURL as NSString)

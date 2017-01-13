@@ -13,7 +13,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     // MARK: - Outlets
     
-    @IBOutlet weak var profileImageView: RoundImageView!
+//    @IBOutlet weak var profileImageView: RoundImageView!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     
@@ -99,7 +99,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                 SCLAlertView().showError("Oh no!", subTitle: "Pluto was unable to find your profile photo.")
                 
                 // Instead, set the profile image view to the profile placeholder image.
-                self.profileImageView.image = UIImage(named: "profile_img_placeholder")
+//                self.profileImageView.image = UIImage(named: "profile_img_placeholder")
                 
             } else {
                 
@@ -110,7 +110,7 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
                     if let img = UIImage(data: imageData) {
                         
                         // Set the profile image view to the downloaded image.
-                        self.profileImageView.image = img
+//                        self.profileImageView.image = img
                         
                         // Save to image cache (globally declared in BoardVC).
                         BoardController.imageCache.setObject(img, forKey: imageURL as NSString)
@@ -180,37 +180,37 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
      
      The image is saved as data and an ID is generated that allows it to be saved in the Firebase storage.
      */
-    func uploadProfileImage() {
-        
-        // Grabs the image from the profileImageView and compresses it by the scale given.
-        if let imageData = UIImageJPEGRepresentation(profileImageView.image!, 0.2) {
-            
-            /// Holds a unique id for the image being uploaded.
-            let imageUID = NSUUID().uuidString
-            
-            // Tells Firebase storage what file type is being uploaded.
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/jpeg"
-            
-            // Opens up the profile pics folder in the Firebase storage so the image can be uploaded.
-            DataService.ds.REF_PROFILE_PICS.child(imageUID).put(imageData, metadata: metadata) { (metadata, error) in
-                
-                if error != nil {
-                    
-                    // Error! The image could not be uploaded to Firebase storage.
-                    
-                } else {
-                    
-                    // Success! Uploaded image to Firebase storage.
-                    
-                    /// Holds the imageURL that can be used as a reference in the database.
-                    let downloadURL = metadata?.downloadURL()?.absoluteString
-                    
-                    self.updateUserData(imageURL: downloadURL!)
-                }
-            }
-        }
-    }
+//    func uploadProfileImage() {
+//        
+//        // Grabs the image from the profileImageView and compresses it by the scale given.
+//        if let imageData = UIImageJPEGRepresentation(profileImageView.image!, 0.2) {
+//            
+//            /// Holds a unique id for the image being uploaded.
+//            let imageUID = NSUUID().uuidString
+//            
+//            // Tells Firebase storage what file type is being uploaded.
+//            let metadata = FIRStorageMetadata()
+//            metadata.contentType = "image/jpeg"
+//            
+//            // Opens up the profile pics folder in the Firebase storage so the image can be uploaded.
+//            DataService.ds.REF_PROFILE_PICS.child(imageUID).put(imageData, metadata: metadata) { (metadata, error) in
+//                
+//                if error != nil {
+//                    
+//                    // Error! The image could not be uploaded to Firebase storage.
+//                    
+//                } else {
+//                    
+//                    // Success! Uploaded image to Firebase storage.
+//                    
+//                    /// Holds the imageURL that can be used as a reference in the database.
+//                    let downloadURL = metadata?.downloadURL()?.absoluteString
+//                    
+//                    self.updateUserData(imageURL: downloadURL!)
+//                }
+//            }
+//        }
+//    }
     
     // MARK: - Helpers
     
@@ -248,11 +248,11 @@ class SettingsVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             
             // Sets the profileImageView to the selected image.
-            profileImageView.image = image
+//            profileImageView.image = image
             
             // Sets the imageSelected to true because the user is now updating his profile picture and Pluto needs to save it.
             imageSelected = true
-            self.uploadProfileImage()
+//            self.uploadProfileImage()
         }
         
         // Hides the imagePicker.
