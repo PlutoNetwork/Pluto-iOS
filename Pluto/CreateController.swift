@@ -179,9 +179,29 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             
         } else {
             
-            /* ERROR: Could not load the event image. */
+            /* If it doesn't download from the cache for some reason, just download it from Firebase. */
             
-            SCLAlertView().showError("Oh no!", subTitle: "Pluto had an internal error and couldn't load the event's image.")
+            let ref = FIRStorage.storage().reference(forURL: event.imageURL)
+            
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                
+                if error != nil {
+                    
+                    /* ERROR: Unable to download photo from Firebase storage. */
+                    
+                } else {
+                    
+                    /* SUCCESS: Image downloaded from Firebase storage. */
+                    
+                    if let imageData = data {
+                        
+                        if let img = UIImage(data: imageData) {
+                            
+                            self.createEventImageView.image = img
+                        }
+                    }
+                }
+            })
         }
     }
     
