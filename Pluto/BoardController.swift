@@ -83,6 +83,9 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         friendsButton.backgroundColor = VIEW_BACKGROUND_COLOR
         friendsButton.setTitleColor(YELLOW_COLOR, for: .normal)
+        
+        self.events = self.events.sorted(by: { $0.count > $1.count })
+        self.eventsView.reloadData()
     }
     
     @IBAction func newButton(_ sender: Any) {
@@ -95,6 +98,9 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         friendsButton.backgroundColor = VIEW_BACKGROUND_COLOR
         friendsButton.setTitleColor(YELLOW_COLOR, for: .normal)
+        
+        events = self.events.sorted(by: { $0.time.compare($1.time) == ComparisonResult.orderedAscending })
+        self.eventsView.reloadData()
     }
     
     @IBAction func friendsButtonAction(_ sender: Any) {
@@ -107,6 +113,9 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         friendsButton.backgroundColor = YELLOW_COLOR
         friendsButton.setTitleColor(VIEW_BACKGROUND_COLOR, for: .normal)
+        
+        self.events = self.events.sorted(by: { $0.count > $1.count })
+        self.eventsView.reloadData()
     }
     
     // MARK: - FIREBASE
@@ -157,6 +166,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                                 /* The event belongs under this board. */
                                 
                                 let event = Event(eventKey: key, eventData: eventDict) // Format the data using the Event model.
+                                
                                 self.events.append(event) // Add the event to the events array.
                                 
                                 break // We no longer need to check if the key matches another event.
@@ -206,7 +216,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             }
         }
     }
-    
 }
 
 extension BoardController: UITableViewDataSource, UITableViewDelegate {

@@ -124,7 +124,7 @@ class Event {
             self._title = title
         }
         
-        _eventRef = DataService.ds.REF_CURRENT_BOARD.child("events").child(_eventKey)
+        _eventRef = DataService.ds.REF_EVENTS.child(_eventKey)
     }
     
     func adjustCount(addToCount: Bool) {

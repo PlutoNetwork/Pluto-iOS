@@ -325,7 +325,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBr-mz-YeY">
                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.82352941176470584" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                         <state key="normal" title="POPULAR">
                                             <color key="titleColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -338,8 +338,8 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="106.667" id="cx8-ZT-u9R"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
-                                        <state key="normal" title="NEW">
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
+                                        <state key="normal" title="UPCOMING">
                                             <color key="titleColor" red="1" green="0.82352941180000006" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -348,7 +348,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A2-Qs-UnO">
                                         <rect key="frame" x="213.5" y="0.0" width="106.5" height="50"/>
-                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                         <state key="normal" title="FRIENDS">
                                             <color key="titleColor" red="1" green="0.82352941180000006" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -515,7 +515,7 @@
                                         <rect key="frame" x="0.0" y="16" width="320" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to choose an image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGN-Sq-wex">
-                                                <rect key="frame" x="50" y="49" width="220" height="22"/>
+                                                <rect key="frame" x="50.5" y="49" width="220" height="22"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -677,18 +677,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time and Place" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Spw-pF-X5K">
-                                <rect key="frame" x="26" y="275" width="258" height="12"/>
+                                <rect key="frame" x="26" y="290" width="258" height="12"/>
                                 <color key="backgroundColor" red="0.066666666669999999" green="0.18039215689999999" blue="0.25098039220000001" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrD-4t-4IW">
-                                <rect key="frame" x="20" y="220" width="264" height="70"/>
+                                <rect key="frame" x="26" y="240" width="258" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="iWE-gf-xuz"/>
+                                    <constraint firstAttribute="height" constant="50" id="iWE-gf-xuz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -698,6 +698,19 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tnw-bL-vAP">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9e-1q-7XW">
+                                        <rect key="frame" x="276" y="20" width="24" height="24"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Dpm-FL-1Ca"/>
+                                            <constraint firstAttribute="height" constant="24" id="NBr-sR-Plh"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="ic-camera">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -706,13 +719,15 @@
                                     <constraint firstAttribute="trailing" secondItem="Tnw-bL-vAP" secondAttribute="trailing" id="K07-Ow-Qd7"/>
                                     <constraint firstAttribute="bottom" secondItem="Tnw-bL-vAP" secondAttribute="bottom" id="Zfm-Ud-0ca"/>
                                     <constraint firstAttribute="height" constant="300" id="iP6-Ei-WX8"/>
+                                    <constraint firstItem="P9e-1q-7XW" firstAttribute="top" secondItem="Dog-WR-5wx" secondAttribute="top" constant="20" id="kk0-sB-P26"/>
+                                    <constraint firstAttribute="trailing" secondItem="P9e-1q-7XW" secondAttribute="trailing" constant="20" id="pvS-dd-gwR"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9b-Xb-5ij">
                                 <rect key="frame" x="0.0" y="300" width="320" height="254"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ws8-XN-wfb">
-                                        <rect key="frame" x="20" y="0.0" width="280" height="150"/>
+                                        <rect key="frame" x="20" y="16" width="280" height="150"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="Xac-rB-Asu"/>
@@ -724,7 +739,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="ws8-XN-wfb" firstAttribute="top" secondItem="X9b-Xb-5ij" secondAttribute="top" id="K6F-ef-ACV"/>
+                                    <constraint firstItem="ws8-XN-wfb" firstAttribute="top" secondItem="X9b-Xb-5ij" secondAttribute="top" constant="16" id="K6F-ef-ACV"/>
                                     <constraint firstAttribute="trailing" secondItem="ws8-XN-wfb" secondAttribute="trailing" constant="20" id="fel-AM-MFT"/>
                                     <constraint firstItem="ws8-XN-wfb" firstAttribute="leading" secondItem="X9b-Xb-5ij" secondAttribute="leading" constant="20" id="x62-rt-Wgf"/>
                                 </constraints>
@@ -736,11 +751,11 @@
                             <constraint firstItem="Dog-WR-5wx" firstAttribute="top" secondItem="b6A-C3-pIR" secondAttribute="bottom" id="D8P-8e-FvU"/>
                             <constraint firstItem="Spw-pF-X5K" firstAttribute="leading" secondItem="CKs-na-z2u" secondAttribute="leadingMargin" constant="10" id="MAz-8q-Xd7"/>
                             <constraint firstItem="X9b-Xb-5ij" firstAttribute="top" secondItem="Dog-WR-5wx" secondAttribute="bottom" id="bG3-uw-EIM"/>
-                            <constraint firstItem="ZrD-4t-4IW" firstAttribute="leading" secondItem="CKs-na-z2u" secondAttribute="leading" constant="20" id="dZu-AE-pZ5"/>
+                            <constraint firstItem="ZrD-4t-4IW" firstAttribute="leading" secondItem="CKs-na-z2u" secondAttribute="leadingMargin" constant="10" id="dZu-AE-pZ5"/>
                             <constraint firstAttribute="trailing" secondItem="X9b-Xb-5ij" secondAttribute="trailing" id="ejZ-rK-xvR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Spw-pF-X5K" secondAttribute="trailing" constant="20" id="gEA-1v-NqM"/>
                             <constraint firstItem="X9b-Xb-5ij" firstAttribute="leading" secondItem="CKs-na-z2u" secondAttribute="leading" id="ikF-RB-P7x"/>
-                            <constraint firstItem="Spw-pF-X5K" firstAttribute="top" secondItem="ZrD-4t-4IW" secondAttribute="bottom" constant="-15" id="jxE-b9-gsU"/>
+                            <constraint firstItem="Spw-pF-X5K" firstAttribute="top" secondItem="ZrD-4t-4IW" secondAttribute="bottom" id="jxE-b9-gsU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZrD-4t-4IW" secondAttribute="trailing" constant="20" id="mxe-qf-k6X"/>
                             <constraint firstItem="TCh-zj-5Bh" firstAttribute="top" secondItem="X9b-Xb-5ij" secondAttribute="bottom" id="r4w-tq-aGj"/>
                             <constraint firstItem="Dog-WR-5wx" firstAttribute="leading" secondItem="CKs-na-z2u" secondAttribute="leading" id="ris-uU-QMX"/>
@@ -956,6 +971,7 @@
     </scenes>
     <resources>
         <image name="events" width="18" height="18"/>
+        <image name="ic-camera" width="24" height="24"/>
         <image name="ic_exit_to_app_white" width="24" height="24"/>
         <image name="pluto-logo-black" width="880" height="218"/>
         <image name="settings" width="18" height="18"/>
@@ -964,6 +980,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9SE-j4-jUU"/>
-        <segue reference="Vx0-Bv-VFK"/>
+        <segue reference="VFe-2r-F18"/>
     </inferredMetricsTieBreakers>
 </document>
