@@ -117,6 +117,14 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                                 
                                 let event = Event(eventKey: key, eventData: eventDict) // Format the data using the Event model.
                                 
+                                /* MICHAEL CHECK HERE */
+                                
+                                /* We have to do a check here to see if the event time has already passed. */
+                                
+                                /* For this comparison, do "if event.time.compare(currentTime) == .orderedDescending". The challenge is figuring out how to get the currentTime. */
+                                
+                                /* Once you figure it out, put the append statement in the if statement. */
+                                
                                 self.events.append(event) // Add the event to the events array.
                                 
                                 break // We no longer need to check if the key matches another event.

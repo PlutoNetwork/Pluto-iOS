@@ -19,6 +19,7 @@ class GalleryController: UICollectionViewController, UINavigationControllerDeleg
     var navigationBarAddButton: UIBarButtonItem!
     var imagePicker: UIImagePickerController!
     
+    /// Holds the key of the event passed in from the detail controller.
     var eventKey = String()
     
     /// Holds the images under the current event.
@@ -31,8 +32,7 @@ class GalleryController: UICollectionViewController, UINavigationControllerDeleg
         
         /* Navigation bar customization. */
         self.navigationController?.setNavigationBarHidden(false, animated: true) // Keeps the navigation bar unhidden.
-        self.navigationItem.title = "Gallery" // Sets the title of the navigation bar.
-        self.navigationController?.navigationBar.backItem?.title = "" // Keeps the back button a simple "<".
+        self.navigationItem.title = "Pictures" // Sets the title of the navigation bar.
         self.navigationController?.navigationBar.tintColor = UIColor.white // Turns the contents of the navigation bar white.
         
         /* Add image button */

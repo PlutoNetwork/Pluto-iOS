@@ -29,13 +29,11 @@
 		061F7E521D9863120023D46F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E511D9863120023D46F /* ProfileVC.swift */; };
 		061F7E541D9874190023D46F /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E531D9874190023D46F /* RoundImageView.swift */; };
 		061FFF1E1DB9DB0700BFB544 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061FFF1D1DB9DB0700BFB544 /* User.swift */; };
-		06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06301FA41DAED58E0056ABA1 /* CreateEventView.swift */; };
 		063D2F1C1E2577E3008B0F39 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D2F1B1E2577E3008B0F39 /* TabBarController.swift */; };
 		064554901D8B1185002C236C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645548F1D8B1185002C236C /* SearchBar.swift */; };
 		065E9B361DA9A5C60083C329 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E9B351DA9A5C60083C329 /* View.swift */; };
 		067CF1831DB418C70080C41C /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateController.swift */; };
 		067CF1851DB4329D0080C41C /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailController.swift */; };
-		06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A401DBDCBB5008A8356 /* SquareImageView.swift */; };
 		06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchController.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
 		069266B11E26D17200755FE9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B01E26D17200755FE9 /* TextField.swift */; };
@@ -113,14 +111,12 @@
 		061F7E511D9863120023D46F /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		061F7E531D9874190023D46F /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		061FFF1D1DB9DB0700BFB544 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		06301FA41DAED58E0056ABA1 /* CreateEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		063D2F1B1E2577E3008B0F39 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0645548F1D8B1185002C236C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		065E9B351DA9A5C60083C329 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		065E9B371DAAE0E30083C329 /* Pluto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pluto.entitlements; sourceTree = "<group>"; };
 		067CF1821DB418C70080C41C /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
 		067CF1841DB4329D0080C41C /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
-		06806A401DBDCBB5008A8356 /* SquareImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareImageView.swift; sourceTree = "<group>"; };
 		06806A441DBF2A4B008A8356 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		069266B01E26D17200755FE9 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -229,9 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				061F7E531D9874190023D46F /* RoundImageView.swift */,
-				06301FA41DAED58E0056ABA1 /* CreateEventView.swift */,
 				06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */,
-				06806A401DBDCBB5008A8356 /* SquareImageView.swift */,
 			);
 			name = Clean;
 			sourceTree = "<group>";
@@ -650,13 +644,11 @@
 				06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */,
 				069266B51E26D57300755FE9 /* TextView.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
-				06806A411DBDCBB5008A8356 /* SquareImageView.swift in Sources */,
 				061FFF1E1DB9DB0700BFB544 /* User.swift in Sources */,
 				063D2F1C1E2577E3008B0F39 /* TabBarController.swift in Sources */,
 				0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */,
 				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
 				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,
-				06301FA51DAED58E0056ABA1 /* CreateEventView.swift in Sources */,
 				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
 				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
 				06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */,
