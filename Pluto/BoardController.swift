@@ -74,7 +74,9 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         
         searchBar.delegate = self // Initialization of the search bar.
-                
+        
+        searchBar.enablesReturnKeyAutomatically = false // Allows user to hit return key if the bar is blank.
+        
         /* Initialization of the table view that holds all the events. */
         eventsView.delegate = self
         eventsView.dataSource = self
