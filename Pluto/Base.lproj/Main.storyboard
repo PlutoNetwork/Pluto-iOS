@@ -509,7 +509,7 @@
                                         <rect key="frame" x="0.0" y="16" width="320" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to choose an image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGN-Sq-wex">
-                                                <rect key="frame" x="50.5" y="49.5" width="220" height="22"/>
+                                                <rect key="frame" x="50" y="49.5" width="220" height="22"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -778,7 +778,7 @@
         <scene sceneID="mfX-05-mGb">
             <objects>
                 <collectionViewController id="78F-Xi-QEv" customClass="GalleryController" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="KOg-r1-Na8">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="KOg-r1-Na8">
                         <rect key="frame" x="0.0" y="64" width="320" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -817,10 +817,45 @@
                             <outlet property="delegate" destination="78F-Xi-QEv" id="YSz-kY-5Ae"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <segue destination="HL0-hp-JvE" kind="show" identifier="showImage" id="vSP-m1-gSP"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSm-nu-zh3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1281.5999999999999" y="1282.3088455772115"/>
+        </scene>
+        <!--Image Controller-->
+        <scene sceneID="8Rd-FK-TXp">
+            <objects>
+                <viewController id="HL0-hp-JvE" customClass="ImageController" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YbQ-Yn-GWb"/>
+                        <viewControllerLayoutGuide type="bottom" id="PVy-A7-KTQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xWX-tf-C7r">
+                        <rect key="frame" x="0.0" y="64" width="320" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQu-7E-1J3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="554"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dQu-7E-1J3" secondAttribute="trailing" id="3Rj-wl-gGH"/>
+                            <constraint firstItem="dQu-7E-1J3" firstAttribute="leading" secondItem="xWX-tf-C7r" secondAttribute="leading" id="U4s-Fu-Gd1"/>
+                            <constraint firstItem="PVy-A7-KTQ" firstAttribute="top" secondItem="dQu-7E-1J3" secondAttribute="bottom" id="pXw-O0-nVW"/>
+                            <constraint firstItem="dQu-7E-1J3" firstAttribute="top" secondItem="YbQ-Yn-GWb" secondAttribute="bottom" id="tZv-s1-Lt5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="dQu-7E-1J3" id="xso-zh-jdn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1fl-x8-PDD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1940.8" y="1281.4092953523239"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VOH-VN-nQL">

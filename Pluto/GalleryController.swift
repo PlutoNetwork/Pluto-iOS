@@ -178,7 +178,9 @@ class GalleryController: UICollectionViewController, UINavigationControllerDeleg
     
     func collectionView(_ collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAt indexPath: IndexPath!) -> FMMosaicCellSize {
         
-        return indexPath.item % 2 == 0 ? FMMosaicCellSize.big : FMMosaicCellSize.small
+        var mosaicSize = indexPath.item % 2 == 0 ? FMMosaicCellSize.big : FMMosaicCellSize.small
+    
+        return mosaicSize
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -201,6 +203,32 @@ class GalleryController: UICollectionViewController, UINavigationControllerDeleg
         } else {
             
             return UICollectionViewCell()
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: "showImage", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showImage" {
+            
+            let destinationController: ImageController = segue.destination as! ImageController
+            
+            let indexPath = self.collectionView?.indexPathsForSelectedItems?.first!
+            let selectedImage = images[(indexPath?.row)!]
+            
+            if let img = BoardController.imageCache.object(forKey: selectedImage.imageURL as NSString) {
+                
+                destinationController.image = img
+                
+            } else {
+                
+                /* ERROR */
+                
+            }
         }
     }
 }
