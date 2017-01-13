@@ -327,7 +327,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nbT-gV-nUN">
-                                <rect key="frame" x="0.0" y="74" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="150" width="320" height="404"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.80000000000000004" green="0.89411764705882346" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -420,14 +420,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" barStyle="black" placeholder="Search an event" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-4y-YY6" customClass="SearchBar" customModule="Pluto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="82" width="320" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.72223772320000001" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="vGG-cq-dKo"/>
+                                </constraints>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="searchField.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.066666666666666666" green="0.93242187499999996" blue="0.62823660714285712" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nbT-gV-nUN" firstAttribute="top" secondItem="8aF-4y-YY6" secondAttribute="bottom" constant="8" id="EEG-h1-jWX"/>
                             <constraint firstItem="glO-bu-eb8" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" id="HOy-Bi-Zh8"/>
                             <constraint firstItem="bfp-Rq-tCN" firstAttribute="top" secondItem="nbT-gV-nUN" secondAttribute="bottom" id="IUa-DG-fPa"/>
+                            <constraint firstItem="8aF-4y-YY6" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" id="TyO-Wg-hLS"/>
                             <constraint firstItem="glO-bu-eb8" firstAttribute="top" secondItem="Tfg-DQ-o0t" secondAttribute="bottom" constant="16" id="UkH-SY-bEc"/>
-                            <constraint firstItem="nbT-gV-nUN" firstAttribute="top" secondItem="glO-bu-eb8" secondAttribute="bottom" constant="8" id="bjb-y6-2UN"/>
+                            <constraint firstItem="8aF-4y-YY6" firstAttribute="top" secondItem="glO-bu-eb8" secondAttribute="bottom" constant="16" id="c9x-mw-xE1"/>
+                            <constraint firstAttribute="trailing" secondItem="8aF-4y-YY6" secondAttribute="trailing" id="frt-I7-gPW"/>
                             <constraint firstItem="nbT-gV-nUN" firstAttribute="leading" secondItem="FuU-9O-4jH" secondAttribute="leading" id="ic7-M4-fo9"/>
                             <constraint firstAttribute="trailing" secondItem="nbT-gV-nUN" secondAttribute="trailing" id="nyY-Va-TlL"/>
                             <constraint firstAttribute="trailing" secondItem="glO-bu-eb8" secondAttribute="trailing" id="ujz-bd-SXh"/>
@@ -438,6 +455,7 @@
                     <navigationItem key="navigationItem" id="nlJ-wA-R8g"/>
                     <connections>
                         <outlet property="eventsView" destination="nbT-gV-nUN" id="yzQ-l3-eNC"/>
+                        <outlet property="searchBar" destination="8aF-4y-YY6" id="r8j-zt-tCQ"/>
                         <outlet property="sortControlView" destination="glO-bu-eb8" id="dHo-is-EWd"/>
                         <segue destination="fdz-sq-Qxz" kind="show" identifier="showDetails" id="9SE-j4-jUU"/>
                         <segue destination="brO-3r-XOE" kind="show" identifier="showAddEvent" id="Vx0-Bv-VFK"/>
@@ -466,7 +484,7 @@
                                         <rect key="frame" x="0.0" y="16" width="320" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to choose an image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGN-Sq-wex">
-                                                <rect key="frame" x="44.5" y="50" width="232.5" height="21"/>
+                                                <rect key="frame" x="44" y="50" width="232.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>

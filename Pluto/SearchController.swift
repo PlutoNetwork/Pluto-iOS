@@ -146,7 +146,6 @@ class SearchController: UIViewController {
     func dismissKeyboard() {
         
         searchBar.resignFirstResponder() // Dismisses the keyboard for the search bar.
-
     }
     
     /**

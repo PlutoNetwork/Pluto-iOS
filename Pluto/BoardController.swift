@@ -17,6 +17,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     // MARK: - OUTLETS
     
     @IBOutlet weak var sortControlView: View!
+    @IBOutlet weak var searchBar: SearchBar!
     @IBOutlet weak var eventsView: UITableView!
     
     // MARK: - VARIABLES
@@ -34,6 +35,12 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     /// Holds the data for all the events under the current board.
     var events = [Event]()
     
+    /// Holds all the filtered board titles as the filtering function does its work.
+    var filteredEvents = [Event]()
+    
+    /// Tells when user is typing in the searchBar.
+    var inSearchMode = false
+    
     // MARK: - VIEW
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,8 +57,9 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         /* Search button */
         navigationBarSearchButton = UIBarButtonItem(image: UIImage(named: "ic-search"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
-        navigationBarSearchButton.tintColor = UIColor.white
+        navigationBarSearchButton.tintColor = UIColor.clear
         self.parent?.navigationItem.leftBarButtonItem  = navigationBarSearchButton
+         self.parent?.navigationItem.leftBarButtonItem?.isEnabled = false
         
         /* Add event button */
         navigationBarAddButton = UIBarButtonItem(image: UIImage(named: "ic-add-event"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
@@ -63,6 +71,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self // Initialization of the search bar.
+        
+        searchBar.becomeFirstResponder() // Automatically calls keyboard.
         
         /* Initialization of the table view that holds all the events. */
         eventsView.delegate = self
@@ -240,6 +252,34 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     }
 }
 
+extension BoardController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text == "" {
+            
+            inSearchMode = false // This means the user is NOT typing in the searchBar.
+            
+            eventsView.reloadData()
+            
+        } else {
+            
+            inSearchMode = true // This means the user is typing in the searchBar.
+            
+            filteredEvents = events.filter({$0.title.range(of: searchBar.text!) != nil}) // Filters the list of events as the user types into a new array.
+            
+            eventsView.reloadData() // Reloads the events view as the filtering occurs.
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        /* This function is called when the user clicks the return key while editing of the searchBar is enabled. */
+        
+        searchBar.resignFirstResponder() // Dismisses the keyboard for the search bar.
+    }
+}
+
 extension BoardController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -259,12 +299,22 @@ extension BoardController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if inSearchMode == true {
+            
+            return filteredEvents.count
+        }
+        
         return events.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let event = events[indexPath.row]
+        var event = events[indexPath.row]
+        
+        if inSearchMode == true {
+            
+            event = filteredEvents[indexPath.row]
+        }
         
         if let cell = eventsView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
             
