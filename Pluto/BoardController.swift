@@ -6,10 +6,10 @@
 //  Copyright © 2016 Faisal M. Lalani. All rights reserved.
 //
 
+import UIKit
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
-import UIKit
 
 class BoardController: UIViewController, UINavigationControllerDelegate {
     
@@ -17,17 +17,13 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var eventsView: UITableView!
     
-    @IBOutlet weak var popularButton: UIButton!
-    @IBOutlet weak var newButton: UIButton!
-    @IBOutlet weak var friendsButton: UIButton!
-    
     // MARK: - VARIABLES
     
     let navigationBarTitle = UILabel()
     var navigationBarAddButton = UIBarButtonItem()
     var navigationBarSearchButton = UIBarButtonItem()
     
-    /// Holds all event and profile pictures.
+    /// Holds all event pictures.
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     /// Holds all the event keys under the current board.
@@ -71,52 +67,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         grabBoardEvents()
     }
     
-    // MARK: - BUTTON
-    
-    @IBAction func popularButtonAction(_ sender: Any) {
-        
-        popularButton.backgroundColor = YELLOW_COLOR
-        popularButton.setTitleColor(VIEW_BACKGROUND_COLOR, for: .normal)
-        
-        newButton.backgroundColor = VIEW_BACKGROUND_COLOR
-        newButton.setTitleColor(YELLOW_COLOR, for: .normal)
-        
-        friendsButton.backgroundColor = VIEW_BACKGROUND_COLOR
-        friendsButton.setTitleColor(YELLOW_COLOR, for: .normal)
-        
-        self.events = self.events.sorted(by: { $0.count > $1.count })
-        self.eventsView.reloadData()
-    }
-    
-    @IBAction func newButton(_ sender: Any) {
-        
-        popularButton.backgroundColor = VIEW_BACKGROUND_COLOR
-        popularButton.setTitleColor(YELLOW_COLOR, for: .normal)
-        
-        newButton.backgroundColor = YELLOW_COLOR
-        newButton.setTitleColor(VIEW_BACKGROUND_COLOR, for: .normal)
-        
-        friendsButton.backgroundColor = VIEW_BACKGROUND_COLOR
-        friendsButton.setTitleColor(YELLOW_COLOR, for: .normal)
-        
-        events = self.events.sorted(by: { $0.time.compare($1.time) == ComparisonResult.orderedAscending })
-        self.eventsView.reloadData()
-    }
-    
-    @IBAction func friendsButtonAction(_ sender: Any) {
-        
-        popularButton.backgroundColor = VIEW_BACKGROUND_COLOR
-        popularButton.setTitleColor(YELLOW_COLOR, for: .normal)
-        
-        newButton.backgroundColor = VIEW_BACKGROUND_COLOR
-        newButton.setTitleColor(YELLOW_COLOR, for: .normal)
-        
-        friendsButton.backgroundColor = YELLOW_COLOR
-        friendsButton.setTitleColor(VIEW_BACKGROUND_COLOR, for: .normal)
-        
-        self.events = self.events.sorted(by: { $0.count > $1.count })
-        self.eventsView.reloadData()
-    }
     
     // MARK: - FIREBASE
     
@@ -180,8 +130,34 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             self.eventsView.reloadData()
         })
     }
-        
+    
     // MARK: - HELPERS
+    
+    /**
+     *  Sorts the events array.
+     *
+     *  - Parameter sortBy: Indicates how the array should be sorted.
+     */
+    func sortEvents(sortBy: String) {
+        
+        if sortBy == "popular" {
+            
+            self.events = self.events.sorted(by: { $0.count > $1.count }) // Sorts the array by the number of people going to the event.
+            
+        } else if sortBy == "upcoming" {
+            
+            events = self.events.sorted(by: { $0.time.compare($1.time) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
+            
+        } else if sortBy == "friends" {
+            
+            /* Here we need to check the events each friend of the user is going to. */
+            
+        }
+        
+        self.eventsView.reloadData() // Reloads the events.
+    }
+        
+    // MARK: - TRANSITION
     
     /**
      *  Segues to the add event screen.

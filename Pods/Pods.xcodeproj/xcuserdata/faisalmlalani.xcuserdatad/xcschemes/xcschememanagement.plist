@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FMMosaicLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Pluto.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>583E7F8A359CBB5CE57F06A052D9AC75</key>
+		<key>60A00FA27392E92A1F3521DB4AD2A9FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E15EE1EBF62F34F569C6D98BA82822CC</key>
+		<key>84CACE4181AEB862C66D1066D7B32746</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A7CE8020D76F8EF05FFF85A095F82F22</key>
 		<dict>
 			<key>primary</key>
 			<true/>

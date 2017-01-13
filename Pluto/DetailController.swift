@@ -246,6 +246,12 @@ class DetailController: UIViewController {
             let destinationController: CreateController = segue.destination as! CreateController
             
             destinationController.event = event // Passes the event to the edit screen.
+        
+        } else if segue.identifier == "showEventGallery" {
+            
+            let destinationController: GalleryController = segue.destination as! GalleryController
+            
+            destinationController.eventKey = event.eventKey // Passes the event key to the gallery screen.
         }
     }
 }

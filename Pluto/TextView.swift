@@ -14,7 +14,7 @@ class TextView: UITextView {
     
     override func awakeFromNib() {
         
-        self.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        self.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     }
 
 }

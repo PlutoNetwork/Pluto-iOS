@@ -40,6 +40,9 @@
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
 		069266B11E26D17200755FE9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B01E26D17200755FE9 /* TextField.swift */; };
 		069266B51E26D57300755FE9 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B41E26D57300755FE9 /* TextView.swift */; };
+		069266B71E28630400755FE9 /* GalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B61E28630400755FE9 /* GalleryController.swift */; };
+		069266B91E28789900755FE9 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B81E28789800755FE9 /* Image.swift */; };
+		069266BB1E287A0A00755FE9 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266BA1E287A0A00755FE9 /* ImageCell.swift */; };
 		0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
@@ -121,6 +124,9 @@
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		069266B01E26D17200755FE9 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		069266B41E26D57300755FE9 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		069266B61E28630400755FE9 /* GalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryController.swift; sourceTree = "<group>"; };
+		069266B81E28789800755FE9 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		069266BA1E287A0A00755FE9 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FaceAware.swift"; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +207,7 @@
 			children = (
 				060644601D8A4601009CFEBC /* Board.swift */,
 				068CEF271D9F5CCB00DFE126 /* Event.swift */,
+				069266B81E28789800755FE9 /* Image.swift */,
 				061FFF1D1DB9DB0700BFB544 /* User.swift */,
 			);
 			name = Models;
@@ -231,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				061F7E4F1D985CC20023D46F /* EventCell.swift */,
+				069266BA1E287A0A00755FE9 /* ImageCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -355,6 +363,7 @@
 				061F7E4B1D983A970023D46F /* BoardController.swift */,
 				067CF1821DB418C70080C41C /* CreateController.swift */,
 				067CF1841DB4329D0080C41C /* DetailController.swift */,
+				069266B61E28630400755FE9 /* GalleryController.swift */,
 				061F7E511D9863120023D46F /* ProfileVC.swift */,
 				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
 			);
@@ -624,10 +633,12 @@
 			files = (
 				061F7E521D9863120023D46F /* ProfileVC.swift in Sources */,
 				067CF1851DB4329D0080C41C /* DetailController.swift in Sources */,
+				069266BB1E287A0A00755FE9 /* ImageCell.swift in Sources */,
 				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
 				069266B11E26D17200755FE9 /* TextField.swift in Sources */,
 				06B20C931D863296006EF005 /* LoginController.swift in Sources */,
 				0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */,
+				069266B71E28630400755FE9 /* GalleryController.swift in Sources */,
 				060644611D8A4601009CFEBC /* Board.swift in Sources */,
 				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
 				061F7E541D9874190023D46F /* RoundImageView.swift in Sources */,
@@ -652,6 +663,7 @@
 				06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */,
 				06B20CCF1D8646C9006EF005 /* LoginTextField.swift in Sources */,
 				06B20C991D863296006EF005 /* Pluto.xcdatamodeld in Sources */,
+				069266B91E28789900755FE9 /* Image.swift in Sources */,
 				061F74671DB00BEE00C8D2A6 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

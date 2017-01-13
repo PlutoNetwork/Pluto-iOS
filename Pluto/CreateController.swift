@@ -6,8 +6,8 @@
 //  Copyright © 2016 Faisal M. Lalani. All rights reserved.
 //
 
-import Firebase
 import UIKit
+import Firebase
 
 class CreateController: UIViewController, UINavigationControllerDelegate {
 

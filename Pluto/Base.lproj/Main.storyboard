@@ -325,36 +325,33 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBr-mz-YeY">
                                         <rect key="frame" x="0.0" y="0.0" width="106.5" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.82352941176470584" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="106.5" id="oLc-ld-u42"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                         <state key="normal" title="POPULAR">
                                             <color key="titleColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="popularButtonAction:" destination="Igr-Um-LDn" eventType="touchUpInside" id="gCX-UQ-fJ0"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAy-16-NNe">
                                         <rect key="frame" x="106.5" y="0.0" width="107" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="106.667" id="cx8-ZT-u9R"/>
+                                            <constraint firstAttribute="width" constant="106.5" id="KEm-Gg-MKo"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                         <state key="normal" title="UPCOMING">
                                             <color key="titleColor" red="1" green="0.82352941180000006" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="newButton:" destination="Igr-Um-LDn" eventType="touchUpInside" id="sl8-SW-VuU"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A2-Qs-UnO">
                                         <rect key="frame" x="213.5" y="0.0" width="106.5" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="106.5" id="GC4-41-vSA"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                         <state key="normal" title="FRIENDS">
                                             <color key="titleColor" red="1" green="0.82352941180000006" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="friendsButtonAction:" destination="Igr-Um-LDn" eventType="touchUpInside" id="fQN-Iz-mR6"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -485,9 +482,6 @@
                     <navigationItem key="navigationItem" id="nlJ-wA-R8g"/>
                     <connections>
                         <outlet property="eventsView" destination="nbT-gV-nUN" id="yzQ-l3-eNC"/>
-                        <outlet property="friendsButton" destination="9A2-Qs-UnO" id="22T-VZ-i0y"/>
-                        <outlet property="newButton" destination="XAy-16-NNe" id="aq0-W8-Zfl"/>
-                        <outlet property="popularButton" destination="GBr-mz-YeY" id="sbO-c2-Thl"/>
                         <segue destination="fdz-sq-Qxz" kind="show" identifier="showDetails" id="9SE-j4-jUU"/>
                         <segue destination="brO-3r-XOE" kind="show" identifier="showAddEvent" id="Vx0-Bv-VFK"/>
                     </connections>
@@ -515,7 +509,7 @@
                                         <rect key="frame" x="0.0" y="16" width="320" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to choose an image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGN-Sq-wex">
-                                                <rect key="frame" x="50.5" y="49" width="220" height="22"/>
+                                                <rect key="frame" x="50.5" y="49.5" width="220" height="22"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -710,6 +704,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="78F-Xi-QEv" kind="show" identifier="showEventGallery" id="ibB-F8-FVc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -726,7 +723,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9b-Xb-5ij">
                                 <rect key="frame" x="0.0" y="300" width="320" height="254"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ws8-XN-wfb">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ws8-XN-wfb" customClass="TextView" customModule="Pluto" customModuleProvider="target">
                                         <rect key="frame" x="20" y="16" width="280" height="150"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -776,6 +773,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vEA-wv-tv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="577.60000000000002" y="1283.2083958020989"/>
+        </scene>
+        <!--Gallery Controller-->
+        <scene sceneID="mfX-05-mGb">
+            <objects>
+                <collectionViewController id="78F-Xi-QEv" customClass="GalleryController" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="KOg-r1-Na8">
+                        <rect key="frame" x="0.0" y="64" width="320" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Xw-2P-Pzy">
+                            <size key="itemSize" width="320" height="554"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="WZt-zg-rAo" customClass="ImageCell" customModule="Pluto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="554"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oMd-IF-xDA">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="554"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="oMd-IF-xDA" secondAttribute="bottom" id="70Z-Qq-qvl"/>
+                                    <constraint firstItem="oMd-IF-xDA" firstAttribute="top" secondItem="WZt-zg-rAo" secondAttribute="top" id="KzE-tv-QWj"/>
+                                    <constraint firstAttribute="trailing" secondItem="oMd-IF-xDA" secondAttribute="trailing" id="LUj-zS-bye"/>
+                                    <constraint firstItem="oMd-IF-xDA" firstAttribute="leading" secondItem="WZt-zg-rAo" secondAttribute="leading" id="NWW-TI-hfP"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="oMd-IF-xDA" id="t4g-vE-SH7"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="78F-Xi-QEv" id="QhL-lp-tEc"/>
+                            <outlet property="delegate" destination="78F-Xi-QEv" id="YSz-kY-5Ae"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hSm-nu-zh3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281.5999999999999" y="1282.3088455772115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VOH-VN-nQL">
@@ -980,6 +1025,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9SE-j4-jUU"/>
-        <segue reference="VFe-2r-F18"/>
+        <segue reference="Vx0-Bv-VFK"/>
     </inferredMetricsTieBreakers>
 </document>

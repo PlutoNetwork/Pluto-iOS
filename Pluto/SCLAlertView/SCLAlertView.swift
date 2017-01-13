@@ -264,7 +264,7 @@ open class SCLAlertView: UIViewController {
         contentView.addSubview(labelTitle)
         contentView.addSubview(viewText)
         // Circle View
-        circleBG.backgroundColor = UIColor.white
+        circleBG.backgroundColor = VIEW_BACKGROUND_COLOR
         circleBG.layer.cornerRadius = circleBG.frame.size.height / 2
         baseView.addSubview(circleBG)
         circleBG.addSubview(circleView)
