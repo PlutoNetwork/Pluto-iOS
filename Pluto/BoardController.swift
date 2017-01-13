@@ -56,6 +56,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         self.parent?.navigationItem.titleView = imageView
         
         /* Search button */
+        /* I've hidden this because I added the search bar to the screen. The reason I didn't just delete it was because there's a spacing problem with the other elements on the nav bar; if I delete this, the logo is off-center. */
         navigationBarSearchButton = UIBarButtonItem(image: UIImage(named: "ic-search"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
         navigationBarSearchButton.tintColor = UIColor.clear
         self.parent?.navigationItem.leftBarButtonItem  = navigationBarSearchButton
@@ -73,9 +74,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         
         searchBar.delegate = self // Initialization of the search bar.
-        
-        searchBar.becomeFirstResponder() // Automatically calls keyboard.
-        
+                
         /* Initialization of the table view that holds all the events. */
         eventsView.delegate = self
         eventsView.dataSource = self
