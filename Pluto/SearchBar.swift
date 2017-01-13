@@ -30,7 +30,9 @@ class SearchBar : UISearchBar {
     
     func setupView() {
         
-        setupText(placeholderText: "Search for your school")
+        self.tintColor = UIColor.white
+        
+        setupText(placeholderText: "Search for an event")
     }
     
     func setupText(placeholderText: String) {
