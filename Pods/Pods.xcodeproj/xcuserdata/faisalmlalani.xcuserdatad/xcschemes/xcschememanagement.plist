@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>BetterSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FMMosaicLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,7 +27,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>60A00FA27392E92A1F3521DB4AD2A9FF</key>
+		<key>2E13B5BED48305DAFCA2C71A8E98913B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2E8727959ECB624888B412C256AD68C5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,7 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A7CE8020D76F8EF05FFF85A095F82F22</key>
+		<key>8716B5DF43AC0E1D13378198B2A4095A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

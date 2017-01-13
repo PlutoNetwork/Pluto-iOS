@@ -6,6 +6,7 @@ target 'Pluto' do
   use_frameworks!
 
   # Pods for Pluto
+    pod 'BetterSegmentedControl', '~> 0.7'
 	pod 'Firebase'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Storage'

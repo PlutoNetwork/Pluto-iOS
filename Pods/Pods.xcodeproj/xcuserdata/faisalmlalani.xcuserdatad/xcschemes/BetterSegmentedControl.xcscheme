@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8716B5DF43AC0E1D13378198B2A4095A'
-               BlueprintName = 'pop'
+               BlueprintIdentifier = '2E13B5BED48305DAFCA2C71A8E98913B'
+               BlueprintName = 'BetterSegmentedControl'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'pop.framework'>
+               BuildableName = 'BetterSegmentedControl.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

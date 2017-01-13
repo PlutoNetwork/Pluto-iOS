@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BetterSegmentedControl
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
@@ -15,6 +16,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     // MARK: - OUTLETS
     
+    @IBOutlet weak var sortControlView: View!
     @IBOutlet weak var eventsView: UITableView!
     
     // MARK: - VARIABLES
@@ -40,7 +42,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: true) // Presents the navigation bar.
         
         /* Logo in the middle of the navigation bar */
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
         imageView.contentMode = .scaleAspectFit
         let image = UIImage(named: "logo")
         imageView.image = image
@@ -55,6 +57,8 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         navigationBarAddButton = UIBarButtonItem(image: UIImage(named: "ic-add-event"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
         navigationBarAddButton.tintColor = UIColor.white
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarAddButton
+        
+        initializeSortControl()
     }
     
     override func viewDidLoad() {
@@ -141,6 +145,40 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     // MARK: - HELPERS
     
+    /**
+     *  Uses the BetterSegmentedControl library to configure a segmented switch.
+     */
+    func initializeSortControl() {
+        
+        let control = BetterSegmentedControl(
+            
+            frame: CGRect(x: 0, y: 0, width: sortControlView.frame.width, height: sortControlView.frame.height),
+            titles: ["Upcoming", "Popular", "Friends"],
+            index: 1,
+            backgroundColor: VIEW_BACKGROUND_COLOR,
+            titleColor: YELLOW_COLOR,
+            indicatorViewBackgroundColor: YELLOW_COLOR,
+            selectedTitleColor: VIEW_BACKGROUND_COLOR)
+        
+        control.titleFont = UIFont(name: "Lato-Regular", size: 15.0)!
+        control.selectedTitleFont = UIFont(name: "Lato-Bold", size: 15.0)!
+        
+        control.addTarget(self, action: #selector(BoardController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
+        
+        sortControlView.addSubview(control)
+    }
+    
+    func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
+        
+        if sender.index == 0 {
+            
+            sortEvents(sortBy: "upcoming")
+            
+        } else if sender.index == 1 {
+            
+            sortEvents(sortBy: "popular")
+        }
+    }
     /**
      *  Sorts the events array.
      *
