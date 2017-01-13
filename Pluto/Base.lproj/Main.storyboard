@@ -837,16 +837,16 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQu-7E-1J3">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQu-7E-1J3">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="554"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dQu-7E-1J3" secondAttribute="trailing" id="3Rj-wl-gGH"/>
-                            <constraint firstItem="dQu-7E-1J3" firstAttribute="leading" secondItem="xWX-tf-C7r" secondAttribute="leading" id="U4s-Fu-Gd1"/>
-                            <constraint firstItem="PVy-A7-KTQ" firstAttribute="top" secondItem="dQu-7E-1J3" secondAttribute="bottom" id="pXw-O0-nVW"/>
-                            <constraint firstItem="dQu-7E-1J3" firstAttribute="top" secondItem="YbQ-Yn-GWb" secondAttribute="bottom" id="tZv-s1-Lt5"/>
+                            <constraint firstItem="dQu-7E-1J3" firstAttribute="leading" secondItem="xWX-tf-C7r" secondAttribute="leading" id="Phu-g9-yyI"/>
+                            <constraint firstAttribute="trailing" secondItem="dQu-7E-1J3" secondAttribute="trailing" id="lHb-fS-XFf"/>
+                            <constraint firstItem="dQu-7E-1J3" firstAttribute="top" secondItem="YbQ-Yn-GWb" secondAttribute="bottom" id="tQu-6u-hk9"/>
+                            <constraint firstItem="PVy-A7-KTQ" firstAttribute="top" secondItem="dQu-7E-1J3" secondAttribute="bottom" id="zjS-bz-vYQ"/>
                         </constraints>
                     </view>
                     <connections>

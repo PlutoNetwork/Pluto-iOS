@@ -366,9 +366,9 @@
 				067CF1821DB418C70080C41C /* CreateController.swift */,
 				067CF1841DB4329D0080C41C /* DetailController.swift */,
 				069266B61E28630400755FE9 /* GalleryController.swift */,
+				069266BC1E28914B00755FE9 /* ImageController.swift */,
 				061F7E511D9863120023D46F /* ProfileVC.swift */,
 				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
-				069266BC1E28914B00755FE9 /* ImageController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
