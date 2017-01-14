@@ -29,6 +29,9 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     /// Holds all event pictures.
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
+    /// Holds events.
+    static var eventCache: NSCache<NSString, Event> = NSCache()
+    
     /// Holds all the event keys under the current board.
     var boardEventKeys = [String]()
     
@@ -68,6 +71,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarAddButton
         
         initializeSortControl()
+        grabBoardEvents()
     }
     
     override func viewDidLoad() {
@@ -81,7 +85,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         eventsView.delegate = self
         eventsView.dataSource = self
         
-        grabBoardEvents()
+        self.eventsView.reloadData()
     }
     
     
@@ -151,7 +155,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                 }
             }
             
-            self.events = self.events.sorted(by: { $0.count > $1.count })
+            self.sortEvents(sortBy: "popular")
             self.eventsView.reloadData()
         })
     }
@@ -181,6 +185,11 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         sortControlView.addSubview(control)
     }
     
+    /**
+     *  #GATEWAY
+     *
+     *  Sorts events.
+     */
     func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         
         if sender.index == 0 {
@@ -201,11 +210,11 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         if sortBy == "popular" {
             
-            self.events = self.events.sorted(by: { $0.count > $1.count }) // Sorts the array by the number of people going to the event.
+            events = events.sorted(by: { $0.count > $1.count }) // Sorts the array by the number of people going to the event.
             
         } else if sortBy == "upcoming" {
             
-            events = self.events.sorted(by: { $0.time.compare($1.time) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
+            events = events.sorted(by: { $0.time.compare($1.time) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
             
         } else if sortBy == "friends" {
             

@@ -23,6 +23,7 @@ class EventCell: UITableViewCell {
     // MARK: - VARIABLES
     
     var event: Event!
+    var eventUserRef: FIRDatabaseReference!
     var userEventRef: FIRDatabaseReference!
     var calendar: EKCalendar!
     
@@ -40,6 +41,9 @@ class EventCell: UITableViewCell {
         
         self.event = event
         
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        eventUserRef = DataService.ds.REF_EVENTS.child(event.eventKey).child("users").child(userID!)
         userEventRef = DataService.ds.REF_CURRENT_USER.child("events").child(event.eventKey)
         self.eventTitleLabel.text = event.title
         self.eventTimeAndPlaceLabel.text = "\(event.location)  •  \(event.time)"
@@ -102,6 +106,7 @@ class EventCell: UITableViewCell {
                 
                 self.eventPlutoImageView.image = UIImage(named: "ship-yellow")
                 self.event.adjustCount(addToCount: true)
+                self.eventUserRef.setValue(true)
                 self.userEventRef.setValue(true)
                 self.syncToCalendar(add: true)
                 
@@ -109,6 +114,7 @@ class EventCell: UITableViewCell {
                 
                 self.eventPlutoImageView.image = UIImage(named: "ship-faded")
                 self.event.adjustCount(addToCount: false)
+                self.eventUserRef.removeValue()
                 self.userEventRef.removeValue()
                 self.syncToCalendar(add: false)
             }
@@ -178,7 +184,5 @@ class EventCell: UITableViewCell {
             
             print("OH NO")
         }
-        
-        let date = newEvent.startDate as NSDate
     }
 }

@@ -106,12 +106,19 @@ class SearchController: UIViewController {
                             
                             /* A matching board title was found, which means the board already exists in the database. */
                             
+                            self.saveDefault(boardKey: board.boardKey)
+                            
                             /// Holds a key and value that will be used to update the user's data.
                             let childUpdates = ["board": board.boardKey]
                             
                             DataService.ds.REF_CURRENT_USER.updateChildValues(childUpdates) // Goes into the current user's data to update their board.
                             
-                            self.saveDefault(boardKey: board.boardKey)
+                            let userID = FIRAuth.auth()?.currentUser?.uid
+                            
+                            /// A reference to the users under the current board.
+                            let boardUsersRef = DataService.ds.REF_CURRENT_BOARD.child("users").child(userID!)
+                            
+                            boardUsersRef.setValue(true) // Sets the value to true indicating the user is under the board.
                             
                             /* There's no need to keep counting, so we can exit the for loop. */
                             break

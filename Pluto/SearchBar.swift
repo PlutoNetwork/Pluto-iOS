@@ -32,10 +32,10 @@ class SearchBar : UISearchBar {
         
         self.tintColor = UIColor.white
         
-        setupText(placeholderText: "Search for an event")
+        setupText()
     }
     
-    func setupText(placeholderText: String) {
+    func setupText() {
         
         /* Changes the font and font size for text inside the search bar. */
         let textFieldInsideUISearchBar = self.value(forKey: "searchField") as? UITextField
@@ -46,6 +46,5 @@ class SearchBar : UISearchBar {
         let textFieldInsideUISearchBarLabel = textFieldInsideUISearchBar!.value(forKey: "placeholderLabel") as? UILabel
         textFieldInsideUISearchBarLabel?.font = UIFont(name: "Lato-Regular", size: 18)
         textFieldInsideUISearchBarLabel?.textColor = UIColor.white
-        textFieldInsideUISearchBarLabel?.text = placeholderText
     }
 }

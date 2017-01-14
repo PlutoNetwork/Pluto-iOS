@@ -13,7 +13,7 @@ class FriendCell: UICollectionViewCell {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var friendImage: UIImageView!
+    @IBOutlet weak var friendImageView: UIImageView!
     @IBOutlet weak var friendNameLabel: UILabel!
     
     // MARK: - Variables
@@ -22,61 +22,49 @@ class FriendCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         
-        layer.shadowColor = SHADOW_COLOR.cgColor
-        layer.shadowOpacity = 1.0
-        layer.shadowRadius = 3.0
-        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        friendImageView.clipsToBounds = true
     }
     
-    func configureCell(friend: User) {
+    func configureCell(friend: User, img: UIImage? = nil) {
         
         self.friend = friend
         
-        DataService.ds.REF_USERS.child(friend.friendKey).observeSingleEvent(of: .value, with: { (snapshot) in
-         
-            let value = snapshot.value as? NSDictionary
-            
-            if value?["image"] != nil {
-                
-                // Downloads the set profile image.
-                self.downloadProfileImage(imageURL: (value?["image"] as? String)!)
-            }
-            
-            if value?["name"] != nil {
-                
-                self.friendNameLabel.text = value?["name"] as? String
-                
-            } else {
-                
-                self.friendNameLabel.text = value?["email"] as? String
-            }
-        })
-    }
-    
-    func downloadProfileImage(imageURL: String) {
+        self.friendNameLabel.text = friend.name
         
-        let ref = FIRStorage.storage().reference(forURL: imageURL)
-        ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+        /* Checks to see if the image is located in the cache. */
+        
+        if img != nil {
             
-            if error != nil {
+            /* If it is, just grab it and set the image view to the cached image. */
+            self.friendImageView.image = img
+            
+        } else {
+            
+            /* If it isn't, save it the cache. */
+            
+            let ref = FIRStorage.storage().reference(forURL: friend.image)
+            
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 
-                // Error! Unable to download photo from Firebase storage.
-                
-            } else {
-                
-                // Image successfully downloaded from Firebase storage.
-                
-                if let imageData = data {
+                if error != nil {
                     
-                    if let img = UIImage(data: imageData) {
+                    /* ERROR: Unable to download photo from Firebase storage. */
+                    
+                } else {
+                    
+                    /* SUCCESS: Image downloaded from Firebase storage. */
+                    
+                    if let imageData = data {
                         
-                        self.friendImage.image = img
-                        
-                        // Save to image cache (globally declared in BoardVC)
-                        BoardController.imageCache.setObject(img, forKey: imageURL as NSString)
+                        if let img = UIImage(data: imageData) {
+                            
+                            self.friendImageView.image = img
+                            
+                            BoardController.imageCache.setObject(img, forKey: friend.image as NSString) // Save to image cache.
+                        }
                     }
                 }
-            }
-        })
+            })
+        }
     }
 }

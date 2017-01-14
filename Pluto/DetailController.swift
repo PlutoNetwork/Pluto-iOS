@@ -13,6 +13,8 @@ class DetailController: UIViewController {
 
     // MARK: - OUTLETS
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var eventImageView: UIImageView!
     
@@ -22,13 +24,19 @@ class DetailController: UIViewController {
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventDescriptionTextView: UITextView!
     
-//    @IBOutlet weak var friendsView: UICollectionView!
+    @IBOutlet weak var friendsView: UICollectionView!
     
     // MARK: - VARIABLES
     
     private var headerMaskLayer = CAShapeLayer()
     
     var navigationBarEditButton: UIBarButtonItem!
+    
+    // Holds all the friend keys under the current user.
+    var userFriendKeys = [String]()
+    
+    // Holds all the friend keys under the current event.
+    var eventFriendKeys = [String]()
     
     /// Holds all the friends of the current user.
     var friends = [User]()
@@ -57,7 +65,7 @@ class DetailController: UIViewController {
             navigationBarEditButton.tintColor = UIColor.white // Changes the color of the post button to white.
             
             self.navigationItem.rightBarButtonItem  = navigationBarEditButton // Adds the edit button to the navigation bar.
-        }
+        }        
     }
     
     override func viewWillLayoutSubviews() {
@@ -70,23 +78,34 @@ class DetailController: UIViewController {
         super.viewDidLayoutSubviews()
         
         updateHeaderView()
+        scrollView.contentSize.height = self.view.frame.height + friendsView.frame.height
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         headerMaskLayer = CAShapeLayer()
-        headerMaskLayer.fillColor = UIColor.black.cgColor
+        headerMaskLayer.fillColor = VIEW_BACKGROUND_COLOR.cgColor
         headerView.layer.mask = headerMaskLayer
         
         updateHeaderView()
         
         /* Initialization of the friends collection view. */
-//        friendsView.dataSource = self
-//        friendsView.delegate = self
+        friendsView.dataSource = self
+        friendsView.delegate = self
         
-        self.setEventDetails()
-        //self.setFriends()
+        /* Shadow properties */
+        friendsView.layer.shadowColor = SHADOW_COLOR.cgColor
+        friendsView.layer.shadowOpacity = 0.6
+        friendsView.layer.shadowRadius = 6.0
+        friendsView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        
+        /* Needed for the shadow to take effect */
+        friendsView.layer.masksToBounds = false
+        friendsView.clipsToBounds = false
+
+        setEventDetails()
+        grabUserFriends()
     }
     
     /**
@@ -97,7 +116,6 @@ class DetailController: UIViewController {
         let effectiveHeight = headerView.bounds.height - 25.0
         
         var headerRect = CGRect(x: 0, y: -effectiveHeight, width: detailsView.bounds.width, height: headerView.bounds.height)
-        headerRect.size.height = 100.0
         
         headerRect.origin.y = effectiveHeight - 50.0
         headerRect.size.height = -effectiveHeight + 50.0
@@ -181,11 +199,67 @@ class DetailController: UIViewController {
     
     // MARK: - FIREBASE
     
-    func setFriends() {
+    /**
+     *  Checks what friends belong to the current user.
+     */
+    func grabUserFriends() {
         
-        DataService.ds.REF_CURRENT_USER.child("friends").observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_USER_FRIENDS.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            self.friends = []
+            self.userFriendKeys = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    let key = snap.key
+                    self.userFriendKeys.append(key) // Add the key to the keys array.
+                }
+            }
+            
+            self.grabEventFriends()
+        })
+    }
+    
+    /**
+     *  Uses the keys received from under the current user data reference to find and grab the data relating to the keys.
+     */
+    func grabEventFriends() {
+        
+        DataService.ds.REF_EVENTS.child(event.eventKey).child("users").observe(.value, with: { (snapshot) in
+            
+            self.eventFriendKeys = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    let key = snap.key
+                    
+                    for userFriendKey in self.userFriendKeys {
+                        
+                        if key == userFriendKey {
+                            
+                            self.eventFriendKeys.append(key)
+                            
+                            break
+                        }
+                    }
+                }
+            }
+            
+            self.grabFriendData()
+        })
+    }
+    
+    /**
+     *  Uses the keys received from under the current user data reference to find and grab the data relating to the keys.
+     */
+    func grabFriendData() {
+        
+        DataService.ds.REF_USERS.observe(.value, with: { (snapshot) in
+            
+            self.friends = [] // Clears the array to avoid duplicates.
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
@@ -194,34 +268,25 @@ class DetailController: UIViewController {
                     if let friendDict = snap.value as? Dictionary<String, AnyObject> {
                         
                         let key = snap.key
-                        let friend = User(friendKey: key, friendData: friendDict)
                         
-                        if friend.connected == true {
+                        for eventFriendKey in self.eventFriendKeys {
                             
-                            self.checkFriendEvent(friend: friend)
+                            if key == eventFriendKey {
+                                
+                                /* The event belongs under this user. */
+                                
+                                let friend = User(friendKey: key, friendData: friendDict) // Format the friend using the User model.
+                                
+                                self.friends.append(friend) // Add the friend to the friends array.
+                                
+                                break // We no longer need to check if the key matches another user.
+                            }
                         }
-                    }
-                }
-            }            
-        })
-    }
-    
-    func checkFriendEvent(friend: User) {
-        
-        DataService.ds.REF_USERS.child(friend.friendKey).child("events").observeSingleEvent(of: .value, with: { (snapshot) in
-         
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                
-                for snap in snapshot {
-                    
-                    if snap.key == self.event.title {
-                        
-                        self.friends.append(friend)
                     }
                 }
             }
             
-//            self.friendsView.reloadData()
+            self.friendsView.reloadData()
         })
     }
     
@@ -268,13 +333,6 @@ extension DetailController: UICollectionViewDataSource, UICollectionViewDelegate
         return friends.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let friendKey = friends[indexPath.row].friendKey
-        
-        self.performSegue(withIdentifier: "showProfile", sender: friendKey)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let friend = friends[indexPath.row]
@@ -293,5 +351,13 @@ extension DetailController: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: 120, height: 120)
+    }
+}
+
+extension DetailController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        updateHeaderView()
     }
 }

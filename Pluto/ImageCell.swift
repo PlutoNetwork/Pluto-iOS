@@ -45,11 +45,11 @@ class ImageCell: UICollectionViewCell {
             
             if error != nil {
                 
-                // Error! Unable to download photo from Firebase storage.
+                // ERROR: Unable to download photo from Firebase storage.
                 
             } else {
                 
-                // Image successfully downloaded from Firebase storage.
+                // SUCCESS: Image downloaded from Firebase storage.
                 
                 if let imageData = data {
                     

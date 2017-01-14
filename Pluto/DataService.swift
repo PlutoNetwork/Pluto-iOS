@@ -70,6 +70,11 @@ class DataService {
         return REF_CURRENT_BOARD.child("events")
     }
     
+    var REF_CURRENT_BOARD_USERS: FIRDatabaseReference {
+        
+        return REF_CURRENT_BOARD.child("users")
+    }
+    
     var REF_CURRENT_USER: FIRDatabaseReference {
         
         let userDefaults = UserDefaults.standard
@@ -88,6 +93,11 @@ class DataService {
     var REF_CURRENT_USER_EVENTS: FIRDatabaseReference {
         
         return REF_CURRENT_USER.child("events")
+    }
+    
+    var REF_CURRENT_USER_FRIENDS: FIRDatabaseReference {
+        
+        return REF_CURRENT_USER.child("friends")
     }
         
     var REF_EVENT_PICS: FIRStorageReference {

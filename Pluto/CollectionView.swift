@@ -1,17 +1,15 @@
 //
-//  EventView.swift
+//  CollectionView.swift
 //  Pluto
 //
-//  Created by Faisal M. Lalani on 10/8/16.
-//  Copyright © 2016 Faisal M. Lalani. All rights reserved.
+//  Created by Faisal M. Lalani on 1/13/17.
+//  Copyright © 2017 Faisal M. Lalani. All rights reserved.
 //
 
 import UIKit
 
-class View: UIView {
-    
-    // MARK: - CONFIGURATION
-    
+class CollectionView: UICollectionView {
+
     override func awakeFromNib() {
         
         /* Shadow properties. */
@@ -19,5 +17,9 @@ class View: UIView {
         layer.shadowOpacity = 0.6
         layer.shadowRadius = 6.0
         layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-    }    
+        
+        layer.masksToBounds = false
+        self.clipsToBounds = false
+    }
+
 }

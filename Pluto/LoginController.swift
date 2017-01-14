@@ -142,7 +142,11 @@ class LoginController: UIViewController {
             
             /// Creates a dictionary for the user information that will be saved to the database.
             let userData = ["provider": providerID,
+                            "image": "https://firebasestorage.googleapis.com/v0/b/pluto-b5a22.appspot.com/o/profile-pics%2F1E667F17-6982-4136-903A-0BCF71C1CD55?alt=media&token=05b32815-8e85-4593-a129-f3eb8bb300f6",
+                            "name": email,
                             "email": email]
+            
+            /* The default image is just a random one from the storage. */
             
             DataService.ds.createFirebaseDBUser(uid: user.uid, userData: userData)
         }
