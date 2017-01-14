@@ -41,8 +41,15 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     /// Holds all the filtered board titles as the filtering function does its work.
     var filteredEvents = [Event]()
     
+    var friendEvents = [Event]()
+    
+    /// Holds all the friend keys under the current user.
+    var userFriendKeys = [String]()
+    
     /// Tells when user is typing in the searchBar.
     var inSearchMode = false
+    
+    var inFriendMode = false
     
     // MARK: - VIEW
     
@@ -71,7 +78,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarAddButton
         
         initializeSortControl()
-        grabBoardEvents()
+        grabUserFriends()
     }
     
     override func viewDidLoad() {
@@ -146,6 +153,8 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                                 
                                 /* Once you figure it out, put the append statement in the if statement. */
                                 
+                                self.checkFriendUnderEvent(event: event)
+                                
                                 self.events.append(event) // Add the event to the events array.
                                 
                                 break // We no longer need to check if the key matches another event.
@@ -157,6 +166,54 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             
             self.sortEvents(sortBy: "popular")
             self.eventsView.reloadData()
+        })
+    }
+    
+    func checkFriendUnderEvent(event: Event) {
+        
+        DataService.ds.REF_EVENTS.child(event.eventKey).child("users").observe(.value, with: { (snapshot) in
+            
+            self.friendEvents = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    let key = snap.key
+                    
+                    for userFriendKey in self.userFriendKeys {
+                        
+                        if key == userFriendKey {
+                            
+                            self.friendEvents.append(event)
+                            
+                            break
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    /**
+     *  Checks what friends belong to the current user.
+     */
+    func grabUserFriends() {
+        
+        DataService.ds.REF_CURRENT_USER_FRIENDS.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.userFriendKeys = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    let key = snap.key
+                    self.userFriendKeys.append(key) // Add the key to the keys array.
+                }
+            }
+            
+            self.grabBoardEvents()
         })
     }
     
@@ -199,6 +256,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         } else if sender.index == 1 {
             
             sortEvents(sortBy: "popular")
+            
+        } else if sender.index == 2 {
+            
+            sortEvents(sortBy: "friends")
         }
     }
     /**
@@ -210,16 +271,17 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         if sortBy == "popular" {
             
+            inFriendMode = false
             events = events.sorted(by: { $0.count > $1.count }) // Sorts the array by the number of people going to the event.
             
         } else if sortBy == "upcoming" {
             
+            inFriendMode = false
             events = events.sorted(by: { $0.timeStart.compare($1.timeStart) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
             
         } else if sortBy == "friends" {
             
-            /* Here we need to check the events each friend of the user is going to. */
-            
+            inFriendMode = true
         }
         
         self.eventsView.reloadData() // Reloads the events.
@@ -312,6 +374,10 @@ extension BoardController: UITableViewDataSource, UITableViewDelegate {
         if inSearchMode == true {
             
             return filteredEvents.count
+            
+        } else if inFriendMode == true {
+            
+            return friendEvents.count
         }
         
         return events.count
@@ -324,6 +390,10 @@ extension BoardController: UITableViewDataSource, UITableViewDelegate {
         if inSearchMode == true {
             
             event = filteredEvents[indexPath.row]
+            
+        } else if inFriendMode == true {
+            
+            event = friendEvents[indexPath.row]
         }
         
         if let cell = eventsView.dequeueReusableCell(withIdentifier: "event") as? EventCell {

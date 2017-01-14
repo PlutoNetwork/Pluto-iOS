@@ -281,6 +281,9 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         
         boardEventRef.setValue(true) // Sets the value to true indicating the event is under the board.
         
+        let eventUserRef = DataService.ds.REF_EVENTS.child(newEventKey).child("users").child(userID!)
+        eventUserRef.setValue(true)
+        
         syncToCalendar(event: event)
         
         /* Clear the fields. */
