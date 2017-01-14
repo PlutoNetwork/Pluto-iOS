@@ -46,7 +46,7 @@ class EventCell: UITableViewCell {
         eventUserRef = DataService.ds.REF_EVENTS.child(event.eventKey).child("users").child(userID!)
         userEventRef = DataService.ds.REF_CURRENT_USER.child("events").child(event.eventKey)
         self.eventTitleLabel.text = event.title
-        self.eventTimeAndPlaceLabel.text = "\(event.location)  •  \(event.time)"
+        self.eventTimeAndPlaceLabel.text = "\(event.location)  •  \(event.timeStart)"
         self.eventPlutoCountLabel.text = "\(event.count)"
         
         /* Checks to see if the image is located in the cache. */
@@ -167,10 +167,11 @@ class EventCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.medium
         formatter.timeStyle = DateFormatter.Style.short
-        let newEventTime = formatter.date(from: self.event.time)
+        let newEventStartTime = formatter.date(from: self.event.timeStart)
+        let newEventEndTime = formatter.date(from: self.event.timeEnd)
         
-        newEvent.startDate = newEventTime! // Sets start date and time for event
-        newEvent.endDate = newEventTime! // Sets end date and time for event
+        newEvent.startDate = newEventStartTime! // Sets start date and time for event
+        newEvent.endDate = newEventEndTime! // Sets end date and time for event
         newEvent.location = self.event.location // Copies location into calendar
         newEvent.calendar = calEvent.defaultCalendarForNewEvents // Copies event into calendar
         newEvent.notes = self.event.description // Copies event description into calendar
@@ -180,6 +181,8 @@ class EventCell: UITableViewCell {
             //Saves event to calendar
             try calEvent.save(newEvent, span: .thisEvent)
             
+            SCLAlertView().showSuccess("Success", subTitle: "Event added to calendar.")
+                        
         } catch {
             
             print("OH NO")

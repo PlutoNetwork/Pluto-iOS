@@ -42,7 +42,7 @@ class DetailController: UIViewController {
     var friends = [User]()
     
     /// Holds the key of the event passed from the main board screen.
-    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), time: String(), title: String())
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), timeStart: String(), timeEnd: String(), title: String())
     
     // MARK: - VIEW
     
@@ -193,7 +193,7 @@ class DetailController: UIViewController {
         self.downloadEventImage(imageURL: event.imageURL)
         
         self.eventTitleLabel.text = event.title
-        self.eventTimeAndPlaceLabel.text = "\(event.location)  •  \(event.time)"
+        self.eventTimeAndPlaceLabel.text = "\(event.location)  •  \(event.timeStart) - \(event.timeEnd)"
         self.eventDescriptionTextView.text = event.description
     }
     

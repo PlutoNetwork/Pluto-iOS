@@ -138,7 +138,7 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
                 }
             }
             
-            self.events = self.events.sorted(by: { $0.time.compare($1.time) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
+            self.events = self.events.sorted(by: { $0.timeStart.compare($1.timeStart) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
             self.eventsView.reloadData()
         })
     }

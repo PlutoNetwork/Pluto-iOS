@@ -20,7 +20,8 @@ class Event {
     private var _description: String!
     private var _imageURL: String!
     private var _location: String!
-    private var _time: String!
+    private var _timeStart: String!
+    private var _timeEnd: String!
     private var _title: String!
     
     var eventKey: String {
@@ -58,9 +59,14 @@ class Event {
         return _location
     }
     
-    var time: String {
+    var timeStart: String {
         
-        return _time
+        return _timeStart
+    }
+    
+    var timeEnd: String {
+        
+        return _timeEnd
     }
     
     var title: String {
@@ -68,7 +74,7 @@ class Event {
         return _title
     }
     
-    init(board: String, count: Int, creator: String, description: String, imageURL: String, location: String, time: String, title: String) {
+    init(board: String, count: Int, creator: String, description: String, imageURL: String, location: String, timeStart: String,timeEnd: String, title: String) {
         
         self._board = board
         self._count = count
@@ -76,7 +82,8 @@ class Event {
         self._description = description
         self._imageURL = imageURL
         self._location = location
-        self._time = time
+        self._timeStart = timeStart
+        self._timeEnd = timeEnd
         self._title = title
     }
     
@@ -114,9 +121,14 @@ class Event {
             self._location = location
         }
         
-        if let time = eventData["time"] as? String {
+        if let timeStart = eventData["timeStart"] as? String {
             
-            self._time = time
+            self._timeStart = timeStart
+        }
+        
+        if let timeEnd = eventData["timeEnd"] as? String {
+            
+            self._timeEnd = timeEnd
         }
         
         if let title = eventData["title"] as? String {

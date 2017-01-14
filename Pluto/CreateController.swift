@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 import Firebase
 
 class CreateController: UIViewController, UINavigationControllerDelegate {
@@ -19,10 +20,13 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var createEventImageView: UIImageView!
     @IBOutlet weak var createEventTitleField: UITextField!
     @IBOutlet weak var createEventLocationField: UITextField!
-    @IBOutlet weak var createEventTimeField: UITextField!
+    @IBOutlet weak var createEventStartTimeField: TextField!
+    @IBOutlet weak var createEventEndTimeField: TextField!
     @IBOutlet weak var createEventDescriptionField: TextView!
     
     @IBOutlet weak var deleteButton: Button!
+    
+    var calendar: EKCalendar!
     
     // MARK: - VARIABLES
 
@@ -30,8 +34,11 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     var imagePicker: UIImagePickerController!
     var postButtonImage: UIImage!
     
+    let startDatePickerView: UIDatePicker = UIDatePicker()
+    let endDatePickerView: UIDatePicker = UIDatePicker()
+    
     /// Holds the key of the event that may be passed from the detail screen.
-    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), time: String(), title: String())
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), timeStart: String(), timeEnd: String(), title: String())
     
     /// Tells when user enters screen from details page.
     var inEditingMode = false
@@ -81,7 +88,8 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         /* Initialization of the text fields. */
         createEventTitleField.delegate = self
         createEventLocationField.delegate = self
-        createEventTimeField.delegate = self
+        createEventStartTimeField.delegate = self
+        createEventEndTimeField.delegate = self
         createEventDescriptionField.delegate = self
         
         /* Initialization of the image picker. */
@@ -121,7 +129,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         
         /* First we need to check to see if any of the fields were left blank. */
         
-        if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventTimeField.text != "" && createEventImageView.image != nil {
+        if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventStartTimeField.text != "" && createEventEndTimeField.text != "" && createEventImageView.image != nil {
             
             /* SUCCESS: The event will be created. */
         
@@ -143,7 +151,8 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         // Sets the value for the updated fields.
         
         let updatedEvent = ["title": createEventTitleField.text! as Any,
-                            "time": createEventTimeField.text! as Any,
+                            "timeStart": createEventStartTimeField.text! as Any,
+                            "timeEnd": createEventEndTimeField.text! as Any,
                             "location": createEventLocationField.text! as Any,
                             "description": createEventDescriptionField.text! as Any,
                             "imageURL": imageURL as Any]
@@ -162,7 +171,8 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         
         /* We can fill these in because this function can only be called if the event has data. */
         createEventTitleField.text = event.title
-        createEventTimeField.text = event.time
+        createEventStartTimeField.text = event.timeStart
+        createEventEndTimeField.text = event.timeEnd
         createEventLocationField.text = event.location
         createEventDescriptionField.text = event.description
         
@@ -243,7 +253,8 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             
             "title": createEventTitleField.text! as Any,
             "location": createEventLocationField.text! as Any,
-            "time": createEventTimeField.text! as Any,
+            "timeStart": createEventStartTimeField.text! as Any,
+            "timeEnd": createEventEndTimeField.text! as Any,
             "description": createEventDescriptionField.text! as Any,
             "creator": userID! as Any,
             "board": boardKey! as Any,
@@ -270,10 +281,13 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         
         boardEventRef.setValue(true) // Sets the value to true indicating the event is under the board.
         
+        syncToCalendar(event: event)
+        
         /* Clear the fields. */
         createEventTitleField.text = ""
         createEventLocationField.text = ""
-        createEventTimeField.text = ""
+        createEventStartTimeField.text = ""
+        createEventEndTimeField.text = ""
         createEventDescriptionField.text = ""
         imageSelected = false
         createEventImageView.image = UIImage(named: "")
@@ -324,6 +338,70 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             }
         }
     }
+    
+    
+    // MARK: - CALENDAR
+    
+    func syncToCalendar(event: Dictionary<String, Any>) {
+        
+        let eventStore = EKEventStore()
+        
+        if EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized {
+            
+            eventStore.requestAccess(to: .event, completion: { (granted, error) in
+                
+                if error != nil {
+                    
+                    /* SUCCESS: We have access to modify the user's calendar. */
+     
+                    self.calendarCall(calEvent: eventStore, event: event)
+                    
+                } else {
+                    
+                    /* ERROR: Something went wrong and the user's calendar could not be accessed. */
+                    
+                    print(error.debugDescription)
+                }
+            })
+            
+        } else {
+            
+            // Code if we already have permission.
+            
+            calendarCall(calEvent: eventStore, event: event)
+        }
+    }
+    
+    func calendarCall(calEvent: EKEventStore, event: Dictionary<String, Any>){
+        
+        let newEvent = EKEvent(eventStore: calEvent)
+        
+        newEvent.title = event["title"] as! String //Sets event title
+        
+        //Formats the date and time to be useable by iOS calendar app
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.medium
+        formatter.timeStyle = DateFormatter.Style.short
+        let newEventStartTime = formatter.date(from: event["timeStart"] as! String)
+        let newEventEndTime = formatter.date(from: event["timeEnd"] as! String)
+        
+        newEvent.startDate = newEventStartTime! // Sets start date and time for event
+        newEvent.endDate = newEventEndTime! // Sets end date and time for event
+        newEvent.location = event["location"] as! String? // Copies location into calendar
+        newEvent.calendar = calEvent.defaultCalendarForNewEvents // Copies event into calendar
+        newEvent.notes = event.description // Copies event description into calendar
+        
+        do {
+            
+            //Saves event to calendar
+            try calEvent.save(newEvent, span: .thisEvent)
+            
+        } catch {
+            
+            print("OH NO")
+        }
+    }
+
 }
 
 extension CreateController: UIImagePickerControllerDelegate {
@@ -363,7 +441,14 @@ extension CreateController: UITextFieldDelegate, UITextViewDelegate {
         
         let strDate = dateFormatter.string(from: sender.date)
         
-        createEventTimeField.text = strDate
+        if sender == startDatePickerView {
+            
+            createEventStartTimeField.text = strDate
+            
+        } else {
+            
+            createEventEndTimeField.text = strDate
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -400,14 +485,25 @@ extension CreateController: UITextFieldDelegate, UITextViewDelegate {
     
     @IBAction func timeFieldEditingBegan(_ sender: TextField) {
         
-        let datePickerView: UIDatePicker = UIDatePicker() // First, we intialize a datePicker variable.
+        /* This sets the format for the datepicker. In this case, it will show both date and time. */
+        startDatePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        endDatePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         
-        datePickerView.datePickerMode = UIDatePickerMode.dateAndTime // This sets the format for the datepicker. In this case, it will show both date and time.
+        if sender == createEventStartTimeField {
+            
+            sender.inputView = startDatePickerView // Changes the first responder of the text field from the keyboard to the datePicker initialized above.
+            
+            /* We need to add a target that updates the contents of the text field to match whatever the user is selecting in the datePicker. */
+            
+            startDatePickerView.addTarget(self, action: #selector(CreateController.datePickerChanged(sender:)), for: UIControlEvents.valueChanged)
         
-        sender.inputView = datePickerView // Changes the first responder of the text field from the keyboard to the datePicker initialized above.
+        } else {
+            
+            sender.inputView = endDatePickerView
+            
+            endDatePickerView.addTarget(self, action: #selector(CreateController.datePickerChanged(sender:)), for: UIControlEvents.valueChanged)
+        }
         
-        /* We need to add a target that updates the contents of the text field to match whatever the user is selecting in the datePicker. */
         
-        datePickerView.addTarget(self, action: #selector(CreateController.datePickerChanged(sender:)), for: UIControlEvents.valueChanged)
     }
 }

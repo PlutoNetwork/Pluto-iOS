@@ -178,7 +178,7 @@ class GalleryController: UICollectionViewController, UINavigationControllerDeleg
     
     func collectionView(_ collectionView: UICollectionView!, layout collectionViewLayout: FMMosaicLayout!, mosaicCellSizeForItemAt indexPath: IndexPath!) -> FMMosaicCellSize {
         
-        var mosaicSize = indexPath.item % 2 == 0 ? FMMosaicCellSize.big : FMMosaicCellSize.small
+        let mosaicSize = indexPath.item % 2 == 0 ? FMMosaicCellSize.big : FMMosaicCellSize.small
     
         return mosaicSize
     }
