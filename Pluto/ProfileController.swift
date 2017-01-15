@@ -53,6 +53,8 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
         navigationBarSettingsButton = UIBarButtonItem(image: UIImage(named: "ic-settings"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
         navigationBarSettingsButton.tintColor = UIColor.white
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarSettingsButton
+        
+        grabUserFriends()
     }
     
     override func viewDidLoad() {
@@ -77,10 +79,125 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
         eventsView.delegate = self
         
         grabUserEvents()
-        grabUserFriends()
+        checkForRequests()
     }
     
     // MARK: - FIREBASE
+    
+    func checkForRequests() {
+        
+        DataService.ds.REF_CURRENT_USER_FRIENDS.observe(.value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    let key = snap.key
+                    
+                    let value = snap.value
+
+                    let check = value! as! Bool
+                    
+                    if check == false {
+                        
+                        self.grabPotentialFriendInfo(friendKey: key)
+                    }
+                }
+            }            
+        })
+    }
+    
+    func grabPotentialFriendInfo(friendKey: String) {
+        
+        DataService.ds.REF_USERS.child(friendKey).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            let name = value?["name"] as? String
+            let image = value?["image"] as? String
+            
+            self.downloadProfileImage(key: friendKey, name: name!, image: image!)
+            
+        })  { (error) in
+            
+            // Error!
+            
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your school.")
+        }
+    }
+    
+    func downloadProfileImage(key: String, name: String, image: String) {
+        
+        /// Holds the event image grabbed from the cache.
+        if let img = BoardController.imageCache.object(forKey: image as NSString) {
+            
+            /* SUCCESS: Loaded image from the cache. */
+            
+            self.presentRequest(key: key, name: name, image: img)
+            
+        } else {
+            
+            /* ERROR: Could not load the event image. */
+            
+            /* If it doesn't download from the cache for some reason, just download it from Firebase. */
+            
+            let ref = FIRStorage.storage().reference(forURL: image)
+            
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                
+                if error != nil {
+                    
+                    /* ERROR: Unable to download photo from Firebase storage. */
+                    
+                } else {
+                    
+                    /* SUCCESS: Image downloaded from Firebase storage. */
+                    
+                    if let imageData = data {
+                        
+                        if let img = UIImage(data: imageData) {
+                            
+                            self.presentRequest(key: key, name: name, image: img)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func presentRequest(key: String, name: String, image: UIImage) {
+        
+        let appearance = SCLAlertView.SCLAppearance (
+            
+            kCircleIconHeight: 55.0,
+            showCircularIcon: true
+        )
+        
+        let notice = SCLAlertView(appearance: appearance)
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        notice.addButton("Yes!") {
+            
+            /* The user has given permission to send a friend request. */
+            
+            let friendRef = DataService.ds.REF_USERS.child(key).child("friends").child(userID!)
+            friendRef.setValue(true)
+            
+            let userRef = DataService.ds.REF_CURRENT_USER_FRIENDS.child(key)
+            userRef.setValue(true)
+        }
+        
+        notice.addButton("Nope") {
+            
+            /* The user has given permission to send a friend request. */
+            
+            let friendRef = DataService.ds.REF_USERS.child(key).child("friends").child(userID!)
+            friendRef.removeValue()
+        }
+        
+        notice.showInfo("Friend request!", subTitle: "Would you like to accept \(name)'s friend request?", closeButtonTitle: "Close", circleIconImage: image)
+    }
     
     /**
      *  Checks what events belong to the current user.
@@ -157,7 +274,15 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
                 for snap in snapshot {
                     
                     let key = snap.key
-                    self.userFriendKeys.append(key) // Add the key to the keys array.
+                    
+                    let value = snap.value
+                    
+                    let check = value! as! Bool
+                    
+                    if check == true {
+                        
+                        self.userFriendKeys.append(key) // Add the key to the keys array.
+                    }
                 }
             }
             
@@ -211,6 +336,19 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
         self.performSegue(withIdentifier: "showUserSearch", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showDetails" {
+            
+            let destinationController: DetailController = segue.destination as! DetailController
+            
+            if let indexPath = self.eventsView.indexPathForSelectedRow {
+                
+                destinationController.event = events[indexPath.row] // Passes the event to the detail screen.
+            }
+        }
+    }
+    
     /**
      Switches to the view controller specified by the parameter.
      
@@ -222,7 +360,6 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
         let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
         self.present(vc, animated: true, completion: nil)
     }
-    
 }
 
 extension ProfileController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -281,6 +418,11 @@ extension ProfileController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return events.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: "showDetails", sender: self)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -30,10 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaults = UserDefaults.standard
         
         /* Checks to see if there is an email saved in the userDefaults. */
-        if (userDefaults.string(forKey: "email") != nil) {
-                        
-            /* Bypass to the main board screen. */
-            setRootViewController(identifier: "Main")
+        if userDefaults.string(forKey: "email") != nil {
+            
+            if userDefaults.string(forKey: "boardKey") != nil {
+                
+                /* Bypass to the main board screen. */
+                setRootViewController(identifier: "Main")
+                
+            } else {
+                
+                setRootViewController(identifier: "Search")
+            }
             
         } else {
         

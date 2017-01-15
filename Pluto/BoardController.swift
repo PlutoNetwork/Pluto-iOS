@@ -87,7 +87,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         initializeSortControl()
         
-        sunnyRefreshControl.beginRefreshing()
     }
     
     override func viewDidLoad() {
@@ -102,6 +101,8 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         eventsView.dataSource = self
         
         setupRefreshControl()
+        sunnyRefreshControl.beginRefreshing()
+
     }
     
     func setupRefreshControl() {
@@ -225,7 +226,15 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                 for snap in snapshot {
                     
                     let key = snap.key
-                    self.userFriendKeys.append(key) // Add the key to the keys array.
+                    
+                    let value = snap.value
+                    
+                    let check = value! as! Bool
+                    
+                    if check == true {
+                        
+                        self.userFriendKeys.append(key) // Add the key to the keys array.
+                    }
                 }
             }
             

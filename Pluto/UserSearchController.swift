@@ -73,6 +73,8 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
      */
     func grabFriendData() {
         
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
         DataService.ds.REF_USERS.observe(.value, with: { (snapshot) in
             
             self.users = [] // Clears the array to avoid duplicates.
@@ -87,7 +89,7 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
                         
                         for boardFriendKey in self.boardUserKeys {
                             
-                            if key == boardFriendKey {
+                            if key == boardFriendKey && key != userID {
                                 
                                 /* The event belongs under this user. */
                                 
@@ -105,6 +107,73 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
             //            self.friends = self.events.sorted(by: { $0..compare($1.time) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
             self.usersView.reloadData()
         })
+    }
+    
+    func downloadProfileImage(potentialFriend: User) {
+        
+        /* We know the image is in the cache because the main board page handles caching. But for safety, we should check. */
+        
+        /// Holds the event image grabbed from the cache.
+        if let img = BoardController.imageCache.object(forKey: potentialFriend.image as NSString) {
+            
+            /* SUCCESS: Loaded image from the cache. */
+            
+            self.presentRequest(potentialFriend: potentialFriend, image: img)
+            
+        } else {
+            
+            /* ERROR: Could not load the event image. */
+            
+            /* If it doesn't download from the cache for some reason, just download it from Firebase. */
+            
+            let ref = FIRStorage.storage().reference(forURL: potentialFriend.image)
+            
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                
+                if error != nil {
+                    
+                    /* ERROR: Unable to download photo from Firebase storage. */
+                    
+                } else {
+                    
+                    /* SUCCESS: Image downloaded from Firebase storage. */
+                    
+                    if let imageData = data {
+                        
+                        if let img = UIImage(data: imageData) {
+                            
+                            self.presentRequest(potentialFriend: potentialFriend, image: img)
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func presentRequest(potentialFriend: User, image: UIImage) {
+        
+        let appearance = SCLAlertView.SCLAppearance (
+            
+            kCircleIconHeight: 55.0,
+            showCircularIcon: true
+        )
+        
+        let notice = SCLAlertView(appearance: appearance)
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        let potentialFriendKey = potentialFriend.friendKey
+        let potentialFriendName = potentialFriend.name
+        
+        notice.addButton("Yes!") {
+            
+            /* The user has given permission to send a friend request. */
+            
+            let friendRef = DataService.ds.REF_USERS.child(potentialFriendKey).child("friends").child(userID!)
+            friendRef.setValue(false)
+        }
+        
+        notice.showInfo("Hey!", subTitle: "Would you like to send \(potentialFriendName!) a friend request?", closeButtonTitle: "No, I made a mistake!", circleIconImage: image)
     }
 }
 
@@ -151,6 +220,18 @@ extension UserSearchController: UICollectionViewDataSource, UICollectionViewDele
             
             return UICollectionViewCell()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        var potentialFriend = users[indexPath.row]
+        
+        if inSearchMode == true {
+            
+            potentialFriend = filteredUsers[indexPath.row]
+        }
+        
+        self.downloadProfileImage(potentialFriend: potentialFriend)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
