@@ -64,6 +64,12 @@ class SettingsController: UIViewController, UINavigationControllerDelegate {
         setUserInfo()
     }
     
+    @IBAction func logoutButtonAction(_ sender: Any) {
+        
+        logOut()
+    }
+    
+    
     func logOut() {
         
         let userDefaults = UserDefaults.standard

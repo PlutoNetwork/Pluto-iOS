@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BetterSegmentedControl
 import EventKit
 import Firebase
 
@@ -15,6 +16,8 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     // MARK: - OUTLETS
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var modeView: View!
     
     @IBOutlet weak var imageInstructionLabel: UILabel!
     @IBOutlet weak var createEventImageView: UIImageView!
@@ -38,7 +41,9 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     let endDatePickerView: UIDatePicker = UIDatePicker()
     
     /// Holds the key of the event that may be passed from the detail screen.
-    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), timeStart: String(), timeEnd: String(), title: String())
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
+    
+    var publicMode = true
     
     /// Tells when user enters screen from details page.
     var inEditingMode = false
@@ -47,6 +52,13 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     var imageSelected = false
     
     // MARK: - VIEW
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        scrollView.contentSize.height = self.view.frame.height + (self.view.frame.height / 3)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -82,6 +94,11 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         self.navigationItem.rightBarButtonItem  = navigationBarPostButton // Adds the post button to the navigation bar.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -98,6 +115,59 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         imagePicker.delegate = self
         
         createEventImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CreateController.addImageGesture))) // Adds a tap gesture to the createEventImageView to bring up the imagePicker.
+        
+        if imageSelected == false {
+            
+            initializeModeControl()
+        }
+    }
+    
+    /**
+     *  Uses the BetterSegmentedControl library to configure a segmented switch.
+     */
+    func initializeModeControl() {
+        
+        let control = BetterSegmentedControl(
+            
+            frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: modeView.frame.height),
+            titles: ["Public", "Private"],
+            index: 0,
+            backgroundColor: VIEW_BACKGROUND_COLOR,
+            titleColor: YELLOW_COLOR,
+            indicatorViewBackgroundColor: YELLOW_COLOR,
+            selectedTitleColor: VIEW_BACKGROUND_COLOR)
+        
+        control.titleFont = UIFont(name: "Lato-Regular", size: 15.0)!
+        control.selectedTitleFont = UIFont(name: "Lato-Bold", size: 15.0)!
+        
+        if inEditingMode == true {
+            
+            if event.publicMode == false {
+                
+                try! control.setIndex(1)
+            }
+        }
+        
+        control.addTarget(self, action: #selector(CreateController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
+        
+        modeView.addSubview(control)
+    }
+    
+    /**
+     *  #GATEWAY
+     *
+     *  Sorts events.
+     */
+    func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
+        
+        if sender.index == 0 {
+            
+            publicMode = true
+            
+        } else if sender.index == 1 {
+            
+            publicMode = false
+        }
     }
     
     // MARK: - BUTTON
@@ -154,6 +224,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
                             "timeStart": createEventStartTimeField.text! as Any,
                             "timeEnd": createEventEndTimeField.text! as Any,
                             "location": createEventLocationField.text! as Any,
+                            "publicMode": publicMode as Any,
                             "description": createEventDescriptionField.text! as Any,
                             "imageURL": imageURL as Any]
         
@@ -258,6 +329,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             "description": createEventDescriptionField.text! as Any,
             "creator": userID! as Any,
             "board": boardKey! as Any,
+            "publicMode": publicMode as Any,
             "count": 1 as Any,
             "imageURL": imageURL as Any
         ]

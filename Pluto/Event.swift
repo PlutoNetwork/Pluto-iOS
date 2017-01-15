@@ -20,6 +20,7 @@ class Event {
     private var _description: String!
     private var _imageURL: String!
     private var _location: String!
+    private var _publicMode: Bool!
     private var _timeStart: String!
     private var _timeEnd: String!
     private var _title: String!
@@ -59,6 +60,11 @@ class Event {
         return _location
     }
     
+    var publicMode: Bool {
+        
+        return _publicMode
+    }
+    
     var timeStart: String {
         
         return _timeStart
@@ -74,7 +80,7 @@ class Event {
         return _title
     }
     
-    init(board: String, count: Int, creator: String, description: String, imageURL: String, location: String, timeStart: String,timeEnd: String, title: String) {
+    init(board: String, count: Int, creator: String, description: String, imageURL: String, location: String, publicMode: Bool, timeStart: String,timeEnd: String, title: String) {
         
         self._board = board
         self._count = count
@@ -82,6 +88,7 @@ class Event {
         self._description = description
         self._imageURL = imageURL
         self._location = location
+        self._publicMode = publicMode
         self._timeStart = timeStart
         self._timeEnd = timeEnd
         self._title = title
@@ -119,6 +126,11 @@ class Event {
         if let location = eventData["location"] as? String {
             
             self._location = location
+        }
+        
+        if let publicMode = eventData["publicMode"] as? Bool {
+            
+            self._publicMode = publicMode
         }
         
         if let timeStart = eventData["timeStart"] as? String {

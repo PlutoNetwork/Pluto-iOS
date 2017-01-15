@@ -169,9 +169,12 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                                 
                                 /* Once you figure it out, put the append statement in the if statement. */
                                 
-                                self.checkFriendUnderEvent(event: event)
+                                if event.publicMode == true {
                                 
-                                self.events.append(event) // Add the event to the events array.
+                                    self.checkFriendUnderEvent(event: event)
+                                    
+                                    self.events.append(event) // Add the event to the events array.
+                                }
                                 
                                 break // We no longer need to check if the key matches another event.
                             }
@@ -209,6 +212,8 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                     }
                 }
             }
+            
+            self.friendEvents = self.friendEvents.sorted(by: { $0.timeStart.compare($1.timeStart) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
         })
     }
     

@@ -42,7 +42,7 @@ class DetailController: UIViewController {
     var friends = [User]()
     
     /// Holds the key of the event passed from the main board screen.
-    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), timeStart: String(), timeEnd: String(), title: String())
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
     
     // MARK: - VIEW
     
@@ -293,6 +293,7 @@ class DetailController: UIViewController {
                 }
             }
             
+            self.friends = self.friends.sorted(by: { $0.name > $1.name }) // Sorts the array by the name of the friend.
             self.friendsView.reloadData()
         })
     }

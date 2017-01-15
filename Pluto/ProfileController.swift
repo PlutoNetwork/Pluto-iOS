@@ -324,7 +324,7 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
                 }
             }
             
-//            self.friends = self.events.sorted(by: { $0..compare($1.time) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
+            self.friends = self.friends.sorted(by: { $0.name > $1.name }) // Sorts the array by the number of people going to the event.
             self.friendsView.reloadData()
         })
     }

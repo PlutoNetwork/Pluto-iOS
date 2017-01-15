@@ -104,7 +104,7 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
                 }
             }
             
-            //            self.friends = self.events.sorted(by: { $0..compare($1.time) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
+            self.users = self.users.sorted(by: { $0.name > $1.name }) // Sorts the array by the number of people going to the event.
             self.usersView.reloadData()
         })
     }
@@ -195,7 +195,7 @@ extension UserSearchController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+                
         var user = users[indexPath.row]
         
         if inSearchMode == true {
@@ -257,6 +257,8 @@ extension UserSearchController: UISearchBarDelegate {
             let searchBarText = searchBar.text?.uppercased()
             
             filteredUsers = users.filter({$0.name.uppercased().range(of: searchBarText!) != nil}) // Filters the list of events as the user types into a new array.
+            
+            filteredUsers = self.filteredUsers.sorted(by: { $0.name > $1.name }) // Sorts the array by the number of people going to the event.
             
             usersView.reloadData() // Reloads the users view as the filtering occurs.
         }
