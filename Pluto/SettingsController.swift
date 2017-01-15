@@ -75,7 +75,7 @@ class SettingsController: UIViewController, UINavigationControllerDelegate {
     }
     
     func save() {
-                
+        
         // Checks to see if the user updated the name field.
         if nameField.text != "" {
             
@@ -83,7 +83,7 @@ class SettingsController: UIViewController, UINavigationControllerDelegate {
             DataService.ds.REF_CURRENT_USER.child("name").setValue(nameField.text!)
         }
         
-        self.performSegue(withIdentifier: "showProfile", sender: self)
+        switchController(controllerID: "Main")
     }
     
     // MARK: - FIREBASE
