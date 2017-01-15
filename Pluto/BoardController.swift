@@ -51,6 +51,8 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     var inFriendMode = false
     
+    var sunnyRefreshControl: YALSunnyRefreshControl!
+    
     // MARK: - VIEW
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,8 +79,15 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         navigationBarAddButton.tintColor = UIColor.white
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarAddButton
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
         initializeSortControl()
-        grabUserFriends()
+        
+        sunnyRefreshControl.beginRefreshing()
     }
     
     override func viewDidLoad() {
@@ -92,9 +101,15 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         eventsView.delegate = self
         eventsView.dataSource = self
         
-        self.eventsView.reloadData()
+        setupRefreshControl()
     }
     
+    func setupRefreshControl() {
+        
+        sunnyRefreshControl = YALSunnyRefreshControl()
+        sunnyRefreshControl.addTarget(self, action: #selector(BoardController.grabUserFriends), for: .valueChanged)
+        sunnyRefreshControl.attach(to: eventsView)
+    }
     
     // MARK: - FIREBASE
     
@@ -166,6 +181,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             
             self.sortEvents(sortBy: "popular")
             self.eventsView.reloadData()
+            self.sunnyRefreshControl.endRefreshing()
         })
     }
     

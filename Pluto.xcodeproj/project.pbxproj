@@ -43,6 +43,9 @@
 		069266BD1E28914B00755FE9 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266BC1E28914B00755FE9 /* ImageController.swift */; };
 		069266BF1E29457100755FE9 /* CameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266BE1E29457100755FE9 /* CameraButton.swift */; };
 		069266C41E2AA11900755FE9 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266C31E2AA11900755FE9 /* UserSearchController.swift */; };
+		069266E81E2AF16400755FE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 069266DB1E2AF16300755FE9 /* Images.xcassets */; };
+		069266E91E2AF16400755FE9 /* YALSunnyRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 069266DD1E2AF16300755FE9 /* YALSunnyRefreshControl.m */; };
+		069266EA1E2AF16400755FE9 /* YALSunnyRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069266DE1E2AF16300755FE9 /* YALSunnyRefreshControl.xib */; };
 		0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
@@ -127,6 +130,10 @@
 		069266BC1E28914B00755FE9 /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		069266BE1E29457100755FE9 /* CameraButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraButton.swift; sourceTree = "<group>"; };
 		069266C31E2AA11900755FE9 /* UserSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
+		069266DB1E2AF16300755FE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		069266DC1E2AF16300755FE9 /* YALSunnyRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALSunnyRefreshControl.h; sourceTree = "<group>"; };
+		069266DD1E2AF16300755FE9 /* YALSunnyRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALSunnyRefreshControl.m; sourceTree = "<group>"; };
+		069266DE1E2AF16300755FE9 /* YALSunnyRefreshControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YALSunnyRefreshControl.xib; sourceTree = "<group>"; };
 		0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FaceAware.swift"; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				06B20CC31D86374F006EF005 /* Fonts */,
+				069266DA1E2AF16300755FE9 /* YALSunnyRefreshControl */,
 				061276781DA3592200CB3C2D /* SCLAlertView */,
 				0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */,
 				060644681D8A69FC009CFEBC /* schools.csv */,
@@ -253,6 +261,18 @@
 				069266BE1E29457100755FE9 /* CameraButton.swift */,
 			);
 			name = Buttons;
+			sourceTree = "<group>";
+		};
+		069266DA1E2AF16300755FE9 /* YALSunnyRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				069266DB1E2AF16300755FE9 /* Images.xcassets */,
+				069266DC1E2AF16300755FE9 /* YALSunnyRefreshControl.h */,
+				069266DD1E2AF16300755FE9 /* YALSunnyRefreshControl.m */,
+				069266DE1E2AF16300755FE9 /* YALSunnyRefreshControl.xib */,
+			);
+			name = YALSunnyRefreshControl;
+			path = YALTourPullToRefresh/YALSunnyRefreshControll;
 			sourceTree = "<group>";
 		};
 		06A196B21D976D86001C29EC /* Services */ = {
@@ -533,7 +553,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				069266EA1E2AF16400755FE9 /* YALSunnyRefreshControl.xib in Resources */,
 				060644691D8A69FC009CFEBC /* schools.csv in Resources */,
+				069266E81E2AF16400755FE9 /* Images.xcassets in Resources */,
 				061611E71DEA6E2400EE0816 /* Lato-Light.ttf in Resources */,
 				06B20CE01D865D36006EF005 /* OpenSans-Italic.ttf in Resources */,
 				061611E51DEA6E2400EE0816 /* Lato-HairlineItalic.ttf in Resources */,
@@ -633,6 +655,7 @@
 			files = (
 				069266BD1E28914B00755FE9 /* ImageController.swift in Sources */,
 				061F7E521D9863120023D46F /* ProfileController.swift in Sources */,
+				069266E91E2AF16400755FE9 /* YALSunnyRefreshControl.m in Sources */,
 				067CF1851DB4329D0080C41C /* DetailController.swift in Sources */,
 				069266BB1E287A0A00755FE9 /* ImageCell.swift in Sources */,
 				069266C41E2AA11900755FE9 /* UserSearchController.swift in Sources */,
