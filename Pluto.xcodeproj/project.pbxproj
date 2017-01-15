@@ -23,7 +23,7 @@
 		061611E71DEA6E2400EE0816 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611DD1DEA6E2400EE0816 /* Lato-Light.ttf */; };
 		061611E81DEA6E2400EE0816 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611DE1DEA6E2400EE0816 /* Lato-LightItalic.ttf */; };
 		061611E91DEA6E2400EE0816 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611DF1DEA6E2400EE0816 /* Lato-Regular.ttf */; };
-		061F74671DB00BEE00C8D2A6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */; };
+		061F74671DB00BEE00C8D2A6 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F74661DB00BEE00C8D2A6 /* SettingsController.swift */; };
 		061F7E4C1D983A970023D46F /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4B1D983A970023D46F /* BoardController.swift */; };
 		061F7E501D985CC20023D46F /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4F1D985CC20023D46F /* EventCell.swift */; };
 		061F7E521D9863120023D46F /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E511D9863120023D46F /* ProfileController.swift */; };
@@ -109,7 +109,7 @@
 		061611DD1DEA6E2400EE0816 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		061611DE1DEA6E2400EE0816 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		061611DF1DEA6E2400EE0816 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
-		061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		061F74661DB00BEE00C8D2A6 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		061F7E4B1D983A970023D46F /* BoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
 		061F7E4F1D985CC20023D46F /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		061F7E511D9863120023D46F /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -385,7 +385,7 @@
 				069266BC1E28914B00755FE9 /* ImageController.swift */,
 				061F7E511D9863120023D46F /* ProfileController.swift */,
 				069266C31E2AA11900755FE9 /* UserSearchController.swift */,
-				061F74661DB00BEE00C8D2A6 /* SettingsVC.swift */,
+				061F74661DB00BEE00C8D2A6 /* SettingsController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -687,7 +687,7 @@
 				06B20CCF1D8646C9006EF005 /* LoginTextField.swift in Sources */,
 				06B20C991D863296006EF005 /* Pluto.xcdatamodeld in Sources */,
 				069266B91E28789900755FE9 /* Image.swift in Sources */,
-				061F74671DB00BEE00C8D2A6 /* SettingsVC.swift in Sources */,
+				061F74671DB00BEE00C8D2A6 /* SettingsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

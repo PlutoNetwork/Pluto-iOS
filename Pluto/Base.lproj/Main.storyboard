@@ -184,118 +184,91 @@
             </objects>
             <point key="canvasLocation" x="-583" y="-258"/>
         </scene>
-        <!--SettingsVC-->
+        <!--Settings Controller-->
         <scene sceneID="TRO-06-qvF">
             <objects>
-                <viewController id="Wo1-Cp-7sE" customClass="SettingsVC" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wo1-Cp-7sE" customClass="SettingsController" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0YB-QX-6MW"/>
                         <viewControllerLayoutGuide type="bottom" id="q3I-Ax-z4l"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5wt-kM-waT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ghE-Jn-I8h" customClass="RoundImageView" customModule="Pluto" customModuleProvider="target">
-                                <rect key="frame" x="120" y="30" width="80" height="80"/>
-                                <gestureRecognizers/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HZe-Pb-T06" customClass="TextField" customModule="Pluto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="152" width="320" height="42"/>
+                                <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="4Xh-vC-Am5"/>
-                                    <constraint firstAttribute="height" constant="80" id="fUC-dv-zqQ"/>
+                                    <constraint firstAttribute="height" constant="42" id="yPo-Up-ohn"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="focusOnFaces" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vwf-8Z-BWg" customClass="HoshiTextField" customModule="Pluto" customModuleProvider="target">
-                                <rect key="frame" x="16" y="140" width="288" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="3PD-sV-7lw"/>
-                                </constraints>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="1" green="0.82352941180000006" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRM-zD-bGR" customClass="HoshiTextField" customModule="Pluto" customModuleProvider="target">
-                                <rect key="frame" x="16" y="215" width="288" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWz-ah-PXm">
+                                <rect key="frame" x="0.0" y="16" width="320" height="120"/>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYy-kW-jVY">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="vLY-fP-vmA"/>
+                                    <constraint firstAttribute="height" constant="120" id="1Hh-m4-CZL"/>
+                                    <constraint firstItem="YYy-kW-jVY" firstAttribute="top" secondItem="TWz-ah-PXm" secondAttribute="top" id="3pj-fk-Vmd"/>
+                                    <constraint firstAttribute="bottom" secondItem="YYy-kW-jVY" secondAttribute="bottom" id="BSM-Mo-Uy8"/>
+                                    <constraint firstAttribute="trailing" secondItem="YYy-kW-jVY" secondAttribute="trailing" id="TXH-Ko-ipP"/>
+                                    <constraint firstItem="YYy-kW-jVY" firstAttribute="leading" secondItem="TWz-ah-PXm" secondAttribute="leading" id="fEv-SO-3KE"/>
                                 </constraints>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tLi-Su-MTW" customClass="TextField" customModule="Pluto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="210" width="320" height="42"/>
+                                <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="zxG-i4-yIN"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="1" green="0.82352941180000006" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t41-ty-hZi" customClass="Button" customModule="Pluto" customModuleProvider="target">
-                                <rect key="frame" x="60" y="335" width="200" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.82352941180000006" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="7Oe-io-wbS"/>
-                                    <constraint firstAttribute="height" constant="50" id="IS8-fV-uvU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
-                                <state key="normal" title="SAVE">
-                                    <color key="titleColor" red="0.16078431369999999" green="0.16078431369999999" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="goButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fz6-70-dZX"/>
-                                    <action selector="saveButtonAction:" destination="Wo1-Cp-7sE" eventType="touchUpInside" id="hfI-cy-ykl"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ghE-Jn-I8h" firstAttribute="top" secondItem="0YB-QX-6MW" secondAttribute="bottom" constant="10" id="0C8-Uq-hlD"/>
-                            <constraint firstItem="vwf-8Z-BWg" firstAttribute="leading" secondItem="5wt-kM-waT" secondAttribute="leadingMargin" id="0uT-rk-Sbq"/>
-                            <constraint firstItem="vwf-8Z-BWg" firstAttribute="trailing" secondItem="5wt-kM-waT" secondAttribute="trailingMargin" id="GiX-KJ-1QY"/>
-                            <constraint firstItem="aRM-zD-bGR" firstAttribute="trailing" secondItem="5wt-kM-waT" secondAttribute="trailingMargin" id="Mhu-yg-EVX"/>
-                            <constraint firstItem="t41-ty-hZi" firstAttribute="centerX" secondItem="5wt-kM-waT" secondAttribute="centerX" id="PDL-iK-RH2"/>
-                            <constraint firstItem="vwf-8Z-BWg" firstAttribute="centerX" secondItem="5wt-kM-waT" secondAttribute="centerX" id="RYD-E0-Qe5"/>
-                            <constraint firstItem="aRM-zD-bGR" firstAttribute="top" secondItem="vwf-8Z-BWg" secondAttribute="bottom" constant="25" id="egb-B4-15f"/>
-                            <constraint firstItem="t41-ty-hZi" firstAttribute="top" secondItem="aRM-zD-bGR" secondAttribute="bottom" constant="70" id="jcV-5S-dzd"/>
-                            <constraint firstItem="aRM-zD-bGR" firstAttribute="leading" secondItem="5wt-kM-waT" secondAttribute="leadingMargin" id="sNr-IL-wtY"/>
-                            <constraint firstItem="ghE-Jn-I8h" firstAttribute="centerX" secondItem="5wt-kM-waT" secondAttribute="centerX" id="x5n-JE-KR7"/>
-                            <constraint firstItem="vwf-8Z-BWg" firstAttribute="top" secondItem="ghE-Jn-I8h" secondAttribute="bottom" constant="30" id="zFT-OF-dLD"/>
+                            <constraint firstItem="tLi-Su-MTW" firstAttribute="top" secondItem="HZe-Pb-T06" secondAttribute="bottom" constant="16" id="DU1-Dv-VHh"/>
+                            <constraint firstAttribute="trailing" secondItem="tLi-Su-MTW" secondAttribute="trailing" id="EWY-h8-JXI"/>
+                            <constraint firstItem="tLi-Su-MTW" firstAttribute="leading" secondItem="5wt-kM-waT" secondAttribute="leading" id="KtK-Ff-NcF"/>
+                            <constraint firstAttribute="trailing" secondItem="HZe-Pb-T06" secondAttribute="trailing" id="Mca-MJ-d27"/>
+                            <constraint firstItem="TWz-ah-PXm" firstAttribute="leading" secondItem="5wt-kM-waT" secondAttribute="leading" id="chm-oN-C82"/>
+                            <constraint firstItem="HZe-Pb-T06" firstAttribute="leading" secondItem="5wt-kM-waT" secondAttribute="leading" id="eYr-QS-iZm"/>
+                            <constraint firstItem="HZe-Pb-T06" firstAttribute="top" secondItem="TWz-ah-PXm" secondAttribute="bottom" constant="16" id="h90-ly-Nbz"/>
+                            <constraint firstAttribute="trailing" secondItem="TWz-ah-PXm" secondAttribute="trailing" id="rw3-BY-2Zl"/>
+                            <constraint firstItem="TWz-ah-PXm" firstAttribute="top" secondItem="0YB-QX-6MW" secondAttribute="bottom" constant="16" id="xeQ-5W-dWU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="" image="settings" selectedImage="settings" id="Ljv-QV-jIj"/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="emailField" destination="aRM-zD-bGR" id="KeH-av-iIV"/>
-                        <outlet property="nameField" destination="vwf-8Z-BWg" id="sp9-eo-LvY"/>
-                        <outlet property="profileImageView" destination="ghE-Jn-I8h" id="ait-e5-tUR"/>
+                        <outlet property="emailField" destination="tLi-Su-MTW" id="f6m-Ee-fVw"/>
+                        <outlet property="nameField" destination="HZe-Pb-T06" id="LYM-cJ-3F8"/>
+                        <outlet property="profileImageView" destination="YYy-kW-jVY" id="DPS-Y6-53q"/>
+                        <segue destination="VHU-3L-jFE" kind="show" identifier="showProfile" id="mrV-8n-sYy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fI5-hm-ej6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -868,7 +841,7 @@
             <objects>
                 <collectionViewController id="78F-Xi-QEv" customClass="GalleryController" customModule="Pluto" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="KOg-r1-Na8">
-                        <rect key="frame" x="0.0" y="64" width="320" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Xw-2P-Pzy">
@@ -879,7 +852,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="WZt-zg-rAo" customClass="ImageCell" customModule="Pluto" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="28" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -923,11 +896,11 @@
                         <viewControllerLayoutGuide type="bottom" id="PVy-A7-KTQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xWX-tf-C7r">
-                        <rect key="frame" x="0.0" y="64" width="320" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQu-7E-1J3">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="554"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1325,7 +1298,8 @@
         <image name="user" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VFe-2r-F18"/>
         <segue reference="YIJ-Gs-lHu"/>
+        <segue reference="mrV-8n-sYy"/>
+        <segue reference="VFe-2r-F18"/>
     </inferredMetricsTieBreakers>
 </document>

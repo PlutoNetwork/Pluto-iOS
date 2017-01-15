@@ -335,8 +335,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
                     } else {
                         
                         self.createEvent(imageURL: downloadURL!)
-                    }
-                    
+                    }                    
                 }
             }
         }

@@ -50,7 +50,7 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
         self.parent?.navigationItem.leftBarButtonItem  = navigationBarSearchButton
         
         /* Settings button */
-        navigationBarSettingsButton = UIBarButtonItem(image: UIImage(named: "ic-settings"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
+        navigationBarSettingsButton = UIBarButtonItem(image: UIImage(named: "ic-settings"), style: .plain, target: self, action: #selector(ProfileController.goToSettings))
         navigationBarSettingsButton.tintColor = UIColor.white
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarSettingsButton
         
@@ -334,6 +334,11 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
     func goToUserSearchScreen() {
         
         self.performSegue(withIdentifier: "showUserSearch", sender: self)
+    }
+    
+    func goToSettings() {
+        
+        self.performSegue(withIdentifier: "showSettings", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
