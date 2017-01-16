@@ -142,7 +142,7 @@ class LoginController: UIViewController {
             
             /// Creates a dictionary for the user information that will be saved to the database.
             let userData = ["provider": providerID,
-                            "image": "https://firebasestorage.googleapis.com/v0/b/pluto-b5a22.appspot.com/o/profile-pics%2F1E667F17-6982-4136-903A-0BCF71C1CD55?alt=media&token=05b32815-8e85-4593-a129-f3eb8bb300f6",
+                            "image": "https://firebasestorage.googleapis.com/v0/b/pluto-b5a22.appspot.com/o/profile-pics%2F12A7618A-56AE-483B-AA86-77442CB95B93?alt=media&token=d8c23cc6-914a-473e-b951-2f258367e1fd",
                             "name": email,
                             "email": email]
             

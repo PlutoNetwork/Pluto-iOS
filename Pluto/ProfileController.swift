@@ -53,8 +53,6 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
         navigationBarSettingsButton = UIBarButtonItem(image: UIImage(named: "ic-settings"), style: .plain, target: self, action: #selector(ProfileController.goToSettings))
         navigationBarSettingsButton.tintColor = UIColor.white
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarSettingsButton
-        
-        grabUserFriends()
     }
     
     override func viewDidLoad() {
@@ -79,6 +77,7 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
         eventsView.delegate = self
         
         grabUserEvents()
+        grabUserFriends()
         checkForRequests()
     }
     
@@ -133,6 +132,7 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
             
             /* SUCCESS: Loaded image from the cache. */
             
+            print("TEST 3")
             self.presentRequest(key: key, name: name, image: img)
             
         } else {
@@ -186,6 +186,8 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
             
             let userRef = DataService.ds.REF_CURRENT_USER_FRIENDS.child(key)
             userRef.setValue(true)
+            
+            print("DONE")
         }
         
         notice.addButton("Nope") {
