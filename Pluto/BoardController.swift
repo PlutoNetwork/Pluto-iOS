@@ -78,8 +78,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         navigationBarAddButton = UIBarButtonItem(image: UIImage(named: "ic-add-event"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
         navigationBarAddButton.tintColor = UIColor.white
         self.parent?.navigationItem.rightBarButtonItem  = navigationBarAddButton
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,7 +100,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         setupRefreshControl()
         sunnyRefreshControl.beginRefreshing()
-
     }
     
     func setupRefreshControl() {
@@ -243,7 +240,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                 }
             }
             
-            self.sortEvents(sortBy: "popular")
             self.eventsView.reloadData()
             self.sunnyRefreshControl.endRefreshing()
         })
