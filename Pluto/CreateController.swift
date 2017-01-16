@@ -40,10 +40,10 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     let startDatePickerView: UIDatePicker = UIDatePicker()
     let endDatePickerView: UIDatePicker = UIDatePicker()
     
+    var publicMode = true
+
     /// Holds the key of the event that may be passed from the detail screen.
     var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
-    
-    var publicMode = true
     
     /// Tells when user enters screen from details page.
     var inEditingMode = false
@@ -61,6 +61,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
         /* Navigation bar customization */
         self.navigationController?.setNavigationBarHidden(false, animated: true) // Keeps the navigation bar unhidden.
@@ -205,6 +206,26 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         
             self.uploadEventImage()
             
+            if inEditingMode == false {
+            
+                let notice = SCLAlertView()
+                
+                notice.addButton("Yes!", action: { 
+                    
+                    self.performSegue(withIdentifier: "showInvite", sender: self)
+                })
+                
+                notice.addButton("No", action: {
+                    
+                    self.switchController(controllerID: "Main")
+                })
+                
+                notice.showInfo("Hey!", subTitle: "Before we post your event, would you like to invite anyone?", closeButtonTitle: "Close")
+            } else {
+                
+                self.switchController(controllerID: "Main")
+            }
+            
         } else {
             
             /* ERROR: The event could not be created. */
@@ -229,8 +250,6 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
                             "imageURL": imageURL as Any]
         
         eventRef.updateChildValues(updatedEvent)
-        
-        switchController(controllerID: "Main")
     }
     
     // MARK: - HELPERS
@@ -358,6 +377,11 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         
         syncToCalendar(event: event)
         
+        let eventDict = event
+        let passEvent = Event(eventKey: newEvent.key, eventData: eventDict as Dictionary<String, AnyObject>)
+        
+        self.event = passEvent
+        
         /* Clear the fields. */
         createEventTitleField.text = ""
         createEventLocationField.text = ""
@@ -367,8 +391,6 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         imageSelected = false
         createEventImageView.image = UIImage(named: "")
         imageInstructionLabel.alpha = 1.0
-        
-        self.switchController(controllerID: "Main") // Switch back to the board.
     }
     
     /**
@@ -475,7 +497,16 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             print("OH NO")
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showInvite" {
+            
+            let destinationController: UserSearchController = segue.destination as! UserSearchController
+            
+            destinationController.event = event
+        }
+    }
 }
 
 extension CreateController: UIImagePickerControllerDelegate {

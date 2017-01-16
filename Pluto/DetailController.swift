@@ -28,8 +28,6 @@ class DetailController: UIViewController {
     
     // MARK: - VARIABLES
     
-    private var headerMaskLayer = CAShapeLayer()
-    
     var navigationBarEditButton: UIBarButtonItem!
     
     // Holds all the friend keys under the current user.
@@ -68,27 +66,14 @@ class DetailController: UIViewController {
         }        
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        updateHeaderView()
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        updateHeaderView()
         scrollView.contentSize.height = self.view.frame.height + friendsView.frame.height
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        headerMaskLayer = CAShapeLayer()
-        headerMaskLayer.fillColor = VIEW_BACKGROUND_COLOR.cgColor
-        headerView.layer.mask = headerMaskLayer
-        
-        updateHeaderView()
         
         /* Initialization of the friends collection view. */
         friendsView.dataSource = self
@@ -108,28 +93,12 @@ class DetailController: UIViewController {
         grabUserFriends()
     }
     
-    /**
-     *  Creates the nice-looking diagonal slice.
-     */
-    func updateHeaderView() {
+    @IBAction func inviteButtonAction(_ sender: Any) {
         
-        let effectiveHeight = headerView.bounds.height - 25.0
-        
-        var headerRect = CGRect(x: 0, y: -effectiveHeight, width: detailsView.bounds.width, height: headerView.bounds.height)
-        
-        headerRect.origin.y = effectiveHeight - 50.0
-        headerRect.size.height = -effectiveHeight + 50.0
-        
-        headerView.frame = headerRect
-        
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: headerRect.width, y: 0))
-        path.addLine(to: CGPoint(x: headerRect.width, y: headerRect.height))
-        path.addLine(to: CGPoint(x: 0, y: headerRect.height - 50.0))
-        headerMaskLayer.path = path.cgPath
+        self.performSegue(withIdentifier: "showSearch", sender: self)
+
     }
-    
+
     // MARK: - HELPERS
     
     /**
@@ -325,6 +294,12 @@ class DetailController: UIViewController {
             let destinationController: GalleryController = segue.destination as! GalleryController
             
             destinationController.eventKey = event.eventKey // Passes the event key to the gallery screen.
+            
+        } else if segue.identifier == "showSearch" {
+            
+            let destinationController: UserSearchController = segue.destination as! UserSearchController
+            
+            destinationController.event = event // Passes the event to the user search screen.
         }
     }
 }
@@ -359,13 +334,5 @@ extension DetailController: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: 120, height: 120)
-    }
-}
-
-extension DetailController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        updateHeaderView()
     }
 }

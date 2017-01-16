@@ -138,24 +138,6 @@ class SearchController: UIViewController {
     // MARK: - HELPERS
     
     /**
-     *  Clears the search bar so if the user returns, it'll be blank.
-     */
-    func clearFields() {
-        
-        searchBar.text = ""
-    }
-    
-    /**
-     *  Dismisses the keyboard!
-     *
-     *  Just put whatever textfields you want included here in the function.
-     */
-    func dismissKeyboard() {
-        
-        searchBar.resignFirstResponder() // Dismisses the keyboard for the search bar.
-    }
-    
-    /**
      *  Reads the schools.csv file downloaded from the Dept. of Education and grabs all of the school
      *  names to be used in the searchPreview as the user types in the searchBar.
      */
@@ -228,7 +210,7 @@ extension SearchController: UISearchBarDelegate {
         
         /* This function is called when the user clicks the return key while editing of the searchBar is enabled. */
         
-        dismissKeyboard()
+        searchBar.resignFirstResponder() // Dismisses the keyboard for the search bar.
         
         /* Checks to see if the user inputted anything in the search bar. */
         if searchBar.text != "" {
@@ -239,7 +221,7 @@ extension SearchController: UISearchBarDelegate {
             
         }
         
-        self.clearFields() // Returns the bar back to blank so any return to the screen won't have the current user's information.
+        searchBar.text = "" // Returns the bar back to blank so any return to the screen won't have the current user's information.
     }
 }
 

@@ -9,22 +9,20 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        FIRApp.configure()
+        FIRApp.configure() // Allows us to use Firebase.
         
         /* Navigation bar customization */
-    
-        // let latoFont = UIFont(name: "Lato-Regular", size: 14.0)
-        
-        // UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: latoFont!, NSForegroundColorAttributeName: UIColor.white] // Changes the title font, font size, and color.
         
         /// Grabs the email and password saved in a previous instance if the user already exists.
         let userDefaults = UserDefaults.standard
@@ -32,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /* Checks to see if there is an email saved in the userDefaults. */
         if userDefaults.string(forKey: "email") != nil {
             
+            /* Checks to see if there is a school saved in the userDefaults. */
             if userDefaults.string(forKey: "boardKey") != nil {
                 
                 /* Bypass to the main board screen. */
@@ -39,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             } else {
                 
+                /* Bypass to the board search screen .*/
                 setRootViewController(identifier: "Search")
             }
             
@@ -49,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+
     
     // MARK: - HELPERS
     

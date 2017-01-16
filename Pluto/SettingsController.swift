@@ -64,6 +64,11 @@ class SettingsController: UIViewController, UINavigationControllerDelegate {
         setUserInfo()
     }
     
+    @IBAction func changeButtonAction(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "showBoardSearch", sender: self)
+    }
+    
     @IBAction func logoutButtonAction(_ sender: Any) {
         
         logOut()

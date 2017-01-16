@@ -43,31 +43,31 @@ FOUNDATION_EXPORT NSString * __nonnull const FIRMessagingMessagesDeletedNotifica
  *  @enum FIRMessagingError
  */
 typedef NS_ENUM(NSUInteger, FIRMessagingError) {
-  // Unknown error.
+  /// Unknown error.
   FIRMessagingErrorUnknown = 0,
 
-  // Auth Error -- FIRMessaging couldn't validate request from this client.
+  /// FIRMessaging couldn't validate request from this client.
   FIRMessagingErrorAuthentication = 1,
 
-  // NoAccess -- InstanceID service cannot be accessed.
+  /// InstanceID service cannot be accessed.
   FIRMessagingErrorNoAccess = 2,
 
-  // Timeout -- Request to InstanceID backend timed out.
+  /// Request to InstanceID backend timed out.
   FIRMessagingErrorTimeout = 3,
 
-  // Network -- No network available to reach the servers.
+  /// No network available to reach the servers.
   FIRMessagingErrorNetwork = 4,
 
-  // OperationInProgress -- Another similar operation in progress,
-  // bailing this one.
+  /// Another similar operation in progress, bailing this one.
   FIRMessagingErrorOperationInProgress = 5,
 
-  // InvalidRequest -- Some parameters of the request were invalid.
+  /// Some parameters of the request were invalid.
   FIRMessagingErrorInvalidRequest = 7,
 };
 
 /// Status for the downstream message received by the app.
 typedef NS_ENUM(NSInteger, FIRMessagingMessageStatus) {
+  /// Unknown status.
   FIRMessagingMessageStatusUnknown,
   /// New downstream message received by the app.
   FIRMessagingMessageStatusNew,
@@ -76,7 +76,34 @@ typedef NS_ENUM(NSInteger, FIRMessagingMessageStatus) {
 /// Information about a downstream message received by the app.
 @interface FIRMessagingMessageInfo : NSObject
 
+/// The status of the downstream message
 @property(nonatomic, readonly, assign) FIRMessagingMessageStatus status;
+
+@end
+
+/**
+ * A remote data message received by the app via FCM (not just the APNs interface).
+ *
+ * This is only for devices running iOS 10 or above. To support devices running iOS 9 or below, use
+ * the local and remote notifications handlers defined in UIApplicationDelegate protocol.
+ */
+@interface FIRMessagingRemoteMessage : NSObject
+
+/// The downstream message received by the application.
+@property(nonatomic, readonly, strong, nonnull) NSDictionary *appData;
+
+@end
+
+/**
+ * A protocol to receive data message via FCM for devices running iOS 10 or above.
+ *
+ * To support devices running iOS 9 or below, use the local and remote notifications handlers
+ * defined in UIApplicationDelegate protocol.
+ */
+@protocol FIRMessagingDelegate <NSObject>
+
+/// The callback to handle data message received via FCM for devices running iOS 10 or above.
+- (void)applicationReceivedRemoteMessage:(nonnull FIRMessagingRemoteMessage *)remoteMessage;
 
 @end
 
@@ -95,10 +122,15 @@ typedef NS_ENUM(NSInteger, FIRMessagingMessageStatus) {
  *  In order to receive FIRMessaging messages, declare application:didReceiveRemoteNotification:
  *
  *  Client apps can send upstream messages back to the app server using the XMPP-based
- *  <a href="http://developers.google.com/cloud-messaging/ccs.html">Cloud Connection Server</a>,
+ *  <a href="https://developers.google.com/cloud-messaging/ccs.html">Cloud Connection Server</a>
  *
  */
 @interface FIRMessaging : NSObject
+
+/**
+ * Delegate to handle remote data messages received via FCM for devices running iOS 10 or above.
+ */
+@property(nonatomic, weak, nullable) id<FIRMessagingDelegate> remoteMessageDelegate;
 
 /**
  *  FIRMessaging

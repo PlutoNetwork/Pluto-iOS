@@ -136,6 +136,45 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         })
     }
     
+    func checkEventRequests() {
+        
+        DataService.ds.REF_CURRENT_USER_EVENTS.observe(.value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    let key = snap.key
+                    
+                    let value = snap.value
+                    
+                    let check = value! as! Bool
+                    
+                    if check == false {
+                        
+                        self.presentEventNotice(key:  key)
+                    }
+                }
+            }
+        })
+    }
+    
+    func presentEventNotice(key: String) {
+        
+        let notice = SCLAlertView()
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        notice.addButton("Yes!") {
+            
+            /* The user has given permission to see the event. */
+            
+            
+        }
+        
+        notice.showInfo("Friend request!", subTitle: "Would you like to view the event now?", closeButtonTitle: "No")
+    }
+    
     /**
      *  Uses the keys received from under the current board's data reference to find and grab the data relating to the keys.
      */

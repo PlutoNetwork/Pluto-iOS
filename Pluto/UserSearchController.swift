@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import MessageUI
 
 class UserSearchController: UIViewController, UINavigationControllerDelegate {
 
@@ -15,8 +16,11 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var searchBar: SearchBar!
     @IBOutlet weak var usersView: UICollectionView!
+    @IBOutlet weak var recArrayLabel: UILabel!
     
     // MARK: - VARIABLES
+    
+    var navigationBarInviteButton: UIBarButtonItem!
     
     /// Holds all the event keys under the current board.
     var boardUserKeys = [String]()
@@ -30,6 +34,40 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
     /// Tells when user is typing in the searchBar.
     var inSearchMode = false
     
+    /// Holds the key of the event that may be passed from the detail screen.
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
+    
+    /// Tells when user enters screen from details page.
+    var inInviteMode = false
+    
+    var userInviteeKeys = [String]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        /* Navigation bar customization */
+        self.navigationController?.setNavigationBarHidden(false, animated: true) // Keeps the navigation bar unhidden.
+        self.navigationController?.navigationBar.backItem?.title = "" // Keeps the back button to a simple "<".
+        self.navigationController?.navigationBar.tintColor = UIColor.white // Changes the content of the navigation bar to a white color.
+        
+        /* Checks the event for any data. If it contains data, it was passed from the create controller and means that the user has come to edit the event. */
+        
+        if event.title != "" {
+            
+            inInviteMode = true
+        }
+        
+        /* Changes the post button to reflect editing or creating a new event. */
+        
+        if inInviteMode == true {
+            
+            /* Post button */
+            navigationBarInviteButton = UIBarButtonItem(image: UIImage(named: "ic-check"), style: .plain, target: self, action: #selector(UserSearchController.sendInvite)) // Initializes an invite button for the navigation bar.
+            navigationBarInviteButton.tintColor = UIColor.white // Changes the color of the invite button to white.
+            self.navigationItem.rightBarButtonItem  = navigationBarInviteButton // Adds the invite button to the navigation bar.
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,6 +78,11 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
         /* Initialization of the collection view that holds all the user. */
         usersView.delegate = self
         usersView.dataSource = self
+        
+        if inInviteMode == true {
+            
+            SCLAlertView().showInfo("Hey!", subTitle: "Search for your Pluto invitees here. Emails of friends without the app can be entered as well.")
+        }
         
         grabBoardUsers()
     }
@@ -175,6 +218,25 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
         
         notice.showInfo("Hey!", subTitle: "Would you like to send \(potentialFriendName!) a friend request?", closeButtonTitle: "No, I made a mistake!", circleIconImage: image)
     }
+    
+    func sendInvite() {
+        
+        let recipients = recArrayLabel.text?.components(separatedBy: ", ")
+        
+        sendEmail(recipients: recipients!)
+    }
+    
+    /**
+     *  Switches to the view controller specified by the parameter.
+     *
+     *  - Parameter controllerID: The ID of the controller to switch to.
+     */
+    func switchController(controllerID: String) {
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 extension UserSearchController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -231,7 +293,19 @@ extension UserSearchController: UICollectionViewDataSource, UICollectionViewDele
             potentialFriend = filteredUsers[indexPath.row]
         }
         
-        self.downloadProfileImage(potentialFriend: potentialFriend)
+        if inInviteMode == true {
+            
+            userInviteeKeys.append(potentialFriend.friendKey)
+            
+            recArrayLabel.text = recArrayLabel.text! + "\(potentialFriend.email!), "
+            
+            inSearchMode = false
+            
+        } else {
+            
+            self.downloadProfileImage(potentialFriend: potentialFriend)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -240,11 +314,48 @@ extension UserSearchController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
+extension UserSearchController: MFMailComposeViewControllerDelegate {
+    
+    func sendEmail(recipients: [String]) {
+        
+        let mailBody = "<img src='https://raw.githubusercontent.com/PlutoNetwork/Pluto-iOS/master/Pluto/Assets.xcassets/pluto-logo-black.imageset/pluto-logo-black.png'><br><p>Hey! You've been invited to the following event: \(event.title) from \(event.timeStart) to \(event.timeEnd). It will be at \(event.location)."
+        
+        if MFMailComposeViewController.canSendMail() {
+            
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(recipients)
+            mail.setMessageBody(mailBody, isHTML: true)
+                        
+            present(mail, animated: true)
+            
+        } else {
+            
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true)
+        
+        for key in userInviteeKeys {
+            
+            let ref = DataService.ds.REF_USERS.child(key).child("events").child(event.eventKey)
+            ref.setValue(false)
+        }
+        
+        switchController(controllerID: "Main")
+    }
+}
+
 extension UserSearchController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if searchBar.text == "" {
+        let searchBarText = searchBar.text?.uppercased()
+        
+        if searchBarText == "" {
             
             inSearchMode = false // This means the user is NOT typing in the searchBar.
             
@@ -253,8 +364,6 @@ extension UserSearchController: UISearchBarDelegate {
         } else {
             
             inSearchMode = true // This means the user is typing in the searchBar.
-            
-            let searchBarText = searchBar.text?.uppercased()
             
             filteredUsers = users.filter({$0.name.uppercased().range(of: searchBarText!) != nil}) // Filters the list of events as the user types into a new array.
             
@@ -267,6 +376,11 @@ extension UserSearchController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         /* This function is called when the user clicks the return key while editing of the searchBar is enabled. */
+        
+        recArrayLabel.text = recArrayLabel.text! + "\(searchBar.text!), "
+        searchBar.text = ""
+        inSearchMode = false
+        usersView.reloadData()
         
         searchBar.resignFirstResponder() // Dismisses the keyboard for the search bar.
     }
