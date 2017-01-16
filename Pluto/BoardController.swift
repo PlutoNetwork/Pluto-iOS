@@ -169,10 +169,31 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             
             /* The user has given permission to see the event. */
             
-            
+            self.grabInvitedEvent(key: key)
         }
         
         notice.showInfo("Friend request!", subTitle: "Would you like to view the event now?", closeButtonTitle: "No")
+    }
+    
+    func grabInvitedEvent(key: String) {
+        
+        DataService.ds.REF_EVENTS.child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            let name = value?["title"] as? String
+            
+            self.searchBar.text = name
+            
+            let ref = DataService.ds.REF_CURRENT_USER_EVENTS.child("events").child(key)
+            ref.removeValue()
+            
+        })  { (error) in
+            
+            // Error!
+            
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your school.")
+        }
     }
     
     /**

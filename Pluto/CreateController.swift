@@ -213,6 +213,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
                 notice.addButton("Yes!", action: { 
                     
                     self.performSegue(withIdentifier: "showInvite", sender: self)
+                    self.clearFields()
                 })
                 
                 notice.addButton("No", action: {
@@ -381,6 +382,9 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         let passEvent = Event(eventKey: newEvent.key, eventData: eventDict as Dictionary<String, AnyObject>)
         
         self.event = passEvent
+    }
+    
+    func clearFields() {
         
         /* Clear the fields. */
         createEventTitleField.text = ""
