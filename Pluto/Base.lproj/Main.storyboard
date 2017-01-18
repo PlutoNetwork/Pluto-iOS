@@ -97,7 +97,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you don't have an account, we'll automatically make you one. :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8W-BD-0dZ">
-                                <rect key="frame" x="47.5" y="446" width="280" height="36"/>
+                                <rect key="frame" x="47.5" y="446" width="280" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="ySM-jo-bUh"/>
                                 </constraints>
@@ -521,7 +521,7 @@
                                         <rect key="frame" x="0.0" y="82" width="320" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap here to choose an image" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGN-Sq-wex">
-                                                <rect key="frame" x="50" y="49.5" width="220" height="22"/>
+                                                <rect key="frame" x="44" y="50" width="232.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -543,7 +543,7 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pvn-r2-qdR" customClass="TextField" customModule="Pluto" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="218" width="320" height="22"/>
+                                        <rect key="frame" x="0.0" y="218" width="320" height="41"/>
                                         <color key="backgroundColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
@@ -558,7 +558,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="End Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMS-f2-3ls" customClass="TextField" customModule="Pluto" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="294" width="320" height="22"/>
+                                        <rect key="frame" x="0.0" y="332" width="320" height="41"/>
                                         <color key="backgroundColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
@@ -576,7 +576,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y0f-gg-hOb" customClass="TextField" customModule="Pluto" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="332" width="320" height="22"/>
+                                        <rect key="frame" x="0.0" y="389" width="320" height="41"/>
                                         <color key="backgroundColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
@@ -591,7 +591,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="jAE-SP-nF5" customClass="TextView" customModule="Pluto" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="370" width="320" height="140"/>
+                                        <rect key="frame" x="0.0" y="446" width="320" height="140"/>
                                         <color key="backgroundColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="Owj-AG-kJ9"/>
@@ -602,7 +602,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDP-kb-oah" customClass="Button" customModule="Pluto" customModuleProvider="target">
-                                        <rect key="frame" x="85" y="526" width="150" height="50"/>
+                                        <rect key="frame" x="85" y="602" width="150" height="50"/>
                                         <color key="backgroundColor" red="0.93333333330000001" green="0.16078431369999999" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="0uA-aZ-kaW"/>
@@ -623,7 +623,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Start Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I4M-qW-daN" customClass="TextField" customModule="Pluto" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="256" width="320" height="22"/>
+                                        <rect key="frame" x="0.0" y="275" width="320" height="41"/>
                                         <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
@@ -784,7 +784,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9b-Xb-5ij">
-                                        <rect key="frame" x="0.0" y="300" width="320" height="586"/>
+                                        <rect key="frame" x="0.0" y="300" width="320" height="638"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ws8-XN-wfb" customClass="TextView" customModule="Pluto" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="16" width="280" height="100"/>
@@ -797,7 +797,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TfY-zV-wEI">
-                                                <rect key="frame" x="0.0" y="202" width="320" height="120"/>
+                                                <rect key="frame" x="0.0" y="254" width="320" height="120"/>
                                                 <color key="backgroundColor" red="0.16078431369999999" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="gT8-3M-Nrs"/>
@@ -861,7 +861,7 @@
                                                 </cells>
                                             </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqx-5l-BLe" customClass="Button" customModule="Pluto" customModuleProvider="target">
-                                                <rect key="frame" x="85" y="338" width="150" height="50"/>
+                                                <rect key="frame" x="85" y="390" width="150" height="50"/>
                                                 <color key="backgroundColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="OhA-JV-eM2"/>
@@ -881,24 +881,43 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRIENDS THAT ARE GOING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XS2-dz-QP4">
-                                                <rect key="frame" x="53.5" y="166" width="213.5" height="20"/>
+                                                <rect key="frame" x="52.5" y="218" width="215.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.82352941180000006" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ship-faded" translatesAutoresizingMaskIntoConstraints="NO" id="2BW-f1-Avd">
+                                                <rect key="frame" x="130" y="131" width="60" height="50"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="G02-HM-DqP"/>
+                                                    <constraint firstAttribute="width" constant="60" id="mTv-tU-tBJ"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXU-AZ-UUs">
+                                                <rect key="frame" x="157" y="186" width="6" height="12"/>
+                                                <color key="backgroundColor" red="0.066666666669999999" green="0.18039215689999999" blue="0.25098039220000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="VXU-AZ-UUs" firstAttribute="centerX" secondItem="X9b-Xb-5ij" secondAttribute="centerX" id="3ea-ky-r3P"/>
                                             <constraint firstAttribute="trailing" secondItem="TfY-zV-wEI" secondAttribute="trailing" id="3n2-sp-Gmw"/>
                                             <constraint firstItem="ws8-XN-wfb" firstAttribute="top" secondItem="X9b-Xb-5ij" secondAttribute="top" constant="16" id="9S2-Fl-bzE"/>
                                             <constraint firstItem="TfY-zV-wEI" firstAttribute="top" secondItem="XS2-dz-QP4" secondAttribute="bottom" constant="16" id="JXy-Eb-60N"/>
+                                            <constraint firstItem="2BW-f1-Avd" firstAttribute="centerX" secondItem="X9b-Xb-5ij" secondAttribute="centerX" id="QTH-If-8NE"/>
                                             <constraint firstItem="Iqx-5l-BLe" firstAttribute="top" secondItem="TfY-zV-wEI" secondAttribute="bottom" constant="16" id="QdL-M0-KHm"/>
                                             <constraint firstItem="XS2-dz-QP4" firstAttribute="centerX" secondItem="X9b-Xb-5ij" secondAttribute="centerX" id="TTM-66-Odv"/>
+                                            <constraint firstItem="2BW-f1-Avd" firstAttribute="top" secondItem="ws8-XN-wfb" secondAttribute="bottom" constant="15" id="Vz2-T5-Hxf"/>
                                             <constraint firstItem="ws8-XN-wfb" firstAttribute="leading" secondItem="X9b-Xb-5ij" secondAttribute="leading" constant="20" id="nKb-y5-3Nk"/>
                                             <constraint firstItem="Iqx-5l-BLe" firstAttribute="centerX" secondItem="X9b-Xb-5ij" secondAttribute="centerX" id="oSa-wj-sat"/>
+                                            <constraint firstItem="XS2-dz-QP4" firstAttribute="top" secondItem="VXU-AZ-UUs" secondAttribute="bottom" constant="20" id="qAK-sB-hdX"/>
                                             <constraint firstItem="TfY-zV-wEI" firstAttribute="leading" secondItem="X9b-Xb-5ij" secondAttribute="leading" id="vTv-K5-tQj"/>
                                             <constraint firstAttribute="bottom" secondItem="TfY-zV-wEI" secondAttribute="bottom" constant="264" id="w1O-55-Vcf"/>
-                                            <constraint firstItem="XS2-dz-QP4" firstAttribute="top" secondItem="ws8-XN-wfb" secondAttribute="bottom" constant="50" id="yjP-5N-VFx"/>
+                                            <constraint firstItem="VXU-AZ-UUs" firstAttribute="top" secondItem="2BW-f1-Avd" secondAttribute="bottom" constant="5" id="zNN-1b-Jjr"/>
                                             <constraint firstAttribute="trailing" secondItem="ws8-XN-wfb" secondAttribute="trailing" constant="20" id="zb9-D1-7xe"/>
                                         </constraints>
                                     </view>
@@ -937,6 +956,8 @@
                         <outlet property="detailsView" destination="X9b-Xb-5ij" id="pD9-iT-cDQ"/>
                         <outlet property="eventDescriptionTextView" destination="ws8-XN-wfb" id="LGO-Ku-De0"/>
                         <outlet property="eventImageView" destination="Tnw-bL-vAP" id="yIU-Cq-gjc"/>
+                        <outlet property="eventPlutoCountLabel" destination="VXU-AZ-UUs" id="KtC-dH-hwb"/>
+                        <outlet property="eventPlutoImageView" destination="2BW-f1-Avd" id="skG-jv-A56"/>
                         <outlet property="eventTimeAndPlaceLabel" destination="Spw-pF-X5K" id="Lew-f3-Gge"/>
                         <outlet property="eventTitleLabel" destination="ZrD-4t-4IW" id="8cf-xT-H0v"/>
                         <outlet property="friendsView" destination="TfY-zV-wEI" id="Zkm-Nh-Rj8"/>
@@ -948,7 +969,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vEA-wv-tv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248" y="1433.8830584707648"/>
+            <point key="canvasLocation" x="248" y="1433.433283358321"/>
         </scene>
         <!--Gallery Controller-->
         <scene sceneID="mfX-05-mGb">
@@ -1453,7 +1474,7 @@
         <segue reference="fAq-0C-Flc"/>
         <segue reference="VMh-qP-A3i"/>
         <segue reference="9SE-j4-jUU"/>
-        <segue reference="Vx0-Bv-VFK"/>
-        <segue reference="YfR-Yj-kkf"/>
+        <segue reference="WIm-ik-FOR"/>
+        <segue reference="VFe-2r-F18"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -6,8 +6,10 @@
 //  Copyright © 2016 Faisal M. Lalani. All rights reserved.
 //
 
-import Firebase
+
 import UIKit
+import EventKit
+import Firebase
 
 class DetailController: UIViewController {
 
@@ -24,9 +26,16 @@ class DetailController: UIViewController {
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventDescriptionTextView: UITextView!
     
+    @IBOutlet weak var eventPlutoImageView: UIImageView!
+    @IBOutlet weak var eventPlutoCountLabel: UILabel!
+    
     @IBOutlet weak var friendsView: UICollectionView!
     
     // MARK: - VARIABLES
+    
+    var eventUserRef: FIRDatabaseReference!
+    var userEventRef: FIRDatabaseReference!
+    var calendar: EKCalendar!
     
     var navigationBarEditButton: UIBarButtonItem!
     
@@ -88,7 +97,28 @@ class DetailController: UIViewController {
         /* Needed for the shadow to take effect */
         friendsView.layer.masksToBounds = false
         friendsView.clipsToBounds = false
+        
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        
+        eventUserRef = DataService.ds.REF_EVENTS.child(event.eventKey).child("users").child(userID!)
+        userEventRef = DataService.ds.REF_CURRENT_USER.child("events").child(event.eventKey)
 
+        userEventRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let _ = snapshot.value as? NSNull {
+                
+                self.eventPlutoImageView.image = UIImage(named: "ship-faded")
+                
+            } else {
+                
+                self.eventPlutoImageView.image = UIImage(named: "ship-yellow")
+            }
+        })
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(EventCell.changeCount))
+        
+        eventPlutoImageView.addGestureRecognizer(tap)
+        
         setEventDetails()
         grabUserFriends()
     }
@@ -164,7 +194,10 @@ class DetailController: UIViewController {
         self.eventTitleLabel.text = event.title
         self.eventTimeAndPlaceLabel.text = "\(event.location)  •  \(event.timeStart) - \(event.timeEnd)"
         self.eventDescriptionTextView.text = event.description
+        self.eventPlutoCountLabel.text = "\(event.count)"
     }
+    
+    
     
     // MARK: - FIREBASE
     
@@ -300,6 +333,147 @@ class DetailController: UIViewController {
             let destinationController: UserSearchController = segue.destination as! UserSearchController
             
             destinationController.event = event // Passes the event to the user search screen.
+        }
+    }
+    
+    func changeCount() {
+        
+        userEventRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let _ = snapshot.value as? NSNull {
+                
+                self.eventPlutoImageView.image = UIImage(named: "ship-yellow")
+                self.event.adjustCount(addToCount: true)
+                self.eventUserRef.setValue(true)
+                self.userEventRef.setValue(true)
+                self.syncToCalendar(add: true)
+                
+            } else {
+                
+                self.eventPlutoImageView.image = UIImage(named: "ship-faded")
+                self.event.adjustCount(addToCount: false)
+                self.eventUserRef.removeValue()
+                self.userEventRef.removeValue()
+                self.syncToCalendar(add: false)
+            }
+        })
+    }
+    
+    func syncToCalendar(add: Bool) {
+        
+        let eventStore = EKEventStore()
+        
+        if EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized {
+            
+            eventStore.requestAccess(to: .event, completion: { (granted, error) in
+                
+                if error != nil {
+                    
+                    /* ERROR: Something went wrong and the user's calendar could not be accessed. */
+                    
+                    print(error.debugDescription)
+                    
+                } else {
+                    
+                    /* SUCCESS: We have access to modify the user's calendar. */
+                    
+                    if add {
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.calendarCall(calEvent: eventStore, add: true)
+                        }
+                    } else {
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.calendarCall(calEvent: eventStore, add: false)
+                        }
+                    }
+                }
+            })
+            
+        } else {
+            
+            // Code if we already have permission.
+            
+            if add {
+                
+                calendarCall(calEvent: eventStore, add: true)
+            } else {
+                
+                self.calendarCall(calEvent: eventStore, add: false)
+            }
+        }
+    }
+    
+    func calendarCall(calEvent: EKEventStore, add: Bool){
+        
+        let newEvent = EKEvent(eventStore: calEvent)
+        
+        newEvent.title = self.event.title //Sets event title
+        
+        //Formats the date and time to be useable by iOS calendar app
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.medium
+        formatter.timeStyle = DateFormatter.Style.short
+        let newEventStartTime = formatter.date(from: self.event.timeStart)
+        let newEventEndTime = formatter.date(from: self.event.timeEnd)
+        
+        newEvent.startDate = newEventStartTime! // Sets start date and time for event
+        newEvent.endDate = newEventEndTime! // Sets end date and time for event
+        newEvent.location = self.event.location // Copies location into calendar
+        newEvent.calendar = calEvent.defaultCalendarForNewEvents // Copies event into calendar
+        newEvent.notes = self.event.description // Copies event description into calendar
+        
+        if add {
+            
+            do {
+                
+                //Saves event to calendar
+                try calEvent.save(newEvent, span: .thisEvent)
+                
+                let notice = SCLAlertView()
+                
+                notice.addButton("Go to calendar", action: {
+                    
+                    let date = newEvent.startDate as NSDate
+                    
+                    UIApplication.shared.openURL(NSURL(string: "calshow:\(date.timeIntervalSinceReferenceDate)")! as URL)
+                })
+                
+                notice.showSuccess("Success", subTitle: "Event added to calendar.", closeButtonTitle: "Done")
+                
+            } catch {
+                
+                SCLAlertView().showError("Error!", subTitle: "Event not added; try again later.")
+            }
+            
+        } else {
+            
+            let predicate = calEvent.predicateForEvents(withStart: newEvent.startDate, end: newEvent.endDate, calendars: nil)
+            
+            let eV = calEvent.events(matching: predicate) as [EKEvent]!
+            
+            if eV != nil {
+                
+                for i in eV! {
+                    
+                    if i.title == newEvent.title {
+                        
+                        do {
+                            
+                            try calEvent.remove(i, span: EKSpan.thisEvent, commit: true)
+                            
+                            SCLAlertView().showSuccess("Success", subTitle: "Event removed from calendar.")
+                            
+                        } catch {
+                            
+                            SCLAlertView().showError("Error!", subTitle: "Event not removed; try again later.")
+                        }
+                    }
+                }
+            }
         }
     }
 }
