@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         /* Checks to see if there is an email saved in the userDefaults. */
         if userDefaults.string(forKey: "email") != nil {
             
+            print(userDefaults.string(forKey: "boardKey") as Any)
+
             /* Checks to see if there is a school saved in the userDefaults. */
             if userDefaults.string(forKey: "boardKey") != nil {
                 

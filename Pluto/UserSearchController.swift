@@ -15,6 +15,9 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
     // MARK: - OUTLETS
     
     @IBOutlet weak var searchBar: SearchBar!
+    
+    @IBOutlet weak var inviteView: View!
+    
     @IBOutlet weak var usersView: UICollectionView!
     @IBOutlet weak var recArrayLabel: UILabel!
     
@@ -65,6 +68,10 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
             navigationBarInviteButton = UIBarButtonItem(image: UIImage(named: "ic-check"), style: .plain, target: self, action: #selector(UserSearchController.sendInvite)) // Initializes an invite button for the navigation bar.
             navigationBarInviteButton.tintColor = UIColor.white // Changes the color of the invite button to white.
             self.navigationItem.rightBarButtonItem  = navigationBarInviteButton // Adds the invite button to the navigation bar.
+            
+            SCLAlertView().showInfo("Hey!", subTitle: "Search for your Pluto invitees here. Emails of friends without the app can be entered on the next screen.")
+            
+            inviteView.alpha = 1.0
         }
     }
     
@@ -81,10 +88,20 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
         
         if inInviteMode == true {
             
-            SCLAlertView().showInfo("Hey!", subTitle: "Search for your Pluto invitees here. Emails of friends without the app can be entered as well.")
+            
+        } else {
+            
+            searchBar.placeholder = "Search name"
         }
         
         grabBoardUsers()
+    }
+    
+    @IBAction func deleteUserButton(_ sender: Any) {
+        
+        recArrayLabel.text = ""
+    
+        userInviteeKeys.removeAll()
     }
     
     // MARK: - FIREBASE

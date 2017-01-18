@@ -64,10 +64,8 @@ class LoginController: UIViewController {
                 
                 self.saveDefault(email: email, password: password)
                 
-                self.clearFields()
-                
-                self.switchController(controllerID: "Main") // Transitions to the main board screen.
-                
+                self.findBoard()
+                                
             } else {
                 
                 /* ERROR: Something went wrong with logging in. */
@@ -150,6 +148,32 @@ class LoginController: UIViewController {
             
             DataService.ds.createFirebaseDBUser(uid: user.uid, userData: userData)
         }
+    }
+    
+    func findBoard() {
+        
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            let board = value?["board"] as? String
+            
+            let userDefaults = UserDefaults.standard
+            
+            /* Save the board into userDefaults. */
+            userDefaults.set(board, forKey: "boardKey")
+            
+            self.clearFields()
+            
+            self.switchController(controllerID: "Main") // Transitions to the main board screen.
+            
+        })  { (error) in
+            
+            // Error!
+            
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your school.")
+        }
+
     }
     
     // MARK: - HELPERS

@@ -84,7 +84,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         super.viewDidAppear(true)
         
         initializeSortControl()
-        
     }
     
     override func viewDidLoad() {
@@ -100,6 +99,8 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         setupRefreshControl()
         sunnyRefreshControl.beginRefreshing()
+        
+        checkEventRequests()
     }
     
     func setupRefreshControl() {
@@ -160,8 +161,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         let notice = SCLAlertView()
         
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        
         notice.addButton("Yes!") {
             
             /* The user has given permission to see the event. */
@@ -169,7 +168,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             self.grabInvitedEvent(key: key)
         }
         
-        notice.showInfo("Friend request!", subTitle: "Would you like to view the event now?", closeButtonTitle: "No")
+        notice.showInfo("Event request!", subTitle: "Would you like to view the event now?", closeButtonTitle: "No")
+        
+        let ref = DataService.ds.REF_CURRENT_USER_EVENTS.child(key)
+        ref.removeValue()
     }
     
     func grabInvitedEvent(key: String) {
@@ -181,9 +183,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             let name = value?["title"] as? String
             
             self.searchBar.text = name
-            
-            let ref = DataService.ds.REF_CURRENT_USER_EVENTS.child("events").child(key)
-            ref.removeValue()
             
         })  { (error) in
             

@@ -131,18 +131,27 @@ class EventCell: UITableViewCell {
                 
                 if error != nil {
                     
+                    /* ERROR: Something went wrong and the user's calendar could not be accessed. */
+                    
+                    print(error.debugDescription)
+                    
+                } else {
+                    
                     /* SUCCESS: We have access to modify the user's calendar. */
                     
                     if add {
                         
-                        self.calendarCall(calEvent: eventStore)
+                        DispatchQueue.main.async {
+                            
+                            self.calendarCall(calEvent: eventStore, add: true)
+                        }
+                    } else {
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.calendarCall(calEvent: eventStore, add: false)
+                        }
                     }
-                    
-                } else {
-                    
-                    /* ERROR: Something went wrong and the user's calendar could not be accessed. */
-                    
-                    print(error.debugDescription)
                 }
             })
             
@@ -152,12 +161,15 @@ class EventCell: UITableViewCell {
             
             if add {
                 
-                calendarCall(calEvent: eventStore)
+                calendarCall(calEvent: eventStore, add: true)
+            } else {
+                
+                self.calendarCall(calEvent: eventStore, add: false)
             }
         }
     }
     
-    func calendarCall(calEvent: EKEventStore){
+    func calendarCall(calEvent: EKEventStore, add: Bool){
         
         let newEvent = EKEvent(eventStore: calEvent)
         
@@ -176,16 +188,54 @@ class EventCell: UITableViewCell {
         newEvent.calendar = calEvent.defaultCalendarForNewEvents // Copies event into calendar
         newEvent.notes = self.event.description // Copies event description into calendar
         
-        do {
+        if add {
             
-            //Saves event to calendar
-            try calEvent.save(newEvent, span: .thisEvent)
+            do {
+                
+                //Saves event to calendar
+                try calEvent.save(newEvent, span: .thisEvent)
+                
+                let notice = SCLAlertView()
+                
+                notice.addButton("Go to calendar", action: { 
+                    
+                    let date = newEvent.startDate as NSDate
+                    
+                    UIApplication.shared.openURL(NSURL(string: "calshow:\(date.timeIntervalSinceReferenceDate)")! as URL)
+                })
+                
+                notice.showSuccess("Success", subTitle: "Event added to calendar.", closeButtonTitle: "Done")
+                
+            } catch {
+                
+                SCLAlertView().showError("Error!", subTitle: "Event not added; try again later.")
+            }
             
-            SCLAlertView().showSuccess("Success", subTitle: "Event added to calendar.")
+        } else {
+            
+            let predicate = calEvent.predicateForEvents(withStart: newEvent.startDate, end: newEvent.endDate, calendars: nil)
+            
+            let eV = calEvent.events(matching: predicate) as [EKEvent]!
+            
+            if eV != nil {
+                
+                for i in eV! {
+                    
+                    if i.title == newEvent.title {
                         
-        } catch {
-            
-            print("OH NO")
+                        do {
+                            
+                            try calEvent.remove(i, span: EKSpan.thisEvent, commit: true)
+                            
+                            SCLAlertView().showSuccess("Success", subTitle: "Event removed from calendar.")
+                            
+                        } catch {
+                            
+                            SCLAlertView().showError("Error!", subTitle: "Event not removed; try again later.")
+                        }
+                    }
+                }
+            }
         }
     }
 }
