@@ -132,7 +132,6 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
             
             /* SUCCESS: Loaded image from the cache. */
             
-            print("TEST 3")
             self.presentRequest(key: key, name: name, image: img)
             
         } else {
@@ -186,13 +185,12 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
             
             let userRef = DataService.ds.REF_CURRENT_USER_FRIENDS.child(key)
             userRef.setValue(true)
-            
-            print("DONE")
         }
         
         notice.addButton("Nope") {
             
-            /* The user has given permission to send a friend request. */
+            let userRef = DataService.ds.REF_CURRENT_USER_FRIENDS.child(key)
+            userRef.removeValue()
             
             let friendRef = DataService.ds.REF_USERS.child(key).child("friends").child(userID!)
             friendRef.removeValue()

@@ -188,7 +188,9 @@ extension SearchController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if searchBar.text == "" {
+        let searchBarText = searchBar.text!.uppercased()
+        
+        if searchBarText == "" {
             
             inSearchMode = false // This means the user is NOT typing in the searchBar.
             
@@ -200,7 +202,7 @@ extension SearchController: UISearchBarDelegate {
             
             searchPreview.alpha = 1.0 // Brings up the search result previews.
             
-            filteredBoards = boards.filter({$0.title.range(of: searchBar.text!) != nil}) // Filters the list of schools as the user types into a new array.
+            filteredBoards = boards.filter({$0.title.uppercased().range(of: searchBarText) != nil}) // Filters the list of schools as the user types into a new array.
             
             searchPreview.reloadData() // Reloads the searchPreview as the filtering occurs.
         }
