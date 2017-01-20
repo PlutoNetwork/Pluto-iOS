@@ -11,7 +11,9 @@
 
 ## Overview
 
-Pluto is an event network application that lets see you see and save all the neat stuff going on at your university. You can add friends and see if they're attending that party you're considering going to, invite members of your student organization to the next meeting, and keep your calendar filled with fun events!
+Pluto is a mobile application that presents university students with a social network of the events going on at their school. These events are added to the network by the students, professors, and staff alike and the nature of these events can range from going for a jog in the morning to a popular football game on Saturday night.
+
+Users can invite other users to events and even subscribe to the networks customized by their friends. Once a user has expressed interest in an event, he or she can add the event to their feed (also adding it to their personal calendar).
 
 ## Screenshots
 
@@ -24,12 +26,12 @@ Pluto is an event network application that lets see you see and save all the nea
 - [x] Create events
 - [x] See event details including time and location
 - [x] Add event to calendar with the tap of a button
-- [ ] Add pictures you took at an event to the event
+- [x] Add pictures you took at an event to the event
 - [x] Add friends
 - [x] See what friends are going to events you're interested in
-- [ ] Sort events in different ways
-- [ ] Search through events and users
-- [ ] Invite users to your event, even if they don't have the app
+- [x] Sort events in different ways
+- [x] Search through events and users
+- [x] Invite users to your event, even if they don't have the app
 
 ## Getting Started
 
