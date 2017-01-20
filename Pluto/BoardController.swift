@@ -53,6 +53,8 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     var sunnyRefreshControl: YALSunnyRefreshControl!
     
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
+    
     // MARK: - VIEW
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +84,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+     
         initializeSortControl()
     }
     
@@ -150,7 +152,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                     
                     if check == false {
                         
-                        self.presentEventNotice(key:  key)
+                        self.grabInvitedEvent(key: key)
                     }
                 }
             }
@@ -165,10 +167,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             
             /* The user has given permission to see the event. */
             
-            self.grabInvitedEvent(key: key)
+           self.performSegue(withIdentifier: "showDetails", sender: self)
         }
         
-        notice.showInfo("Event request!", subTitle: "Would you like to view the event now?", closeButtonTitle: "No")
+        notice.showInfo("Event request!", subTitle: "You've been invited to \(event.title). Would you like to see details?", closeButtonTitle: "No")
         
         let ref = DataService.ds.REF_CURRENT_USER_EVENTS.child(key)
         ref.removeValue()
@@ -176,19 +178,33 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     func grabInvitedEvent(key: String) {
         
-        DataService.ds.REF_EVENTS.child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_EVENTS.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            let value = snapshot.value as? NSDictionary
+            self.userFriendKeys = []
             
-            let name = value?["title"] as? String
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    if let eventDict = snap.value as? Dictionary<String, AnyObject> {
+                        
+                        if snap.key == key {
+                        
+                            let event = Event(eventKey: key, eventData: eventDict) // Format the data using the Event model.
+
+                            self.event = event
+                        }
+                    }
+                }
+            }
             
-            self.searchBar.text = name
-            
-        })  { (error) in
+            self.presentEventNotice(key: key)
+        
+        }) { (error) in
             
             // Error!
             
-            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your school.")
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find ythe event.")
         }
     }
     
@@ -196,6 +212,12 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
      *  Uses the keys received from under the current board's data reference to find and grab the data relating to the keys.
      */
     func grabEventData() {
+       
+        let currentDate = Date()
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.medium
+        formatter.timeStyle = DateFormatter.Style.short
         
         DataService.ds.REF_EVENTS.observe(.value, with: { (snapshot) in
             
@@ -216,16 +238,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                                 /* The event belongs under this board. */
                                 
                                 let event = Event(eventKey: key, eventData: eventDict) // Format the data using the Event model.
+                            
+                                let eventStartTime = formatter.date(from: event.timeStart)
                                 
-                                /* MICHAEL CHECK HERE */
-                                
-                                /* We have to do a check here to see if the event time has already passed. */
-                                
-                                /* For this comparison, do "if event.time.compare(currentTime) == .orderedDescending". The challenge is figuring out how to get the currentTime. */
-                                
-                                /* Once you figure it out, put the append statement in the if statement. */
-                                
-                                if event.publicMode == true {
+                                if event.publicMode == true && (eventStartTime! > currentDate) {
                                 
                                     self.checkFriendUnderEvent(event: event)
                                     
@@ -404,6 +420,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             if let indexPath = self.eventsView.indexPathForSelectedRow {
                 
                 destinationController.event = events[indexPath.row] // Passes the event to the detail screen.
+                
+            } else {
+                
+                destinationController.event = self.event
             }
         }
     }

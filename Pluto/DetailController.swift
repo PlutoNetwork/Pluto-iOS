@@ -10,6 +10,7 @@
 import UIKit
 import EventKit
 import Firebase
+import MessageUI
 
 class DetailController: UIViewController {
 
@@ -50,6 +51,8 @@ class DetailController: UIViewController {
     
     /// Holds the key of the event passed from the main board screen.
     var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
+    
+    var usersToNotify = [String]()
     
     // MARK: - VIEW
     
@@ -126,7 +129,6 @@ class DetailController: UIViewController {
     @IBAction func inviteButtonAction(_ sender: Any) {
         
         self.performSegue(withIdentifier: "showSearch", sender: self)
-
     }
 
     // MARK: - HELPERS
@@ -136,7 +138,66 @@ class DetailController: UIViewController {
      */
     func editEvent() {
         
-        self.performSegue(withIdentifier: "showEditEvent", sender: self)
+        let notice = SCLAlertView()
+        
+        notice.addButton("Email all invitees") { 
+            
+            self.updateUsers(delete: false)
+        }
+        
+        notice.addButton("Delete event") { 
+            
+            let eventRef = DataService.ds.REF_EVENTS.child(self.event.eventKey)
+            /* The user has given permission to delete the event. */
+            eventRef.removeValue()
+            DataService.ds.REF_CURRENT_USER_EVENTS.child(self.event.eventKey).removeValue()
+            DataService.ds.REF_CURRENT_BOARD_EVENTS.child(self.event.eventKey).removeValue()
+            
+            self.updateUsers(delete: true)
+        }
+        
+        notice.showEdit("Edit event", subTitle: "", closeButtonTitle: "Close")
+    }
+    
+    func grabUsers(key: String) {
+        
+        let userRef = DataService.ds.REF_USERS.child(key)
+        
+        userRef.child("events").child(event.eventKey).removeValue()
+        
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let value = snapshot.value as? NSDictionary
+            
+            let email = value?["email"] as? String
+            
+            if email != nil {
+                
+                self.usersToNotify.append(email!)
+            }
+            
+        }) { (error) in
+            
+            // Error!
+            
+            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't finish the request.")
+        }
+    }
+    
+    func updateUsers(delete: Bool) {
+        
+        DataService.ds.REF_EVENTS.child(self.event.eventKey).child("users").observe(.value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    self.grabUsers(key: self.event.eventKey)
+                }
+            }
+            
+            self.sendEmail(delete: delete)
+        })
     }
     
     /**
@@ -196,8 +257,6 @@ class DetailController: UIViewController {
         self.eventDescriptionTextView.text = event.description
         self.eventPlutoCountLabel.text = "\(event.count)"
     }
-    
-    
     
     // MARK: - FIREBASE
     
@@ -508,5 +567,42 @@ extension DetailController: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: 120, height: 120)
+    }
+}
+
+extension DetailController: MFMailComposeViewControllerDelegate {
+    
+    func sendEmail(delete: Bool) {
+        
+        var mailSubject = "About \(event.title)"
+        var mailBody = "<h1>\(event.title)</h1><p>\(event.timeStart) - \(event.timeEnd)</p><p>\(event.location)</p><br><p>\(event.description)</p><br><br><br><p>ENTER MESSAGE HERE</p><br><h4>This email was sent from the Pluto Events Network. <img src='https://raw.githubusercontent.com/PlutoNetwork/Pluto-iOS/master/Pluto/Assets.xcassets/pluto-logo-black.imageset/pluto-logo-black.png'>"
+        
+        if delete {
+            
+            mailSubject = "\(event.title) has been canceled."
+            mailBody = "<h1>\(event.title)</h1><p>\(event.timeStart) - \(event.timeEnd)</p><p>\(event.location)</p><br><p>\(event.description)</p><br><br><h4>This email was sent from the Pluto Events Network. <img src='https://raw.githubusercontent.com/PlutoNetwork/Pluto-iOS/master/Pluto/Assets.xcassets/pluto-logo-black.imageset/pluto-logo-black.png'>"
+        }
+
+        if MFMailComposeViewController.canSendMail() {
+            
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(usersToNotify)
+            mail.setSubject(mailSubject)
+            mail.setMessageBody(mailBody, isHTML: true)
+            
+            present(mail, animated: true)
+            
+        } else {
+            
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true)
+        
+        switchController(controllerID: "Main")
     }
 }

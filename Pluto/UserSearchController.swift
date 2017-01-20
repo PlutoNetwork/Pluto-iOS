@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 import Firebase
 import MessageUI
 
@@ -69,8 +70,6 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
             navigationBarInviteButton.tintColor = UIColor.white // Changes the color of the invite button to white.
             self.navigationItem.rightBarButtonItem  = navigationBarInviteButton // Adds the invite button to the navigation bar.
             
-            SCLAlertView().showInfo("Hey!", subTitle: "Search for your Pluto invitees here. Emails of friends without the app can be entered on the next screen.")
-            
             inviteView.alpha = 1.0
         }
     }
@@ -88,6 +87,7 @@ class UserSearchController: UIViewController, UINavigationControllerDelegate {
         
         if inInviteMode == true {
             
+            SCLAlertView().showInfo("Hey!", subTitle: "Search for your Pluto invitees here. Emails of friends without the app can be entered on the next screen.")
             
         } else {
             
@@ -335,15 +335,17 @@ extension UserSearchController: MFMailComposeViewControllerDelegate {
     
     func sendEmail(recipients: [String]) {
         
-        let mailBody = "<img src='https://raw.githubusercontent.com/PlutoNetwork/Pluto-iOS/master/Pluto/Assets.xcassets/pluto-logo-black.imageset/pluto-logo-black.png'><br><p>Hey! You've been invited to the following event: \(event.title) from \(event.timeStart) to \(event.timeEnd). It will be at \(event.location)."
+        let mailSubject = "You've been invited to \(event.title)."
+        let mailBody = "<h1>\(event.title)</h1><p>\(event.timeStart) - \(event.timeEnd)</p><p>\(event.location)</p><br><p>\(event.description)</p><br><br><h4>This email was sent from the Pluto Events Network. <img src='https://raw.githubusercontent.com/PlutoNetwork/Pluto-iOS/master/Pluto/Assets.xcassets/pluto-logo-black.imageset/pluto-logo-black.png'>"
         
         if MFMailComposeViewController.canSendMail() {
             
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(recipients)
+            mail.setSubject(mailSubject)
             mail.setMessageBody(mailBody, isHTML: true)
-                        
+            
             present(mail, animated: true)
             
         } else {

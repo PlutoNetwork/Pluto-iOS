@@ -108,10 +108,7 @@ class SearchController: UIViewController {
                             
                             self.saveDefault(boardKey: board.boardKey)
                             
-                            /// Holds a key and value that will be used to update the user's data.
-                            let childUpdates = ["board": board.boardKey]
-                            
-                            DataService.ds.REF_CURRENT_USER.updateChildValues(childUpdates) // Goes into the current user's data to update their board.
+                            DataService.ds.REF_CURRENT_USER.child("board").setValue(board.boardKey) // Goes into the current user's data to update their board.
                             
                             let userID = FIRAuth.auth()?.currentUser?.uid
                             

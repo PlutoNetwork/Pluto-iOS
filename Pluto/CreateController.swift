@@ -10,6 +10,7 @@ import UIKit
 import BetterSegmentedControl
 import EventKit
 import Firebase
+import MessageUI
 
 class CreateController: UIViewController, UINavigationControllerDelegate {
 
@@ -45,9 +46,6 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     /// Holds the key of the event that may be passed from the detail screen.
     var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
     
-    /// Tells when user enters screen from details page.
-    var inEditingMode = false
-    
     /// Tells when user has selected a picture for an event.
     var imageSelected = false
     
@@ -69,35 +67,12 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         self.navigationController?.navigationBar.backItem?.title = "" // Keeps the back button to a simple "<".
         self.navigationController?.navigationBar.tintColor = UIColor.white // Changes the content of the navigation bar to a white color.
         
-        /* Checks the event for any data. If it contains data, it was passed from the details controller and means that the user has come to edit the event. */
-        
-        if event.title != "" {
-            
-            inEditingMode = true
-            self.deleteButton.alpha = 1.0 // Unhide the delete button.
-            setDetails()
-        }
-        
-        /* Changes the post button to reflect editing or creating a new event. */
-        
-        if inEditingMode == true {
-            
-            postButtonImage = UIImage(named: "ic-check")
-            
-        } else {
-            
-            postButtonImage = UIImage(named: "ic-post-event")
-        }
+        postButtonImage = UIImage(named: "ic-post-event")
         
         /* Post button */
         navigationBarPostButton = UIBarButtonItem(image: postButtonImage, style: .plain, target: self, action: #selector(CreateController.saveAndPostEvent)) // Initializes a post button for the navigation bar.
         navigationBarPostButton.tintColor = UIColor.white // Changes the color of the post button to white.
         self.navigationItem.rightBarButtonItem  = navigationBarPostButton // Adds the post button to the navigation bar.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
     }
     
     override func viewDidLoad() {
@@ -141,14 +116,6 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         control.titleFont = UIFont(name: "Lato-Regular", size: 15.0)!
         control.selectedTitleFont = UIFont(name: "Lato-Bold", size: 15.0)!
         
-        if inEditingMode == true {
-            
-            if event.publicMode == false {
-                
-                try! control.setIndex(1)
-            }
-        }
-        
         control.addTarget(self, action: #selector(CreateController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
         
         modeView.addSubview(control)
@@ -171,26 +138,6 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    // MARK: - BUTTON
-    
-    @IBAction func deleteButtonAction(_ sender: Any) {
-        
-        /// Create an alert to show errors.
-        let notice = SCLAlertView()
-        
-        notice.addButton("Yes!") {
-            
-            /* The user has given permission to delete the event. */
-            DataService.ds.REF_EVENTS.child(self.event.eventKey).removeValue()
-            DataService.ds.REF_CURRENT_USER_EVENTS.child(self.event.eventKey).removeValue()
-            DataService.ds.REF_CURRENT_BOARD_EVENTS.child(self.event.eventKey).removeValue()
-            
-            self.switchController(controllerID: "Main")
-        }
-        
-        notice.showInfo("Hey!", subTitle: "Are you sure you want to delete your event? Event-goers will be notified.", closeButtonTitle: "No, I made a mistake!")
-    }
-    
     /**
      *  #GATEWAY
      *
@@ -203,29 +150,20 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         if createEventTitleField.text != "" && createEventLocationField.text != "" && createEventStartTimeField.text != "" && createEventEndTimeField.text != "" && createEventImageView.image != nil {
             
             /* SUCCESS: The event will be created. */
-        
-            self.uploadEventImage()
             
-            if inEditingMode == false {
+            let notice = SCLAlertView()
             
-                let notice = SCLAlertView()
+            notice.addButton("Yes!", action: { 
                 
-                notice.addButton("Yes!", action: { 
-                    
-                    self.performSegue(withIdentifier: "showInvite", sender: self)
-                    self.clearFields()
-                })
+                self.uploadEventImage(invite: true)
+            })
+            
+            notice.addButton("Nope", action: {
                 
-                notice.addButton("No", action: {
-                    
-                    self.switchController(controllerID: "Main")
-                })
-                
-                notice.showInfo("Hey!", subTitle: "Before we post your event, would you like to invite anyone?", closeButtonTitle: "Close")
-            } else {
-                
-                self.switchController(controllerID: "Main")
-            }
+                self.uploadEventImage(invite: false)
+            })
+            
+            notice.showInfo("Inviting others", subTitle: "Would you like to invite other people to the event?", closeButtonTitle: "Cancel")
             
         } else {
             
@@ -234,78 +172,9 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             SCLAlertView().showError("Oh no!", subTitle: "The event was not created because the required fields were left blank.")
         }
     }
-    
-    func updateEvent(imageURL: String) {
-        
-        /// Holds the reference to the user's image key in the database.
-        let eventRef = DataService.ds.REF_EVENTS.child(event.eventKey)
-        
-        // Sets the value for the updated fields.
-        
-        let updatedEvent = ["title": createEventTitleField.text! as Any,
-                            "timeStart": createEventStartTimeField.text! as Any,
-                            "timeEnd": createEventEndTimeField.text! as Any,
-                            "location": createEventLocationField.text! as Any,
-                            "publicMode": publicMode as Any,
-                            "description": createEventDescriptionField.text! as Any,
-                            "imageURL": imageURL as Any]
-        
-        eventRef.updateChildValues(updatedEvent)
-    }
-    
+
     // MARK: - HELPERS
-    
-    /**
-     *  Changes the field contents to reflect the event data passed in.
-     */
-    func setDetails() {
         
-        /* We can fill these in because this function can only be called if the event has data. */
-        createEventTitleField.text = event.title
-        createEventStartTimeField.text = event.timeStart
-        createEventEndTimeField.text = event.timeEnd
-        createEventLocationField.text = event.location
-        createEventDescriptionField.text = event.description
-        
-        /// Holds the event image grabbed from the cache.
-        if let img = BoardController.imageCache.object(forKey: event.imageURL as NSString) {
-            
-            /* SUCCESS: Loaded image from the cache. */
-            
-            if self.imageSelected == false {
-                
-                self.imageInstructionLabel.alpha = 0 // Hides the instruction label.
-                self.createEventImageView.image = img // Sets the event image to the one grabbed from the cache.
-            }
-            
-        } else {
-            
-            /* If it doesn't download from the cache for some reason, just download it from Firebase. */
-            
-            let ref = FIRStorage.storage().reference(forURL: event.imageURL)
-            
-            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                
-                if error != nil {
-                    
-                    /* ERROR: Unable to download photo from Firebase storage. */
-                    
-                } else {
-                    
-                    /* SUCCESS: Image downloaded from Firebase storage. */
-                    
-                    if let imageData = data {
-                        
-                        if let img = UIImage(data: imageData) {
-                            
-                            self.createEventImageView.image = img
-                        }
-                    }
-                }
-            })
-        }
-    }
-    
     /**
      Switches to the view controller specified by the parameter.
      
@@ -325,7 +194,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
      *
      *  Creates an event using data from the form that will be added to the Firebase database.
      */
-    func createEvent(imageURL: String = "") {
+    func createEvent(imageURL: String = "", invite: Bool) {
         
         let userID = FIRAuth.auth()?.currentUser?.uid
         
@@ -382,6 +251,16 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         let passEvent = Event(eventKey: newEvent.key, eventData: eventDict as Dictionary<String, AnyObject>)
         
         self.event = passEvent
+        
+        if invite {
+            
+            self.performSegue(withIdentifier: "showInvite", sender: self)
+        } else {
+            
+            self.switchController(controllerID: "Main")
+        }
+        
+        self.clearFields()
     }
     
     func clearFields() {
@@ -402,7 +281,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
      *
      *  Uploads the image the user selected for the event to Firebase storage.
      */
-    func uploadEventImage() {
+    func uploadEventImage(invite: Bool) {
         
         if let imageData = UIImageJPEGRepresentation(createEventImageView.image!, 0.2) {
             
@@ -426,14 +305,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
                     
                     let downloadURL = metadata?.downloadURL()?.absoluteString
                     
-                    if self.inEditingMode == true {
-                        
-                        self.updateEvent(imageURL: downloadURL!)
-                        
-                    } else {
-                        
-                        self.createEvent(imageURL: downloadURL!)
-                    }                    
+                    self.createEvent(imageURL: downloadURL!, invite: invite)
                 }
             }
         }
@@ -450,11 +322,14 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             
             eventStore.requestAccess(to: .event, completion: { (granted, error) in
                 
-                if error != nil {
+                if error == nil {
                     
                     /* SUCCESS: We have access to modify the user's calendar. */
      
-                    self.calendarCall(calEvent: eventStore, event: event)
+                    DispatchQueue.main.async {
+                        
+                        self.calendarCall(calEvent: eventStore, event: event)
+                    }
                     
                 } else {
                     
@@ -495,6 +370,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             
             //Saves event to calendar
             try calEvent.save(newEvent, span: .thisEvent)
+            self.clearFields()
             
         } catch {
             
@@ -612,7 +488,5 @@ extension CreateController: UITextFieldDelegate, UITextViewDelegate {
             
             endDatePickerView.addTarget(self, action: #selector(CreateController.datePickerChanged(sender:)), for: UIControlEvents.valueChanged)
         }
-        
-        
     }
 }
