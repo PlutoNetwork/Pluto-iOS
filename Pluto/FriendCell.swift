@@ -14,23 +14,43 @@ class FriendCell: UICollectionViewCell {
     // MARK: - Outlets
     
     @IBOutlet weak var friendImageView: UIImageView!
-    @IBOutlet weak var friendNameLabel: UILabel!
     
     // MARK: - Variables
     
     var friend: User!
     
-    override func awakeFromNib() {
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutIfNeeded()
         
-        friendImageView.clipsToBounds = true
+        friendImageView.layer.cornerRadius = friendImageView.frame.height/2
+        friendImageView.layer.masksToBounds = true
+    }
+    
+    func loadIndicator() {
+        
+        activityIndicator.center = self.contentView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = .white
+        self.contentView.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    func stopIndicator() {
+        
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     func configureCell(friend: User, img: UIImage? = nil) {
         
+        self.loadIndicator()
+        
         self.friend = friend
-        
-        self.friendNameLabel.text = friend.name
-        
+                
         /* Checks to see if the image is located in the cache. */
         
         if img != nil {
@@ -66,5 +86,7 @@ class FriendCell: UICollectionViewCell {
                 }
             })
         }
+        
+        self.stopIndicator()
     }
 }

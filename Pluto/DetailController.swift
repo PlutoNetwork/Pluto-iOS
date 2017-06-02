@@ -190,7 +190,7 @@ class DetailController: UIViewController {
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
-                for snap in snapshot {
+                for _ in snapshot {
                     
                     self.grabUsers(key: self.event.eventKey)
                 }
@@ -383,9 +383,9 @@ class DetailController: UIViewController {
         
         } else if segue.identifier == "showEventGallery" {
             
-            let destinationController: GalleryController = segue.destination as! GalleryController
+           // let destinationController: GalleryController = segue.destination as! GalleryController
             
-            destinationController.eventKey = event.eventKey // Passes the event key to the gallery screen.
+           // destinationController.eventKey = event.eventKey // Passes the event key to the gallery screen.
             
         } else if segue.identifier == "showSearch" {
             

@@ -11,6 +11,7 @@ import BetterSegmentedControl
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
+import Lottie
 
 class BoardController: UIViewController, UINavigationControllerDelegate {
     
@@ -24,7 +25,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     
     let navigationBarTitle = UILabel()
     var navigationBarAddButton = UIBarButtonItem()
-    var navigationBarSearchButton = UIBarButtonItem()
+    var navigationBarProfileButton = UIBarButtonItem()
     
     /// Holds all event pictures.
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -41,19 +42,15 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     /// Holds all the filtered board titles as the filtering function does its work.
     var filteredEvents = [Event]()
     
-    var friendEvents = [Event]()
-    
     /// Holds all the friend keys under the current user.
     var userFriendKeys = [String]()
     
     /// Tells when user is typing in the searchBar.
     var inSearchMode = false
     
-    var inFriendMode = false
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String(), coordinate: CLLocationCoordinate2D())
     
-    var sunnyRefreshControl: YALSunnyRefreshControl!
-    
-    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     // MARK: - VIEW
     
@@ -69,17 +66,15 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         imageView.image = image
         self.parent?.navigationItem.titleView = imageView
         
-        /* Search button */
-        /* I've hidden this because I added the search bar to the screen. The reason I didn't just delete it was because there's a spacing problem with the other elements on the nav bar; if I delete this, the logo is off-center. */
-        navigationBarSearchButton = UIBarButtonItem(image: UIImage(named: "ic-search"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
-        navigationBarSearchButton.tintColor = UIColor.clear
-        self.parent?.navigationItem.leftBarButtonItem  = navigationBarSearchButton
-         self.parent?.navigationItem.leftBarButtonItem?.isEnabled = false
-        
-        /* Add event button */
+        /* Add Event button */
         navigationBarAddButton = UIBarButtonItem(image: UIImage(named: "ic-add-event"), style: .plain, target: self, action: #selector(BoardController.goToAddEventScreen))
         navigationBarAddButton.tintColor = UIColor.white
-        self.parent?.navigationItem.rightBarButtonItem  = navigationBarAddButton
+        self.parent?.navigationItem.leftBarButtonItem  = navigationBarAddButton
+        
+        /* Profile button */
+        navigationBarProfileButton = UIBarButtonItem(image: UIImage(named: "ic-user"), style: .plain, target: self, action: #selector(BoardController.goToProfileScreen))
+        navigationBarProfileButton.tintColor = UIColor.white
+        self.parent?.navigationItem.rightBarButtonItem  = navigationBarProfileButton
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,17 +94,26 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         eventsView.delegate = self
         eventsView.dataSource = self
         
-        setupRefreshControl()
-        sunnyRefreshControl.beginRefreshing()
-        
+        grabUserFriends()
         checkEventRequests()
     }
     
-    func setupRefreshControl() {
+    func loadIndicator() {
         
-        sunnyRefreshControl = YALSunnyRefreshControl()
-        sunnyRefreshControl.addTarget(self, action: #selector(BoardController.grabUserFriends), for: .valueChanged)
-        sunnyRefreshControl.attach(to: eventsView)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = .white
+        self.view.addSubview(activityIndicator)
+        self.eventsView.isHidden = true
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    func stopIndicator() {
+        
+        activityIndicator.stopAnimating()
+        self.eventsView.isHidden = false
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     // MARK: - FIREBASE
@@ -241,11 +245,10 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                             
                                 let eventStartTime = formatter.date(from: event.timeStart)
                                 
-                                if event.publicMode == true && (eventStartTime! > currentDate) {
-                                
-                                    self.checkFriendUnderEvent(event: event)
+                                if eventStartTime! > currentDate {
                                     
                                     self.events.append(event) // Add the event to the events array.
+                                    self.saveEventImageToCache(eventImageURL: event.imageURL)
                                 }
                                 
                                 break // We no longer need to check if the key matches another event.
@@ -256,35 +259,34 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             }
             
             self.eventsView.reloadData()
-            self.sunnyRefreshControl.endRefreshing()
+            self.stopIndicator()
         })
     }
     
-    func checkFriendUnderEvent(event: Event) {
+    func saveEventImageToCache(eventImageURL: String) {
         
-        DataService.ds.REF_EVENTS.child(event.eventKey).child("users").observe(.value, with: { (snapshot) in
+        let ref = FIRStorage.storage().reference(forURL: eventImageURL)
+        
+        ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
             
-            self.friendEvents = []
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if error != nil {
                 
-                for snap in snapshot {
+                /* ERROR: Unable to download photo from Firebase storage. */
+                
+            } else {
+                
+                /* SUCCESS: Image downloaded from Firebase storage. */
+                
+                if let imageData = data {
                     
-                    let key = snap.key
-                    
-                    for userFriendKey in self.userFriendKeys {
+                    if let img = UIImage(data: imageData) {
                         
-                        if key == userFriendKey {
-                            
-                            self.friendEvents.append(event)
-                            
-                            break
-                        }
+                        print("SAVED")
+                        
+                        BoardController.imageCache.setObject(img, forKey: eventImageURL as NSString) // Save to image cache.
                     }
                 }
             }
-            
-            self.friendEvents = self.friendEvents.sorted(by: { $0.timeStart.compare($1.timeStart) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
         })
     }
     
@@ -292,6 +294,8 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
      *  Checks what friends belong to the current user.
      */
     func grabUserFriends() {
+        
+        loadIndicator()
         
         DataService.ds.REF_CURRENT_USER_FRIENDS.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -302,9 +306,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                 for snap in snapshot {
                     
                     let key = snap.key
-                    
                     let value = snap.value
-                    
                     let check = value! as! Bool
                     
                     if check == true {
@@ -313,7 +315,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
                     }
                 }
             }
-            
+
             self.grabBoardEvents()
         })
     }
@@ -328,7 +330,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         let control = BetterSegmentedControl(
             
             frame: CGRect(x: 0, y: 0, width: sortControlView.frame.width, height: sortControlView.frame.height),
-            titles: ["Upcoming", "Popular", "Friends"],
+            titles: ["School", "Popular", "Nearby"],
             index: 1,
             backgroundColor: VIEW_BACKGROUND_COLOR,
             titleColor: YELLOW_COLOR,
@@ -350,9 +352,11 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
      */
     func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         
+        loadIndicator()
+        
         if sender.index == 0 {
             
-            sortEvents(sortBy: "upcoming")
+            sortEvents(sortBy: "school")
             
         } else if sender.index == 1 {
             
@@ -360,7 +364,7 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
             
         } else if sender.index == 2 {
             
-            sortEvents(sortBy: "friends")
+            sortEvents(sortBy: "nearby")
         }
     }
     /**
@@ -372,22 +376,21 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         
         if sortBy == "popular" {
             
-            inFriendMode = false
             events = events.sorted(by: { $0.count > $1.count }) // Sorts the array by the number of people going to the event.
             
-        } else if sortBy == "upcoming" {
+        } else if sortBy == "school" {
             
-            inFriendMode = false
+            events = events.sorted(by: { $0.timeStart.compare($1.timeStart) == ComparisonResult.orderedDescending }) // Sorts the array by how close the event is time-wise.
+            
+        } else if sortBy == "nearby" {
+            
             events = events.sorted(by: { $0.timeStart.compare($1.timeStart) == ComparisonResult.orderedAscending }) // Sorts the array by how close the event is time-wise.
-            
-        } else if sortBy == "friends" {
-            
-            inFriendMode = true
         }
         
         self.eventsView.reloadData() // Reloads the events.
+        stopIndicator()
     }
-        
+    
     // MARK: - TRANSITION
     
     /**
@@ -400,6 +403,15 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
     }
     
     /**
+     *  Segues to the add event screen.
+     *
+     */
+    func goToProfileScreen() {
+        
+        self.performSegue(withIdentifier: "showProfile", sender: self)
+    }
+    
+    /**
      *  Switches to the view controller specified by the parameter.
      *
      *  - Parameter controllerID: The ID of the controller to switch to.
@@ -409,23 +421,6 @@ class BoardController: UIViewController, UINavigationControllerDelegate {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: controllerID) as UIViewController
         self.present(vc, animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "showDetails" {
-            
-            let destinationController: DetailController = segue.destination as! DetailController
-            
-            if let indexPath = self.eventsView.indexPathForSelectedRow {
-                
-                destinationController.event = events[indexPath.row] // Passes the event to the detail screen.
-                
-            } else {
-                
-                destinationController.event = self.event
-            }
-        }
     }
 }
 
@@ -464,14 +459,9 @@ extension BoardController: UITableViewDataSource, UITableViewDelegate {
         return 1 // We only need a single section for now.
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        self.performSegue(withIdentifier: "showDetails", sender: self)
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 140.0
+        return 280.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -480,9 +470,6 @@ extension BoardController: UITableViewDataSource, UITableViewDelegate {
             
             return filteredEvents.count
             
-        } else if inFriendMode == true {
-            
-            return friendEvents.count
         }
         
         return events.count
@@ -496,9 +483,6 @@ extension BoardController: UITableViewDataSource, UITableViewDelegate {
             
             event = filteredEvents[indexPath.row]
             
-        } else if inFriendMode == true {
-            
-            event = friendEvents[indexPath.row]
         }
         
         if let cell = eventsView.dequeueReusableCell(withIdentifier: "event") as? EventCell {
@@ -506,16 +490,35 @@ extension BoardController: UITableViewDataSource, UITableViewDelegate {
             if let img = BoardController.imageCache.object(forKey: event.imageURL as NSString) {
                 
                 cell.configureCell(event: event, img: img)
+                cell.grabEventFriends(userFriendKeys: self.userFriendKeys)
                 return cell
                 
             } else {
                 
+                print("WHAT")
                 cell.configureCell(event: event)
+                cell.grabEventFriends(userFriendKeys: self.userFriendKeys)
                 return cell
             }
+            
         } else {
             
             return EventCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        /* Set the initial state of the cell. */
+        cell.alpha = 0
+        //let transform = CATransform3DTranslate(CATransform3DIdentity, -250, 0, 0)
+        //cell.layer.transform = transform
+        
+        /* Animation to change the state of the cell. */
+        UIView.animate(withDuration: 0.5) {
+            
+            //cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1.0
         }
     }
 }

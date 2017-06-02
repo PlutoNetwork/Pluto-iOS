@@ -24,6 +24,7 @@ class Event {
     private var _timeStart: String!
     private var _timeEnd: String!
     private var _title: String!
+    private var _coordinate: CLLocationCoordinate2D!
     
     var eventKey: String {
         
@@ -80,7 +81,12 @@ class Event {
         return _title
     }
     
-    init(board: String, count: Int, creator: String, description: String, imageURL: String, location: String, publicMode: Bool, timeStart: String,timeEnd: String, title: String) {
+    var coordinate: CLLocationCoordinate2D {
+        
+        return _coordinate
+    }
+    
+    init(board: String, count: Int, creator: String, description: String, imageURL: String, location: String, publicMode: Bool, timeStart: String,timeEnd: String, title: String, coordinate: CLLocationCoordinate2D) {
         
         self._board = board
         self._count = count
@@ -92,6 +98,7 @@ class Event {
         self._timeStart = timeStart
         self._timeEnd = timeEnd
         self._title = title
+        self._coordinate = coordinate
     }
     
     init(eventKey: String, eventData: Dictionary<String, AnyObject>) {
@@ -146,6 +153,11 @@ class Event {
         if let title = eventData["title"] as? String {
             
             self._title = title
+        }
+        
+        if let coordinate = eventData["coordinate"] as? CLLocationCoordinate2D {
+            
+            self._coordinate = coordinate
         }
         
         _eventRef = DataService.ds.REF_EVENTS.child(_eventKey)

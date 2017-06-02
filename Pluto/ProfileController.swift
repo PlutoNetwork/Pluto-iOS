@@ -341,19 +341,6 @@ class ProfileController: UIViewController, UINavigationControllerDelegate {
         self.performSegue(withIdentifier: "showSettings", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "showDetails" {
-            
-            let destinationController: DetailController = segue.destination as! DetailController
-            
-            if let indexPath = self.eventsView.indexPathForSelectedRow {
-                
-                destinationController.event = events[indexPath.row] // Passes the event to the detail screen.
-            }
-        }
-    }
-    
     /**
      Switches to the view controller specified by the parameter.
      

@@ -26,6 +26,8 @@
 	<string>Pluto needs to access your calendar so you can see your events there.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to access your photos por favor.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Pluto needs to access your location, but only when the app is in use.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lobster-Regular.ttf</string>

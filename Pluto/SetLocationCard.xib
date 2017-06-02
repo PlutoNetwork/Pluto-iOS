@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SetLocationCard" customModule="Pluto" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q8w-9l-Efi">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                </mapView>
+                <searchBar contentMode="redraw" barStyle="black" placeholder="Search for an event" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpS-UG-0hW" customClass="SearchBar" customModule="Pluto" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="16" width="320" height="60"/>
+                    <color key="backgroundColor" red="1" green="0.72223772320000001" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Y3J-7j-Bkb"/>
+                    </constraints>
+                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="searchField.textColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8c-UM-wyX" customClass="Button" customModule="Pluto" customModuleProvider="target">
+                    <rect key="frame" x="110" y="184" width="100" height="50"/>
+                    <color key="backgroundColor" red="0.16078431372549018" green="0.18823529411764706" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="15W-BT-CWg"/>
+                        <constraint firstAttribute="height" constant="50" id="gDs-Ld-p3G"/>
+                    </constraints>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" red="1" green="0.82352941176470584" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="doneButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="IAS-eV-FBb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Q8w-9l-Efi" secondAttribute="trailing" id="Cnq-rH-BR0"/>
+                <constraint firstItem="Q8w-9l-Efi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DUe-ua-BhP"/>
+                <constraint firstAttribute="trailing" secondItem="KpS-UG-0hW" secondAttribute="trailing" id="H7L-Ll-Qqf"/>
+                <constraint firstItem="Q8w-9l-Efi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Qvh-Vu-zSH"/>
+                <constraint firstAttribute="bottom" secondItem="K8c-UM-wyX" secondAttribute="bottom" constant="16" id="Sub-7J-IN6"/>
+                <constraint firstAttribute="bottom" secondItem="Q8w-9l-Efi" secondAttribute="bottom" id="dGv-P7-enL"/>
+                <constraint firstItem="KpS-UG-0hW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="hCH-9j-kU7"/>
+                <constraint firstItem="KpS-UG-0hW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jga-HD-sUf"/>
+                <constraint firstItem="K8c-UM-wyX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ssd-by-flV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="doneButton" destination="K8c-UM-wyX" id="tkc-5U-2hm"/>
+                <outlet property="mapView" destination="Q8w-9l-Efi" id="Ld8-ot-wPV"/>
+                <outlet property="searchBar" destination="KpS-UG-0hW" id="ivh-FH-1Dm"/>
+            </connections>
+        </view>
+    </objects>
+</document>

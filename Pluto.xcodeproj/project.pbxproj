@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0602C44F1EDE06D600DA8C01 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0602C44E1EDE06D600DA8C01 /* MapViewController.swift */; };
+		0602C4511EDF26BA00DA8C01 /* SetLocationCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0602C4501EDF26BA00DA8C01 /* SetLocationCard.xib */; };
 		0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0606445C1D8A3FC8009CFEBC /* csv.swift */; };
 		060644611D8A4601009CFEBC /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060644601D8A4601009CFEBC /* Board.swift */; };
 		060644691D8A69FC009CFEBC /* schools.csv in Resources */ = {isa = PBXBuildFile; fileRef = 060644681D8A69FC009CFEBC /* schools.csv */; };
@@ -30,22 +32,22 @@
 		061FFF1E1DB9DB0700BFB544 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061FFF1D1DB9DB0700BFB544 /* User.swift */; };
 		063D2F1C1E2577E3008B0F39 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D2F1B1E2577E3008B0F39 /* TabBarController.swift */; };
 		064554901D8B1185002C236C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645548F1D8B1185002C236C /* SearchBar.swift */; };
+		06562E3C1EDF27E600F0686A /* SetLocationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06562E3B1EDF27E600F0686A /* SetLocationCard.swift */; };
+		06562E4F1EDF3B1600F0686A /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E461EDF3B1600F0686A /* GeoFire.m */; };
+		06562E501EDF3B1600F0686A /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E481EDF3B1600F0686A /* GFBase32Utils.m */; };
+		06562E511EDF3B1600F0686A /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E4A1EDF3B1600F0686A /* GFGeoHash.m */; };
+		06562E521EDF3B1600F0686A /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E4C1EDF3B1600F0686A /* GFGeoHashQuery.m */; };
+		06562E531EDF3B1600F0686A /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E4E1EDF3B1600F0686A /* GFQuery.m */; };
+		06562E581EE08F3100F0686A /* EventAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06562E571EE08F3100F0686A /* EventAnnotation.swift */; };
 		065E9B361DA9A5C60083C329 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E9B351DA9A5C60083C329 /* View.swift */; };
 		067CF1831DB418C70080C41C /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateController.swift */; };
-		067CF1851DB4329D0080C41C /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1841DB4329D0080C41C /* DetailController.swift */; };
 		06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchController.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
 		069266B11E26D17200755FE9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B01E26D17200755FE9 /* TextField.swift */; };
 		069266B51E26D57300755FE9 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B41E26D57300755FE9 /* TextView.swift */; };
-		069266B71E28630400755FE9 /* GalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B61E28630400755FE9 /* GalleryController.swift */; };
 		069266B91E28789900755FE9 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B81E28789800755FE9 /* Image.swift */; };
 		069266BB1E287A0A00755FE9 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266BA1E287A0A00755FE9 /* ImageCell.swift */; };
-		069266BD1E28914B00755FE9 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266BC1E28914B00755FE9 /* ImageController.swift */; };
 		069266BF1E29457100755FE9 /* CameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266BE1E29457100755FE9 /* CameraButton.swift */; };
-		069266C41E2AA11900755FE9 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266C31E2AA11900755FE9 /* UserSearchController.swift */; };
-		069266E81E2AF16400755FE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 069266DB1E2AF16300755FE9 /* Images.xcassets */; };
-		069266E91E2AF16400755FE9 /* YALSunnyRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 069266DD1E2AF16300755FE9 /* YALSunnyRefreshControl.m */; };
-		069266EA1E2AF16400755FE9 /* YALSunnyRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069266DE1E2AF16300755FE9 /* YALSunnyRefreshControl.xib */; };
 		0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
@@ -93,6 +95,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0602C44E1EDE06D600DA8C01 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0602C4501EDF26BA00DA8C01 /* SetLocationCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetLocationCard.xib; sourceTree = "<group>"; };
 		0606445C1D8A3FC8009CFEBC /* csv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = csv.swift; sourceTree = "<group>"; };
 		060644601D8A4601009CFEBC /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		060644681D8A69FC009CFEBC /* schools.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schools.csv; sourceTree = "<group>"; };
@@ -116,24 +120,33 @@
 		061FFF1D1DB9DB0700BFB544 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		063D2F1B1E2577E3008B0F39 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0645548F1D8B1185002C236C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		06562E3B1EDF27E600F0686A /* SetLocationCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetLocationCard.swift; sourceTree = "<group>"; };
+		06562E3F1EDF3B1600F0686A /* GeoFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
+		06562E401EDF3B1600F0686A /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
+		06562E411EDF3B1600F0686A /* GFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
+		06562E421EDF3B1600F0686A /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
+		06562E431EDF3B1600F0686A /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
+		06562E451EDF3B1600F0686A /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
+		06562E461EDF3B1600F0686A /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
+		06562E471EDF3B1600F0686A /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
+		06562E481EDF3B1600F0686A /* GFBase32Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBase32Utils.m; sourceTree = "<group>"; };
+		06562E491EDF3B1600F0686A /* GFGeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHash.h; sourceTree = "<group>"; };
+		06562E4A1EDF3B1600F0686A /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
+		06562E4B1EDF3B1600F0686A /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
+		06562E4C1EDF3B1600F0686A /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
+		06562E4D1EDF3B1600F0686A /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
+		06562E4E1EDF3B1600F0686A /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
+		06562E571EE08F3100F0686A /* EventAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAnnotation.swift; sourceTree = "<group>"; };
 		065E9B351DA9A5C60083C329 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		065E9B371DAAE0E30083C329 /* Pluto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pluto.entitlements; sourceTree = "<group>"; };
 		067CF1821DB418C70080C41C /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
-		067CF1841DB4329D0080C41C /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		06806A441DBF2A4B008A8356 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		069266B01E26D17200755FE9 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		069266B41E26D57300755FE9 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
-		069266B61E28630400755FE9 /* GalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryController.swift; sourceTree = "<group>"; };
 		069266B81E28789800755FE9 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		069266BA1E287A0A00755FE9 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		069266BC1E28914B00755FE9 /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		069266BE1E29457100755FE9 /* CameraButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraButton.swift; sourceTree = "<group>"; };
-		069266C31E2AA11900755FE9 /* UserSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
-		069266DB1E2AF16300755FE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		069266DC1E2AF16300755FE9 /* YALSunnyRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YALSunnyRefreshControl.h; sourceTree = "<group>"; };
-		069266DD1E2AF16300755FE9 /* YALSunnyRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YALSunnyRefreshControl.m; sourceTree = "<group>"; };
-		069266DE1E2AF16300755FE9 /* YALSunnyRefreshControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YALSunnyRefreshControl.xib; sourceTree = "<group>"; };
 		0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FaceAware.swift"; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,8 +214,8 @@
 		060644591D8A3EE9009CFEBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				06562E3D1EDF3B1600F0686A /* GeoFire */,
 				06B20CC31D86374F006EF005 /* Fonts */,
-				069266DA1E2AF16300755FE9 /* YALSunnyRefreshControl */,
 				061276781DA3592200CB3C2D /* SCLAlertView */,
 				0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */,
 				060644681D8A69FC009CFEBC /* schools.csv */,
@@ -217,6 +230,7 @@
 				068CEF271D9F5CCB00DFE126 /* Event.swift */,
 				069266B81E28789800755FE9 /* Image.swift */,
 				061FFF1D1DB9DB0700BFB544 /* User.swift */,
+				06562E571EE08F3100F0686A /* EventAnnotation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -254,6 +268,53 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		06562E3D1EDF3B1600F0686A /* GeoFire */ = {
+			isa = PBXGroup;
+			children = (
+				06562E3E1EDF3B1600F0686A /* API */,
+				06562E431EDF3B1600F0686A /* GeoFire-Prefix.pch */,
+				06562E441EDF3B1600F0686A /* Implementation */,
+			);
+			path = GeoFire;
+			sourceTree = "<group>";
+		};
+		06562E3E1EDF3B1600F0686A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				06562E3F1EDF3B1600F0686A /* GeoFire.h */,
+				06562E401EDF3B1600F0686A /* GFCircleQuery.h */,
+				06562E411EDF3B1600F0686A /* GFQuery.h */,
+				06562E421EDF3B1600F0686A /* GFRegionQuery.h */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		06562E441EDF3B1600F0686A /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				06562E451EDF3B1600F0686A /* GeoFire+Private.h */,
+				06562E461EDF3B1600F0686A /* GeoFire.m */,
+				06562E471EDF3B1600F0686A /* GFBase32Utils.h */,
+				06562E481EDF3B1600F0686A /* GFBase32Utils.m */,
+				06562E491EDF3B1600F0686A /* GFGeoHash.h */,
+				06562E4A1EDF3B1600F0686A /* GFGeoHash.m */,
+				06562E4B1EDF3B1600F0686A /* GFGeoHashQuery.h */,
+				06562E4C1EDF3B1600F0686A /* GFGeoHashQuery.m */,
+				06562E4D1EDF3B1600F0686A /* GFQuery+Private.h */,
+				06562E4E1EDF3B1600F0686A /* GFQuery.m */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		06562E561EDF4FCC00F0686A /* SetLocationCard */ = {
+			isa = PBXGroup;
+			children = (
+				0602C4501EDF26BA00DA8C01 /* SetLocationCard.xib */,
+				06562E3B1EDF27E600F0686A /* SetLocationCard.swift */,
+			);
+			name = SetLocationCard;
+			sourceTree = "<group>";
+		};
 		069266C01E2945B300755FE9 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,18 +322,6 @@
 				069266BE1E29457100755FE9 /* CameraButton.swift */,
 			);
 			name = Buttons;
-			sourceTree = "<group>";
-		};
-		069266DA1E2AF16300755FE9 /* YALSunnyRefreshControl */ = {
-			isa = PBXGroup;
-			children = (
-				069266DB1E2AF16300755FE9 /* Images.xcassets */,
-				069266DC1E2AF16300755FE9 /* YALSunnyRefreshControl.h */,
-				069266DD1E2AF16300755FE9 /* YALSunnyRefreshControl.m */,
-				069266DE1E2AF16300755FE9 /* YALSunnyRefreshControl.xib */,
-			);
-			name = YALSunnyRefreshControl;
-			path = YALTourPullToRefresh/YALSunnyRefreshControll;
 			sourceTree = "<group>";
 		};
 		06A196B21D976D86001C29EC /* Services */ = {
@@ -380,12 +429,9 @@
 				063D2F1B1E2577E3008B0F39 /* TabBarController.swift */,
 				061F7E4B1D983A970023D46F /* BoardController.swift */,
 				067CF1821DB418C70080C41C /* CreateController.swift */,
-				067CF1841DB4329D0080C41C /* DetailController.swift */,
-				069266B61E28630400755FE9 /* GalleryController.swift */,
-				069266BC1E28914B00755FE9 /* ImageController.swift */,
 				061F7E511D9863120023D46F /* ProfileController.swift */,
-				069266C31E2AA11900755FE9 /* UserSearchController.swift */,
 				061F74661DB00BEE00C8D2A6 /* SettingsController.swift */,
+				0602C44E1EDE06D600DA8C01 /* MapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -403,6 +449,7 @@
 		06B20CCB1D864313006EF005 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				06562E561EDF4FCC00F0686A /* SetLocationCard */,
 				063D2F1E1E25C3EF008B0F39 /* UI */,
 				063D2F1D1E25C3E5008B0F39 /* Cells */,
 			);
@@ -492,7 +539,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Faisal M. Lalani";
 				TargetAttributes = {
 					06B20C8C1D863296006EF005 = {
@@ -553,9 +600,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				069266EA1E2AF16400755FE9 /* YALSunnyRefreshControl.xib in Resources */,
 				060644691D8A69FC009CFEBC /* schools.csv in Resources */,
-				069266E81E2AF16400755FE9 /* Images.xcassets in Resources */,
 				061611E71DEA6E2400EE0816 /* Lato-Light.ttf in Resources */,
 				06B20CE01D865D36006EF005 /* OpenSans-Italic.ttf in Resources */,
 				061611E51DEA6E2400EE0816 /* Lato-HairlineItalic.ttf in Resources */,
@@ -566,6 +611,7 @@
 				06B20CDE1D865D36006EF005 /* OpenSans-ExtraBold.ttf in Resources */,
 				061611E21DEA6E2400EE0816 /* Lato-Bold.ttf in Resources */,
 				061611E91DEA6E2400EE0816 /* Lato-Regular.ttf in Resources */,
+				0602C4511EDF26BA00DA8C01 /* SetLocationCard.xib in Resources */,
 				06B20CE21D865D36006EF005 /* OpenSans-LightItalic.ttf in Resources */,
 				061611E41DEA6E2400EE0816 /* Lato-Hairline.ttf in Resources */,
 				06B20C9B1D863296006EF005 /* Assets.xcassets in Resources */,
@@ -653,32 +699,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				069266BD1E28914B00755FE9 /* ImageController.swift in Sources */,
 				061F7E521D9863120023D46F /* ProfileController.swift in Sources */,
-				069266E91E2AF16400755FE9 /* YALSunnyRefreshControl.m in Sources */,
-				067CF1851DB4329D0080C41C /* DetailController.swift in Sources */,
 				069266BB1E287A0A00755FE9 /* ImageCell.swift in Sources */,
-				069266C41E2AA11900755FE9 /* UserSearchController.swift in Sources */,
 				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
+				06562E531EDF3B1600F0686A /* GFQuery.m in Sources */,
 				069266B11E26D17200755FE9 /* TextField.swift in Sources */,
+				06562E501EDF3B1600F0686A /* GFBase32Utils.m in Sources */,
+				06562E521EDF3B1600F0686A /* GFGeoHashQuery.m in Sources */,
 				06B20C931D863296006EF005 /* LoginController.swift in Sources */,
 				0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */,
-				069266B71E28630400755FE9 /* GalleryController.swift in Sources */,
 				060644611D8A4601009CFEBC /* Board.swift in Sources */,
 				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
 				06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */,
 				069266BF1E29457100755FE9 /* CameraButton.swift in Sources */,
+				06562E511EDF3B1600F0686A /* GFGeoHash.m in Sources */,
 				069266B51E26D57300755FE9 /* TextView.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
 				061FFF1E1DB9DB0700BFB544 /* User.swift in Sources */,
 				063D2F1C1E2577E3008B0F39 /* TabBarController.swift in Sources */,
+				06562E581EE08F3100F0686A /* EventAnnotation.swift in Sources */,
+				06562E3C1EDF27E600F0686A /* SetLocationCard.swift in Sources */,
 				0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */,
 				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
 				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,
 				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
 				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
+				0602C44F1EDE06D600DA8C01 /* MapViewController.swift in Sources */,
 				06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */,
+				06562E4F1EDF3B1600F0686A /* GeoFire.m in Sources */,
 				067CF1831DB418C70080C41C /* CreateController.swift in Sources */,
 				068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */,
 				061F7E4C1D983A970023D46F /* BoardController.swift in Sources */,

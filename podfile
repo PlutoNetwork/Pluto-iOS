@@ -13,6 +13,7 @@ target 'Pluto' do
 	pod 'Firebase/Database'
     pod 'Firebase/Messaging'
     pod 'FMMosaicLayout'
+    pod 'lottie-ios'
     pod 'pop', '~> 1.0'
 end
 

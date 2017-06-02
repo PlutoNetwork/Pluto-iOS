@@ -10,15 +10,13 @@ import UIKit
 import BetterSegmentedControl
 import EventKit
 import Firebase
-import MessageUI
+import MapKit
 
-class CreateController: UIViewController, UINavigationControllerDelegate {
+class CreateController: UIViewController, UINavigationControllerDelegate, UpdateLocationDelegate {
 
     // MARK: - OUTLETS
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBOutlet weak var modeView: View!
     
     @IBOutlet weak var imageInstructionLabel: UILabel!
     @IBOutlet weak var createEventImageView: UIImageView!
@@ -27,10 +25,11 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var createEventStartTimeField: TextField!
     @IBOutlet weak var createEventEndTimeField: TextField!
     @IBOutlet weak var createEventDescriptionField: TextView!
-    
+    @IBOutlet weak var imageBackView: UIView!
     @IBOutlet weak var deleteButton: Button!
     
     var calendar: EKCalendar!
+    var setLocationView: SetLocationCard!
     
     // MARK: - VARIABLES
 
@@ -41,13 +40,13 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
     let startDatePickerView: UIDatePicker = UIDatePicker()
     let endDatePickerView: UIDatePicker = UIDatePicker()
     
-    var publicMode = true
-
     /// Holds the key of the event that may be passed from the detail screen.
-    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String())
+    var event = Event(board: String(), count: Int(), creator: String(), description: String(), imageURL: String(), location: String(), publicMode: Bool(), timeStart: String(), timeEnd: String(), title: String(), coordinate: CLLocationCoordinate2D())
     
     /// Tells when user has selected a picture for an event.
     var imageSelected = false
+    
+    var eventLocation = CLLocation()
     
     // MARK: - VIEW
     
@@ -91,51 +90,12 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         imagePicker.delegate = self
         
         createEventImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CreateController.addImageGesture))) // Adds a tap gesture to the createEventImageView to bring up the imagePicker.
-        
-        if imageSelected == false {
-            
-            initializeModeControl()
-        }
     }
     
-    /**
-     *  Uses the BetterSegmentedControl library to configure a segmented switch.
-     */
-    func initializeModeControl() {
+    func setLocationField(text: String, coordinate: CLLocation) {
         
-        let control = BetterSegmentedControl(
-            
-            frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: modeView.frame.height),
-            titles: ["Public", "Private"],
-            index: 0,
-            backgroundColor: VIEW_BACKGROUND_COLOR,
-            titleColor: YELLOW_COLOR,
-            indicatorViewBackgroundColor: YELLOW_COLOR,
-            selectedTitleColor: VIEW_BACKGROUND_COLOR)
-        
-        control.titleFont = UIFont(name: "Lato-Regular", size: 15.0)!
-        control.selectedTitleFont = UIFont(name: "Lato-Bold", size: 15.0)!
-        
-        control.addTarget(self, action: #selector(CreateController.navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
-        
-        modeView.addSubview(control)
-    }
-    
-    /**
-     *  #GATEWAY
-     *
-     *  Sorts events.
-     */
-    func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
-        
-        if sender.index == 0 {
-            
-            publicMode = true
-            
-        } else if sender.index == 1 {
-            
-            publicMode = false
-        }
+        self.createEventLocationField.text = text
+        self.eventLocation = coordinate
     }
     
     /**
@@ -155,15 +115,10 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             
             notice.addButton("Yes!", action: { 
                 
-                self.uploadEventImage(invite: true)
+                self.uploadEventImage()
             })
-            
-            notice.addButton("Nope", action: {
-                
-                self.uploadEventImage(invite: false)
-            })
-            
-            notice.showInfo("Inviting others", subTitle: "Would you like to invite other people to the event?", closeButtonTitle: "Cancel")
+                        
+            notice.showInfo("Confirm", subTitle: "Would you like to publically post this event?", closeButtonTitle: "Cancel")
             
         } else {
             
@@ -194,7 +149,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
      *
      *  Creates an event using data from the form that will be added to the Firebase database.
      */
-    func createEvent(imageURL: String = "", invite: Bool) {
+    func createEvent(imageURL: String = "") {
         
         let userID = FIRAuth.auth()?.currentUser?.uid
         
@@ -218,7 +173,6 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             "description": createEventDescriptionField.text! as Any,
             "creator": userID! as Any,
             "board": boardKey! as Any,
-            "publicMode": publicMode as Any,
             "count": 1 as Any,
             "imageURL": imageURL as Any
         ]
@@ -252,15 +206,12 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
         
         self.event = passEvent
         
-        if invite {
-            
-            self.performSegue(withIdentifier: "showInvite", sender: self)
-        } else {
-            
-            self.switchController(controllerID: "Main")
-        }
-        
         self.clearFields()
+        
+        let geoFire = GeoFire(firebaseRef: DataService.ds.REF_CURRENT_BOARD_EVENTS)
+        geoFire?.setLocation(self.eventLocation, forKey: newEventKey)
+        
+        self.performSegue(withIdentifier: "showMain", sender: self)
     }
     
     func clearFields() {
@@ -281,7 +232,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
      *
      *  Uploads the image the user selected for the event to Firebase storage.
      */
-    func uploadEventImage(invite: Bool) {
+    func uploadEventImage() {
         
         if let imageData = UIImageJPEGRepresentation(createEventImageView.image!, 0.2) {
             
@@ -305,7 +256,7 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
                     
                     let downloadURL = metadata?.downloadURL()?.absoluteString
                     
-                    self.createEvent(imageURL: downloadURL!, invite: invite)
+                    self.createEvent(imageURL: downloadURL!)
                 }
             }
         }
@@ -377,16 +328,6 @@ class CreateController: UIViewController, UINavigationControllerDelegate {
             print("OH NO")
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "showInvite" {
-            
-            let destinationController: UserSearchController = segue.destination as! UserSearchController
-            
-            destinationController.event = event
-        }
-    }
 }
 
 extension CreateController: UIImagePickerControllerDelegate {
@@ -407,6 +348,7 @@ extension CreateController: UIImagePickerControllerDelegate {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             
             self.imageInstructionLabel.alpha = 0
+            self.imageBackView.backgroundColor = UIColor.clear
             self.createEventImageView.image = image
             imageSelected = true
         }
@@ -466,6 +408,22 @@ extension CreateController: UITextFieldDelegate, UITextViewDelegate {
         textField.resignFirstResponder() // Dismisses the keyboard.
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if textField == createEventLocationField {
+            
+            self.view.resignFirstResponder()
+            
+            setLocationView = Bundle.main.loadNibNamed("SetLocationCard", owner: self, options: nil)?[0] as? SetLocationCard
+     
+            setLocationView.frame = CGRect(x: self.view.center.x, y: self.view.center.y, width: self.view.frame.width, height: self.view.frame.height)
+            setLocationView.center = self.scrollView.center
+            setLocationView.locationDelegate = self
+            
+            view.addSubview(setLocationView)
+        }
     }
     
     @IBAction func timeFieldEditingBegan(_ sender: TextField) {

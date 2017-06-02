@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>lottie-ios.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>64F7003870A47A6A9B508E8AB0644E55</key>
+		<key>484C35682D63A1642638C1744CF3B182</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D2EB949A221878D0325043A8DFA8B03</key>
+		<key>B5C29066B32BC3DBA7CD2538B4ED3A47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD3C3888BB256B2EA05D0FF3490B5665</key>
 		<dict>
 			<key>primary</key>
 			<true/>
