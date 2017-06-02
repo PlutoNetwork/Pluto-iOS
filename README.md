@@ -1,7 +1,7 @@
 <img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/pluto-logo-black.imageset/pluto-logo-black.png">
 
 <p align="center">
-<img src="https://img.shields.io/badge/version-0.6-brightgreen.svg">
+<img src="https://img.shields.io/badge/version-1.0-brightgreen.svg">
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg">
 <img src="https://img.shields.io/badge/release-no-red.svg">
 <img src="https://img.shields.io/badge/license-GNU%20AGPLv3-yellow.svg">
@@ -17,9 +17,9 @@ Users can invite other users to events and even subscribe to the networks custom
 
 ## Screenshots
 
-<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot1.imageset/pluto1.PNG" width="250">
-<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot2.imageset/pluto2.PNG" width="250">
-<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot3.imageset/pluto3.PNG" width="250">
+<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot1.imageset/screenshot1.png" width="250">
+<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot2.imageset/screenshot2.png" width="250">
+<img src="https://github.com/PlutoNetwork/Pluto-iOS/blob/master/Pluto/Assets.xcassets/screenshot3.imageset/screenshot3.png" width="250">
 
 ## Features
 
