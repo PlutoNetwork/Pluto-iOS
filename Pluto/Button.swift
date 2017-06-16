@@ -34,12 +34,22 @@ class Button: UIButton {
         setupView()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setupView()
+    }
+    
     /**
      *  Sets default properties to the view.
      */
     func setupView() {
         
+        self.clipsToBounds = true
         self.layer.cornerRadius = cornerRadius
+        self.layer.masksToBounds = true
+        self.layer.borderWidth = 3.0
+        self.layer.borderColor = UIColor.white.cgColor
         
         /* Adds a pulse animation when the button is tapped. */
         self.addTarget(self, action: #selector(Button.scaleToSmall), for: .touchDown)

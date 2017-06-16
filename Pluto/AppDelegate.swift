@@ -9,40 +9,31 @@
 import UIKit
 import CoreData
 import Firebase
-import FirebaseMessaging
-import UserNotifications
-
+import GoogleMaps
+import GooglePlaces
+    
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        FIRApp.configure() // Allows us to use Firebase.
+        /* Connect to Firebase when the app opens up. */
         
-        /* Navigation bar customization */
+        FirebaseApp.configure()
         
+        GMSServices.provideAPIKey("AIzaSyBjjIUQ2GeLbChnYSX22zXu3_l2zS52h_4")
+        GMSPlacesClient.provideAPIKey("AIzaSyBjjIUQ2GeLbChnYSX22zXu3_l2zS52h_4")
+                
         /// Grabs the email and password saved in a previous instance if the user already exists.
         let userDefaults = UserDefaults.standard
         
         /* Checks to see if there is an email saved in the userDefaults. */
         if userDefaults.string(forKey: "email") != nil {
             
-            print(userDefaults.string(forKey: "boardKey") as Any)
-
-            /* Checks to see if there is a school saved in the userDefaults. */
-            if userDefaults.string(forKey: "boardKey") != nil {
-                
-                /* Bypass to the main board screen. */
-                setRootViewController(identifier: "Main")
-                
-            } else {
-                
-                /* Bypass to the board search screen .*/
-                setRootViewController(identifier: "Search")
-            }
+            setRootViewController(identifier: "Main")
             
         } else {
         
@@ -51,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
-
     
     // MARK: - HELPERS
     

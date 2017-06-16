@@ -10,30 +10,20 @@ import Firebase
 
 class Event {
     
-    private var _eventRef: FIRDatabaseReference!
+    private var _eventRef: DatabaseReference!
     
     private var _eventKey: String!
     
-    private var _board: String!
     private var _count: Int!
     private var _creator: String!
-    private var _description: String!
     private var _imageURL: String!
-    private var _location: String!
-    private var _publicMode: Bool!
     private var _timeStart: String!
     private var _timeEnd: String!
     private var _title: String!
-    private var _coordinate: CLLocationCoordinate2D!
     
     var eventKey: String {
         
         return _eventKey
-    }
-    
-    var board: String {
-        
-        return _board
     }
     
     var count: Int {
@@ -46,24 +36,9 @@ class Event {
         return _creator
     }
     
-    var description: String {
-        
-        return _description
-    }
-    
     var imageURL: String {
         
         return _imageURL
-    }
-    
-    var location: String {
-        
-        return _location
-    }
-    
-    var publicMode: Bool {
-        
-        return _publicMode
     }
     
     var timeStart: String {
@@ -81,34 +56,19 @@ class Event {
         return _title
     }
     
-    var coordinate: CLLocationCoordinate2D {
+    init(count: Int, creator: String, imageURL: String, timeStart: String, timeEnd: String, title: String) {
         
-        return _coordinate
-    }
-    
-    init(board: String, count: Int, creator: String, description: String, imageURL: String, location: String, publicMode: Bool, timeStart: String,timeEnd: String, title: String, coordinate: CLLocationCoordinate2D) {
-        
-        self._board = board
         self._count = count
         self._creator = creator
-        self._description = description
         self._imageURL = imageURL
-        self._location = location
-        self._publicMode = publicMode
         self._timeStart = timeStart
         self._timeEnd = timeEnd
         self._title = title
-        self._coordinate = coordinate
     }
     
     init(eventKey: String, eventData: Dictionary<String, AnyObject>) {
         
         self._eventKey = eventKey
-        
-        if let board = eventData["board"] as? String {
-            
-            self._board = board
-        }
         
         if let count = eventData["count"] as? Int {
             
@@ -120,24 +80,9 @@ class Event {
             self._creator = creator
         }
         
-        if let description = eventData["description"] as? String {
-            
-            self._description = description
-        }
-        
         if let imageURL = eventData["imageURL"] as? String {
             
             self._imageURL = imageURL
-        }
-        
-        if let location = eventData["location"] as? String {
-            
-            self._location = location
-        }
-        
-        if let publicMode = eventData["publicMode"] as? Bool {
-            
-            self._publicMode = publicMode
         }
         
         if let timeStart = eventData["timeStart"] as? String {
@@ -155,14 +100,14 @@ class Event {
             self._title = title
         }
         
-        if let coordinate = eventData["coordinate"] as? CLLocationCoordinate2D {
-            
-            self._coordinate = coordinate
-        }
-        
         _eventRef = DataService.ds.REF_EVENTS.child(_eventKey)
     }
     
+    /**
+      Adjusts the count of the number of the people going to the event.
+     
+     - Parameter addToCount: a flag that indicates whether the user is going to an event or not anymore.
+     */
     func adjustCount(addToCount: Bool) {
         
         if addToCount {

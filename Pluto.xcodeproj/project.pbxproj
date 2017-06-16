@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0602C44F1EDE06D600DA8C01 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0602C44E1EDE06D600DA8C01 /* MapViewController.swift */; };
-		0602C4511EDF26BA00DA8C01 /* SetLocationCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0602C4501EDF26BA00DA8C01 /* SetLocationCard.xib */; };
-		0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0606445C1D8A3FC8009CFEBC /* csv.swift */; };
-		060644611D8A4601009CFEBC /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060644601D8A4601009CFEBC /* Board.swift */; };
-		060644691D8A69FC009CFEBC /* schools.csv in Resources */ = {isa = PBXBuildFile; fileRef = 060644681D8A69FC009CFEBC /* schools.csv */; };
-		0612767C1DA3592200CB3C2D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061276791DA3592200CB3C2D /* Info.plist */; };
-		0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612767A1DA3592200CB3C2D /* SCLAlertView.swift */; };
-		0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612767B1DA3592200CB3C2D /* SCLExtensions.swift */; };
+		060A09AC1EEDBB7400988C50 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 060A09AB1EEDBB7400988C50 /* NotificationView.xib */; };
+		060A09B01EEDBC9E00988C50 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060A09AF1EEDBC9E00988C50 /* NotificationView.swift */; };
+		060E93041EF449BF0024B7B6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 060E93011EF449BF0024B7B6 /* Info.plist */; };
+		060E93051EF449BF0024B7B6 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060E93021EF449BF0024B7B6 /* SCLAlertView.swift */; };
+		060E93061EF449BF0024B7B6 /* SCLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060E93031EF449BF0024B7B6 /* SCLExtensions.swift */; };
+		060E93191EF449CA0024B7B6 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E93101EF449CA0024B7B6 /* GeoFire.m */; };
+		060E931A1EF449CA0024B7B6 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E93121EF449CA0024B7B6 /* GFBase32Utils.m */; };
+		060E931B1EF449CA0024B7B6 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E93141EF449CA0024B7B6 /* GFGeoHash.m */; };
+		060E931C1EF449CA0024B7B6 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E93161EF449CA0024B7B6 /* GFGeoHashQuery.m */; };
+		060E931D1EF449CA0024B7B6 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 060E93181EF449CA0024B7B6 /* GFQuery.m */; };
 		061611E01DEA6E2400EE0816 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611D61DEA6E2400EE0816 /* Lato-Black.ttf */; };
 		061611E11DEA6E2400EE0816 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611D71DEA6E2400EE0816 /* Lato-BlackItalic.ttf */; };
 		061611E21DEA6E2400EE0816 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611D81DEA6E2400EE0816 /* Lato-Bold.ttf */; };
@@ -25,31 +27,16 @@
 		061611E71DEA6E2400EE0816 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611DD1DEA6E2400EE0816 /* Lato-Light.ttf */; };
 		061611E81DEA6E2400EE0816 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611DE1DEA6E2400EE0816 /* Lato-LightItalic.ttf */; };
 		061611E91DEA6E2400EE0816 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 061611DF1DEA6E2400EE0816 /* Lato-Regular.ttf */; };
-		061F74671DB00BEE00C8D2A6 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F74661DB00BEE00C8D2A6 /* SettingsController.swift */; };
-		061F7E4C1D983A970023D46F /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4B1D983A970023D46F /* BoardController.swift */; };
-		061F7E501D985CC20023D46F /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E4F1D985CC20023D46F /* EventCell.swift */; };
-		061F7E521D9863120023D46F /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F7E511D9863120023D46F /* ProfileController.swift */; };
-		061FFF1E1DB9DB0700BFB544 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061FFF1D1DB9DB0700BFB544 /* User.swift */; };
-		063D2F1C1E2577E3008B0F39 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063D2F1B1E2577E3008B0F39 /* TabBarController.swift */; };
+		0621E2DA1EEB278600EF4C85 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0621E2D91EEB278600EF4C85 /* ResultCell.swift */; };
 		064554901D8B1185002C236C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645548F1D8B1185002C236C /* SearchBar.swift */; };
-		06562E3C1EDF27E600F0686A /* SetLocationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06562E3B1EDF27E600F0686A /* SetLocationCard.swift */; };
-		06562E4F1EDF3B1600F0686A /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E461EDF3B1600F0686A /* GeoFire.m */; };
-		06562E501EDF3B1600F0686A /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E481EDF3B1600F0686A /* GFBase32Utils.m */; };
-		06562E511EDF3B1600F0686A /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E4A1EDF3B1600F0686A /* GFGeoHash.m */; };
-		06562E521EDF3B1600F0686A /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E4C1EDF3B1600F0686A /* GFGeoHashQuery.m */; };
-		06562E531EDF3B1600F0686A /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 06562E4E1EDF3B1600F0686A /* GFQuery.m */; };
-		06562E581EE08F3100F0686A /* EventAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06562E571EE08F3100F0686A /* EventAnnotation.swift */; };
 		065E9B361DA9A5C60083C329 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E9B351DA9A5C60083C329 /* View.swift */; };
-		067CF1831DB418C70080C41C /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067CF1821DB418C70080C41C /* CreateController.swift */; };
-		06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06806A441DBF2A4B008A8356 /* SearchController.swift */; };
+		06661CB91EE2208800570C56 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06661CB81EE2208800570C56 /* RoundImageView.swift */; };
 		068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068CEF271D9F5CCB00DFE126 /* Event.swift */; };
-		069266B11E26D17200755FE9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B01E26D17200755FE9 /* TextField.swift */; };
 		069266B51E26D57300755FE9 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B41E26D57300755FE9 /* TextView.swift */; };
-		069266B91E28789900755FE9 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266B81E28789800755FE9 /* Image.swift */; };
-		069266BB1E287A0A00755FE9 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266BA1E287A0A00755FE9 /* ImageCell.swift */; };
-		069266BF1E29457100755FE9 /* CameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069266BE1E29457100755FE9 /* CameraButton.swift */; };
-		0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */; };
 		06A196B41D976D94001C29EC /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A196B31D976D94001C29EC /* DataService.swift */; };
+		06ADC5B11EF2E92C00F7F1DB /* mapstyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 06ADC5B01EF2E92C00F7F1DB /* mapstyle.json */; };
+		06AF75DB1EE59C1600ED6675 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AF75DA1EE59C1600ED6675 /* EventView.xib */; };
+		06AF75DD1EE59D7400ED6675 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AF75DC1EE59D7400ED6675 /* EventView.swift */; };
 		06B20C911D863296006EF005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C901D863296006EF005 /* AppDelegate.swift */; };
 		06B20C931D863296006EF005 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20C921D863296006EF005 /* LoginController.swift */; };
 		06B20C961D863296006EF005 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06B20C941D863296006EF005 /* Main.storyboard */; };
@@ -59,7 +46,7 @@
 		06B20CA91D863296006EF005 /* PlutoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CA81D863296006EF005 /* PlutoTests.swift */; };
 		06B20CB41D863296006EF005 /* PlutoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CB31D863296006EF005 /* PlutoUITests.swift */; };
 		06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CC91D8638AA006EF005 /* AnimationEngine.swift */; };
-		06B20CCF1D8646C9006EF005 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CCE1D8646C9006EF005 /* LoginTextField.swift */; };
+		06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CCE1D8646C9006EF005 /* TextField.swift */; };
 		06B20CD11D8656B4006EF005 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CD01D8656B4006EF005 /* Button.swift */; };
 		06B20CDC1D865D36006EF005 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD21D865D35006EF005 /* OpenSans-Bold.ttf */; };
 		06B20CDD1D865D36006EF005 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CD31D865D35006EF005 /* OpenSans-BoldItalic.ttf */; };
@@ -72,8 +59,10 @@
 		06B20CE41D865D36006EF005 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CDA1D865D36006EF005 /* OpenSans-Semibold.ttf */; };
 		06B20CE51D865D36006EF005 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */; };
 		06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B20CE91D866A0D006EF005 /* Constants.swift */; };
+		06B9474F1EEC943200007EDE /* MenuBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06B9474E1EEC943200007EDE /* MenuBar.xib */; };
+		06B947511EEC95B800007EDE /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B947501EEC95B800007EDE /* MenuBar.swift */; };
+		06BA67A61EE1F0D2006291FF /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA67A51EE1F0D2006291FF /* MainController.swift */; };
 		06C370781DBF575C004D47D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06C370771DBF575C004D47D5 /* GoogleService-Info.plist */; };
-		06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */; };
 		B4F34FAEE16D44E835F8B980 /* Pods_Pluto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5524771818B2C31640FA526F /* Pods_Pluto.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,14 +84,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0602C44E1EDE06D600DA8C01 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		0602C4501EDF26BA00DA8C01 /* SetLocationCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetLocationCard.xib; sourceTree = "<group>"; };
-		0606445C1D8A3FC8009CFEBC /* csv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = csv.swift; sourceTree = "<group>"; };
-		060644601D8A4601009CFEBC /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		060644681D8A69FC009CFEBC /* schools.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schools.csv; sourceTree = "<group>"; };
-		061276791DA3592200CB3C2D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0612767A1DA3592200CB3C2D /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
-		0612767B1DA3592200CB3C2D /* SCLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLExtensions.swift; sourceTree = "<group>"; };
+		060A09AB1EEDBB7400988C50 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
+		060A09AF1EEDBC9E00988C50 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		060E93011EF449BF0024B7B6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		060E93021EF449BF0024B7B6 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
+		060E93031EF449BF0024B7B6 /* SCLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLExtensions.swift; sourceTree = "<group>"; };
+		060E93091EF449CA0024B7B6 /* GeoFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
+		060E930A1EF449CA0024B7B6 /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
+		060E930B1EF449CA0024B7B6 /* GFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
+		060E930C1EF449CA0024B7B6 /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
+		060E930D1EF449CA0024B7B6 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
+		060E930F1EF449CA0024B7B6 /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
+		060E93101EF449CA0024B7B6 /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
+		060E93111EF449CA0024B7B6 /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
+		060E93121EF449CA0024B7B6 /* GFBase32Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBase32Utils.m; sourceTree = "<group>"; };
+		060E93131EF449CA0024B7B6 /* GFGeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHash.h; sourceTree = "<group>"; };
+		060E93141EF449CA0024B7B6 /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
+		060E93151EF449CA0024B7B6 /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
+		060E93161EF449CA0024B7B6 /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
+		060E93171EF449CA0024B7B6 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
+		060E93181EF449CA0024B7B6 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		061611D61DEA6E2400EE0816 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		061611D71DEA6E2400EE0816 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		061611D81DEA6E2400EE0816 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -113,42 +114,17 @@
 		061611DD1DEA6E2400EE0816 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		061611DE1DEA6E2400EE0816 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		061611DF1DEA6E2400EE0816 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
-		061F74661DB00BEE00C8D2A6 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		061F7E4B1D983A970023D46F /* BoardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
-		061F7E4F1D985CC20023D46F /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
-		061F7E511D9863120023D46F /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
-		061FFF1D1DB9DB0700BFB544 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		063D2F1B1E2577E3008B0F39 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0621E2D91EEB278600EF4C85 /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		0645548F1D8B1185002C236C /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		06562E3B1EDF27E600F0686A /* SetLocationCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetLocationCard.swift; sourceTree = "<group>"; };
-		06562E3F1EDF3B1600F0686A /* GeoFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
-		06562E401EDF3B1600F0686A /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
-		06562E411EDF3B1600F0686A /* GFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
-		06562E421EDF3B1600F0686A /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
-		06562E431EDF3B1600F0686A /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
-		06562E451EDF3B1600F0686A /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
-		06562E461EDF3B1600F0686A /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
-		06562E471EDF3B1600F0686A /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
-		06562E481EDF3B1600F0686A /* GFBase32Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBase32Utils.m; sourceTree = "<group>"; };
-		06562E491EDF3B1600F0686A /* GFGeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHash.h; sourceTree = "<group>"; };
-		06562E4A1EDF3B1600F0686A /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
-		06562E4B1EDF3B1600F0686A /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
-		06562E4C1EDF3B1600F0686A /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
-		06562E4D1EDF3B1600F0686A /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
-		06562E4E1EDF3B1600F0686A /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
-		06562E571EE08F3100F0686A /* EventAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAnnotation.swift; sourceTree = "<group>"; };
 		065E9B351DA9A5C60083C329 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		065E9B371DAAE0E30083C329 /* Pluto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pluto.entitlements; sourceTree = "<group>"; };
-		067CF1821DB418C70080C41C /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
-		06806A441DBF2A4B008A8356 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		06661CB81EE2208800570C56 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		068CEF271D9F5CCB00DFE126 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		069266B01E26D17200755FE9 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		069266B41E26D57300755FE9 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
-		069266B81E28789800755FE9 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		069266BA1E287A0A00755FE9 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		069266BE1E29457100755FE9 /* CameraButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraButton.swift; sourceTree = "<group>"; };
-		0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+FaceAware.swift"; sourceTree = "<group>"; };
 		06A196B31D976D94001C29EC /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		06ADC5B01EF2E92C00F7F1DB /* mapstyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mapstyle.json; sourceTree = "<group>"; };
+		06AF75DA1EE59C1600ED6675 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
+		06AF75DC1EE59D7400ED6675 /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		06B20C8D1D863296006EF005 /* Pluto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pluto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06B20C901D863296006EF005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06B20C921D863296006EF005 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -165,7 +141,7 @@
 		06B20CB51D863296006EF005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06B20CC41D863773006EF005 /* Pluto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pluto-Bridging-Header.h"; sourceTree = "<group>"; };
 		06B20CC91D8638AA006EF005 /* AnimationEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationEngine.swift; sourceTree = "<group>"; };
-		06B20CCE1D8646C9006EF005 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		06B20CCE1D8646C9006EF005 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		06B20CD01D8656B4006EF005 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		06B20CD21D865D35006EF005 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		06B20CD31D865D35006EF005 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -178,8 +154,10 @@
 		06B20CDA1D865D36006EF005 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		06B20CDB1D865D36006EF005 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		06B20CE91D866A0D006EF005 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		06B9474E1EEC943200007EDE /* MenuBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuBar.xib; sourceTree = "<group>"; };
+		06B947501EEC95B800007EDE /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		06BA67A51EE1F0D2006291FF /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		06C370771DBF575C004D47D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		5524771818B2C31640FA526F /* Pods_Pluto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pluto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74DB09F247622E608C0D1FBA /* Pods-Pluto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.debug.xcconfig"; sourceTree = "<group>"; };
 		7DD34BF65A678735D57AE41F /* Pods-Pluto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pluto/Pods-Pluto.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,11 +192,10 @@
 		060644591D8A3EE9009CFEBC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				06562E3D1EDF3B1600F0686A /* GeoFire */,
+				06ADC5B01EF2E92C00F7F1DB /* mapstyle.json */,
+				060E93071EF449CA0024B7B6 /* GeoFire */,
+				060E93001EF449BF0024B7B6 /* SCLAlertView */,
 				06B20CC31D86374F006EF005 /* Fonts */,
-				061276781DA3592200CB3C2D /* SCLAlertView */,
-				0697C2941DC445E100CBBB23 /* UIImageView+FaceAware.swift */,
-				060644681D8A69FC009CFEBC /* schools.csv */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -226,102 +203,72 @@
 		0606445F1D8A45CC009CFEBC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				060644601D8A4601009CFEBC /* Board.swift */,
 				068CEF271D9F5CCB00DFE126 /* Event.swift */,
-				069266B81E28789800755FE9 /* Image.swift */,
-				061FFF1D1DB9DB0700BFB544 /* User.swift */,
-				06562E571EE08F3100F0686A /* EventAnnotation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
-		061276781DA3592200CB3C2D /* SCLAlertView */ = {
+		060E93001EF449BF0024B7B6 /* SCLAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				061276791DA3592200CB3C2D /* Info.plist */,
-				0612767A1DA3592200CB3C2D /* SCLAlertView.swift */,
-				0612767B1DA3592200CB3C2D /* SCLExtensions.swift */,
+				060E93011EF449BF0024B7B6 /* Info.plist */,
+				060E93021EF449BF0024B7B6 /* SCLAlertView.swift */,
+				060E93031EF449BF0024B7B6 /* SCLExtensions.swift */,
 			);
-			path = SCLAlertView;
+			name = SCLAlertView;
+			path = "../../../../../Downloads/SCLAlertView-Swift-master/SCLAlertView";
 			sourceTree = "<group>";
 		};
-		063D2F1D1E25C3E5008B0F39 /* Cells */ = {
+		060E93071EF449CA0024B7B6 /* GeoFire */ = {
 			isa = PBXGroup;
 			children = (
-				061F7E4F1D985CC20023D46F /* EventCell.swift */,
-				06EEB1FF1DBAB6FA00C54DF6 /* FriendCell.swift */,
-				069266BA1E287A0A00755FE9 /* ImageCell.swift */,
+				060E93081EF449CA0024B7B6 /* API */,
+				060E930D1EF449CA0024B7B6 /* GeoFire-Prefix.pch */,
+				060E930E1EF449CA0024B7B6 /* Implementation */,
 			);
-			name = Cells;
+			name = GeoFire;
+			path = "../../../../../Downloads/geofire-objc-master/GeoFire";
+			sourceTree = "<group>";
+		};
+		060E93081EF449CA0024B7B6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				060E93091EF449CA0024B7B6 /* GeoFire.h */,
+				060E930A1EF449CA0024B7B6 /* GFCircleQuery.h */,
+				060E930B1EF449CA0024B7B6 /* GFQuery.h */,
+				060E930C1EF449CA0024B7B6 /* GFRegionQuery.h */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		060E930E1EF449CA0024B7B6 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				060E930F1EF449CA0024B7B6 /* GeoFire+Private.h */,
+				060E93101EF449CA0024B7B6 /* GeoFire.m */,
+				060E93111EF449CA0024B7B6 /* GFBase32Utils.h */,
+				060E93121EF449CA0024B7B6 /* GFBase32Utils.m */,
+				060E93131EF449CA0024B7B6 /* GFGeoHash.h */,
+				060E93141EF449CA0024B7B6 /* GFGeoHash.m */,
+				060E93151EF449CA0024B7B6 /* GFGeoHashQuery.h */,
+				060E93161EF449CA0024B7B6 /* GFGeoHashQuery.m */,
+				060E93171EF449CA0024B7B6 /* GFQuery+Private.h */,
+				060E93181EF449CA0024B7B6 /* GFQuery.m */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		063D2F1E1E25C3EF008B0F39 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				069266C01E2945B300755FE9 /* Buttons */,
+				06B20CD01D8656B4006EF005 /* Button.swift */,
 				065E9B351DA9A5C60083C329 /* View.swift */,
 				0645548F1D8B1185002C236C /* SearchBar.swift */,
-				06B20CCE1D8646C9006EF005 /* LoginTextField.swift */,
-				069266B01E26D17200755FE9 /* TextField.swift */,
+				06B20CCE1D8646C9006EF005 /* TextField.swift */,
 				069266B41E26D57300755FE9 /* TextView.swift */,
+				06661CB81EE2208800570C56 /* RoundImageView.swift */,
 			);
 			name = UI;
-			sourceTree = "<group>";
-		};
-		06562E3D1EDF3B1600F0686A /* GeoFire */ = {
-			isa = PBXGroup;
-			children = (
-				06562E3E1EDF3B1600F0686A /* API */,
-				06562E431EDF3B1600F0686A /* GeoFire-Prefix.pch */,
-				06562E441EDF3B1600F0686A /* Implementation */,
-			);
-			path = GeoFire;
-			sourceTree = "<group>";
-		};
-		06562E3E1EDF3B1600F0686A /* API */ = {
-			isa = PBXGroup;
-			children = (
-				06562E3F1EDF3B1600F0686A /* GeoFire.h */,
-				06562E401EDF3B1600F0686A /* GFCircleQuery.h */,
-				06562E411EDF3B1600F0686A /* GFQuery.h */,
-				06562E421EDF3B1600F0686A /* GFRegionQuery.h */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		06562E441EDF3B1600F0686A /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				06562E451EDF3B1600F0686A /* GeoFire+Private.h */,
-				06562E461EDF3B1600F0686A /* GeoFire.m */,
-				06562E471EDF3B1600F0686A /* GFBase32Utils.h */,
-				06562E481EDF3B1600F0686A /* GFBase32Utils.m */,
-				06562E491EDF3B1600F0686A /* GFGeoHash.h */,
-				06562E4A1EDF3B1600F0686A /* GFGeoHash.m */,
-				06562E4B1EDF3B1600F0686A /* GFGeoHashQuery.h */,
-				06562E4C1EDF3B1600F0686A /* GFGeoHashQuery.m */,
-				06562E4D1EDF3B1600F0686A /* GFQuery+Private.h */,
-				06562E4E1EDF3B1600F0686A /* GFQuery.m */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		06562E561EDF4FCC00F0686A /* SetLocationCard */ = {
-			isa = PBXGroup;
-			children = (
-				0602C4501EDF26BA00DA8C01 /* SetLocationCard.xib */,
-				06562E3B1EDF27E600F0686A /* SetLocationCard.swift */,
-			);
-			name = SetLocationCard;
-			sourceTree = "<group>";
-		};
-		069266C01E2945B300755FE9 /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				06B20CD01D8656B4006EF005 /* Button.swift */,
-				069266BE1E29457100755FE9 /* CameraButton.swift */,
-			);
-			name = Buttons;
 			sourceTree = "<group>";
 		};
 		06A196B21D976D86001C29EC /* Services */ = {
@@ -425,13 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				06B20C921D863296006EF005 /* LoginController.swift */,
-				06806A441DBF2A4B008A8356 /* SearchController.swift */,
-				063D2F1B1E2577E3008B0F39 /* TabBarController.swift */,
-				061F7E4B1D983A970023D46F /* BoardController.swift */,
-				067CF1821DB418C70080C41C /* CreateController.swift */,
-				061F7E511D9863120023D46F /* ProfileController.swift */,
-				061F74661DB00BEE00C8D2A6 /* SettingsController.swift */,
-				0602C44E1EDE06D600DA8C01 /* MapViewController.swift */,
+				06BA67A51EE1F0D2006291FF /* MainController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -440,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				06B20CC91D8638AA006EF005 /* AnimationEngine.swift */,
-				0606445C1D8A3FC8009CFEBC /* csv.swift */,
 				06B20CE91D866A0D006EF005 /* Constants.swift */,
 			);
 			name = Utilities;
@@ -449,9 +389,14 @@
 		06B20CCB1D864313006EF005 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				06562E561EDF4FCC00F0686A /* SetLocationCard */,
 				063D2F1E1E25C3EF008B0F39 /* UI */,
-				063D2F1D1E25C3E5008B0F39 /* Cells */,
+				06AF75DA1EE59C1600ED6675 /* EventView.xib */,
+				06AF75DC1EE59D7400ED6675 /* EventView.swift */,
+				0621E2D91EEB278600EF4C85 /* ResultCell.swift */,
+				06B9474E1EEC943200007EDE /* MenuBar.xib */,
+				06B947501EEC95B800007EDE /* MenuBar.swift */,
+				060A09AB1EEDBB7400988C50 /* NotificationView.xib */,
+				060A09AF1EEDBC9E00988C50 /* NotificationView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -539,7 +484,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Faisal M. Lalani";
 				TargetAttributes = {
 					06B20C8C1D863296006EF005 = {
@@ -600,7 +545,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				060644691D8A69FC009CFEBC /* schools.csv in Resources */,
 				061611E71DEA6E2400EE0816 /* Lato-Light.ttf in Resources */,
 				06B20CE01D865D36006EF005 /* OpenSans-Italic.ttf in Resources */,
 				061611E51DEA6E2400EE0816 /* Lato-HairlineItalic.ttf in Resources */,
@@ -609,23 +553,26 @@
 				061611E81DEA6E2400EE0816 /* Lato-LightItalic.ttf in Resources */,
 				06B20CE41D865D36006EF005 /* OpenSans-Semibold.ttf in Resources */,
 				06B20CDE1D865D36006EF005 /* OpenSans-ExtraBold.ttf in Resources */,
+				060A09AC1EEDBB7400988C50 /* NotificationView.xib in Resources */,
 				061611E21DEA6E2400EE0816 /* Lato-Bold.ttf in Resources */,
 				061611E91DEA6E2400EE0816 /* Lato-Regular.ttf in Resources */,
-				0602C4511EDF26BA00DA8C01 /* SetLocationCard.xib in Resources */,
 				06B20CE21D865D36006EF005 /* OpenSans-LightItalic.ttf in Resources */,
 				061611E41DEA6E2400EE0816 /* Lato-Hairline.ttf in Resources */,
 				06B20C9B1D863296006EF005 /* Assets.xcassets in Resources */,
-				0612767C1DA3592200CB3C2D /* Info.plist in Resources */,
 				061611E01DEA6E2400EE0816 /* Lato-Black.ttf in Resources */,
 				061611E61DEA6E2400EE0816 /* Lato-Italic.ttf in Resources */,
+				060E93041EF449BF0024B7B6 /* Info.plist in Resources */,
 				061611E11DEA6E2400EE0816 /* Lato-BlackItalic.ttf in Resources */,
+				06ADC5B11EF2E92C00F7F1DB /* mapstyle.json in Resources */,
 				06B20CDC1D865D36006EF005 /* OpenSans-Bold.ttf in Resources */,
 				061611E31DEA6E2400EE0816 /* Lato-BoldItalic.ttf in Resources */,
 				06B20C961D863296006EF005 /* Main.storyboard in Resources */,
 				06C370781DBF575C004D47D5 /* GoogleService-Info.plist in Resources */,
 				06B20CE51D865D36006EF005 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				06AF75DB1EE59C1600ED6675 /* EventView.xib in Resources */,
 				06B20CE11D865D36006EF005 /* OpenSans-Light.ttf in Resources */,
 				06B20CE31D865D36006EF005 /* OpenSans-Regular.ttf in Resources */,
+				06B9474F1EEC943200007EDE /* MenuBar.xib in Resources */,
 				06B20CDF1D865D36006EF005 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,44 +646,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				061F7E521D9863120023D46F /* ProfileController.swift in Sources */,
-				069266BB1E287A0A00755FE9 /* ImageCell.swift in Sources */,
-				0606445D1D8A3FC8009CFEBC /* csv.swift in Sources */,
-				06562E531EDF3B1600F0686A /* GFQuery.m in Sources */,
-				069266B11E26D17200755FE9 /* TextField.swift in Sources */,
-				06562E501EDF3B1600F0686A /* GFBase32Utils.m in Sources */,
-				06562E521EDF3B1600F0686A /* GFGeoHashQuery.m in Sources */,
 				06B20C931D863296006EF005 /* LoginController.swift in Sources */,
-				0612767E1DA3592200CB3C2D /* SCLExtensions.swift in Sources */,
-				060644611D8A4601009CFEBC /* Board.swift in Sources */,
 				06A196B41D976D94001C29EC /* DataService.swift in Sources */,
+				060E931B1EF449CA0024B7B6 /* GFGeoHash.m in Sources */,
 				064554901D8B1185002C236C /* SearchBar.swift in Sources */,
-				06806A451DBF2A4B008A8356 /* SearchController.swift in Sources */,
-				069266BF1E29457100755FE9 /* CameraButton.swift in Sources */,
-				06562E511EDF3B1600F0686A /* GFGeoHash.m in Sources */,
+				06B947511EEC95B800007EDE /* MenuBar.swift in Sources */,
+				060E931C1EF449CA0024B7B6 /* GFGeoHashQuery.m in Sources */,
+				060E93051EF449BF0024B7B6 /* SCLAlertView.swift in Sources */,
 				069266B51E26D57300755FE9 /* TextView.swift in Sources */,
 				06B20CD11D8656B4006EF005 /* Button.swift in Sources */,
-				061FFF1E1DB9DB0700BFB544 /* User.swift in Sources */,
-				063D2F1C1E2577E3008B0F39 /* TabBarController.swift in Sources */,
-				06562E581EE08F3100F0686A /* EventAnnotation.swift in Sources */,
-				06562E3C1EDF27E600F0686A /* SetLocationCard.swift in Sources */,
-				0697C2951DC445E100CBBB23 /* UIImageView+FaceAware.swift in Sources */,
-				061F7E501D985CC20023D46F /* EventCell.swift in Sources */,
-				06EEB2001DBAB6FA00C54DF6 /* FriendCell.swift in Sources */,
-				0612767D1DA3592200CB3C2D /* SCLAlertView.swift in Sources */,
+				06661CB91EE2208800570C56 /* RoundImageView.swift in Sources */,
+				06AF75DD1EE59D7400ED6675 /* EventView.swift in Sources */,
 				06B20C911D863296006EF005 /* AppDelegate.swift in Sources */,
-				0602C44F1EDE06D600DA8C01 /* MapViewController.swift in Sources */,
+				06BA67A61EE1F0D2006291FF /* MainController.swift in Sources */,
+				060E931D1EF449CA0024B7B6 /* GFQuery.m in Sources */,
 				06B20CCA1D8638AA006EF005 /* AnimationEngine.swift in Sources */,
-				06562E4F1EDF3B1600F0686A /* GeoFire.m in Sources */,
-				067CF1831DB418C70080C41C /* CreateController.swift in Sources */,
+				060E93061EF449BF0024B7B6 /* SCLExtensions.swift in Sources */,
 				068CEF281D9F5CCB00DFE126 /* Event.swift in Sources */,
-				061F7E4C1D983A970023D46F /* BoardController.swift in Sources */,
+				060E931A1EF449CA0024B7B6 /* GFBase32Utils.m in Sources */,
 				065E9B361DA9A5C60083C329 /* View.swift in Sources */,
 				06B20CEA1D866A0D006EF005 /* Constants.swift in Sources */,
-				06B20CCF1D8646C9006EF005 /* LoginTextField.swift in Sources */,
+				06B20CCF1D8646C9006EF005 /* TextField.swift in Sources */,
+				060E93191EF449CA0024B7B6 /* GeoFire.m in Sources */,
 				06B20C991D863296006EF005 /* Pluto.xcdatamodeld in Sources */,
-				069266B91E28789900755FE9 /* Image.swift in Sources */,
-				061F74671DB00BEE00C8D2A6 /* SettingsController.swift in Sources */,
+				0621E2DA1EEB278600EF4C85 /* ResultCell.swift in Sources */,
+				060A09B01EEDBC9E00988C50 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,7 +734,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -808,7 +744,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -852,7 +792,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -860,7 +802,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;

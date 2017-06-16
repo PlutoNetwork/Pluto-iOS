@@ -6,15 +6,14 @@ target 'Pluto' do
   use_frameworks!
 
   # Pods for Pluto
-    pod 'BetterSegmentedControl', '~> 0.7'
-	pod 'Firebase'
-	pod 'Firebase/Auth'
-	pod 'Firebase/Storage'
-	pod 'Firebase/Database'
-    pod 'Firebase/Messaging'
-    pod 'FMMosaicLayout'
-    pod 'lottie-ios'
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
     pod 'pop', '~> 1.0'
+    pod 'SwiftySound'
 end
 
 post_install do |installer|

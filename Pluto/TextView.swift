@@ -12,9 +12,19 @@ class TextView: UITextView {
 
     // MARK: - CONFIGURATION
     
+    override func layoutSubviews() {
+        
+        setupView()
+    }
+    
     override func awakeFromNib() {
         
-        self.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        setupView()
+    }
+    
+    func setupView() {
+        
+        self.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
 
 }

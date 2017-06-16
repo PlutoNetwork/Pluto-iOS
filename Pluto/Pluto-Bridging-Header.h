@@ -3,5 +3,4 @@
 //
 
 #import <pop/POP.h>
-#import "FMMosaicLayout/FMMosaicLayout.h"
 #import "GeoFire.h"

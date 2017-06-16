@@ -11,22 +11,32 @@ import Firebase
 import FirebaseAuth
 import pop
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UINavigationControllerDelegate {
     
-    // MARK: - OUTLETS
+    // MARK: - Outlets
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var goButton: Button!
     
-    // MARK: - VIEW
+    // MARK: - View
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* Initializes the text fields. */
+        /* Initialize the text fields. */
+        
         emailField.delegate = self
         passwordField.delegate = self
+        
+        /* Set the background of the view to a blurry image of the map. */
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"login_back")!)
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "login_back")?.draw(in: self.view.bounds)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.view.backgroundColor = UIColor(patternImage: image)
     }
     
     // MARK: - BUTTONS
@@ -34,6 +44,7 @@ class LoginController: UIViewController {
     @IBAction func goButtonAction(_ sender: AnyObject) {
         
         dismissKeyboard()
+        
         firebaseLoginSignupVoodoo(email: emailField.text!, password: passwordField.text!)
     }
     
@@ -56,16 +67,16 @@ class LoginController: UIViewController {
         /// Create an alert to show errors.
         let notice = SCLAlertView()
         
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if error == nil {
                 
                 /* SUCCESS: The user has logged in. */
                 
-                self.saveDefault(email: email, password: password)
+                self.saveDefault(email: email)
                 
-                self.findBoard()
-                                
+                self.switchController(controllerID: "Main")
+                
             } else {
                 
                 /* ERROR: Something went wrong with logging in. */
@@ -81,7 +92,7 @@ class LoginController: UIViewController {
                         /* The user has given permission to create him/her an account. */
 
                         /* Firebase does some voodoo to create the user an account with the provided information. */
-                        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
                             
                             if error != nil {
                                 
@@ -95,24 +106,24 @@ class LoginController: UIViewController {
                                 
                                 self.saveUser(user: user!, userID: (user?.uid)!, email: email, password: password, providerID: (user?.providerID)!)
                                 
-                                self.performSegue(withIdentifier: "showSearch", sender: self) // Transitions to the search screen.
+                                self.switchController(controllerID: "Main")
                             }
                         })
                     }
                     
                     notice.showInfo("Hey!", subTitle: "Pluto couldn't find an account with these credentials. Should we create you a new account?", closeButtonTitle: "No, I made a mistake!")
                     
-                case STATUS_PASSWORD_INCORRECT:
-                    
-                    /* The user typed in his/her password incorrectly. */
-                    
-                    notice.showError("Oh no!", subTitle: "You typed your password incorrectly. Try again!")
-                    
                 case STATUS_FIELDS_BLANK:
                     
                     /* The user left one or both fields blank. */
                     
                     notice.showError("Oh no!", subTitle: "You left a field blank! Make sure to fill them BOTH out.")
+                    
+                case STATUS_PASSWORD_INCORRECT:
+                    
+                    /* The user typed in his/her password incorrectly. */
+                    
+                    notice.showError("Oh no!", subTitle: "You typed your password incorrectly. Try again!")
                     
                 default:
                     
@@ -134,46 +145,22 @@ class LoginController: UIViewController {
      *  - Parameter email: The user's email inputted in the emailField.text.
      *  - Parameter providerID: How the user signed up (Firebase, Facebook, Google, etc.).
      */
-    func saveToDatabaseVoodoo(user: FIRUser?, userID: String, email: String, providerID: String) {
+    func saveToDatabaseVoodoo(user: User?, userID: String, email: String, providerID: String) {
         
         if let user = user {
             
             /// Creates a dictionary for the user information that will be saved to the database.
             let userData = ["provider": providerID,
-                            "image": "https://firebasestorage.googleapis.com/v0/b/pluto-b5a22.appspot.com/o/profile-pics%2F12A7618A-56AE-483B-AA86-77442CB95B93?alt=media&token=d8c23cc6-914a-473e-b951-2f258367e1fd",
+                            "image": "none",
                             "name": email,
                             "email": email]
             
             /* The default image is just a random one from the storage. */
             
             DataService.ds.createFirebaseDBUser(uid: user.uid, userData: userData)
+            
+            self.switchController(controllerID: "Main")
         }
-    }
-    
-    func findBoard() {
-        
-        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let value = snapshot.value as? NSDictionary
-            
-            let board = value?["board"] as? String
-            
-            let userDefaults = UserDefaults.standard
-            
-            /* Save the board into userDefaults. */
-            userDefaults.set(board, forKey: "boardKey")
-            
-            self.clearFields()
-            
-            self.switchController(controllerID: "Main") // Transitions to the main board screen.
-            
-        })  { (error) in
-            
-            // Error!
-            
-            SCLAlertView().showError("Oh no!", subTitle: "Pluto couldn't find your school.")
-        }
-
     }
     
     // MARK: - HELPERS
@@ -206,13 +193,12 @@ class LoginController: UIViewController {
      *  - Parameter email: The email from the emailField.text (provided by the user).
      *  - Parameter password: The password from the passwordField.text (provided by the user).
      */
-    func saveDefault(email: String, password: String) {
+    func saveDefault(email: String) {
                 
         let userDefaults = UserDefaults.standard
         
         /* Save the email and password into userDefaults. */
         userDefaults.set(email, forKey: "email")
-        userDefaults.set(password, forKey: "password")
     }
     
     /**
@@ -226,10 +212,10 @@ class LoginController: UIViewController {
      *  - Parameter password: The user's password inputted in the passwordField.text.
      *  - Parameter providerID: How the user signed up (Firebase, Facebook, Google, etc.).
      */
-    func saveUser(user: FIRUser?, userID: String?, email: String, password: String, providerID: String) {
+    func saveUser(user: User?, userID: String?, email: String, password: String, providerID: String) {
         
         saveToDatabaseVoodoo(user: user, userID: userID!, email: email, providerID: providerID)
-        saveDefault(email: email, password: password)
+        saveDefault(email: email)
     }
     
     /**

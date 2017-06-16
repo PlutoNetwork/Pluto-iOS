@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="75"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pK-zO-eq6">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="75"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXl-Vc-aWb">
+                            <rect key="frame" x="8" y="8" width="284" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="2Gz-AM-fY5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3O-6s-eGy">
+                            <rect key="frame" x="8" y="43" width="284" height="24"/>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="nXl-Vc-aWb" firstAttribute="top" secondItem="2pK-zO-eq6" secondAttribute="topMargin" id="5hs-f7-KjL"/>
+                        <constraint firstItem="nXl-Vc-aWb" firstAttribute="leading" secondItem="2pK-zO-eq6" secondAttribute="leadingMargin" id="Aha-vM-Nhj"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="z3O-6s-eGy" secondAttribute="bottom" id="DVa-Cf-EBP"/>
+                        <constraint firstItem="z3O-6s-eGy" firstAttribute="leading" secondItem="2pK-zO-eq6" secondAttribute="leadingMargin" id="Kbg-LY-Yt6"/>
+                        <constraint firstItem="z3O-6s-eGy" firstAttribute="top" secondItem="nXl-Vc-aWb" secondAttribute="bottom" id="SsZ-f3-nnb"/>
+                        <constraint firstItem="nXl-Vc-aWb" firstAttribute="trailing" secondItem="2pK-zO-eq6" secondAttribute="trailingMargin" id="YMM-o2-2B4"/>
+                        <constraint firstItem="z3O-6s-eGy" firstAttribute="trailing" secondItem="2pK-zO-eq6" secondAttribute="trailingMargin" id="ttf-2Q-OQv"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="2pK-zO-eq6" secondAttribute="bottom" id="05b-NF-zAH"/>
+                <constraint firstItem="2pK-zO-eq6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YFw-UZ-D4m"/>
+                <constraint firstItem="2pK-zO-eq6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gwD-he-9XZ"/>
+                <constraint firstAttribute="trailing" secondItem="2pK-zO-eq6" secondAttribute="trailing" id="lr3-wm-eUR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-58" y="6.5"/>
+        </view>
+    </objects>
+</document>

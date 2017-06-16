@@ -22,6 +22,12 @@ class SearchBar : UISearchBar {
         setupView()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setupView()
+    }
+    
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         
@@ -31,6 +37,18 @@ class SearchBar : UISearchBar {
     func setupView() {
         
         self.tintColor = UIColor.white
+        
+        self.barStyle = .black
+        self.backgroundColor = UIColor.black
+        self.barTintColor = UIColor.black
+        
+        /* Add a shadow to the search bar. */
+        
+        self.layer.shadowColor = SHADOW_COLOR.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.masksToBounds = false
+        
+        self.searchBarStyle = .prominent
         
         setupText()
     }

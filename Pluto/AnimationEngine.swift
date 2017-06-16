@@ -17,26 +17,30 @@ class AnimationEngine {
         return CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
     }
     
-    /// A horizontally centered position above and off the screen.
-    class var offScreenTopPosition: CGPoint {
+    /// A horizontally centered position to the right of the screen.
+    class var offScreenRightPosition: CGPoint {
         
-        return CGPoint(x: UIScreen.main.bounds.midX, y: -UIScreen.main.bounds.height)
+        return CGPoint(x: UIScreen.main.bounds.width + 1000, y: UIScreen.main.bounds.midY)
     }
     
+    /// A horizontally centered position to the left of the screen.
+    class var offScreenLeftPosition: CGPoint {
+        
+        return CGPoint(x: UIScreen.main.bounds.width - 1000, y: UIScreen.main.bounds.midY)
+    }
+    
+    /**
+      Animates a passed-in view to a passed-in position.
+     
+     - Parameter view: the view to animate.
+     - Parameter position: the position to animate to.
+     */
     class func animateToPosition(view: UIView, position: CGPoint) {
         
         let moveAnim = POPSpringAnimation(propertyNamed: kPOPLayerPosition)
         moveAnim?.toValue = NSValue(cgPoint: position)
         moveAnim?.springBounciness = 0.2
-        moveAnim?.springSpeed = 0.2
+        moveAnim?.springSpeed = 5
         view.pop_add(moveAnim, forKey: "moveToPosition")
-    }
-    
-    class func fadeAnimation(view: UIView, duration: Double, alpha: CGFloat) {
-        
-        UIView.animate(withDuration: duration) { 
-            
-            view.alpha = alpha
-        }
     }
 }

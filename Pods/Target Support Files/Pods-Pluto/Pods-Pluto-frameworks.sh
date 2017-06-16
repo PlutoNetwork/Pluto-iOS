@@ -84,18 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/BetterSegmentedControl/BetterSegmentedControl.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FMMosaicLayout/FMMosaicLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/lottie-ios/Lottie.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftySound/SwiftySound.framework"
   install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/BetterSegmentedControl/BetterSegmentedControl.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FMMosaicLayout/FMMosaicLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GoogleToolboxForMac/GoogleToolboxForMac.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/lottie-ios/Lottie.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftySound/SwiftySound.framework"
   install_framework "$BUILT_PRODUCTS_DIR/pop/pop.framework"
 fi

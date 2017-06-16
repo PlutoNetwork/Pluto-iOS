@@ -36,5 +36,7 @@
 	<string>1:656556811193:ios:a9a56ab4ad464c86</string>
 	<key>DATABASE_URL</key>
 	<string>https://pluto-b5a22.firebaseio.com</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<string>NO</string>
 </dict>
 </plist>

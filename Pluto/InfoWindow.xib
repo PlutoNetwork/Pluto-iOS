@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Black.ttf">
+            <string>Lato-Black</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="InfoWindow" customModule="Pluto" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infowindow_overlay" translatesAutoresizingMaskIntoConstraints="NO" id="cmp-yU-le2">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMe-KL-RmI">
+                    <rect key="frame" x="8" y="5" width="184" height="18"/>
+                    <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="VMe-KL-RmI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="8OJ-wF-rOF"/>
+                <constraint firstItem="VMe-KL-RmI" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="DpJ-m0-E3F"/>
+                <constraint firstAttribute="trailing" secondItem="cmp-yU-le2" secondAttribute="trailing" id="Fzt-ov-Wlj"/>
+                <constraint firstItem="VMe-KL-RmI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="VJE-o6-NYB"/>
+                <constraint firstItem="cmp-yU-le2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WNB-Fz-QWo"/>
+                <constraint firstAttribute="bottom" secondItem="cmp-yU-le2" secondAttribute="bottom" id="XIR-XW-yVe"/>
+                <constraint firstItem="cmp-yU-le2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pkW-fk-zEg"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="VMe-KL-RmI" id="jiG-Dm-Qxg"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="infowindow_overlay" width="125" height="60"/>
+    </resources>
+</document>
